@@ -28,7 +28,6 @@ module.exports = function (sequelize, DataTypes) {
       oauth_provider: {
         type: DataTypes.ENUM('google', 'kakao', 'naver'),
         allowNull: false,
-        unique: true,
       },
       oauth_id: {
         type: DataTypes.STRING(50),
@@ -44,6 +43,12 @@ module.exports = function (sequelize, DataTypes) {
           unique: true,
           using: 'BTREE',
           fields: [{ name: 'user_id' }],
+        },
+        {
+          name: 'unique_oauth_provider_oauth_id',
+          unique: true,
+          using: 'BTREE',
+          fields: [{ name: 'oauth_provider' }, { name: 'oauth_id' }],
         },
       ],
     }
