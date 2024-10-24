@@ -23,6 +23,7 @@ exports.getUser = async (req, res) => {
     res.json({
       userId: decoded.userId,
       name: decoded.name,
+      nickname: decoded.nickname,
       email: decoded.email,
       profileImgUrl: decoded.profileImgUrl,
     });

@@ -18,6 +18,7 @@ router.get(
       {
         userId: req.user.user_id,
         name: req.user.name,
+        nickname: req.user.nickname,
         email: req.user.email,
         profileImgUrl: req.user.profile_img_url,
       },
