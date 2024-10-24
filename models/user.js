@@ -11,23 +11,28 @@ module.exports = function (sequelize, DataTypes) {
       },
       name: {
         type: DataTypes.STRING(30),
-        allowNull: true,
+        allowNull: false,
       },
       nickname: {
         type: DataTypes.STRING(30),
-        allowNull: true,
+        allowNull: false,
       },
       email: {
         type: DataTypes.STRING(100),
-        allowNull: true,
+        allowNull: false,
       },
       profile_img_url: {
         type: DataTypes.TEXT,
         allowNull: true,
       },
+      oauth_provider: {
+        type: DataTypes.ENUM('google', 'kakao', 'naver'),
+        allowNull: false,
+        unique: true,
+      },
       oauth_id: {
         type: DataTypes.STRING(50),
-        allowNull: true,
+        allowNull: false,
       },
     },
     {
