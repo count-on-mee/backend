@@ -2,6 +2,7 @@ const passport = require('passport');
 const dotenv = require('dotenv');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const KakaoStrategy = require('passport-kakao').Strategy;
+const NaverStrategy = require('passport-naver-v2').Strategy;
 const { User } = require('../models');
 const { nicknameGenerator } = require('../utils');
 
@@ -59,6 +60,37 @@ passport.use(
               profile._json.kakao_account.profile.thumbnail_image_url,
             oauth_provider: 'kakao',
             oauth_id: profile._json.id,
+          });
+        }
+        done(null, user);
+      } catch (error) {
+        done(error, null);
+      }
+    }
+  )
+);
+
+passport.use(
+  new NaverStrategy(
+    {
+      clientID: process.env.NAVER_CLIENT_ID,
+      clientSecret: process.env.NAVER_CLIENT_SECRET,
+      callbackURL: process.env.NAVER_CALLBACK_URI,
+    },
+    async (accessToken, refreshToken, profile, done) => {
+      try {
+        let user = await User.findOne({
+          where: { oauth_provider: 'naver', oauth_id: profile.id },
+        });
+        if (!user) {
+          const nickname = nicknameGenerator();
+          user = await User.create({
+            name: profile.name,
+            nickname,
+            email: profile.email,
+            profile_img_url: profile.profileImage,
+            oauth_provider: 'naver',
+            oauth_id: profile.id,
           });
         }
         done(null, user);
