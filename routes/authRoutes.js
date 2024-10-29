@@ -12,7 +12,11 @@ router.get(
 
 router.get(
   '/google/callback',
-  passport.authenticate('google', { session: false }),
+  passport.authenticate('google', {
+    session: false,
+    failureRedirect: '/auth/google',
+    successReturnToOrRedirect: 'http://localhost:5173/',
+  }),
   (req, res) => {
     const token = jwt.sign(
       {
@@ -40,7 +44,11 @@ router.get(
 
 router.get(
   '/kakao/callback',
-  passport.authenticate('kakao', { session: false }),
+  passport.authenticate('kakao', {
+    session: false,
+    failureRedirect: '/auth/kakao',
+    successReturnToOrRedirect: 'http://localhost:5173/',
+  }),
   (req, res) => {
     const token = jwt.sign(
       {
@@ -63,7 +71,11 @@ router.get('/naver', passport.authenticate('naver', { authType: 'reprompt' }));
 
 router.get(
   '/naver/callback',
-  passport.authenticate('naver', { session: false }),
+  passport.authenticate('naver', {
+    session: false,
+    failureRedirect: '/auth/naver',
+    successReturnToOrRedirect: 'http://localhost:5173/',
+  }),
   (req, res) => {
     const token = jwt.sign(
       {
