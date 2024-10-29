@@ -64,6 +64,7 @@ npm install
 <pre>
 npm run seq:migrate
 </pre>
+- If you get an executable error, run <code>npm i -g sequelize-cli</code>.
 
 #### How to Deploy the Server APIs
 
