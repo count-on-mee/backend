@@ -62,7 +62,7 @@ npm install
 
 - Generate the DB tables.
 <pre>
-npm run sequelize:migrate
+npm run seq:migrate
 </pre>
 
 #### How to Deploy the Server APIs
