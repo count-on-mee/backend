@@ -1,15 +1,16 @@
-const Sequelize = require('sequelize');
 module.exports = function (sequelize, DataTypes) {
   const SpotImg = sequelize.define(
-    'spot_img',
+    'SpotImg',
     {
-      spot_img_id: {
+      spotImgId: {
+        field: 'spot_img_id',
         type: DataTypes.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true,
       },
-      spot_id: {
+      spotId: {
+        field: 'spot_id',
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
@@ -17,7 +18,8 @@ module.exports = function (sequelize, DataTypes) {
           key: 'spot_id',
         },
       },
-      img_url: {
+      imgUrl: {
+        field: 'img_url',
         type: DataTypes.TEXT,
         allowNull: false,
       },
@@ -26,19 +28,6 @@ module.exports = function (sequelize, DataTypes) {
       sequelize,
       tableName: 'spot_img',
       timestamps: false,
-      indexes: [
-        {
-          name: 'PRIMARY',
-          unique: true,
-          using: 'BTREE',
-          fields: [{ name: 'spot_img_id' }],
-        },
-        {
-          name: 'spot_img_spot_id_idx',
-          using: 'BTREE',
-          fields: [{ name: 'spot_id' }],
-        },
-      ],
     }
   );
   return SpotImg;

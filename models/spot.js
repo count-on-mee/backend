@@ -1,9 +1,9 @@
-const Sequelize = require('sequelize');
 module.exports = function (sequelize, DataTypes) {
   const Spot = sequelize.define(
     'Spot',
     {
-      spot_id: {
+      spotId: {
+        field: 'spot_id',
         type: DataTypes.INTEGER,
         autoIncrement: true,
         allowNull: false,
@@ -21,15 +21,18 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.STRING(20),
         allowNull: true,
       },
-      review_count: {
+      reviewCount: {
+        field: 'review_count',
         type: DataTypes.INTEGER,
         allowNull: true,
       },
-      review_score: {
+      reviewScore: {
+        field: 'review_score',
         type: DataTypes.DECIMAL(5, 3),
         allowNull: true,
       },
-      naver_id: {
+      naverId: {
+        field: 'naver_id',
         type: DataTypes.STRING(50),
         allowNull: true,
       },
@@ -37,15 +40,14 @@ module.exports = function (sequelize, DataTypes) {
     {
       tableName: 'spot',
       timestamps: false,
-      indexes: [
-        {
-          name: 'PRIMARY',
-          unique: true,
-          using: 'BTREE',
-          fields: [{ name: 'spot_id' }],
-        },
-      ],
     }
   );
+
+  Spot.associate = function (models) {
+    Spot.hasMany(models.SpotCategoryRelation, {
+      foreignKey: 'spot_id',
+    });
+  };
+
   return Spot;
 };

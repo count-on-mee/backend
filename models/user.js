@@ -1,4 +1,3 @@
-const Sequelize = require('sequelize');
 module.exports = function (sequelize, DataTypes) {
   const User = sequelize.define(
     'User',
@@ -38,12 +37,6 @@ module.exports = function (sequelize, DataTypes) {
       tableName: 'user',
       timestamps: true,
       indexes: [
-        {
-          name: 'PRIMARY',
-          unique: true,
-          using: 'BTREE',
-          fields: [{ name: 'user_id' }],
-        },
         {
           name: 'unique_oauth_provider_oauth_id',
           unique: true,

@@ -1,15 +1,16 @@
-const Sequelize = require('sequelize');
 module.exports = function (sequelize, DataTypes) {
   const SpotCategoryRelation = sequelize.define(
-    'spot_category_relation',
+    'SpotCategoryRelation',
     {
-      spot_category_relation_id: {
+      spotCategoryRelationId: {
+        field: 'spot_category_relation_id',
         type: DataTypes.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true,
       },
-      spot_id: {
+      spotId: {
+        field: 'spot_id',
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
@@ -17,7 +18,8 @@ module.exports = function (sequelize, DataTypes) {
           key: 'spot_id',
         },
       },
-      spot_category_id: {
+      spotCategoryId: {
+        field: 'spot_category_id',
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
@@ -30,25 +32,14 @@ module.exports = function (sequelize, DataTypes) {
       sequelize,
       tableName: 'spot_category_relation',
       timestamps: false,
-      indexes: [
-        {
-          name: 'PRIMARY',
-          unique: true,
-          using: 'BTREE',
-          fields: [{ name: 'spot_category_relation_id' }],
-        },
-        {
-          name: 'spot_category_relation_spot_id_idx',
-          using: 'BTREE',
-          fields: [{ name: 'spot_id' }],
-        },
-        {
-          name: 'spot_category_relation_spot_category_id_idx',
-          using: 'BTREE',
-          fields: [{ name: 'spot_category_id' }],
-        },
-      ],
     }
   );
+
+  SpotCategoryRelation.associate = function (models) {
+    SpotCategoryRelation.belongsTo(models.Spot, {
+      foreignKey: 'spot_id',
+    });
+  };
+
   return SpotCategoryRelation;
 };
