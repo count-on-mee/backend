@@ -1,0 +1,97 @@
+const express = require('express');
+const passport = require('passport');
+const jwt = require('jsonwebtoken');
+const router = express.Router();
+
+router.get(
+  '/google',
+  passport.authenticate('google', {
+    scope: ['profile', 'email'],
+  })
+);
+
+router.get(
+  '/google/callback',
+  passport.authenticate('google', {
+    session: false,
+    failureRedirect: '/auth/google',
+    successReturnToOrRedirect: 'http://localhost:5173/',
+  }),
+  (req, res) => {
+    const token = jwt.sign(
+      {
+        userId: req.user.user_id,
+        name: req.user.name,
+        nickname: req.user.nickname,
+        email: req.user.email,
+        profileImgUrl: req.user.profile_img_url,
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: '1h',
+      }
+    );
+    res.json({ token });
+  }
+);
+
+router.get(
+  '/kakao',
+  passport.authenticate('kakao', {
+    scope: ['profile_nickname', 'account_email', 'profile_image'],
+  })
+);
+
+router.get(
+  '/kakao/callback',
+  passport.authenticate('kakao', {
+    session: false,
+    failureRedirect: '/auth/kakao',
+    successReturnToOrRedirect: 'http://localhost:5173/',
+  }),
+  (req, res) => {
+    const token = jwt.sign(
+      {
+        userId: req.user.user_id,
+        name: req.user.name,
+        nickname: req.user.nickname,
+        email: req.user.email,
+        profileImgUrl: req.user.profile_img_url,
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: '1h',
+      }
+    );
+    res.json({ token });
+  }
+);
+
+router.get('/naver', passport.authenticate('naver', { authType: 'reprompt' }));
+
+router.get(
+  '/naver/callback',
+  passport.authenticate('naver', {
+    session: false,
+    failureRedirect: '/auth/naver',
+    successReturnToOrRedirect: 'http://localhost:5173/',
+  }),
+  (req, res) => {
+    const token = jwt.sign(
+      {
+        userId: req.user.user_id,
+        name: req.user.name,
+        nickname: req.user.nickname,
+        email: req.user.email,
+        profileImgUrl: req.user.profile_img_url,
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: '1h',
+      }
+    );
+    res.json({ token });
+  }
+);
+
+module.exports = router;
