@@ -1,19 +1,22 @@
+require('./config/passport');
+
 const express = require('express');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const passport = require('passport');
 const dotenv = require('dotenv');
-require('./config/passport');
-const userRoutes = require('./routes/userRoutes');
-const authRoutes = require('./routes/authRoutes');
+const userRoute = require('./routes/userRoute');
+const authRoute = require('./routes/authRoute');
+const spotRoute = require('./routes/spotRoute');
+
 dotenv.config();
 
 const app = express();
 app.use(express.json());
 app.use(
   session({
-    secret: 'your_session_secret',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
   })
@@ -28,8 +31,9 @@ app.use(
   })
 );
 
-app.use('/users', userRoutes);
-app.use('/auth', authRoutes);
+app.use('/auth', authRoute);
+app.use('/users', userRoute);
+app.use('/spots', spotRoute);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT);
