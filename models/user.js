@@ -2,7 +2,8 @@ module.exports = function (sequelize, DataTypes) {
   const User = sequelize.define(
     'User',
     {
-      user_id: {
+      userId: {
+        field: 'user_id',
         type: DataTypes.INTEGER,
         autoIncrement: true,
         allowNull: false,
@@ -20,15 +21,18 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.STRING(100),
         allowNull: false,
       },
-      profile_img_url: {
+      profileImgUrl: {
+        field: 'profile_img_url',
         type: DataTypes.TEXT,
         allowNull: true,
       },
-      oauth_provider: {
+      oauthProvider: {
+        field: 'oauth_provider',
         type: DataTypes.ENUM('google', 'kakao', 'naver'),
         allowNull: false,
       },
-      oauth_id: {
+      oauthId: {
+        field: 'oauth_id',
         type: DataTypes.STRING(50),
         allowNull: false,
       },

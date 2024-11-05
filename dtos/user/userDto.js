@@ -1,21 +1,12 @@
 class UserDto {
-  static ofJWT(user) {
+  static of(user) {
+    const { userId, name, nickname, email, profileImgUrl } = user;
     return {
-      userId: user.userId,
-      name: user.name,
-      nickname: user.nickname,
-      email: user.email,
-      profileImgUrl: user.profileImgUrl,
-    };
-  }
-
-  static ofDB(user) {
-    return {
-      userId: user.user_id,
-      name: user.name,
-      nickname: user.nickname,
-      email: user.email,
-      profileImgUrl: user.profile_img_url,
+      userId,
+      name,
+      nickname,
+      email,
+      profileImgUrl,
     };
   }
 }
