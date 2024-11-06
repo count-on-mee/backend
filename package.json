@@ -8,7 +8,8 @@
     "dev": "nodemon index.js",
     "seq:migrate": "npx sequelize db:migrate",
     "seq:migrate:add": "npx sequelize migration:create --name",
-    "seq:migrate:undo": "npx sequelize db:migrate:undo"
+    "seq:migrate:undo": "npx sequelize db:migrate:undo",
+    "seq:seed": "npx sequelize db:seed:all"
   },
   "keywords": [],
   "author": "",
