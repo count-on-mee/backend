@@ -21,6 +21,15 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.STRING(20),
         allowNull: true,
       },
+      location: {
+        type: DataTypes.GEOMETRY('POINT', 4326),
+        allowNull: false,
+      },
+      naverSpotId: {
+        field: 'naver_spot_id',
+        type: DataTypes.STRING(50),
+        allowNull: true,
+      },
       reviewCount: {
         field: 'review_count',
         type: DataTypes.INTEGER,
@@ -31,15 +40,17 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.DECIMAL(5, 3),
         allowNull: true,
       },
-      naverId: {
-        field: 'naver_id',
-        type: DataTypes.STRING(50),
-        allowNull: true,
-      },
     },
     {
       tableName: 'spot',
       timestamps: false,
+      indexes: [
+        {
+          fields: ['location'],
+          type: 'SPATIAL',
+          name: 'spot_location_idx',
+        },
+      ],
     }
   );
 
