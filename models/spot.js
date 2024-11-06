@@ -51,29 +51,19 @@ module.exports = function (sequelize, DataTypes) {
           name: 'spot_location_idx',
         },
       ],
+      hooks: {
+        beforeCreate: async (spot, options) => {
+          if (spot.location && spot.location.coordinates) {
+            spot.location = sequelize.fn(
+              'ST_GeomFromText',
+              `POINT(${spot.location.coordinates[0]} ${spot.location.coordinates[1]})`,
+              4326
+            );
+          }
+        },
+      },
     }
   );
-  Spot.createWithRawQuery = async function (data) {
-    const query = `
-      INSERT INTO spot (title, address, tel, review_count, review_score, naver_spot_id, location)
-      VALUES (:title, :address, :tel, :reviewCount, :reviewScore, :naverSpotId, ST_PointFromText(:location, 4326))
-    `;
-
-    const values = {
-      title: data.title,
-      address: data.address,
-      tel: data.tel,
-      reviewCount: data.reviewCount,
-      reviewScore: data.reviewScore,
-      naverSpotId: data.naverSpotId,
-      location: `POINT(${data.location.coordinates[0]} ${data.location.coordinates[1]})`,
-    };
-
-    await sequelize.query(query, {
-      replacements: values,
-      type: sequelize.QueryTypes.INSERT,
-    });
-  };
 
   Spot.associate = function (models) {
     Spot.hasMany(models.SpotCategoryRelation, {
