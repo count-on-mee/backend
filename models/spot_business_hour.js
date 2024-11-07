@@ -53,5 +53,12 @@ module.exports = function (sequelize, DataTypes) {
       timestamps: false,
     }
   );
+
+  SpotBusinessHour.associate = function (models) {
+    SpotBusinessHour.belongsTo(models.Spot, {
+      foreignKey: 'spot_id',
+    });
+  };
+
   return SpotBusinessHour;
 };

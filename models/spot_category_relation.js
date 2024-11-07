@@ -39,6 +39,9 @@ module.exports = function (sequelize, DataTypes) {
     SpotCategoryRelation.belongsTo(models.Spot, {
       foreignKey: 'spot_id',
     });
+    SpotCategoryRelation.belongsTo(models.SpotCategory, {
+      foreignKey: 'spot_category_id',
+    });
   };
 
   return SpotCategoryRelation;

@@ -20,5 +20,14 @@ module.exports = function (sequelize, DataTypes) {
       timestamps: false,
     }
   );
+
+  SpotCategory.associate = function (models) {
+    SpotCategory.belongsToMany(models.Spot, {
+      through: models.SpotCategoryRelation,
+      foreignKey: 'spot_category_id',
+      otherKey: 'spot_id',
+    });
+  };
+
   return SpotCategory;
 };

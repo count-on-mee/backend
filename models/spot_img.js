@@ -30,5 +30,12 @@ module.exports = function (sequelize, DataTypes) {
       timestamps: false,
     }
   );
+
+  SpotImg.associate = function (models) {
+    SpotImg.belongsTo(models.Spot, {
+      foreignKey: 'spot_id',
+    });
+  };
+
   return SpotImg;
 };
