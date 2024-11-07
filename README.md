@@ -6,11 +6,19 @@
 PORT=8888
 CLIENT_URL="http://localhost:5173"
 
+SESSION_SECRET={Your session key}
 JWT_SECRET={Your JWT key}
 
 GOOGLE_CLIENT_ID={Your Google client ID}
 GOOGLE_CLIENT_SECRET={Your Google client secret}
 GOOGLE_CALLBACK_URI={Your Google callback uri}
+
+KAKAO_CLIENT_ID={Your Kakao client ID}
+KAKAO_CALLBACK_URI={Your Kakao callback uri}
+
+NAVER_CLIENT_ID={{Your Naver client ID}
+NAVER_CLIENT_SECRET={{Your Naver client secret}
+NAVER_CALLBACK_URI={{Your Naver callback uri}}
 
 </pre>
 
@@ -64,6 +72,12 @@ npm install
 <pre>
 npm run seq:migrate
 </pre>
+
+- Prepare initial data.
+<pre>
+npm run seq:seed
+</pre>
+
 - If you get an executable error, run <code>npm i -g sequelize-cli</code>.
 
 #### How to Deploy the Server APIs
