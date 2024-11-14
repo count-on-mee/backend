@@ -13,3 +13,17 @@ exports.getSpot = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+exports.getSpotsByLocation = async (req, res) => {
+  try {
+    const { lat, lng, zoom } = req.query;
+    const spots = await spotService.getSpotsByLocation(
+      parseFloat(lat),
+      parseFloat(lng),
+      parseInt(zoom)
+    );
+    res.status(200).json(spots);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
