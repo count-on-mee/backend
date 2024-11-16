@@ -31,10 +31,71 @@ module.exports = {
         };
       });
 
-    await queryInterface.bulkInsert('Spot', spots, {});
+    await queryInterface.bulkInsert('spot', spots, {});
+
+    const spotRecords = await queryInterface.sequelize.query(
+      `SELECT spot_id, naver_spot_id FROM spot`,
+      { type: Sequelize.QueryTypes.SELECT }
+    );
+
+    const spotIdMap = spotRecords.reduce((acc, record) => {
+      acc[record.naver_spot_id] = record.spot_id;
+      return acc;
+    }, {});
+
+    const spotImgs = Object.values(data)
+      .filter((item) => item.__typename === 'RestaurantListSummary')
+      .flatMap((item) => {
+        const spotId = spotIdMap[item.id];
+        return item.imageUrls.map((imgUrl) => ({
+          spot_id: spotId,
+          img_url: imgUrl,
+        }));
+      });
+    await queryInterface.bulkInsert('spot_img', spotImgs, {});
+
+    const spotBusinessHours = Object.values(data)
+      .filter((item) => item.__typename === 'RestaurantListSummary')
+      .map((item) => {
+        const spotId = spotIdMap[item.id];
+        return {
+          spot_id: spotId,
+          summary: item.businessHours,
+          week: null,
+          open_time: null,
+          close_time: null,
+          break_start_time: null,
+          break_end_time: null,
+        };
+      });
+
+    await queryInterface.bulkInsert(
+      'spot_business_hour',
+      spotBusinessHours,
+      {}
+    );
+
+    const spotCategoryRelations = Object.values(data)
+      .filter((item) => item.__typename === 'RestaurantListSummary')
+      .map((item) => {
+        const spotId = spotIdMap[item.id];
+        return {
+          spot_id: spotId,
+          spot_category_id: 1,
+        };
+      });
+
+    await queryInterface.bulkInsert(
+      'spot_category_relation',
+      spotCategoryRelations,
+      {}
+    );
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('Spot', null, {});
+    await queryInterface.bulkDelete('spot_category_relation', null, {});
+    await queryInterface.bulkDelete('spot_business_hour', null, {});
+    await queryInterface.bulkDelete('spot_img', null, {});
+    await queryInterface.bulkDelete('spot', null, {});
   },
 };
