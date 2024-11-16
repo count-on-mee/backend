@@ -26,9 +26,9 @@ passport.use(
             name: profile._json.name,
             nickname,
             email: profile._json.email,
-            profile_img_url: profile._json.picture,
-            oauth_provider: 'google',
-            oauth_id: profile._json.sub,
+            profileImgUrl: profile._json.picture,
+            oauthProvider: 'google',
+            oauthId: profile._json.sub,
           });
         }
         done(null, user);
@@ -53,13 +53,12 @@ passport.use(
         if (!user) {
           const nickname = nicknameGenerator();
           user = await User.create({
-            name: profile._json.kakao_account.profile.nickname,
+            name: profile.username,
             nickname,
             email: profile._json.kakao_account.email,
-            profile_img_url:
-              profile._json.kakao_account.profile.thumbnail_image_url,
-            oauth_provider: 'kakao',
-            oauth_id: profile._json.id,
+            profileImgUrl: profile._json.properties.thumbnail_image,
+            oauthProvider: 'kakao',
+            oauthId: profile.id.toString(),
           });
         }
         done(null, user);
@@ -88,9 +87,9 @@ passport.use(
             name: profile.name,
             nickname,
             email: profile.email,
-            profile_img_url: profile.profileImage,
-            oauth_provider: 'naver',
-            oauth_id: profile.id,
+            profileImgUrl: profile.profileImage,
+            oauthProvider: 'naver',
+            oauthId: profile.id,
           });
         }
         done(null, user);

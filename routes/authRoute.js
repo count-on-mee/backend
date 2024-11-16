@@ -15,23 +15,26 @@ router.get(
   passport.authenticate('google', {
     session: false,
     failureRedirect: '/auth/google',
-    successReturnToOrRedirect: 'http://localhost:5173/',
   }),
   (req, res) => {
+    const { userId, name, nickname, email, profileImgUrl } = req.user;
     const token = jwt.sign(
       {
-        userId: req.user.user_id,
-        name: req.user.name,
-        nickname: req.user.nickname,
-        email: req.user.email,
-        profileImgUrl: req.user.profile_img_url,
+        userId,
+        name,
+        nickname,
+        email,
+        profileImgUrl,
       },
       process.env.JWT_SECRET,
       {
         expiresIn: '1h',
       }
     );
-    res.json({ token });
+    res.cookie('token', token, {
+      httpOnly: true,
+    });
+    res.redirect('http://localhost:5173/');
   }
 );
 
@@ -47,23 +50,26 @@ router.get(
   passport.authenticate('kakao', {
     session: false,
     failureRedirect: '/auth/kakao',
-    successReturnToOrRedirect: 'http://localhost:5173/',
   }),
   (req, res) => {
+    const { userId, name, nickname, email, profileImgUrl } = req.user;
     const token = jwt.sign(
       {
-        userId: req.user.user_id,
-        name: req.user.name,
-        nickname: req.user.nickname,
-        email: req.user.email,
-        profileImgUrl: req.user.profile_img_url,
+        userId,
+        name,
+        nickname,
+        email,
+        profileImgUrl,
       },
       process.env.JWT_SECRET,
       {
         expiresIn: '1h',
       }
     );
-    res.json({ token });
+    res.cookie('token', token, {
+      httpOnly: true,
+    });
+    res.redirect('http://localhost:5173/');
   }
 );
 
@@ -74,23 +80,26 @@ router.get(
   passport.authenticate('naver', {
     session: false,
     failureRedirect: '/auth/naver',
-    successReturnToOrRedirect: 'http://localhost:5173/',
   }),
   (req, res) => {
+    const { userId, name, nickname, email, profileImgUrl } = req.user;
     const token = jwt.sign(
       {
-        userId: req.user.user_id,
-        name: req.user.name,
-        nickname: req.user.nickname,
-        email: req.user.email,
-        profileImgUrl: req.user.profile_img_url,
+        userId,
+        name,
+        nickname,
+        email,
+        profileImgUrl,
       },
       process.env.JWT_SECRET,
       {
         expiresIn: '1h',
       }
     );
-    res.json({ token });
+    res.cookie('token', token, {
+      httpOnly: true,
+    });
+    res.redirect('http://localhost:5173/');
   }
 );
 
