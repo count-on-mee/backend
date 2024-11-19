@@ -30,6 +30,9 @@ module.exports = function (sequelize, DataTypes) {
   );
 
   Curation.associate = function (models) {
+    Curation.hasMany(models.CurationSpot, {
+      foreignKey: 'curation_id',
+    });
     Curation.belongsTo(models.User, {
       foreignKey: 'user_id',
     });
