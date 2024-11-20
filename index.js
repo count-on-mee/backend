@@ -9,6 +9,7 @@ const dotenv = require('dotenv');
 const userRoute = require('./routes/userRoute');
 const authRoute = require('./routes/authRoute');
 const spotRoute = require('./routes/spotRoute');
+const curationRoute = require('./routes/curationRoute');
 
 dotenv.config();
 
@@ -34,6 +35,7 @@ app.use(
 app.use('/auth', authRoute);
 app.use('/users', userRoute);
 app.use('/spots', spotRoute);
+app.use('/curations', curationRoute);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT);

@@ -5,7 +5,7 @@ const {
   SpotImg,
   SpotCategory,
 } = require('../models');
-const { Op, literal, where } = require('sequelize');
+const { literal, where } = require('sequelize');
 
 const getCategories = (spot) => {
   return spot.SpotCategoryRelations.map(
@@ -77,7 +77,7 @@ const getSpotsByLocation = async (lat, lng, zoom) => {
   }));
 };
 
-function calculateRadius(zoomLevel) {
+const calculateRadius = (zoomLevel) => {
   if (zoomLevel >= 7 && zoomLevel <= 10) {
     return 50000; // 시와 도 수준의 큰 지역
   } else if (zoomLevel >= 11 && zoomLevel <= 13) {
@@ -91,9 +91,9 @@ function calculateRadius(zoomLevel) {
   } else {
     throw new Error('Invalid zoom level');
   }
-}
+};
 
-exports.getSpotById = async (spotId) => {
+const getSpotById = async (spotId) => {
   const spot = await Spot.findByPk(spotId, {
     include: [
       {
@@ -128,4 +128,12 @@ exports.getSpotById = async (spotId) => {
   };
 };
 
-exports.getSpotsByLocation = getSpotsByLocation;
+module.exports = {
+  calculateRadius,
+  getSpotById,
+  getLocation,
+  getSpotsByLocation,
+  getCategories,
+  getImgUrls,
+  getBusinessHours,
+};
