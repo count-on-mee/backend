@@ -31,10 +31,8 @@ router.get(
         expiresIn: '1h',
       }
     );
-    res.cookie('token', token, {
-      httpOnly: true,
-    });
-    res.redirect('http://localhost:5173/');
+    res.cookie('token', token, {});
+    res.redirect('http://localhost:5173/map');
   }
 );
 
@@ -66,10 +64,8 @@ router.get(
         expiresIn: '1h',
       }
     );
-    res.cookie('token', token, {
-      httpOnly: true,
-    });
-    res.redirect('http://localhost:5173/');
+    res.cookie('token', token, {});
+    res.redirect('http://localhost:5173/map');
   }
 );
 
@@ -96,10 +92,8 @@ router.get(
         expiresIn: '1h',
       }
     );
-    res.cookie('token', token, {
-      httpOnly: true,
-    });
-    res.redirect('http://localhost:5173/');
+    res.cookie('token', token, {});
+    res.redirect('http://localhost:5173/map');
   }
 );
 
