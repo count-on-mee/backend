@@ -16,6 +16,12 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(
+  cors({
+    credentials: true,
+    origin: process.env.CLIENT_URL,
+  })
+);
+app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
@@ -25,12 +31,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cookieParser());
-app.use(
-  cors({
-    credentials: true,
-    origin: process.env.CLIENT_URL,
-  })
-);
+
 
 app.use('/auth', authRoute);
 app.use('/users', userRoute);
