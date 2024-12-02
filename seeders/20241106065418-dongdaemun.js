@@ -7,6 +7,15 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     const filePath = path.join(__dirname, '..', 'spot_data', 'dongdaemun.json');
     const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    const categoryData = [
+      { id: 1, type: '식당' },
+      { id: 2, type: '카페' },
+    ];
+    const categories = Object.values(categoryData).map((item) => ({
+      spot_category_id: item.id,
+      type: item.type,
+    }));
+    await queryInterface.bulkInsert('spot_category', categories, {});
 
     const spots = Object.values(data)
       .filter((item) => item.__typename === 'RestaurantListSummary')
@@ -97,5 +106,6 @@ module.exports = {
     await queryInterface.bulkDelete('spot_business_hour', null, {});
     await queryInterface.bulkDelete('spot_img', null, {});
     await queryInterface.bulkDelete('spot', null, {});
+    await queryInterface.bulkDelete('spot_category', null, {});
   },
 };
