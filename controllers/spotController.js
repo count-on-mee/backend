@@ -1,3 +1,4 @@
+const auth = require('../middlewares/auth');
 const spotService = require('../services/spotService');
 
 exports.getSpot = async (req, res) => {
@@ -14,16 +15,21 @@ exports.getSpot = async (req, res) => {
   }
 };
 
-exports.getSpotsByLocation = async (req, res) => {
-  try {
-    const { lat, lng, zoom } = req.query;
-    const spots = await spotService.getSpotsByLocation(
-      parseFloat(lat),
-      parseFloat(lng),
-      parseInt(zoom)
-    );
-    res.status(200).json(spots);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
+exports.getSpotsByLocation = [
+  auth.optionalVerifyToken,
+  async (req, res) => {
+    try {
+      const { lat, lng, zoom } = req.query;
+      const userId = req.user.userId;
+      const spots = await spotService.getSpotsByLocation(
+        parseFloat(lat),
+        parseFloat(lng),
+        parseInt(zoom),
+        userId
+      );
+      res.status(200).json(spots);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  },
+];

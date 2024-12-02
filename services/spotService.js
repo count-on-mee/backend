@@ -4,6 +4,7 @@ const {
   SpotBusinessHour,
   SpotImg,
   SpotCategory,
+  SpotScrap,
 } = require('../models');
 const { literal, where } = require('sequelize');
 
@@ -63,24 +64,31 @@ const getSpotsByLocation = async (lat, lng, zoom, userId) => {
     ],
   });
 
-  return spots.map((spot) => ({
-    spotId: spot.spotId,
-    title: spot.title,
-    address: spot.address,
-    location: getLocation(spot),
-    tel: spot.tel,
-    categories: getCategories(spot),
-    imgUrl: getImgUrls(spot),
-    businessHours: getBusinessHours(spot),
-    isOpen: false,
-    isScraped: userId ? checkIfUserScrapedSpot(userId, spot.spotId) : false, // 사용자 맞춤 데이터 설정
-  }));
+  return await Promise.all(
+    spots.map(async (spot) => ({
+      spotId: spot.spotId,
+      title: spot.title,
+      address: spot.address,
+      location: getLocation(spot),
+      tel: spot.tel,
+      categories: getCategories(spot),
+      imgUrl: getImgUrls(spot),
+      businessHours: getBusinessHours(spot),
+      isOpen: true,
+      isScraped: userId ? await isScrapedSpot(userId, spot.spotId) : false,
+    }))
+  );
 };
 
-const checkIfUserScrapedSpot = (userId, spotId) => {
-  // 사용자 맞춤 데이터를 확인하는 로직을 추가합니다.
-  // 예: 데이터베이스에서 사용자가 해당 스팟을 스크랩했는지 확인
-  return false; // 기본값으로 false 반환
+const isScrapedSpot = async (userId, spotId) => {
+  const count = await SpotScrap.count({
+    where: {
+      userId: userId,
+      spotId: spotId,
+      isDeleted: false,
+    },
+  });
+  return count > 0;
 };
 
 const calculateRadius = (zoomLevel) => {

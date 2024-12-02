@@ -17,13 +17,13 @@ exports.optionalVerifyToken = (req, res, next) => {
   const token = req.headers['authorization']?.split(' ')[1];
 
   if (token == null || token == 'undefined') {
-    req.user = null; // 비로그인 사용자 처리
+    req.user = null;
     return next();
   }
 
   jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
     if (err) {
-      req.user = null; // 토큰 인증 실패 시 비로그인 사용자로 처리
+      req.user = null;
     } else {
       req.user = decoded;
     }
