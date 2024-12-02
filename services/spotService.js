@@ -43,7 +43,7 @@ const getLocation = (spot) => {
   };
 };
 
-const getSpotsByLocation = async (lat, lng, zoom) => {
+const getSpotsByLocation = async (lat, lng, zoom, userId) => {
   const radius = calculateRadius(zoom);
   const spots = await Spot.findAll({
     where: literal(
@@ -73,8 +73,14 @@ const getSpotsByLocation = async (lat, lng, zoom) => {
     imgUrl: getImgUrls(spot),
     businessHours: getBusinessHours(spot),
     isOpen: false,
-    isScraped: false,
+    isScraped: userId ? checkIfUserScrapedSpot(userId, spot.spotId) : false, // 사용자 맞춤 데이터 설정
   }));
+};
+
+const checkIfUserScrapedSpot = (userId, spotId) => {
+  // 사용자 맞춤 데이터를 확인하는 로직을 추가합니다.
+  // 예: 데이터베이스에서 사용자가 해당 스팟을 스크랩했는지 확인
+  return false; // 기본값으로 false 반환
 };
 
 const calculateRadius = (zoomLevel) => {
@@ -123,7 +129,7 @@ const getSpotById = async (spotId) => {
     categories: getCategories(spot),
     imgUrl: getImgUrls(spot),
     businessHours: getBusinessHours(spot),
-    isOpen: false,
+    isOpen: true,
     isScraped: false,
   };
 };
