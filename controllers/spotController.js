@@ -20,7 +20,7 @@ exports.getSpotsByLocation = [
   async (req, res) => {
     try {
       const { lat, lng, zoom } = req.query;
-      const userId = req.user.userId;
+      const userId = req.user?.userId;
       const spots = await spotService.getSpotsByLocation(
         parseFloat(lat),
         parseFloat(lng),
