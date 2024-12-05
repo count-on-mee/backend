@@ -39,7 +39,7 @@ app.use('/auth', authRoute);
 app.use('/users', userRoute);
 app.use('/spots', spotRoute);
 app.use('/curations', curationRoute);
-app.use('/api/trips', tripRoute);
+app.use('/trips', tripRoute);
 
 const server = http.createServer(app);
 const io = new Server(server, {
