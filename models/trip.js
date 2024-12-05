@@ -2,7 +2,8 @@ module.exports = (sequelize, DataTypes) => {
   const Trip = sequelize.define(
     'Trip',
     {
-      trip_id: {
+      tripId: {
+        field: 'trip_id',
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
@@ -15,19 +16,23 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(50),
         allowNull: false,
       },
-      start_date: {
-        type: DataTypes.DATE,
+      startDate: {
+        field: 'start_date',
+        type: DataTypes.DATEONLY,
         allowNull: false,
       },
-      end_date: {
-        type: DataTypes.DATE,
+      endDate: {
+        field: 'end_date',
+        type: DataTypes.DATEONLY,
         allowNull: false,
       },
     },
     {
       tableName: 'trip',
       timestamps: true,
-    },
+      createdAt: 'created_at',
+      updatedAt: 'updated_at',
+    }
   );
   return Trip;
 };
