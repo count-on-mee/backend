@@ -10,6 +10,7 @@ const userRoute = require('./routes/userRoute');
 const authRoute = require('./routes/authRoute');
 const spotRoute = require('./routes/spotRoute');
 const curationRoute = require('./routes/curationRoute');
+const scrapRoute = require('./routes/scrapRoute');
 
 dotenv.config();
 
@@ -32,11 +33,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(cookieParser());
 
-
 app.use('/auth', authRoute);
 app.use('/users', userRoute);
 app.use('/spots', spotRoute);
 app.use('/curations', curationRoute);
+app.use('/scraps', scrapRoute);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT);
