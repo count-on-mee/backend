@@ -10,6 +10,9 @@ const userRoute = require('./routes/userRoute');
 const authRoute = require('./routes/authRoute');
 const spotRoute = require('./routes/spotRoute');
 const curationRoute = require('./routes/curationRoute');
+const tripRoute = require('./routes/tripRoute');
+const http = require('http');
+const { Server } = require('socket.io');
 
 dotenv.config();
 
@@ -19,24 +22,34 @@ app.use(
   cors({
     credentials: true,
     origin: process.env.CLIENT_URL,
-  })
+  }),
 );
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-  })
+  }),
 );
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cookieParser());
 
-
 app.use('/auth', authRoute);
 app.use('/users', userRoute);
 app.use('/spots', spotRoute);
 app.use('/curations', curationRoute);
+app.use('/api/trips', tripRoute);
+
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: process.env.CLIENT_URL,
+    methods: ['GET', 'POST'],
+  },
+});
 
 const PORT = process.env.PORT || 8080;
-app.listen(PORT);
+server.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
