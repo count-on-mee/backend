@@ -4,6 +4,7 @@ const {
   SpotBusinessHour,
   SpotImg,
   SpotCategory,
+  SpotScrap,
 } = require('../models');
 const { literal, where } = require('sequelize');
 
@@ -43,7 +44,7 @@ const getLocation = (spot) => {
   };
 };
 
-const getSpotsByLocation = async (lat, lng, zoom) => {
+const getSpotsByLocation = async (lat, lng, zoom, userId) => {
   const radius = calculateRadius(zoom);
   const spots = await Spot.findAll({
     where: literal(
@@ -63,18 +64,31 @@ const getSpotsByLocation = async (lat, lng, zoom) => {
     ],
   });
 
-  return spots.map((spot) => ({
-    spotId: spot.spotId,
-    title: spot.title,
-    address: spot.address,
-    location: getLocation(spot),
-    tel: spot.tel,
-    categories: getCategories(spot),
-    imgUrl: getImgUrls(spot),
-    businessHours: getBusinessHours(spot),
-    isOpen: false,
-    isScraped: false,
-  }));
+  return await Promise.all(
+    spots.map(async (spot) => ({
+      spotId: spot.spotId,
+      title: spot.title,
+      address: spot.address,
+      location: getLocation(spot),
+      tel: spot.tel,
+      categories: getCategories(spot),
+      imgUrl: getImgUrls(spot),
+      businessHours: getBusinessHours(spot),
+      isOpen: true,
+      isScraped: userId ? await isScrapedSpot(userId, spot.spotId) : false,
+    }))
+  );
+};
+
+const isScrapedSpot = async (userId, spotId) => {
+  const count = await SpotScrap.count({
+    where: {
+      userId: userId,
+      spotId: spotId,
+      isDeleted: false,
+    },
+  });
+  return count > 0;
 };
 
 const calculateRadius = (zoomLevel) => {
@@ -123,7 +137,7 @@ const getSpotById = async (spotId) => {
     categories: getCategories(spot),
     imgUrl: getImgUrls(spot),
     businessHours: getBusinessHours(spot),
-    isOpen: false,
+    isOpen: true,
     isScraped: false,
   };
 };

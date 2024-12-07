@@ -10,6 +10,7 @@ const userRoute = require('./routes/userRoute');
 const authRoute = require('./routes/authRoute');
 const spotRoute = require('./routes/spotRoute');
 const curationRoute = require('./routes/curationRoute');
+const scrapRoute = require('./routes/scrapRoute');
 const tripRoute = require('./routes/tripRoute');
 const http = require('http');
 const { Server } = require('socket.io');
@@ -22,14 +23,14 @@ app.use(
   cors({
     credentials: true,
     origin: process.env.CLIENT_URL,
-  }),
+  })
 );
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-  }),
+  })
 );
 app.use(passport.initialize());
 app.use(passport.session());
@@ -39,6 +40,7 @@ app.use('/auth', authRoute);
 app.use('/users', userRoute);
 app.use('/spots', spotRoute);
 app.use('/curations', curationRoute);
+app.use('/scraps', scrapRoute);
 app.use('/trips', tripRoute);
 
 const server = http.createServer(app);
