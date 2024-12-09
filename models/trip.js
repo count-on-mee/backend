@@ -34,5 +34,11 @@ module.exports = (sequelize, DataTypes) => {
       updatedAt: 'updated_at',
     }
   );
+
+  Trip.associate = function (models) {
+    Trip.hasMany(models.TripItinerary, {
+      foreignKey: 'trip_id',
+    });
+  };
   return Trip;
 };

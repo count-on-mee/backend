@@ -83,6 +83,9 @@ module.exports = function (sequelize, DataTypes) {
       foreignKey: 'spot_id',
       otherKey: 'spot_category_id',
     });
+    Spot.hasMany(models.TripItinerary, {
+      foreignKey: 'spot_id',
+    });
   };
 
   return Spot;
