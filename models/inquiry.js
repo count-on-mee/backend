@@ -56,8 +56,8 @@ module.exports = function (sequelize, DataTypes) {
     Inquiry.belongsTo(models.User, {
       foreignKey: 'user_id',
     });
-    Inquiry.belongsTo(models.InquiryType, {
-      foreignKey: 'inquiry_type_id',
+    Inquiry.belongsTo(models.InquiryCategory, {
+      foreignKey: 'inquiry_category_id',
     });
   };
 
