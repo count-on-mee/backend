@@ -17,7 +17,7 @@ module.exports = function (sequelize, DataTypes) {
         },
         allowNull: false,
       },
-      inquiryTypeId: {
+      inquiryCategoryId: {
         field: 'inquiry_category_id',
         type: DataTypes.INTEGER,
         references: {
@@ -57,6 +57,7 @@ module.exports = function (sequelize, DataTypes) {
       foreignKey: 'user_id',
     });
     Inquiry.belongsTo(models.InquiryCategory, {
+      as: 'inquiryCategory',
       foreignKey: 'inquiry_category_id',
     });
   };

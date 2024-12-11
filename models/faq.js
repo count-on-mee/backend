@@ -36,6 +36,7 @@ module.exports = function (sequelize, DataTypes) {
 
   Faq.associate = function (models) {
     Faq.belongsTo(models.FaqCategory, {
+      as: 'faqCategory',
       foreignKey: 'faq_category_id',
     });
   };

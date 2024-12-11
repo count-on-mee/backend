@@ -11,6 +11,7 @@ const authRoute = require('./routes/authRoute');
 const spotRoute = require('./routes/spotRoute');
 const curationRoute = require('./routes/curationRoute');
 const scrapRoute = require('./routes/scrapRoute');
+const supportRoute = require('./routes/supportRoute');
 
 dotenv.config();
 
@@ -38,6 +39,7 @@ app.use('/users', userRoute);
 app.use('/spots', spotRoute);
 app.use('/curations', curationRoute);
 app.use('/scraps', scrapRoute);
+app.use('/support', supportRoute);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT);

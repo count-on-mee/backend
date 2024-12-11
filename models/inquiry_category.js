@@ -2,7 +2,7 @@ module.exports = function (sequelize, DataTypes) {
   const InquiryCategory = sequelize.define(
     'InquiryCategory',
     {
-      InquiryCategoryId: {
+      inquiryCategoryId: {
         field: 'inquiry_category_id',
         type: DataTypes.INTEGER,
         primaryKey: true,
