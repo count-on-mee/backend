@@ -11,7 +11,7 @@ exports.createUser = [
       const createdUser = await userService.createUser(user);
       res.status(201).json(UserDto.of(createdUser));
     } catch (error) {
-      res.status(400).json({ error: error.message });
+      res.status(500).json({ error: error.message });
     }
   },
 ];
