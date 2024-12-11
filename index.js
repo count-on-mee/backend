@@ -11,6 +11,7 @@ const authRoute = require('./routes/authRoute');
 const spotRoute = require('./routes/spotRoute');
 const curationRoute = require('./routes/curationRoute');
 const scrapRoute = require('./routes/scrapRoute');
+const supportRoute = require('./routes/supportRoute');
 const tripRoute = require('./routes/tripRoute');
 const http = require('http');
 const { Server } = require('socket.io');
@@ -41,6 +42,7 @@ app.use('/users', userRoute);
 app.use('/spots', spotRoute);
 app.use('/curations', curationRoute);
 app.use('/scraps', scrapRoute);
+app.use('/support', supportRoute);
 app.use('/trips', tripRoute);
 
 const server = http.createServer(app);
