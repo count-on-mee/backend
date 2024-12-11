@@ -12,6 +12,9 @@ const spotRoute = require('./routes/spotRoute');
 const curationRoute = require('./routes/curationRoute');
 const scrapRoute = require('./routes/scrapRoute');
 const supportRoute = require('./routes/supportRoute');
+const tripRoute = require('./routes/tripRoute');
+const http = require('http');
+const { Server } = require('socket.io');
 
 dotenv.config();
 
@@ -40,6 +43,17 @@ app.use('/spots', spotRoute);
 app.use('/curations', curationRoute);
 app.use('/scraps', scrapRoute);
 app.use('/support', supportRoute);
+app.use('/trips', tripRoute);
+
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: process.env.CLIENT_URL,
+    methods: ['GET', 'POST'],
+  },
+});
 
 const PORT = process.env.PORT || 8080;
-app.listen(PORT);
+server.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
