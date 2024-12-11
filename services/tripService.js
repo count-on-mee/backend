@@ -33,6 +33,7 @@ const createTrip = async (tripData) => {
         order = 1;
       }
     }
+    return newTrip;
   } catch (error) {
     throw new Error('여행 생성 실패: ' + error.message);
   }
