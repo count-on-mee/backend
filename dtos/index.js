@@ -4,6 +4,7 @@ const NoticesDto = require('./notice/noticesDto');
 const FaqsDto = require('./faq/faqsDto');
 const InquiryDto = require('./inquiry/inquiryDto');
 const InquiriesDto = require('./inquiry/inquiriesDto');
+const TripsDto = require('./trip/tripsDto');
 
 const dtos = {
   UserDto,
@@ -12,6 +13,7 @@ const dtos = {
   FaqsDto,
   InquiryDto,
   InquiriesDto,
+  TripsDto,
 };
 
 module.exports = dtos;

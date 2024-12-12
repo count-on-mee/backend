@@ -55,6 +55,10 @@ module.exports = function (sequelize, DataTypes) {
     User.hasMany(models.Curation, {
       foreignKey: 'user_id',
     });
+    User.hasMany(models.TripUser, {
+      foreignKey: 'user_id',
+      as: 'tripUser',
+    });
   };
 
   return User;
