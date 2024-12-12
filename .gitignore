@@ -131,3 +131,6 @@ dist
 
 # sequelize config.json
 config/config.json
+
+# Photos
+uploads/
