@@ -10,6 +10,7 @@ const userRoute = require('./routes/userRoute');
 const authRoute = require('./routes/authRoute');
 const spotRoute = require('./routes/spotRoute');
 const curationRoute = require('./routes/curationRoute');
+const path = require('path');
 
 dotenv.config();
 
@@ -29,6 +30,9 @@ app.use(
   cors({
     credentials: true,
     origin: process.env.CLIENT_URL,
+    allowedHeaders: ['Authorization'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    exposedHeaders: ['Authorization']
   })
 );
 
@@ -36,6 +40,9 @@ app.use('/auth', authRoute);
 app.use('/users', userRoute);
 app.use('/spots', spotRoute);
 app.use('/curations', curationRoute);
+
+const uploadDir = path.join(process.cwd(), 'uploads');
+app.use('/uploads', express.static(uploadDir));
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT);
