@@ -71,6 +71,7 @@ module.exports = function (sequelize, DataTypes) {
     });
     Spot.hasMany(models.SpotImg, {
       foreignKey: 'spot_id',
+      as: 'spotImg',
     });
     Spot.hasMany(models.CurationSpot, {
       foreignKey: 'spot_id',

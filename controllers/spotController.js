@@ -17,13 +17,13 @@ exports.getSpot = async (req, res) => {
 
 exports.getSpotsByLocation = async (req, res) => {
   try {
-    const { lat, lng, zoom } = req.query;
     const userId = req.user?.userId;
+    const { lat, lng, zoom } = req.query;
     const spots = await spotService.getSpotsByLocation(
+      userId,
       parseFloat(lat),
       parseFloat(lng),
-      parseInt(zoom),
-      userId
+      parseInt(zoom)
     );
     res.status(200).json(spots);
   } catch (error) {

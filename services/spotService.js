@@ -44,7 +44,7 @@ const getLocation = (spot) => {
   };
 };
 
-const getSpotsByLocation = async (lat, lng, zoom, userId) => {
+const getSpotsByLocation = async (userId, lat, lng, zoom) => {
   const radius = calculateRadius(zoom);
   const spots = await Spot.findAll({
     where: literal(
@@ -150,4 +150,5 @@ module.exports = {
   getCategories,
   getImgUrls,
   getBusinessHours,
+  isScrapedSpot,
 };
