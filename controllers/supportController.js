@@ -75,6 +75,19 @@ exports.getInquiries = async (req, res) => {
   }
 };
 
+exports.getInquiry = async (req, res) => {
+  try {
+    const userId = req.user.userId;
+    const { inquiryId } = req.params;
+    const inquiry = await supportService.getInquiry(userId, inquiryId);
+    if (inquiry) {
+      res.status(201).json(InquiryDto.of(inquiry));
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 exports.replyInquiry = async (req, res) => {
   try {
     const { inquiryId } = req.params;
