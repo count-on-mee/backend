@@ -15,7 +15,7 @@ const getCategories = (spot) => {
 };
 
 const getImgUrls = (spot) => {
-  return spot.SpotImgs.map((img) => img.imgUrl);
+  return spot.spotImg.map((img) => img.imgUrl);
 };
 
 const getBusinessHours = (spot) => {
@@ -44,7 +44,7 @@ const getLocation = (spot) => {
   };
 };
 
-const getSpotsByLocation = async (lat, lng, zoom, userId) => {
+const getSpotsByLocation = async (userId, lat, lng, zoom) => {
   const radius = calculateRadius(zoom);
   const spots = await Spot.findAll({
     where: literal(
@@ -60,6 +60,7 @@ const getSpotsByLocation = async (lat, lng, zoom, userId) => {
       },
       {
         model: SpotImg,
+        as: 'spotImg',
       },
     ],
   });
@@ -119,6 +120,7 @@ const getSpotById = async (spotId) => {
       },
       {
         model: SpotImg,
+        as: 'spotImg',
       },
     ],
   });
@@ -150,4 +152,5 @@ module.exports = {
   getCategories,
   getImgUrls,
   getBusinessHours,
+  isScrapedSpot,
 };

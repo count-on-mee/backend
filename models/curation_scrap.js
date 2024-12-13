@@ -1,21 +1,21 @@
 module.exports = function (sequelize, DataTypes) {
-  const SpotScrap = sequelize.define(
-    'SpotScrap',
+  const CurationScrap = sequelize.define(
+    'CurationScrap',
     {
-      spotScrapId: {
-        field: 'spot_scrap_id',
+      curationScrapId: {
+        field: 'curation_scrap_id',
         primaryKey: true,
         autoIncrement: true,
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      spotId: {
-        field: 'spot_id',
+      curationId: {
+        field: 'curation_id',
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-          model: 'spot',
-          key: 'spot_id',
+          model: 'curation',
+          key: 'curation_id',
         },
       },
       userId: {
@@ -36,19 +36,19 @@ module.exports = function (sequelize, DataTypes) {
     },
     {
       sequelize,
-      tableName: 'spot_scrap',
+      tableName: 'curation_scrap',
       timestamps: true,
       createdAt: 'created_at',
       updatedAt: 'updated_at',
     }
   );
 
-  SpotScrap.associate = function (models) {
-    SpotScrap.belongsTo(models.Spot, {
-      foreignKey: 'spot_id',
-      as: 'spot',
+  CurationScrap.associate = function (models) {
+    CurationScrap.belongsTo(models.Curation, {
+      foreignKey: 'curation_id',
+      as: 'curation',
     });
   };
 
-  return SpotScrap;
+  return CurationScrap;
 };
