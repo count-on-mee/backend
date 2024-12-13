@@ -1,4 +1,5 @@
-const { Trip, TripItinerary, TripUser } = require('../models');
+const { where } = require('sequelize');
+const { Trip, TripItinerary, TripUser, Spot } = require('../models');
 const { differenceInDays } = require('date-fns');
 
 const createTrip = async (userId, tripData) => {
@@ -58,4 +59,62 @@ const getTrips = async (userId) => {
   return findTrips;
 };
 
-module.exports = { createTrip, getTrips };
+const getTrip = async (userId, tripId) => {
+  const trip = await Trip.findOne({
+    where: {
+      tripId,
+    },
+    include: [
+      {
+        model: TripUser,
+        as: 'tripUser',
+        where: { userId },
+      },
+      {
+        model: TripItinerary,
+        as: 'tripItinerary',
+        include: {
+          model: Spot,
+        },
+      },
+    ],
+  });
+
+  return transformTrip(trip);
+};
+
+const transformTrip = (trip) => {
+  const tripItineraries = trip.tripItinerary.reduce((acc, item) => {
+    const dayIndex = acc.findIndex((day) => day.day === item.day);
+    const itinerary = {
+      tripItineraryId: item.tripItineraryId,
+      order: item.order,
+      spotId: item.spotId,
+      title: item.Spot.title,
+      address: item.Spot.address,
+      location: item.Spot.location,
+    };
+
+    if (dayIndex > -1) {
+      acc[dayIndex].itineraries.push(itinerary);
+    } else {
+      acc.push({
+        day: item.day,
+        itineraries: [itinerary],
+      });
+    }
+
+    return acc;
+  }, []);
+
+  return {
+    tripId: trip.tripId,
+    title: trip.title,
+    destination: trip.destination,
+    startDate: trip.startDate,
+    endDate: trip.endDate,
+    tripItineraries,
+  };
+};
+
+module.exports = { createTrip, getTrips, getTrip };

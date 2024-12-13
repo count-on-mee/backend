@@ -25,3 +25,15 @@ exports.getTrips = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+exports.getTrip = async (req, res) => {
+  try {
+    const userId = req.user.userId;
+    const { tripId } = req.params;
+
+    const trip = await tripService.getTrip(userId, tripId);
+    res.status(200).json(trip);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};

@@ -38,6 +38,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(cookieParser());
 
+app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
+
 app.use('/auth', authRoute);
 app.use('/users', userRoute);
 app.use('/spots', spotRoute);
@@ -45,9 +47,6 @@ app.use('/curations', curationRoute);
 app.use('/scraps', scrapRoute);
 app.use('/support', supportRoute);
 app.use('/trips', tripRoute);
-
-//사진 임시로 저장
-app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
 
 const server = http.createServer(app);
 const io = new Server(server, {
