@@ -22,6 +22,11 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.STRING(90),
         allowNull: false,
       },
+      imgUrl: {
+        field: 'img_url',
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
     },
     {
       tableName: 'curation',

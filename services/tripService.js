@@ -1,7 +1,7 @@
-const { Trip, TripItinerary } = require('../models');
+const { Trip, TripItinerary, TripUser } = require('../models');
 const { differenceInDays } = require('date-fns');
 
-const createTrip = async (tripData) => {
+const createTrip = async (userId, tripData) => {
   const { title, destination, startDate, endDate, spotIds } = tripData;
 
   try {
@@ -33,10 +33,29 @@ const createTrip = async (tripData) => {
         order = 1;
       }
     }
+    const { tripId } = newTrip;
+
+    await TripUser.create({
+      tripId,
+      userId,
+    });
+
     return newTrip;
   } catch (error) {
     throw new Error('여행 생성 실패: ' + error.message);
   }
 };
 
-module.exports = { createTrip };
+const getTrips = async (userId) => {
+  const findTrips = await Trip.findAll({
+    include: {
+      model: TripUser,
+      as: 'tripUser',
+      where: { userId },
+    },
+  });
+
+  return findTrips;
+};
+
+module.exports = { createTrip, getTrips };

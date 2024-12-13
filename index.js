@@ -15,6 +15,7 @@ const supportRoute = require('./routes/supportRoute');
 const tripRoute = require('./routes/tripRoute');
 const http = require('http');
 const { Server } = require('socket.io');
+const path = require('path');
 
 dotenv.config();
 
@@ -44,6 +45,9 @@ app.use('/curations', curationRoute);
 app.use('/scraps', scrapRoute);
 app.use('/support', supportRoute);
 app.use('/trips', tripRoute);
+
+//사진 임시로 저장
+app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
 
 const server = http.createServer(app);
 const io = new Server(server, {

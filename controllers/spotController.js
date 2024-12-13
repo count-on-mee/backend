@@ -15,21 +15,18 @@ exports.getSpot = async (req, res) => {
   }
 };
 
-exports.getSpotsByLocation = [
-  auth.optionalVerifyToken,
-  async (req, res) => {
-    try {
-      const { lat, lng, zoom } = req.query;
-      const userId = req.user?.userId;
-      const spots = await spotService.getSpotsByLocation(
-        parseFloat(lat),
-        parseFloat(lng),
-        parseInt(zoom),
-        userId
-      );
-      res.status(200).json(spots);
-    } catch (error) {
-      res.status(500).json({ error: error.message });
-    }
-  },
-];
+exports.getSpotsByLocation = async (req, res) => {
+  try {
+    const { lat, lng, zoom } = req.query;
+    const userId = req.user?.userId;
+    const spots = await spotService.getSpotsByLocation(
+      parseFloat(lat),
+      parseFloat(lng),
+      parseInt(zoom),
+      userId
+    );
+    res.status(200).json(spots);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
