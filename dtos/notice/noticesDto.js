@@ -1,15 +1,8 @@
+const NoticeDto = require('./noticeDto');
+
 class NoticesDto {
   static of(notices) {
-    return notices.map((notice) => {
-      const { noticeId, title, content, created_at } = notice;
-      const createdAt = new Date(created_at).toISOString().split('T')[0];
-      return {
-        noticeId,
-        title,
-        content,
-        createdAt,
-      };
-    });
+    return notices.map(notice => NoticeDto.of(notice));
   }
 }
 

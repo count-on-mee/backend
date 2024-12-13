@@ -1,15 +1,38 @@
-const { NoticesDto, FaqsDto, InquiryDto, InquiriesDto } = require('../dtos');
+const {
+  NoticesDto,
+  NoticeDto,
+  FaqsDto,
+  InquiryDto,
+  InquiriesDto,
+} = require('../dtos');
 const supportService = require('../services/supportService');
 
 exports.getNotices = async (req, res) => {
   try {
     const notices = await supportService.getNotices();
     if (notices) {
-      res.status(201).json(NoticesDto.of(notices));
+      res.status(200).json(NoticesDto.of(notices));
     } else {
       res.status(404).json({ message: 'Notice not found' });
     }
   } catch (error) {
+    console.error('Error fetching notices:', error);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+exports.getNoticeById = async (req, res) => {
+  try {
+    const { noticeId } = req.params;
+    const notice = await supportService.getNoticeById(noticeId);
+
+    if (notice) {
+      res.status(200).json(NoticeDto.of(notice));
+    } else {
+      res.status(404).json({ message: 'Notice not found' });
+    }
+  } catch (error) {
+    console.error('Error fetching notice by ID:', error);
     res.status(500).json({ error: error.message });
   }
 };

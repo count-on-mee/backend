@@ -12,6 +12,14 @@ const getNotices = async () => {
   return notices;
 };
 
+const getNoticeById = async noticeId => {
+  console.log('🚀 ~ getNoticeById ~ noticeId:', noticeId);
+  const notice = await Notice.findOne({
+    where: { noticeId },
+  });
+  return notice;
+};
+
 const getFaqs = async () => {
   const faqs = await Faq.findAll({
     include: {
@@ -47,7 +55,7 @@ const createInquiry = async (userId, inquiry) => {
   return inquiryWithCategory;
 };
 
-const getInquiries = async (userId) => {
+const getInquiries = async userId => {
   return Inquiry.findAll({
     where: {
       userId,
@@ -65,7 +73,7 @@ const replyInquiry = async (inquiryId, reply) => {
       reply,
       status: 'resolved',
     },
-    { where: { inquiryId } }
+    { where: { inquiryId } },
   );
 
   if (updatedInquiry) {
@@ -88,4 +96,5 @@ module.exports = {
   createInquiry,
   getInquiries,
   replyInquiry,
+  getNoticeById,
 };
