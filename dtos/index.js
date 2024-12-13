@@ -3,6 +3,7 @@ const SpotDto = require('./spot/spotDto');
 const ScrapedSpotsDto = require('./scrap/scrapedSpotDto');
 const ScrapedCurationsDto = require('./scrap/scrapedCurationDto');
 const NoticesDto = require('./notice/noticesDto');
+const NoticeDto = require('./notice/noticeDto');
 const FaqsDto = require('./faq/faqsDto');
 const InquiryDto = require('./inquiry/inquiryDto');
 const InquiriesDto = require('./inquiry/inquiriesDto');
@@ -14,6 +15,7 @@ const dtos = {
   ScrapedSpotsDto,
   ScrapedCurationsDto,
   NoticesDto,
+  NoticeDto,
   FaqsDto,
   InquiryDto,
   InquiriesDto,

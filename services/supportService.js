@@ -12,6 +12,13 @@ const getNotices = async () => {
   return notices;
 };
 
+const getNoticeById = async (noticeId) => {
+  const notice = await Notice.findOne({
+    where: { noticeId },
+  });
+  return notice;
+};
+
 const getFaqs = async () => {
   const faqs = await Faq.findAll({
     include: {
@@ -59,6 +66,19 @@ const getInquiries = async (userId) => {
   });
 };
 
+const getInquiry = async (userId, inquiryId) => {
+  return Inquiry.findOne({
+    where: {
+      userId,
+      inquiryId,
+    },
+    include: {
+      model: InquiryCategory,
+      as: 'inquiryCategory',
+    },
+  });
+};
+
 const replyInquiry = async (inquiryId, reply) => {
   const updatedInquiry = await Inquiry.update(
     {
@@ -87,5 +107,7 @@ module.exports = {
   getFaqs,
   createInquiry,
   getInquiries,
+  getInquiry,
   replyInquiry,
+  getNoticeById,
 };
