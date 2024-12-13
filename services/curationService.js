@@ -33,6 +33,7 @@ const getCurationById = async (userId, curationId) => {
               },
               {
                 model: SpotImg,
+                as: 'spotImg',
               },
             ],
           },
@@ -91,6 +92,7 @@ const getCurations = async (userId) => {
               },
               {
                 model: SpotImg,
+                as: 'spotImg',
               },
             ],
           },

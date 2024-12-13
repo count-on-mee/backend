@@ -15,7 +15,7 @@ const getCategories = (spot) => {
 };
 
 const getImgUrls = (spot) => {
-  return spot.SpotImgs.map((img) => img.imgUrl);
+  return spot.spotImg.map((img) => img.imgUrl);
 };
 
 const getBusinessHours = (spot) => {
@@ -60,6 +60,7 @@ const getSpotsByLocation = async (userId, lat, lng, zoom) => {
       },
       {
         model: SpotImg,
+        as: 'spotImg',
       },
     ],
   });
@@ -119,6 +120,7 @@ const getSpotById = async (spotId) => {
       },
       {
         model: SpotImg,
+        as: 'spotImg',
       },
     ],
   });
