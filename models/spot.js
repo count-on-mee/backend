@@ -29,6 +29,7 @@ module.exports = function (sequelize, DataTypes) {
         field: 'naver_spot_id',
         type: DataTypes.STRING(50),
         allowNull: true,
+        unique: true,
       },
       reviewCount: {
         field: 'review_count',
