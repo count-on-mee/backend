@@ -13,7 +13,7 @@ module.exports = {
       { id: 3, type: '숙소' },
       { id: 4, type: '관광지' },
       { id: 5, type: '박물관' },
-      { id: 6, type: '전시시관' },
+      { id: 6, type: '전시관' },
     ];
     const categories = Object.values(categoryData).map((item) => ({
       spot_category_id: item.id,
