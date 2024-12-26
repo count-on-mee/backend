@@ -9,18 +9,14 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
         primaryKey: true,
       },
-      spotId: {
-        field: 'spot_id',
+      spotBusinessHourInfoId: {
+        field: 'spot_business_hour_info_id',
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-          model: 'spot',
-          key: 'spot_id',
+          model: 'spot_business_hour_info',
+          key: 'spot_business_hour_info_id',
         },
-      },
-      summary: {
-        type: DataTypes.STRING(300),
-        allowNull: true,
       },
       week: {
         type: DataTypes.STRING(5),
@@ -55,8 +51,9 @@ module.exports = function (sequelize, DataTypes) {
   );
 
   SpotBusinessHour.associate = function (models) {
-    SpotBusinessHour.belongsTo(models.Spot, {
-      foreignKey: 'spot_id',
+    SpotBusinessHour.belongsTo(models.SpotBusinessHourInfo, {
+      foreignKey: 'spot_business_hour_info_id',
+      as: 'spotBusinessHourInfo',
     });
   };
 
