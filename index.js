@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const passport = require('passport');
 const dotenv = require('dotenv');
+const ApiDocs = require('./docs/index');
 const userRoute = require('./routes/userRoute');
 const authRoute = require('./routes/authRoute');
 const spotRoute = require('./routes/spotRoute');
@@ -34,9 +35,15 @@ app.use(
     saveUninitialized: true,
   })
 );
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cookieParser());
+
+const apiDocs = new ApiDocs();
+apiDocs.init();
+const { swaggerUI, specs, setUpoption } = apiDocs.getSwaggerOption();
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(specs, setUpoption));
 
 app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
 
