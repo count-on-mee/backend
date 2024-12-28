@@ -3,6 +3,7 @@ const { Trip, TripItinerary, TripUser, Spot } = require('../models');
 const { differenceInDays } = require('date-fns');
 
 const createTrip = async (userId, tripData) => {
+  //TODO: transaction 설정
   const { title, destination, startDate, endDate, spotIds } = tripData;
 
   try {
