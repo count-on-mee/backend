@@ -42,6 +42,11 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.TIME,
         allowNull: true,
       },
+      lastOrder: {
+        field: 'last_order',
+        type: DataTypes.TIME,
+        allowNull: true,
+      },
     },
     {
       sequelize,
