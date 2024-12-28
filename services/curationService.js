@@ -3,6 +3,7 @@ const {
   SpotCategoryRelation,
   SpotCategory,
   SpotBusinessHour,
+  SpotBusinessHourInfo,
   SpotImg,
   Curation,
   CurationSpot,
@@ -88,7 +89,12 @@ const getCurations = async (userId) => {
                 include: [SpotCategory],
               },
               {
-                model: SpotBusinessHour,
+                model: SpotBusinessHourInfo,
+                as: 'spotBusinessHourInfo',
+                include: {
+                  model: SpotBusinessHour,
+                  as: 'spotBusinessHour',
+                },
               },
               {
                 model: SpotImg,
