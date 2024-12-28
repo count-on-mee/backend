@@ -2,6 +2,7 @@ const {
   Spot,
   SpotCategoryRelation,
   SpotBusinessHour,
+  SpotBusinessHourInfo,
   SpotImg,
   SpotCategory,
   SpotScrap,
@@ -19,19 +20,20 @@ const getImgUrls = (spot) => {
 };
 
 const getBusinessHours = (spot) => {
-  if (!spot.SpotBusinessHour) {
+  if (!spot.spotBusinessHourInfo) {
     return null;
   }
 
   return {
-    summary: spot.SpotBusinessHour.summary,
+    summary: spot.spotBusinessHourInfo.summary,
     info: [
       {
-        week: spot.SpotBusinessHour.week,
-        openTime: spot.SpotBusinessHour.openTime,
-        closeTime: spot.SpotBusinessHour.closeTime,
-        breakStartTime: spot.SpotBusinessHour.breakStartTime,
-        breakEndTime: spot.SpotBusinessHour.breakEndTime,
+        week: spot.spotBusinessHourInfo.spotBusinessHour.week,
+        openTime: spot.spotBusinessHourInfo.spotBusinessHour.openTime,
+        closeTime: spot.spotBusinessHourInfo.spotBusinessHour.closeTime,
+        breakStartTime:
+          spot.spotBusinessHourInfo.spotBusinessHour.breakStartTime,
+        breakEndTime: spot.spotBusinessHourInfo.spotBusinessHour.breakEndTime,
       },
     ],
   };
@@ -56,7 +58,12 @@ const getSpotsByLocation = async (userId, lat, lng, zoom) => {
         include: [SpotCategory],
       },
       {
-        model: SpotBusinessHour,
+        model: SpotBusinessHourInfo,
+        as: 'spotBusinessHourInfo',
+        include: {
+          model: SpotBusinessHour,
+          as: 'spotBusinessHour',
+        },
       },
       {
         model: SpotImg,

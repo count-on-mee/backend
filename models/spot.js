@@ -77,8 +77,9 @@ module.exports = function (sequelize, DataTypes) {
     Spot.hasMany(models.CurationSpot, {
       foreignKey: 'spot_id',
     });
-    Spot.hasOne(models.SpotBusinessHour, {
+    Spot.hasOne(models.SpotBusinessHourInfo, {
       foreignKey: 'spot_id',
+      as: 'spotBusinessHourInfo',
     });
     Spot.belongsToMany(models.SpotCategory, {
       through: models.SpotCategoryRelation,
