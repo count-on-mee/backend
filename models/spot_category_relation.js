@@ -13,6 +13,7 @@ module.exports = function (sequelize, DataTypes) {
         field: 'spot_id',
         type: DataTypes.INTEGER,
         allowNull: false,
+        unique: true,
         references: {
           model: 'spot',
           key: 'spot_id',

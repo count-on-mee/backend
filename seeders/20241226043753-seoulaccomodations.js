@@ -5,11 +5,14 @@ const path = require('path');
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    const filePath = path.join(__dirname, '..', 'spot_data', 'seoulaccomodations.json');
+    const filePath = path.join(
+      __dirname,
+      '..',
+      'spot_data',
+      'seoulaccomodations.json'
+    );
     const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
     const categoryData = [
-      { id: 1, type: '식당' },
-      { id: 2, type: '카페' },
       { id: 3, type: '숙소' },
       { id: 4, type: '관광지' },
       { id: 5, type: '박물관' },
@@ -19,11 +22,10 @@ module.exports = {
       spot_category_id: item.id,
       type: item.type,
     }));
-    await queryInterface.bulkInsert('spot_category', categories, {}); 
-   
+    await queryInterface.bulkInsert('spot_category', categories, {});
 
     const spots = Object.values(data)
-      .filter((item) => item.category !== "모텔" && item.category !== "여관")
+      .filter((item) => item.category !== '모텔' && item.category !== '여관')
       .map((item) => {
         const x = Number(item.x);
         const y = Number(item.y);
@@ -45,7 +47,11 @@ module.exports = {
         };
       });
 
-    await queryInterface.bulkInsert('spot', spots, {});
+    const uniqueSpots = spots.filter(
+      (spot, index, self) =>
+        index === self.findIndex((s) => s.naver_spot_id === spot.naver_spot_id)
+    );
+    await queryInterface.bulkInsert('spot', uniqueSpots, {});
 
     const spotRecords = await queryInterface.sequelize.query(
       `SELECT spot_id, naver_spot_id FROM spot`,
@@ -58,41 +64,40 @@ module.exports = {
     }, {});
 
     const spotImgs = Object.values(data)
-      .filter((item) => item.category !== "모텔" && item.category !== "여관")
+      .filter((item) => item.category !== '모텔' && item.category !== '여관')
       .flatMap((item) => {
         const spotId = spotIdMap[item.id];
-        return {
-          spot_id: spotId,
-          img_url: item.imageUrl,
-        }
-         
-      });
+        return item.imageUrl
+          ? { spot_id: spotId, img_url: item.imageUrl }
+          : null;
+      })
+      .filter((item) => item !== null);
 
     await queryInterface.bulkInsert('spot_img', spotImgs, {});
 
     const spotBusinessHours = Object.values(data)
-      .filter((item) => item.category !== "모텔" && item.category !== "여관")
+      .filter((item) => item.category !== '모텔' && item.category !== '여관')
       .map((item) => {
         const spotId = spotIdMap[item.id];
         return {
           spot_id: spotId,
           summary: item.businessHours,
-          week: null,
-          open_time: null,
-          close_time: null,
-          break_start_time: null,
-          break_end_time: null,
         };
       });
 
+    const uniqueSpotBusinessHours = spotBusinessHours.filter(
+      (item, index, self) =>
+        index === self.findIndex((s) => s.spot_id === item.spot_id)
+    );
+
     await queryInterface.bulkInsert(
-      'spot_business_hour',
-      spotBusinessHours,
+      'spot_business_hour_info',
+      uniqueSpotBusinessHours,
       {}
     );
 
     const spotCategoryRelations = Object.values(data)
-      .filter((item) => item.category !== "모텔" && item.category !== "여관")
+      .filter((item) => item.category !== '모텔' && item.category !== '여관')
       .map((item) => {
         const spotId = spotIdMap[item.id];
         return {
@@ -101,20 +106,23 @@ module.exports = {
         };
       });
 
-    await queryInterface.
-    bulkInsert(
+    const uniqueSpotCategoryRelations = spotCategoryRelations.filter(
+      (item, index, self) =>
+        index === self.findIndex((s) => s.spot_id === item.spot_id)
+    );
+
+    await queryInterface.bulkInsert(
       'spot_category_relation',
-      spotCategoryRelations,
+      uniqueSpotCategoryRelations,
       {}
     );
   },
 
   async down(queryInterface, Sequelize) {
     await queryInterface.bulkDelete('spot_category_relation', null, {});
-    await queryInterface.bulkDelete('spot_business_hour', null, {});
+    await queryInterface.bulkDelete('spot_business_hour_info', null, {});
     await queryInterface.bulkDelete('spot_img', null, {});
     await queryInterface.bulkDelete('spot', null, {});
     await queryInterface.bulkDelete('spot_category', null, {});
   },
- 
 };

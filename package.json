@@ -9,7 +9,8 @@
     "seq:migrate": "npx sequelize db:migrate",
     "seq:migrate:add": "npx sequelize migration:create --name",
     "seq:migrate:undo": "npx sequelize db:migrate:undo",
-    "seq:seed": "npx sequelize db:seed:all"
+    "seq:seed": "npx sequelize db:seed:all",
+    "seq:seed:undo": "npx sequelize db:seed:undo"
   },
   "keywords": [],
   "author": "",

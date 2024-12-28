@@ -40,7 +40,11 @@ module.exports = {
         };
       });
 
-    await queryInterface.bulkInsert('spot', spots, {});
+    const uniqueSpots = spots.filter(
+      (spot, index, self) =>
+        index === self.findIndex((s) => s.naver_spot_id === spot.naver_spot_id)
+    );
+    await queryInterface.bulkInsert('spot', uniqueSpots, {});
 
     const spotRecords = await queryInterface.sequelize.query(
       `SELECT spot_id, naver_spot_id FROM spot`,
@@ -56,11 +60,14 @@ module.exports = {
       .filter((item) => item.__typename === 'RestaurantListSummary')
       .flatMap((item) => {
         const spotId = spotIdMap[item.id];
-        return item.imageUrls.map((imgUrl) => ({
-          spot_id: spotId,
-          img_url: imgUrl,
-        }));
+        return item.imageUrls
+          .filter((imgUrl) => imgUrl !== null)
+          .map((imgUrl) => ({
+            spot_id: spotId,
+            img_url: imgUrl,
+          }));
       });
+
     await queryInterface.bulkInsert('spot_img', spotImgs, {});
 
     const spotBusinessHours = Object.values(data)
@@ -70,16 +77,11 @@ module.exports = {
         return {
           spot_id: spotId,
           summary: item.businessHours,
-          week: null,
-          open_time: null,
-          close_time: null,
-          break_start_time: null,
-          break_end_time: null,
         };
       });
 
     await queryInterface.bulkInsert(
-      'spot_business_hour',
+      'spot_business_hour_info',
       spotBusinessHours,
       {}
     );
@@ -103,7 +105,7 @@ module.exports = {
 
   async down(queryInterface, Sequelize) {
     await queryInterface.bulkDelete('spot_category_relation', null, {});
-    await queryInterface.bulkDelete('spot_business_hour', null, {});
+    await queryInterface.bulkDelete('spot_business_hour_info', null, {});
     await queryInterface.bulkDelete('spot_img', null, {});
     await queryInterface.bulkDelete('spot', null, {});
     await queryInterface.bulkDelete('spot_category', null, {});
