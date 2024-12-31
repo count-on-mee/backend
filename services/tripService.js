@@ -6,7 +6,10 @@ const {
   Spot,
   SpotCategory,
   SpotCategoryRelation,
+  SpotBusinessHour,
+  SpotBusinessHourInfo,
 } = require('../models');
+const { getCategories, getBusinessHours } = require('./spotService');
 const { differenceInDays } = require('date-fns');
 
 const createTrip = async (userId, tripData) => {
@@ -23,44 +26,64 @@ const createTrip = async (userId, tripData) => {
     const daysBetween =
       differenceInDays(new Date(endDate), new Date(startDate)) + 1;
 
-    // spotIds를 category별로 분류
+    // spotIds를 category별로 분류 및 spotId를 기반으로 spot 관련 데이터 추출
     const categorizedSpots = {};
+
     for (const spotId of spotIds) {
-      const spotCategoryRelations = await SpotCategoryRelation.findAll({
+      const spot = await Spot.findOne({
         where: { spotId },
-        include: [{ model: SpotCategory, attributes: ['type'] }],
+        include: [
+          {
+            model: SpotCategoryRelation,
+            include: [SpotCategory],
+          },
+          {
+            model: SpotBusinessHourInfo,
+            as: 'spotBusinessHourInfo',
+            include: {
+              model: SpotBusinessHour,
+              as: 'spotBusinessHour',
+            },
+          },
+        ],
       });
 
-      for (const relation of spotCategoryRelations) {
-        const category = relation.SpotCategory.type;
-        if (!categorizedSpots[category]) {
-          categorizedSpots[category] = [];
-        }
-        categorizedSpots[category].push(spotId);
+      const category = getCategories(spot);
+
+      if (!categorizedSpots[category]) {
+        categorizedSpots[category] = [];
       }
+      categorizedSpots[category].push({
+        spotId: spot.spotId,
+        title: spot.title,
+        category: category[0],
+        lng: spot.location.coordinates[0],
+        lat: spot.location.coordinates[1],
+        businessHour: getBusinessHours(spot),
+      });
     }
 
+    // categorizedSpots 활용한 변수
     // k-means, tsp 적용 위치
     // trip_itinerary 테이블의 데이터 생성
     // day: 여행 날짜(?) ex. 1일차, 2일차
     // order: 하루 일정 내의 스팟 순서
-    // 각 category별로 spotIds를 섞고 일정에 추가
     let currentDay = 1;
     for (const category in categorizedSpots) {
-      const shuffledSpotIds = categorizedSpots[category].sort(
+      const shuffledSpots = categorizedSpots[category].sort(
         () => 0.5 - Math.random()
       );
       let order = 1;
-      for (let i = 0; i < shuffledSpotIds.length; i++) {
+      for (let i = 0; i < shuffledSpots.length; i++) {
         await TripItinerary.create({
           tripId: newTrip.tripId,
-          spotId: shuffledSpotIds[i],
+          spotId: shuffledSpots[i].spotId,
           day: currentDay,
           order: order,
         });
 
         order++;
-        if ((i + 1) % Math.ceil(shuffledSpotIds.length / daysBetween) === 0) {
+        if ((i + 1) % Math.ceil(shuffledSpots.length / daysBetween) === 0) {
           currentDay++;
           order = 1;
         }
