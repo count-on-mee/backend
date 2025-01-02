@@ -37,3 +37,27 @@ exports.getTrip = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+exports.generateInviteCode = async (req, res) => {
+  try {
+    const userId = req.user.userId;
+    const { tripId } = req.params;
+
+    const inviteCode = await tripService.generateInviteCode(userId, tripId);
+    res.status(200).json(inviteCode);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+exports.acceptInvite = async (req, res) => {
+  try {
+    const userId = req.user.userId;
+    const { inviteCode } = req.params;
+
+    const tripId = await tripService.acceptInvite(userId, inviteCode);
+    res.status(200).json(tripId);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};

@@ -1,6 +1,13 @@
 const { where } = require('sequelize');
-const { Trip, TripItinerary, TripUser, Spot } = require('../models');
+const {
+  Trip,
+  TripItinerary,
+  TripUser,
+  Spot,
+  TripInvite,
+} = require('../models');
 const { differenceInDays } = require('date-fns');
+const crypto = require('crypto');
 
 const createTrip = async (userId, tripData) => {
   //TODO: transaction 설정
@@ -118,4 +125,73 @@ const transformTrip = (trip) => {
   };
 };
 
-module.exports = { createTrip, getTrips, getTrip };
+const generateInviteCode = async (userId, tripId) => {
+  try {
+    const tripUser = await TripUser.findOne({
+      where: { tripId, userId },
+    });
+
+    if (!tripUser) {
+      throw new Error('해당 여행에 대한 권한이 없습니다.');
+    }
+
+    const existingInvite = await TripInvite.findOne({
+      where: { tripId },
+    });
+
+    if (existingInvite) {
+      const { inviteCode } = existingInvite;
+      return { inviteCode };
+    }
+
+    const inviteCode = crypto.randomBytes(16).toString('hex');
+    await TripInvite.create({
+      tripId,
+      inviteCode,
+    });
+
+    return { inviteCode };
+  } catch (error) {
+    throw new Error('초대 링크 생성 실패: ' + error.message);
+  }
+};
+
+const acceptInvite = async (userId, inviteCode) => {
+  try {
+    const invite = await TripInvite.findOne({
+      where: { inviteCode },
+    });
+
+    if (!invite) {
+      throw new Error('유효하지 않은 초대 링크입니다.');
+    }
+
+    const { tripId } = invite;
+    const existingTripUser = await TripUser.findOne({
+      where: {
+        tripId,
+        userId,
+      },
+    });
+
+    if (existingTripUser) {
+      throw new Error('이미 참여하고 있는 여행입니다.');
+    }
+
+    await TripUser.create({
+      tripId,
+      userId,
+    });
+    return { tripId };
+  } catch (error) {
+    throw new Error('초대 수락 실패: ' + error.message);
+  }
+};
+
+module.exports = {
+  createTrip,
+  getTrips,
+  getTrip,
+  generateInviteCode,
+  acceptInvite,
+};
