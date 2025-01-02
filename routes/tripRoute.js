@@ -7,5 +7,15 @@ const tripController = require('../controllers/tripController');
 router.post('/', auth.verifyToken, tripController.createTrip);
 router.get('/', auth.verifyToken, tripController.getTrips);
 router.get('/:tripId', auth.verifyToken, tripController.getTrip);
+router.post(
+  '/:tripId/invite',
+  auth.verifyToken,
+  tripController.generateInviteCode
+);
+router.post(
+  '/invite/:inviteCode',
+  auth.verifyToken,
+  tripController.acceptInvite
+);
 
 module.exports = router;
