@@ -44,6 +44,10 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'trip_id',
       as: 'tripUser',
     });
+    Trip.hasMany(models.TripDocument, {
+      foreignKey: 'trip_id',
+      as: 'tripDocument',
+    });
   };
   return Trip;
 };
