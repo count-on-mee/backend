@@ -7,6 +7,7 @@ const tripController = require('../controllers/tripController');
 router.post('/', auth.verifyToken, tripController.createTrip);
 router.get('/', auth.verifyToken, tripController.getTrips);
 router.get('/:tripId', auth.verifyToken, tripController.getTrip);
+router.delete('/:tripId', auth.verifyToken, tripController.deleteTrip);
 router.post(
   '/:tripId/invite',
   auth.verifyToken,
