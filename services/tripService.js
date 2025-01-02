@@ -125,6 +125,11 @@ const transformTrip = (trip) => {
   };
 };
 
+const deleteTrip = async (userId, tripId) => {
+  const deleted = await TripUser.destroy({ where: { tripId, userId } });
+  return deleted > 0;
+};
+
 const generateInviteCode = async (userId, tripId) => {
   try {
     const tripUser = await TripUser.findOne({
@@ -192,6 +197,7 @@ module.exports = {
   createTrip,
   getTrips,
   getTrip,
+  deleteTrip,
   generateInviteCode,
   acceptInvite,
 };

@@ -38,11 +38,24 @@ exports.getTrip = async (req, res) => {
   }
 };
 
+exports.deleteTrip = async (req, res) => {
+  try {
+    const userId = req.user.userId;
+    const { tripId } = req.params;
+    const deleted = await tripService.deleteTrip(userId, tripId);
+    if (!deleted) {
+      return res.status(404).json({ error: 'trip not found' });
+    }
+    res.status(200).json({ message: 'trip successfully deleted' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 exports.generateInviteCode = async (req, res) => {
   try {
     const userId = req.user.userId;
     const { tripId } = req.params;
-
     const inviteCode = await tripService.generateInviteCode(userId, tripId);
     res.status(200).json(inviteCode);
   } catch (error) {
