@@ -41,6 +41,15 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.DECIMAL(5, 3),
         allowNull: true,
       },
+      tripId: {
+        field: 'trip_id',
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        references: {
+          model: 'Trip',
+          key: 'trip_id',
+        },
+      },
     },
     {
       tableName: 'spot',

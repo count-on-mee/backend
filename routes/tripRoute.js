@@ -28,5 +28,9 @@ router.get(
   auth.verifyToken,
   tripController.getSpotCandidate
 );
-
+router.post(
+  '/:tripId/itineraries',
+  auth.verifyToken,
+  tripController.createTripItinerary
+);
 module.exports = router;

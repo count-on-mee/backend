@@ -30,3 +30,13 @@ exports.getSpotsByLocation = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+exports.getSpotsByTripId = async (req, res) => {
+  try {
+    const { tripId } = req.params;
+    const result = await spotService.getSpotsByTripId(tripId);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};

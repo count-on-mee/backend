@@ -234,6 +234,28 @@ const getSpotCandidate = async (userId, tripId) => {
   }
 };
 
+const createTripItinerary = async (tripId, itineraryData) => {
+  const { spotId, day } = itineraryData;
+  const lastItinerary = await TripItinerary.findOne({
+    where: {
+      tripId,
+      day,
+    },
+    order: [['order', 'DESC']],
+  });
+
+  const order = lastItinerary ? lastItinerary.order + 1 : 1;
+
+  const newItinerary = await TripItinerary.create({
+    tripId,
+    spotId,
+    day,
+    order,
+  });
+
+  return newItinerary;
+};
+
 module.exports = {
   createTrip,
   getTrips,
@@ -243,4 +265,5 @@ module.exports = {
   acceptInvite,
   createSpotCandidate,
   getSpotCandidate,
+  createTripItinerary,
 };

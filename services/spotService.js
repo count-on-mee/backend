@@ -1,4 +1,5 @@
 const {
+  Trip,
   Spot,
   SpotCategoryRelation,
   SpotBusinessHour,
@@ -7,7 +8,7 @@ const {
   SpotCategory,
   SpotScrap,
 } = require('../models');
-const { literal, where } = require('sequelize');
+const { literal, where, Op } = require('sequelize');
 
 const getCategories = (spot) => {
   return spot.SpotCategoryRelations.map(
@@ -50,7 +51,7 @@ const getSpotsByLocation = async (userId, lat, lng, zoom) => {
   const radius = calculateRadius(zoom);
   const spots = await Spot.findAll({
     where: literal(
-      `ST_CONTAINS(ST_BUFFER(ST_GeomFromText('POINT(${lat} ${lng})', 4326), ${radius}), location)`
+      `ST_CONTAINS(ST_BUFFER(ST_GeomFromText('POINT(${lat} ${lng})', 4326), ${radius}), location) AND trip_id is NULL`
     ),
     include: [
       {
@@ -151,9 +152,25 @@ const getSpotById = async (spotId) => {
   };
 };
 
+const getSpotsByTripId = async (tripId) => {
+  const trip = await Trip.findByPk(tripId);
+
+  const spots = await Spot.findAll({
+    where: {
+      address: {
+        [Op.like]: `%${trip.destination}%`,
+      },
+    },
+    limit: 15,
+  });
+
+  return spots;
+};
+
 module.exports = {
   calculateRadius,
   getSpotById,
+  getSpotsByTripId,
   getLocation,
   getSpotsByLocation,
   getCategories,
