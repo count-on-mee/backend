@@ -5,6 +5,8 @@ const {
   TripUser,
   Spot,
   TripInvite,
+  TripDocument,
+  TripDocumentSpotCandidate,
 } = require('../models');
 const { differenceInDays } = require('date-fns');
 const crypto = require('crypto');
@@ -193,6 +195,45 @@ const acceptInvite = async (userId, inviteCode) => {
   }
 };
 
+const createSpotCandidate = async (userId, tripId, spotIds) => {
+  try {
+    const tripDocument = await TripDocument.findOne({
+      where: { tripId },
+    });
+
+    for (const spotId of spotIds) {
+      await TripDocumentSpotCandidate.create({
+        tripDocumentId: tripDocument.tripDocumentId,
+        userId,
+        spotId,
+      });
+    }
+  } catch (error) {
+    throw new Error('여행 스팟 후보 추가 실패: ' + error.message);
+  }
+};
+
+const getSpotCandidate = async (userId, tripId) => {
+  try {
+    const tripDocument = await TripDocument.findOne({
+      where: { tripId },
+    });
+
+    const spotCandidates = await TripDocumentSpotCandidate.findAll({
+      where: {
+        tripDocumentId: tripDocument.tripDocumentId,
+      },
+      include: {
+        model: Spot,
+        as: 'spot',
+      },
+    });
+    return spotCandidates;
+  } catch (error) {
+    throw new Error('여행 스팟 후보 조회 실패:' + error.message);
+  }
+};
+
 module.exports = {
   createTrip,
   getTrips,
@@ -200,4 +241,6 @@ module.exports = {
   deleteTrip,
   generateInviteCode,
   acceptInvite,
+  createSpotCandidate,
+  getSpotCandidate,
 };
