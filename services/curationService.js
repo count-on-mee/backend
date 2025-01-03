@@ -30,7 +30,12 @@ const getCurationById = async (userId, curationId) => {
                 include: [SpotCategory],
               },
               {
-                model: SpotBusinessHour,
+                model: SpotBusinessHourInfo,
+                as: 'spotBusinessHourInfo',
+                include: {
+                  model: SpotBusinessHour,
+                  as: 'spotBusinessHour',
+                },
               },
               {
                 model: SpotImg,

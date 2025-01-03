@@ -3,6 +3,9 @@ const {
   Trip,
   TripItinerary,
   TripUser,
+  TripInvite,
+  TripDocument,
+  TripDocumentSpotCandidate,
   Spot,
   SpotCategory,
   SpotCategoryRelation,
@@ -11,8 +14,10 @@ const {
 } = require('../models');
 const { getCategories, getBusinessHours } = require('./spotService');
 const { differenceInDays } = require('date-fns');
+const crypto = require('crypto');
 
 const createTrip = async (userId, tripData) => {
+  //TODO: transaction 설정
   const { title, destination, startDate, endDate, spotIds } = tripData;
 
   try {
@@ -62,7 +67,7 @@ const createTrip = async (userId, tripData) => {
         businessHour: getBusinessHours(spot),
       });
     }
-    
+
     // categorizedSpots 활용한 변수
     // k-means, tsp 적용 위치
     // trip_itinerary 테이블의 데이터 생성
@@ -94,7 +99,7 @@ const createTrip = async (userId, tripData) => {
     }
       */
     const remainingSpots = Object.entries(categorizedSpots)
-      .filter(([category]) => category !== '숙소') 
+      .filter(([category]) => category !== '숙소')
       .reduce((result, [category, spots]) => {
         result[category] = spots;
         return result;
@@ -105,15 +110,15 @@ const createTrip = async (userId, tripData) => {
 
     //2-1. 클러스터링 생성 함수
     const clusterSpots = (spots, daysBetween) => {
-      const vectors = spots.map(spot => [spot.lat, spot.lng]);
+      const vectors = spots.map((spot) => [spot.lat, spot.lng]);
 
       return new Promise((resolve, reject) => {
         kmeans.clusterize(vectors, { k: daysBetween }, (err, res) => {
           if (err) reject(err);
 
-          const clusters = res.map(cluster => ({
-            centroid: cluster.centroid, 
-            spots: cluster.clusterInd.map(spotIndex => spots[spotIndex])
+          const clusters = res.map((cluster) => ({
+            centroid: cluster.centroid,
+            spots: cluster.clusterInd.map((spotIndex) => spots[spotIndex]),
           }));
           let iterations = 0;
           const maxIterations = 100; // 최대 반복 횟수
@@ -131,18 +136,18 @@ const createTrip = async (userId, tripData) => {
     //2-2. 클러스터 균등화 함수(spot data균등하게 만들기)
     const isBalanced = (clusters, totalSpots, daysBetween) => {
       const maxPerCluster = Math.ceil(totalSpots / daysBetween);
-      return clusters.every(cluster => cluster.length <= maxPerCluster);
+      return clusters.every((cluster) => cluster.length <= maxPerCluster);
     };
 
     const redistributeSpots = (clusters, totalSpots, daysBetween) => {
       const maxPerCluster = Math.ceil(totalSpots / daysBetween);
-    
-      clusters.forEach(cluster => {
+
+      clusters.forEach((cluster) => {
         while (cluster.spots.length > maxPerCluster) {
           const underfilledCluster = clusters.find(
-            c => c.spots.length < maxPerCluster
+            (c) => c.spots.length < maxPerCluster
           );
-    
+
           if (underfilledCluster) {
             const spotToMove = cluster.spots.pop();
             underfilledCluster.spots.push(spotToMove);
@@ -152,32 +157,32 @@ const createTrip = async (userId, tripData) => {
     };
 
     const spotsArray = Object.values(remainingSpots).flat();
-    
+
     // 3. 숙소와 클러스터 배정
     const haversineDistance = (coord1, coord2) => {
       const toRadians = (deg) => (deg * Math.PI) / 180;
-  
+
       const [lat1, lng1] = coord1;
       const [lat2, lng2] = coord2;
-  
+
       const dLat = toRadians(lat2 - lat1);
       const dLng = toRadians(lng2 - lng1);
-  
+
       const a =
         Math.sin(dLat / 2) ** 2 +
         Math.cos(toRadians(lat1)) *
           Math.cos(toRadians(lat2)) *
           Math.sin(dLng / 2) ** 2;
-  
-      return 2 * 6371 * Math.asin(Math.sqrt(a)); 
+
+      return 2 * 6371 * Math.asin(Math.sqrt(a));
     };
 
     const assignAccommodationsToClusters = (clusters, accommodations) => {
       const clusterAssignments = clusters.map((cluster) => ({
-        cluster, 
-        accommodation: null, 
+        cluster,
+        accommodation: null,
       }));
-    
+
       // 3-1. 1:1 매칭 - 가장 가까운 숙소 찾기
       const remainingAccommodations = [...accommodations];
 
@@ -187,10 +192,10 @@ const createTrip = async (userId, tripData) => {
         let closestDistance = Infinity;
 
         remainingAccommodations.forEach((accommodation, index) => {
-          const distance = haversineDistance(
-            cluster.centroid,
-            [accommodation.lat, accommodation.lng]
-          );
+          const distance = haversineDistance(cluster.centroid, [
+            accommodation.lat,
+            accommodation.lng,
+          ]);
           if (distance < closestDistance) {
             closestDistance = distance;
             closestAccommodation = index;
@@ -198,7 +203,10 @@ const createTrip = async (userId, tripData) => {
         });
 
         if (closestAccommodation !== null) {
-          assignment.accommodation = remainingAccommodations.splice(closestAccommodation, 1)[0];
+          assignment.accommodation = remainingAccommodations.splice(
+            closestAccommodation,
+            1
+          )[0];
         }
       }
 
@@ -212,10 +220,10 @@ const createTrip = async (userId, tripData) => {
           let closestDistance = Infinity;
 
           accommodations.forEach((accommodation) => {
-            const distance = haversineDistance(
-              cluster.centroid,
-              [accommodation.lat, accommodation.lng]
-            );
+            const distance = haversineDistance(cluster.centroid, [
+              accommodation.lat,
+              accommodation.lng,
+            ]);
             if (distance < closestDistance) {
               closestDistance = distance;
               closestAccommodation = accommodation;
@@ -224,7 +232,7 @@ const createTrip = async (userId, tripData) => {
 
           if (closestDistance > maxDistance) {
             maxDistance = closestDistance;
-            endCluster = cluster; 
+            endCluster = cluster;
           }
 
           if (closestAccommodation) {
@@ -242,7 +250,7 @@ const createTrip = async (userId, tripData) => {
         }
       }
 
-      return { updatedClusters: clusterAssignments, endCluster};
+      return { updatedClusters: clusterAssignments, endCluster };
     };
 
     //TSP
@@ -250,20 +258,21 @@ const createTrip = async (userId, tripData) => {
       const n = locations.length;
       const visited = Array(n).fill(false);
       const result = [];
-    
+
       const dfs = (current, path, cost) => {
         if (path.length === n) {
           return { path, cost };
         }
-    
+
         let best = { path: [], cost: Infinity };
         for (let i = 0; i < n; i++) {
           if (!visited[i]) {
             visited[i] = true;
-            const nextCost = cost + haversineDistance(locations[current], locations[i]);
+            const nextCost =
+              cost + haversineDistance(locations[current], locations[i]);
             const candidate = dfs(i, [...path, i], nextCost);
             visited[i] = false;
-    
+
             if (candidate.cost < best.cost) {
               best = candidate;
             }
@@ -271,15 +280,17 @@ const createTrip = async (userId, tripData) => {
         }
         return best;
       };
-    
+
       visited[0] = true; // 시작점 고정
       return dfs(0, [0], 0);
     };
 
     const mapClustersToDays = (assignedClusters) => {
-      const locations = assignedClusters.map((cluster) => cluster.accommodation);
+      const locations = assignedClusters.map(
+        (cluster) => cluster.accommodation
+      );
       const tspResult = solveTSP(locations.map((loc) => [loc.lat, loc.lng]));
-    
+
       return tspResult.path.map((index, day) => ({
         day: day + 1,
         cluster: assignedClusters[index],
@@ -290,26 +301,24 @@ const createTrip = async (userId, tripData) => {
       return dayClusters.map((dayCluster, index) => {
         const spots = dayCluster.cluster.cluster.spots;
         const accommodation = dayCluster.cluster.accommodation;
-    
+
         // 출발지: 전날 숙소 (첫날의 경우는 현재 숙소)
         const start =
           index === 0
             ? accommodation
             : dayClusters[index - 1].cluster.accommodation;
-    
+
         // 도착지: 당일 숙소
         const end = accommodation;
-    
+
         const locations = [start, ...spots];
-        const tspRoute = solveTSP(
-          locations.map((loc) => [loc.lat, loc.lng])
-        );
-    
+        const tspRoute = solveTSP(locations.map((loc) => [loc.lat, loc.lng]));
+
         const route = tspRoute.path.map((i) => locations[i]);
-        if(end!= null){
+        if (end != null) {
           route.push(end);
         }
-        
+
         return {
           day: dayCluster.day,
           route,
@@ -322,22 +331,25 @@ const createTrip = async (userId, tripData) => {
       const clusters = await clusterSpots(spotsArray, daysBetween);
 
       //숙소 클러스터 매핑
-      const {updatedClusters:assignedClusters, endCluster} = assignAccommodationsToClusters(clusters, accommodations);
-    
+      const { updatedClusters: assignedClusters, endCluster } =
+        assignAccommodationsToClusters(clusters, accommodations);
+
       // 숙소 기준 TSP로 날짜별 클러스터 순서 정하기
       const dayClusters = mapClustersToDays(assignedClusters);
-    
-      dayClusters.push({day:daysBetween, cluster:{cluster:endCluster,accommodation:null}})
+
+      dayClusters.push({
+        day: daysBetween,
+        cluster: { cluster: endCluster, accommodation: null },
+      });
       // 각 날의 동선 생성
       const dailyRoutes = planDailyRoutes(dayClusters);
-    
-      dailyRoutes.forEach((dayRoute, index) => {
-      });
-    
+
+      dailyRoutes.forEach((dayRoute, index) => {});
+
       // 데이터 저장
       for (let i = 0; i < dailyRoutes.length; i++) {
         const { day, route } = dailyRoutes[i];
-    
+
         for (let order = 0; order < route.length; order++) {
           const spot = route[order];
           await TripItinerary.create({
@@ -347,12 +359,12 @@ const createTrip = async (userId, tripData) => {
             order: order + 1,
           });
         }
-      }}
-    catch (error) {
+      }
+    } catch (error) {
       console.error('클러스터링, 데이터 저장:', error);
       throw new Error('클러스터링, 데이터 저장: ' + error.message);
-    }      
-    
+    }
+
     const { tripId } = newTrip;
 
     await TripUser.create({
@@ -437,4 +449,143 @@ const transformTrip = (trip) => {
   };
 };
 
-module.exports = { createTrip, getTrips, getTrip };
+const deleteTrip = async (userId, tripId) => {
+  const deleted = await TripUser.destroy({ where: { tripId, userId } });
+  return deleted > 0;
+};
+
+const generateInviteCode = async (userId, tripId) => {
+  try {
+    const tripUser = await TripUser.findOne({
+      where: { tripId, userId },
+    });
+
+    if (!tripUser) {
+      throw new Error('해당 여행에 대한 권한이 없습니다.');
+    }
+
+    const existingInvite = await TripInvite.findOne({
+      where: { tripId },
+    });
+
+    if (existingInvite) {
+      const { inviteCode } = existingInvite;
+      return { inviteCode };
+    }
+
+    const inviteCode = crypto.randomBytes(16).toString('hex');
+    await TripInvite.create({
+      tripId,
+      inviteCode,
+    });
+
+    return { inviteCode };
+  } catch (error) {
+    throw new Error('초대 링크 생성 실패: ' + error.message);
+  }
+};
+
+const acceptInvite = async (userId, inviteCode) => {
+  try {
+    const invite = await TripInvite.findOne({
+      where: { inviteCode },
+    });
+
+    if (!invite) {
+      throw new Error('유효하지 않은 초대 링크입니다.');
+    }
+
+    const { tripId } = invite;
+    const existingTripUser = await TripUser.findOne({
+      where: {
+        tripId,
+        userId,
+      },
+    });
+
+    if (existingTripUser) {
+      throw new Error('이미 참여하고 있는 여행입니다.');
+    }
+
+    await TripUser.create({
+      tripId,
+      userId,
+    });
+    return { tripId };
+  } catch (error) {
+    throw new Error('초대 수락 실패: ' + error.message);
+  }
+};
+
+const createSpotCandidate = async (userId, tripId, spotIds) => {
+  try {
+    const tripDocument = await TripDocument.findOne({
+      where: { tripId },
+    });
+
+    for (const spotId of spotIds) {
+      await TripDocumentSpotCandidate.create({
+        tripDocumentId: tripDocument.tripDocumentId,
+        userId,
+        spotId,
+      });
+    }
+  } catch (error) {
+    throw new Error('여행 스팟 후보 추가 실패: ' + error.message);
+  }
+};
+
+const getSpotCandidate = async (userId, tripId) => {
+  try {
+    const tripDocument = await TripDocument.findOne({
+      where: { tripId },
+    });
+
+    const spotCandidates = await TripDocumentSpotCandidate.findAll({
+      where: {
+        tripDocumentId: tripDocument.tripDocumentId,
+      },
+      include: {
+        model: Spot,
+        as: 'spot',
+      },
+    });
+    return spotCandidates;
+  } catch (error) {
+    throw new Error('여행 스팟 후보 조회 실패:' + error.message);
+  }
+};
+
+const createTripItinerary = async (tripId, itineraryData) => {
+  const { spotId, day } = itineraryData;
+  const lastItinerary = await TripItinerary.findOne({
+    where: {
+      tripId,
+      day,
+    },
+    order: [['order', 'DESC']],
+  });
+
+  const order = lastItinerary ? lastItinerary.order + 1 : 1;
+
+  const newItinerary = await TripItinerary.create({
+    tripId,
+    spotId,
+    day,
+    order,
+  });
+
+  return newItinerary;
+};
+
+module.exports = {
+  createTrip,
+  getTrips,
+  getTrip,
+  deleteTrip,
+  generateInviteCode,
+  acceptInvite,
+  createSpotCandidate,
+  getSpotCandidate,
+  createTripItinerary,
+};
