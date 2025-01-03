@@ -101,3 +101,14 @@ exports.getSpotCandidate = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+exports.createTripItinerary = async (req, res) => {
+  try {
+    const { tripId } = req.params;
+    const itineraryData = req.body;
+    const result = await tripService.createTripItinerary(tripId, itineraryData);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
