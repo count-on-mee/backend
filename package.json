@@ -10,6 +10,7 @@
     "seq:migrate:add": "npx sequelize migration:create --name",
     "seq:migrate:undo": "npx sequelize db:migrate:undo",
     "seq:seed": "npx sequelize db:seed:all",
+    "seq:seed:add": "npx sequelize-cli db:seed --seed",
     "seq:seed:undo": "npx sequelize db:seed:undo"
   },
   "keywords": [],
@@ -26,6 +27,7 @@
     "express-session": "^1.18.1",
     "express-validator": "^7.2.0",
     "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
     "mysql2": "^3.11.4",
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0",
