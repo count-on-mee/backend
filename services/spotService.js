@@ -27,16 +27,13 @@ const getBusinessHours = (spot) => {
 
   return {
     summary: spot.spotBusinessHourInfo.summary,
-    info: [
-      {
-        week: spot.spotBusinessHourInfo.spotBusinessHour.week,
-        openTime: spot.spotBusinessHourInfo.spotBusinessHour.openTime,
-        closeTime: spot.spotBusinessHourInfo.spotBusinessHour.closeTime,
-        breakStartTime:
-          spot.spotBusinessHourInfo.spotBusinessHour.breakStartTime,
-        breakEndTime: spot.spotBusinessHourInfo.spotBusinessHour.breakEndTime,
-      },
-    ],
+    info: spot.spotBusinessHourInfo.spotBusinessHour.map((hour) => ({
+      week: hour.week,
+      openTime: hour.openTime,
+      closeTime: hour.closeTime,
+      breakStartTime: hour.breakStartTime,
+      breakEndTime: hour.breakEndTime,
+    })),
   };
 };
 
