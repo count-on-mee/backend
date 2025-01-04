@@ -12,6 +12,11 @@ router.get(
   auth.optionalVerifyToken,
   spotController.getSpotsByLocation
 );
+router.get(
+  '/search/trips/:tripId',
+  auth.optionalVerifyToken,
+  spotController.getSpotsByTripId
+);
 router.get('/:spotId', spotController.getSpot);
 
 router.get('/:spotId/photodump', spotController.getPhotoDump);

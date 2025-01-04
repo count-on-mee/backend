@@ -74,3 +74,41 @@ exports.acceptInvite = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+exports.createSpotCandidate = async (req, res) => {
+  try {
+    const userId = req.user.userId;
+    const { tripId } = req.params;
+    const { spotIds: spotIdArray } = req.query;
+
+    const spotIds = spotIdArray.split(',').map((id) => parseInt(id, 10));
+
+    await tripService.createSpotCandidate(userId, tripId, spotIds);
+    res.status(201).json({ message: 'spot candidate successfully created' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+exports.getSpotCandidate = async (req, res) => {
+  try {
+    const userId = req.user.userId;
+    const { tripId } = req.params;
+
+    const spotCandidates = await tripService.getSpotCandidate(userId, tripId);
+    res.status(200).json(spotCandidates);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+exports.createTripItinerary = async (req, res) => {
+  try {
+    const { tripId } = req.params;
+    const itineraryData = req.body;
+    const result = await tripService.createTripItinerary(tripId, itineraryData);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};

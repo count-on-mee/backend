@@ -32,6 +32,16 @@ exports.getSpotsByLocation = async (req, res) => {
   }
 };
 
+exports.getSpotsByTripId = async (req, res) => {
+  try {
+    const { tripId } = req.params;
+    const result = await spotService.getSpotsByTripId(tripId);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 exports.getPhotoDump = async (req, res) => {
   try {
     const spotId = req.params.spotId;

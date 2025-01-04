@@ -18,5 +18,19 @@ router.post(
   auth.verifyToken,
   tripController.acceptInvite
 );
-
+router.post(
+  '/:tripId/documents/spot-candidates',
+  auth.verifyToken,
+  tripController.createSpotCandidate
+);
+router.get(
+  '/:tripId/documents/spot-candidates',
+  auth.verifyToken,
+  tripController.getSpotCandidate
+);
+router.post(
+  '/:tripId/itineraries',
+  auth.verifyToken,
+  tripController.createTripItinerary
+);
 module.exports = router;
