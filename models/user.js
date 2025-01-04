@@ -59,6 +59,9 @@ module.exports = function (sequelize, DataTypes) {
       foreignKey: 'user_id',
       as: 'tripUser',
     });
+    User.hasMany(models.SpotPhotoDump, {
+      foreignKey: 'user_id',
+    });
   };
 
   return User;

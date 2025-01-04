@@ -2,8 +2,6 @@ const { UserDto } = require('../dtos');
 const { validate, createUserValidator, updateUserValidator } = require('../validators');
 const auth = require('../middlewares/auth');
 const userService = require('../services/userService');
-const fs = require('fs');
-const path = require('path');
 
 exports.createUser = [
   createUserValidator,
@@ -38,13 +36,13 @@ exports.updateUser = [
   auth.verifyToken,
   async (req, res) => {
     try {
-      const userId = req.user.userId;
+      const userId = req.user?.userId;
       if (!userId) {
         return res.status(400).json({ error: "Invalid userId"});
       }
       
       const { nickname } = req.body;
-      const file = req.files?.profileImgUrl;
+      const file = req.file;
 
       console.log('Nickname:', nickname);
       console.log('File:', file);
@@ -67,37 +65,13 @@ exports.updateUser = [
       console.log(file);
 
       if (file) {
-        console.log('File detected:', file.name);
-        const uploadDir = path.join(process.cwd(), 'uploads');
-        if (!fs.existsSync(uploadDir)) {
-          console.log('Upload directory does not exist. Creating directory...');
-          await fs.promises.mkdir(uploadDir, { recursive: true });
-          console.log('Upload directroy created:', uploadDir);
-        }
-
-        const fileName = `${Date.now()}-${file.name}`;
-        const filePath = path.join(uploadDir, fileName);
-        console.log('File will be saved as:', filePath);
-
-        try { await new Promise((resolve, reject) => {
-          file.mv(filePath, (err) => {
-            if (err) {
-              console.error('Error while moving file:', err.message);
-              reject(err); 
-            } else {
-              console.log('File successfully saved at:', filePath);
-              resolve(); }
-          });
-        });
+        console.log('File detected:', file.filename);
+       
         const baseUrl = `${req.protocol}://${req.get('host')}`;
-          updatedData.profileImgUrl = `${baseUrl}/uploads/${fileName}`;
+          updatedData.profileImgUrl = `${baseUrl}/uploads/${file.filename}`;
           console.log('Updated profileImgUrl set to:', updatedData.profileImgUrl);
+        } 
 
-        } catch (error) {
-          console.error('Error during file save operation:', error.message);
-          throw error;
-        }
-        }
         const updatedUser = await userService.updateUser(userId, updatedData);
         if (!updatedUser) {
           return res.status(404).json({ error: 'User not found or not updated'});

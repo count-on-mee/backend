@@ -89,6 +89,9 @@ module.exports = function (sequelize, DataTypes) {
     Spot.hasMany(models.TripItinerary, {
       foreignKey: 'spot_id',
     });
+    Spot.hasMany(models.SpotPhotoDump, {
+      foreignKey: 'spot_id',
+    });
   };
 
   return Spot;
