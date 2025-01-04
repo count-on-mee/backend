@@ -351,6 +351,9 @@ const createTrip = async (userId, tripData) => {
         const { day, route } = dailyRoutes[i];
 
         for (let order = 0; order < route.length; order++) {
+          if (day === 1 && order === 0) {
+            continue;
+          }
           const spot = route[order];
           await TripItinerary.create({
             tripId: newTrip.tripId,
