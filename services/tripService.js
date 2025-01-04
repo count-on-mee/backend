@@ -372,6 +372,10 @@ const createTrip = async (userId, tripData) => {
       userId,
     });
 
+    await TripDocument.create({
+      tripId,
+    });
+
     return newTrip;
   } catch (error) {
     console.error('Error creating trip:', error);
