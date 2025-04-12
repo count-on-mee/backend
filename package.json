@@ -1,5 +1,21 @@
 {
   "dependencies": {
-    "express": "^5.1.0"
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mysql2": "^3.14.0",
+    "sequelize": "^6.37.7"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.6.2"
+  },
+  "scripts": {
+    "migrate": "sequelize db:migrate",
+    "migrate:undo": "sequelize db:migrate:undo",
+    "migrate:undo:all": "sequelize db:migrate:undo:all",
+    "migration:generate": "sequelize migration:generate --name",
+    "seed:generate": "sequelize seed:generate --name",
+    "seed:all": "sequelize db:seed:all",
+    "seed:undo": "sequelize db:seed:undo",
+    "seed:undo:all": "sequelize db:seed:undo:all"
   }
 }
