@@ -35,4 +35,15 @@ router.get(
   authenticate
 );
 
+router.get('/naver', passport.authenticate('naver', { authType: 'reprompt' }));
+
+router.get(
+  '/naver/callback',
+  passport.authenticate('naver', {
+    failureRedirect: '/auth/naver',
+    session: false,
+  }),
+  authenticate
+);
+
 module.exports = router;
