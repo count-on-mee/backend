@@ -19,4 +19,20 @@ router.get(
   authenticate
 );
 
+router.get(
+  '/kakao',
+  passport.authenticate('kakao', {
+    scope: ['profile_nickname', 'account_email', 'profile_image'],
+  })
+);
+
+router.get(
+  '/kakao/callback',
+  passport.authenticate('kakao', {
+    failureRedirect: '/auth/kakao',
+    session: false,
+  }),
+  authenticate
+);
+
 module.exports = router;
