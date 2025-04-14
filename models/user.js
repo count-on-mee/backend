@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       profileImgUrl: {
-        type: DataTypes.STRING(500),
+        type: DataTypes.TEXT,
         allowNull: true,
       },
       oauthProvider: {
