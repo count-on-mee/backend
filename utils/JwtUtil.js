@@ -17,7 +17,6 @@ class JwtUtil {
         {
           expiresIn: this.#ACCESS_TOKEN_EXPIRES_IN,
           issuer: 'count-on-me',
-          subject: user.userId.toString(),
         }
       );
     } catch (error) {
@@ -36,7 +35,6 @@ class JwtUtil {
         {
           expiresIn: this.#REFRESH_TOKEN_EXPIRES_IN,
           issuer: 'count-on-me',
-          subject: user.userId.toString(),
         }
       );
     } catch (error) {
@@ -44,24 +42,12 @@ class JwtUtil {
     }
   }
 
-  static getCookieOptions(isRefreshToken = false) {
-    const baseOptions = {
+  static getCookieOptions() {
+    return {
+      httpOnly: true,
       secure: true,
       sameSite: 'strict',
-    };
-
-    if (isRefreshToken) {
-      return {
-        ...baseOptions,
-        httpOnly: true,
-        maxAge: 14 * 24 * 60 * 60 * 1000, // 14d
-        credentials: true,
-      };
-    }
-
-    return {
-      ...baseOptions,
-      maxAge: 1 * 60 * 60 * 1000, // 1h
+      maxAge: 14 * 24 * 60 * 60 * 1000, // 14d
     };
   }
 
