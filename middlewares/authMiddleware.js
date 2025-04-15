@@ -1,12 +1,12 @@
 const { JwtUtil } = require('../utils');
 
-const validateToken = (authHeader) => {
+const validateAccessToken = (authHeader) => {
   const token = JwtUtil.extractTokenFromHeader(authHeader);
   const decoded = JwtUtil.verifyToken(token);
   return { userId: decoded.userId };
 };
 
-exports.strictAuth = (req, res, next) => {
+exports.requireAuth = (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
 
@@ -16,7 +16,7 @@ exports.strictAuth = (req, res, next) => {
     }
 
     // 토큰이 있는 경우: 로그인 사용자
-    req.user = validateToken(authHeader);
+    req.user = validateAccessToken(authHeader);
     next();
   } catch (error) {
     res.status(401).json({ message: error.message });
@@ -34,7 +34,7 @@ exports.optionalAuth = (req, res, next) => {
     }
 
     // 토큰이 있는 경우: 로그인 사용자
-    req.user = validateToken(authHeader);
+    req.user = validateAccessToken(authHeader);
     next();
   } catch (error) {
     res.status(401).json({ message: error.message });
