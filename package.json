@@ -26,13 +26,14 @@
     "seed:all": "sequelize db:seed:all",
     "seed:undo": "sequelize db:seed:undo",
     "seed:undo:all": "sequelize db:seed:undo:all",
-    "test": "NODE_ENV=test jest -- --verbose",
-    "test:watch": "NODE_ENV=test jest --watch --verbose"
+    "test": "NODE_ENV=test jest",
+    "test:watch": "NODE_ENV=test jest --watch"
   },
   "jest": {
     "testEnvironment": "node",
+    "verbose": true,
     "setupFiles": [
-      "<rootDir>/tests/configs/jest.setup.js"
+      "<rootDir>/__tests__/jest.setup.js"
     ]
   }
 }
