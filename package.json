@@ -27,13 +27,26 @@
     "seed:undo": "sequelize db:seed:undo",
     "seed:undo:all": "sequelize db:seed:undo:all",
     "test": "NODE_ENV=test jest",
-    "test:watch": "NODE_ENV=test jest --watch"
+    "test:watch": "NODE_ENV=test jest --watch",
+    "test:coverage": "NODE_ENV=test jest --coverage",
+    "test:unit": "NODE_ENV=test jest /unit/",
+    "test:integration": "NODE_ENV=test jest /integration/",
+    "test:e2e": "NODE_ENV=test jest /e2e/"
   },
   "jest": {
     "testEnvironment": "node",
     "verbose": true,
     "setupFiles": [
       "<rootDir>/__tests__/jest.setup.js"
+    ],
+    "coverageDirectory": "coverage",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/__tests__/",
+      "/config/"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.test.js"
     ]
   }
 }
