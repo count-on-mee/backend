@@ -55,6 +55,7 @@ exports.refreshTokenAuth = (req, res, next) => {
     }
 
     req.user = validateRefreshToken(refreshToken);
+    req.refreshToken = refreshToken;
     next();
   } catch (error) {
     res.status(401).json({ message: error.message });
