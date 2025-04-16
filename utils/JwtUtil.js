@@ -13,7 +13,7 @@ class JwtUtil {
           userId: user.userId,
           tokenType: 'ACCESS',
         },
-        process.env.JWT_SECRET,
+        process.env.JWT_ACCESS_SECRET,
         {
           expiresIn: this.#ACCESS_TOKEN_EXPIRES_IN,
           issuer: 'count-on-me',
@@ -55,7 +55,9 @@ class JwtUtil {
     try {
       const decoded = jwt.verify(
         token,
-        isRefreshToken ? process.env.JWT_REFRESH_SECRET : process.env.JWT_SECRET
+        isRefreshToken
+          ? process.env.JWT_REFRESH_SECRET
+          : process.env.JWT_ACCESS_SECRET
       );
 
       // 토큰 타입 검증
