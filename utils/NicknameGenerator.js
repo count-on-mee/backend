@@ -26,7 +26,6 @@ class NicknameGenerator {
 
       return `${adjective} ${noun}`;
     } catch (error) {
-      console.error('닉네임 생성 중 오류 발생:', error);
       throw error;
     }
   }
