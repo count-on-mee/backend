@@ -1,6 +1,11 @@
-const { strictAuth, optionalAuth } = require('./authMiddleware');
+const {
+  requireAuth,
+  optionalAuth,
+  refreshTokenAuth,
+} = require('./authMiddleware');
 
 module.exports = {
-  strictAuth,
+  requireAuth,
   optionalAuth,
+  refreshTokenAuth,
 };

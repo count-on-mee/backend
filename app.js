@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('./configs/envConfig');
 require('./configs/passport');
 
 const express = require('express');
@@ -14,7 +14,4 @@ app.use(passport.initialize());
 
 app.use('/auth', authRouter);
 
-const PORT = process.env.PORT || 8888;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+module.exports = app;

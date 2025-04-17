@@ -13,11 +13,10 @@ class JwtUtil {
           userId: user.userId,
           tokenType: 'ACCESS',
         },
-        process.env.JWT_SECRET,
+        process.env.JWT_ACCESS_SECRET,
         {
           expiresIn: this.#ACCESS_TOKEN_EXPIRES_IN,
           issuer: 'count-on-me',
-          subject: user.userId.toString(),
         }
       );
     } catch (error) {
@@ -36,7 +35,6 @@ class JwtUtil {
         {
           expiresIn: this.#REFRESH_TOKEN_EXPIRES_IN,
           issuer: 'count-on-me',
-          subject: user.userId.toString(),
         }
       );
     } catch (error) {
@@ -44,24 +42,12 @@ class JwtUtil {
     }
   }
 
-  static getCookieOptions(isRefreshToken = false) {
-    const baseOptions = {
+  static getCookieOptions() {
+    return {
+      httpOnly: true,
       secure: true,
       sameSite: 'strict',
-    };
-
-    if (isRefreshToken) {
-      return {
-        ...baseOptions,
-        httpOnly: true,
-        maxAge: 14 * 24 * 60 * 60 * 1000, // 14d
-        credentials: true,
-      };
-    }
-
-    return {
-      ...baseOptions,
-      maxAge: 1 * 60 * 60 * 1000, // 1h
+      maxAge: 14 * 24 * 60 * 60 * 1000, // 14d
     };
   }
 
@@ -69,7 +55,9 @@ class JwtUtil {
     try {
       const decoded = jwt.verify(
         token,
-        isRefreshToken ? process.env.JWT_REFRESH_SECRET : process.env.JWT_SECRET
+        isRefreshToken
+          ? process.env.JWT_REFRESH_SECRET
+          : process.env.JWT_ACCESS_SECRET
       );
 
       // 토큰 타입 검증

@@ -1,7 +1,8 @@
 const express = require('express');
 const passport = require('passport');
 const router = express.Router();
-const { authenticate } = require('../controllers/authController');
+const authController = require('../controllers/authController');
+const { refreshTokenAuth } = require('../middlewares/authMiddleware');
 
 router.get(
   '/google',
@@ -16,7 +17,7 @@ router.get(
     failureRedirect: '/auth/google',
     session: false,
   }),
-  authenticate
+  authController.authenticate
 );
 
 router.get(
@@ -32,7 +33,7 @@ router.get(
     failureRedirect: '/auth/kakao',
     session: false,
   }),
-  authenticate
+  authController.authenticate
 );
 
 router.get('/naver', passport.authenticate('naver', { authType: 'reprompt' }));
@@ -43,7 +44,10 @@ router.get(
     failureRedirect: '/auth/naver',
     session: false,
   }),
-  authenticate
+  authController.authenticate
 );
+
+router.post('/logout', refreshTokenAuth, authController.logout);
+router.post('/reissue', refreshTokenAuth, authController.reissue);
 
 module.exports = router;
