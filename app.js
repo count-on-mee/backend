@@ -4,7 +4,7 @@ require('./configs/passport');
 const express = require('express');
 const passport = require('passport');
 const cookieParser = require('cookie-parser');
-const { authRouter } = require('./routers');
+const { authRouter, userRouter } = require('./routers');
 
 const app = express();
 
@@ -13,5 +13,6 @@ app.use(cookieParser());
 app.use(passport.initialize());
 
 app.use('/auth', authRouter);
+app.use('/users', userRouter);
 
 module.exports = app;
