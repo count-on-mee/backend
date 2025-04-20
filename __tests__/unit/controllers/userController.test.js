@@ -87,4 +87,174 @@ describe('UserController', () => {
       });
     });
   });
+
+  describe('updateUser', () => {
+    let mockReq;
+    let mockRes;
+
+    beforeEach(() => {
+      mockReq = {
+        user: {
+          userId: 'test-user-id',
+        },
+        body: {},
+        file: null,
+      };
+      mockRes = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn(),
+      };
+      jest.clearAllMocks();
+    });
+
+    it('닉네임 업데이트에 성공하면 200 상태코드와 함께 업데이트된 UserDto를 반환한다', async () => {
+      // Arrange
+      mockReq.body = { nickname: '새로운닉네임' };
+
+      const mockUpdatedUser = {
+        userId: 'test-user-id',
+        nickname: '새로운닉네임',
+        email: 'test@test.com',
+        profileImgUrl: 'http://example.com/img.jpg',
+      };
+
+      const mockUserDto = {
+        userId: 'test-user-id',
+        nickname: '새로운닉네임',
+        email: 'test@test.com',
+        profileImgUrl: 'http://example.com/img.jpg',
+      };
+
+      userService.updateUser.mockResolvedValue(mockUpdatedUser);
+      UserDto.from.mockReturnValue(mockUserDto);
+
+      // Act
+      await userController.updateUser(mockReq, mockRes);
+
+      // Assert
+      expect(userService.updateUser).toHaveBeenCalledWith('test-user-id', {
+        nickname: '새로운닉네임',
+        profileImgUrl: null,
+      });
+      expect(UserDto.from).toHaveBeenCalledWith(mockUpdatedUser);
+      expect(mockRes.status).toHaveBeenCalledWith(200);
+      expect(mockRes.json).toHaveBeenCalledWith(mockUserDto);
+    });
+
+    it('프로필 이미지 업데이트에 성공하면 200 상태코드와 함께 업데이트된 UserDto를 반환한다', async () => {
+      // Arrange
+      mockReq.file = {
+        location: 'https://example.com/new-profile.jpg',
+      };
+
+      const mockUpdatedUser = {
+        userId: 'test-user-id',
+        nickname: '테스트유저',
+        email: 'test@test.com',
+        profileImgUrl: 'https://example.com/new-profile.jpg',
+      };
+
+      const mockUserDto = {
+        userId: 'test-user-id',
+        nickname: '테스트유저',
+        email: 'test@test.com',
+        profileImgUrl: 'https://example.com/new-profile.jpg',
+      };
+
+      userService.updateUser.mockResolvedValue(mockUpdatedUser);
+      UserDto.from.mockReturnValue(mockUserDto);
+
+      // Act
+      await userController.updateUser(mockReq, mockRes);
+
+      // Assert
+      expect(userService.updateUser).toHaveBeenCalledWith('test-user-id', {
+        nickname: undefined,
+        profileImgUrl: {
+          location: 'https://example.com/new-profile.jpg',
+        },
+      });
+      expect(UserDto.from).toHaveBeenCalledWith(mockUpdatedUser);
+      expect(mockRes.status).toHaveBeenCalledWith(200);
+      expect(mockRes.json).toHaveBeenCalledWith(mockUserDto);
+    });
+
+    it('닉네임과 프로필 이미지 모두 업데이트에 성공하면 200 상태코드와 함께 업데이트된 UserDto를 반환한다', async () => {
+      // Arrange
+      mockReq.body = { nickname: '새로운닉네임' };
+      mockReq.file = {
+        location: 'https://example.com/new-profile.jpg',
+      };
+
+      const mockUpdatedUser = {
+        userId: 'test-user-id',
+        nickname: '새로운닉네임',
+        email: 'test@test.com',
+        profileImgUrl: 'https://example.com/new-profile.jpg',
+      };
+
+      const mockUserDto = {
+        userId: 'test-user-id',
+        nickname: '새로운닉네임',
+        email: 'test@test.com',
+        profileImgUrl: 'https://example.com/new-profile.jpg',
+      };
+
+      userService.updateUser.mockResolvedValue(mockUpdatedUser);
+      UserDto.from.mockReturnValue(mockUserDto);
+
+      // Act
+      await userController.updateUser(mockReq, mockRes);
+
+      // Assert
+      expect(userService.updateUser).toHaveBeenCalledWith('test-user-id', {
+        nickname: '새로운닉네임',
+        profileImgUrl: {
+          location: 'https://example.com/new-profile.jpg',
+        },
+      });
+      expect(UserDto.from).toHaveBeenCalledWith(mockUpdatedUser);
+      expect(mockRes.status).toHaveBeenCalledWith(200);
+      expect(mockRes.json).toHaveBeenCalledWith(mockUserDto);
+    });
+
+    it('프로필 업데이트 중 에러가 발생하면 400 상태코드와 에러 메시지를 반환한다', async () => {
+      // Arrange
+      mockReq.body = { nickname: '새로운닉네임' };
+      const errorMessage = '프로필 업데이트에 실패했습니다.';
+      userService.updateUser.mockRejectedValue(new Error(errorMessage));
+
+      // Act
+      await userController.updateUser(mockReq, mockRes);
+
+      // Assert
+      expect(userService.updateUser).toHaveBeenCalledWith('test-user-id', {
+        nickname: '새로운닉네임',
+        profileImgUrl: null,
+      });
+      expect(mockRes.status).toHaveBeenCalledWith(400);
+      expect(mockRes.json).toHaveBeenCalledWith({
+        message: errorMessage,
+      });
+    });
+
+    it('예상치 못한 에러가 발생하면 400 상태코드와 기본 에러 메시지를 반환한다', async () => {
+      // Arrange
+      mockReq.body = { nickname: '새로운닉네임' };
+      userService.updateUser.mockRejectedValue(new Error());
+
+      // Act
+      await userController.updateUser(mockReq, mockRes);
+
+      // Assert
+      expect(userService.updateUser).toHaveBeenCalledWith('test-user-id', {
+        nickname: '새로운닉네임',
+        profileImgUrl: null,
+      });
+      expect(mockRes.status).toHaveBeenCalledWith(400);
+      expect(mockRes.json).toHaveBeenCalledWith({
+        message: '프로필 업데이트에 실패했습니다.',
+      });
+    });
+  });
 });
