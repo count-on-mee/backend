@@ -5,7 +5,7 @@
  */
 const request = require('supertest');
 const { JwtUtil } = require('../../utils');
-const { User, sequelize } = require('../../models');
+const { sequelize, User } = require('../../models');
 const jwt = require('jsonwebtoken');
 
 // 간소화된 passport 모킹
@@ -44,7 +44,6 @@ describe('인증 흐름 E2E 테스트', () => {
     try {
       // DB 연결 확인
       await sequelize.authenticate();
-      console.log('데이터베이스 연결 성공');
 
       // 기존 E2E 테스트 사용자가 있으면 삭제
       await User.destroy({
@@ -59,8 +58,6 @@ describe('인증 흐름 E2E 테스트', () => {
         oauthProvider: 'google',
         oauthId: 'e2e-test-oauth-id',
       });
-
-      console.log('테스트용 사용자 생성 완료:', testUser.userId);
     } catch (error) {
       console.error('테스트 데이터 준비 중 오류:', error);
       throw error;
@@ -73,12 +70,8 @@ describe('인증 흐름 E2E 테스트', () => {
       // 테스트 사용자 삭제
       if (testUser) {
         await User.destroy({ where: { userId: testUser.userId } });
-        console.log('테스트 사용자 삭제 완료');
       }
-
-      // 데이터베이스 연결 종료
       await sequelize.close();
-      console.log('데이터베이스 연결 종료됨');
     } catch (error) {
       console.error('테스트 데이터 정리 중 오류:', error);
     }

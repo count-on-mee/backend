@@ -1,6 +1,6 @@
 const request = require('supertest');
 const { JwtUtil } = require('../../utils');
-const { User, sequelize } = require('../../models');
+const { sequelize, User } = require('../../models');
 
 // passport 모듈 모킹
 jest.mock('passport', () => {
@@ -39,9 +39,6 @@ describe('인증 API 통합 테스트', () => {
           oauthProvider: 'google',
           oauthId: 'test-integration-id',
         });
-        console.log('테스트용 사용자 생성 완료:', testUser.userId);
-      } else {
-        console.log('기존 테스트 사용자 사용:', testUser.userId);
       }
 
       // 토큰 생성
@@ -58,12 +55,8 @@ describe('인증 API 통합 테스트', () => {
     try {
       if (testUser) {
         await User.destroy({ where: { userId: testUser.userId } });
-        console.log('테스트 사용자 삭제 완료');
       }
-
-      // 데이터베이스 연결 종료
       await sequelize.close();
-      console.log('데이터베이스 연결 종료됨');
     } catch (error) {
       console.error('테스트 데이터 정리 중 오류:', error);
     }

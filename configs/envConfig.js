@@ -56,8 +56,6 @@ const loadEnv = () => {
         `필수 환경 변수가 누락되었습니다: ${missingEnvVars.join(', ')}`
       );
     }
-
-    console.log(`환경 설정 로드 완료: ${env} (${envPath})`);
   } catch (error) {
     if (error.code === 'ENOENT') {
       console.error(`오류: 환경 설정 파일을 찾을 수 없습니다 - ${envPath}`);

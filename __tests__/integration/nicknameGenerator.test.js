@@ -1,5 +1,5 @@
 const { NicknameGenerator } = require('../../utils');
-const { NicknameWord, sequelize } = require('../../models');
+const { sequelize, NicknameWord } = require('../../models');
 
 describe('NicknameGenerator 통합 테스트', () => {
   // 테스트 전에 테스트 데이터 추가
@@ -7,7 +7,6 @@ describe('NicknameGenerator 통합 테스트', () => {
     // 데이터베이스 연결 확인
     try {
       await sequelize.authenticate();
-      console.log('데이터베이스 연결 성공');
     } catch (error) {
       console.error('데이터베이스 연결 실패:', error);
       throw error;
@@ -38,6 +37,17 @@ describe('NicknameGenerator 통합 테스트', () => {
         defaults: noun,
       });
     }
+  });
+
+  // 테스트 후 테스트 데이터 정리와 연결 종료
+  afterAll(async () => {
+    // 테스트 데이터 정리
+    await NicknameWord.destroy({
+      where: {
+        word: ['테스트용', '통합테스트', '단어', '닉네임'],
+      },
+    });
+    await sequelize.close();
   });
 
   describe('generate 메서드 통합 테스트', () => {
@@ -76,8 +86,6 @@ describe('NicknameGenerator 통합 테스트', () => {
       // 단어 조합 수에 따라 중복이 발생할 수 있으므로,
       // 생성된 닉네임이 모두 같지는 않은지 확인
       expect(nicknames.size).toBeGreaterThanOrEqual(1);
-
-      console.log('생성된 닉네임 목록:', Array.from(nicknames));
     });
 
     // 데이터베이스 비정상 상황 테스트
@@ -107,19 +115,5 @@ describe('NicknameGenerator 통합 테스트', () => {
         }
       }
     });
-  });
-
-  // 테스트 후 테스트 데이터 정리와 연결 종료
-  afterAll(async () => {
-    // 테스트 데이터 정리
-    await NicknameWord.destroy({
-      where: {
-        word: ['테스트용', '통합테스트', '단어', '닉네임'],
-      },
-    });
-
-    // 데이터베이스 연결 종료
-    await sequelize.close();
-    console.log('데이터베이스 연결 종료됨');
   });
 });
