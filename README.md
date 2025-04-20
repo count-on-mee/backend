@@ -1,43 +1,60 @@
-#### How to Initialize the Project
+1. **프로젝트 준비**
 
-- Clone the project.
-    <pre>
-    git clone https://github.com/count-on-mee/backend
-    </pre>
+   ```bash
+   git clone https://github.com/count-on-mee/backend
+   cd backend
+   npm install
+   ```
 
-- Install the node.js packages.
-    <pre>
-    cd backend
-    npm install
-    </pre>
+2. **MySQL 데이터베이스 준비**
 
-#### Environment Configuration
+   - MySQL 서버 설치 및 실행
+   - 프로젝트에 필요한 데이터베이스 생성
 
-- This project supports the following environments:
+   ```bash
+   CREATE DATABASE count_on_me CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+   ```
 
-  1. development: Local development environment (.env.development)
-  2. test: Test environment (.env.test)
-  3. production: Production environment (.env.production)
+3. **환경변수 파일 준비**
 
-- How to configure
+   - 프로젝트 루트에 다음 환경 파일을 생성:
+     - `.env.development` (개발 환경)
+     - `.env.test` (테스트 환경)
+     - `.env.production` (배포 환경)
+   - `.env.example` 파일을 참조하여 필요한 환경변수 설정
 
-  1. Create environment files based on .env.example
-  2. Specify the environment using NODE_ENV:
+4. **데이터베이스 동기화**
+
+- 데이터베이스 마이그레이션 실행
 
   ```bash
-  # Development (default)
-  npm start
-
-  # Test
-  NODE_ENV=test npm test
-
-  # Production
-  NODE_ENV=production npm start
+  npm run migrate
   ```
 
-#### How to Deploy the Server APIs
+- 초기 데이터 시드 추가
+  ```bash
+  npm run seed:all
+  ```
 
-- Use the nodemon to execute the server.
-    <pre>
-    npm start
-    </pre>
+5. **서버 실행**
+
+   ```bash
+   npm run start
+   ```
+
+6. **환경별 실행 방법**
+
+   이 프로젝트는 다음 환경을 지원합니다
+
+- development: 로컬 개발 환경 (.env.development)
+  ```bash
+  npm start
+  ```
+- test: 테스트 환경 (.env.test)
+  ```bash
+  npm test
+  ```
+- production: 프로덕션 환경 (.env.production)
+  ```bash
+  NODE_ENV=production npm start
+  ```
