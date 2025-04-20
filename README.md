@@ -9,11 +9,10 @@
 2. **MySQL 데이터베이스 준비**
 
    - MySQL 서버 설치 및 실행
-   - 프로젝트에 필요한 데이터베이스 생성:
+   - 프로젝트에 필요한 데이터베이스 생성
 
    ```bash
    CREATE DATABASE count_on_me CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
    ```
 
 3. **환경변수 파일 준비**
@@ -44,7 +43,8 @@
    ```
 
 6. **환경별 실행 방법**
-   이 프로젝트는 다음 환경을 지원합니다:
+
+   이 프로젝트는 다음 환경을 지원합니다
 
 - development: 로컬 개발 환경 (.env.development)
   ```bash
