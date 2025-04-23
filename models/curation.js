@@ -50,6 +50,13 @@ module.exports = (sequelize, DataTypes) => {
       sourceKey: 'curationId',
       as: 'curationSpots',
     });
+
+    Curation.belongsToMany(models.CurationCategory, {
+      through: models.CurationCategoryRelation,
+      foreignKey: 'curationId',
+      otherKey: 'curationCategoryId',
+      as: 'curationCategories',
+    });
   };
 
   return Curation;
