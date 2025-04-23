@@ -52,5 +52,44 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
+  User.associate = (models) => {
+    User.belongsToMany(models.Trip, {
+      through: models.TripUser,
+      foreignKey: 'userId',
+      otherKey: 'tripId',
+      as: 'trips',
+    });
+
+    User.hasMany(models.Curation, {
+      foreignKey: 'userId',
+      sourceKey: 'userId',
+      as: 'curations',
+    });
+
+    User.hasMany(models.SpotReview, {
+      foreignKey: 'userId',
+      sourceKey: 'userId',
+      as: 'spotReviews',
+    });
+
+    User.hasMany(models.SpotScrap, {
+      foreignKey: 'userId',
+      sourceKey: 'userId',
+      as: 'spotScraps',
+    });
+
+    User.hasMany(models.CurationScrap, {
+      foreignKey: 'userId',
+      sourceKey: 'userId',
+      as: 'curationScraps',
+    });
+
+    User.hasMany(models.Inquiry, {
+      foreignKey: 'userId',
+      sourceKey: 'userId',
+      as: 'inquiries',
+    });
+  };
+
   return User;
 };
