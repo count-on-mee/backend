@@ -50,6 +50,60 @@ module.exports = (sequelize, DataTypes) => {
       sourceKey: 'tripId',
       as: 'itineraries',
     });
+
+    Trip.hasOne(models.TripInvite, {
+      foreignKey: 'tripId',
+      sourceKey: 'tripId',
+      as: 'tripInvite',
+    });
+
+    Trip.hasOne(models.TripDocument, {
+      foreignKey: 'tripId',
+      sourceKey: 'tripId',
+      as: 'tripDocument',
+    });
+
+    Trip.hasOne(models.TripDocumentExpense, {
+      foreignKey: 'tripDocumentId',
+      sourceKey: 'tripId',
+      as: 'expenseDocument',
+      scope: {
+        include: [
+          {
+            model: models.TripDocument,
+            where: { tripId: sequelize.col('Trip.tripId') },
+          },
+        ],
+      },
+    });
+
+    Trip.hasOne(models.TripDocumentTask, {
+      foreignKey: 'tripDocumentId',
+      sourceKey: 'tripId',
+      as: 'taskDocument',
+      scope: {
+        include: [
+          {
+            model: models.TripDocument,
+            where: { tripId: sequelize.col('Trip.tripId') },
+          },
+        ],
+      },
+    });
+
+    Trip.hasOne(models.TripDocumentSpotCandidate, {
+      foreignKey: 'tripDocumentId',
+      sourceKey: 'tripId',
+      as: 'spotCandidateDocument',
+      scope: {
+        include: [
+          {
+            model: models.TripDocument,
+            where: { tripId: sequelize.col('Trip.tripId') },
+          },
+        ],
+      },
+    });
   };
 
   return Trip;
