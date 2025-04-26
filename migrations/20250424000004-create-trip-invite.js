@@ -12,6 +12,7 @@ module.exports = {
       trip_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        unique: true,
         references: {
           model: 'trip',
           key: 'trip_id',
