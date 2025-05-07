@@ -23,6 +23,10 @@ module.exports = {
           parent_spot_category_id: null,
         },
         {
+          type: '자연',
+          parent_spot_category_id: null,
+        },
+        {
           type: '복합 문화 공간',
           parent_spot_category_id: null,
         },
@@ -48,6 +52,18 @@ module.exports = {
         },
         {
           type: '미술관',
+          parent_spot_category_id: complexCultureSpaceId,
+        },
+        {
+          type: '도서관',
+          parent_spot_category_id: complexCultureSpaceId,
+        },
+        {
+          type: '역사',
+          parent_spot_category_id: complexCultureSpaceId,
+        },
+        {
+          type: '종교',
           parent_spot_category_id: complexCultureSpaceId,
         },
       ],

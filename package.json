@@ -14,6 +14,7 @@
     "passport-google-oauth20": "^2.0.0",
     "passport-kakao": "^1.0.1",
     "passport-naver-v2": "^2.0.8",
+    "puppeteer": "^24.8.0",
     "sequelize": "^6.37.7",
     "uuid": "^11.1.0"
   },
@@ -39,7 +40,9 @@
     "test:coverage": "NODE_ENV=test jest --coverage",
     "test:unit": "NODE_ENV=test jest /unit/",
     "test:integration": "NODE_ENV=test jest /integration/",
-    "test:e2e": "NODE_ENV=test jest /e2e/"
+    "test:e2e": "NODE_ENV=test jest /e2e/",
+    "crawl": "node scripts/naverPlaceCrawler.js",
+    "crawl:seed": "node scripts/createNaverPlaceSeeds.js"
   },
   "jest": {
     "testEnvironment": "node",
