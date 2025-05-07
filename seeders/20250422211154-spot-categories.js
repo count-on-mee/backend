@@ -23,6 +23,10 @@ module.exports = {
           parent_spot_category_id: null,
         },
         {
+          type: '자연',
+          parent_spot_category_id: null,
+        },
+        {
           type: '복합 문화 공간',
           parent_spot_category_id: null,
         },
