@@ -59,3 +59,34 @@ exports.getSpots = async (userId, lat, lng, zoom) => {
 
   return spots;
 };
+
+exports.getSpotById = async (userId, spotId) => {
+  const spot = await Spot.findByPk(spotId, {
+    include: [
+      {
+        model: SpotCategory,
+        as: 'spotCategories',
+        attributes: ['type'],
+        through: { attributes: [] },
+      },
+      {
+        model: SpotImg,
+        as: 'spotImgs',
+        attributes: ['imageUrl'],
+      },
+      ...(userId
+        ? [
+            {
+              model: SpotScrap,
+              as: 'spotScraps',
+              attributes: ['userId'],
+              where: { userId, isDeleted: false },
+              required: false,
+            },
+          ]
+        : []),
+    ],
+  });
+
+  return spot;
+};

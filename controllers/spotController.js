@@ -21,3 +21,19 @@ exports.getSpots = async (req, res) => {
     });
   }
 };
+
+exports.getSpotById = async (req, res) => {
+  try {
+    const userId = req.user?.userId;
+    const { spotId } = req.params;
+
+    const spot = await spotService.getSpotById(userId, spotId);
+
+    const spotDto = SpotDto.from(spot);
+    res.json(spotDto);
+  } catch (error) {
+    res.status(404).json({
+      message: error.message || '스팟 조회에 실패했습니다.',
+    });
+  }
+};
