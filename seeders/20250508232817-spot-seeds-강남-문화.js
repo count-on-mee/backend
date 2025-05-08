@@ -3,7 +3,7 @@
 /**
  * 네이버 장소 크롤링으로 생성된 Spot 데이터 시드 파일
  * 검색어: 강남 문화
- * 생성일시: 2025-05-07T10:28:20.496Z
+ * 생성일시: 2025-05-08T14:28:24.937Z
  */
 
 module.exports = {
@@ -23,7 +23,8 @@ module.exports = {
         tel: '02-6000-0114',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0594274 37.511662)'
+          'POINT(37.511662 127.0594274)',
+        4326
         ),
         naver_spot_id: '11576171',
         review_count: 6,
@@ -35,7 +36,8 @@ module.exports = {
         tel: '0507-1435-7203',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0583802 37.513368)'
+          'POINT(37.513368 127.0583802)',
+        4326
         ),
         naver_spot_id: '11606845',
         review_count: 45,
@@ -47,7 +49,8 @@ module.exports = {
         tel: '0507-1405-0952',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0390957 37.5242986)'
+          'POINT(37.5242986 127.0390957)',
+        4326
         ),
         naver_spot_id: '123980096',
         review_count: 1,
@@ -59,7 +62,8 @@ module.exports = {
         tel: '02-567-8878',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0604816 37.5075923)'
+          'POINT(37.5075923 127.0604816)',
+        4326
         ),
         naver_spot_id: '1035412616',
         review_count: 2,
@@ -71,7 +75,8 @@ module.exports = {
         tel: '02-6000-0114',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0590924 37.5114256)'
+          'POINT(37.5114256 127.0590924)',
+        4326
         ),
         naver_spot_id: '19512501',
         review_count: 56,
@@ -83,19 +88,21 @@ module.exports = {
         tel: '02-2187-4600',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0719667 37.4956835)'
+          'POINT(37.4956835 127.0719667)',
+        4326
         ),
         naver_spot_id: '11639873',
-        review_count: 694,
+        review_count: 695,
         review_score: 4.13,
       },
       {
-        name: '메가박스 코엑스점',
+        name: '메가박스 스타필드코엑스몰',
         address: '서울 강남구 삼성동 봉은사로 524',
         tel: '1544-0070',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0588053 37.5126636)'
+          'POINT(37.5126636 127.0588053)',
+        4326
         ),
         naver_spot_id: '12307868',
         review_count: 15,
@@ -107,23 +114,12 @@ module.exports = {
         tel: '02-6000-0114',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0591501 37.5113964)'
+          'POINT(37.5113964 127.0591501)',
+        4326
         ),
         naver_spot_id: '13412850',
         review_count: 56,
         review_score: 4.58,
-      },
-      {
-        name: '코엑스 Hall D',
-        address: '서울 강남구 삼성동 영동대로 513 코엑스',
-        tel: '02-6000-0114',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(127.0590105 37.5123523)'
-        ),
-        naver_spot_id: '13412854',
-        review_count: 56,
-        review_score: 4,
       },
       {
         name: '광림아트센터 BBCH홀',
@@ -131,11 +127,25 @@ module.exports = {
         tel: '02-2056-5787',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0258064 37.5239736)'
+          'POINT(37.5239736 127.0258064)',
+        4326
         ),
         naver_spot_id: '33431886',
         review_count: 64,
         review_score: 4.38,
+      },
+      {
+        name: '코엑스 Hall D',
+        address: '서울 강남구 삼성동 영동대로 513 코엑스',
+        tel: '02-6000-0114',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5123523 127.0590105)',
+        4326
+        ),
+        naver_spot_id: '13412854',
+        review_count: 56,
+        review_score: 4,
       },
       {
         name: '백암아트홀',
@@ -143,7 +153,8 @@ module.exports = {
         tel: '02-559-1333',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.066052 37.5103944)'
+          'POINT(37.5103944 127.066052)',
+        4326
         ),
         naver_spot_id: '11639876',
         review_count: 27,
@@ -155,7 +166,8 @@ module.exports = {
         tel: '1661-5628',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0616835 37.5098411)'
+          'POINT(37.5098411 127.0616835)',
+        4326
         ),
         naver_spot_id: '1883271096',
         review_count: 8,
@@ -167,22 +179,11 @@ module.exports = {
         tel: '1800-1472',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.1043773 37.4855438)'
+          'POINT(37.4855438 127.1043773)',
+        4326
         ),
         naver_spot_id: '64419030',
         review_count: 0,
-        review_score: null,
-      },
-      {
-        name: '코엑스 코베 베이비페어',
-        address: '서울 강남구 삼성동 영동대로 513',
-        tel: '0507-1373-6458',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(127.0598182 37.5117734)'
-        ),
-        naver_spot_id: '21652591',
-        review_count: 5,
         review_score: null,
       },
       {
@@ -191,11 +192,25 @@ module.exports = {
         tel: '0507-1406-4233',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.035422 37.5266091)'
+          'POINT(37.5266091 127.035422)',
+        4326
         ),
         naver_spot_id: '1296974626',
-        review_count: 509,
+        review_count: 511,
         review_score: 4.86,
+      },
+      {
+        name: '코엑스 코베 베이비페어',
+        address: '서울 강남구 삼성동 영동대로 513',
+        tel: '0507-1373-6458',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5117734 127.0598182)',
+        4326
+        ),
+        naver_spot_id: '21652591',
+        review_count: 5,
+        review_score: null,
       },
       {
         name: 'KT&G 상상마당 대치아트홀',
@@ -203,7 +218,8 @@ module.exports = {
         tel: '0507-1404-4311',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0653979 37.5064122)'
+          'POINT(37.5064122 127.0653979)',
+        4326
         ),
         naver_spot_id: '13280871',
         review_count: 15,
@@ -215,23 +231,12 @@ module.exports = {
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0590101 37.512332)'
+          'POINT(37.512332 127.0590101)',
+        4326
         ),
         naver_spot_id: '1022119007',
         review_count: 83,
         review_score: 4.33,
-      },
-      {
-        name: '베페베이비페어',
-        address: '서울 강남구 삼성동 영동대로 513',
-        tel: null,
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(127.0591474 37.5126015)'
-        ),
-        naver_spot_id: '1117698303',
-        review_count: 45,
-        review_score: 4.58,
       },
       {
         name: '라움아트센터',
@@ -239,11 +244,25 @@ module.exports = {
         tel: '02-6925-4733',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0397224 37.5081005)'
+          'POINT(37.5081005 127.0397224)',
+        4326
         ),
         naver_spot_id: '19847263',
         review_count: 119,
         review_score: 4.34,
+      },
+      {
+        name: '베페베이비페어',
+        address: '서울 강남구 삼성동 영동대로 513',
+        tel: null,
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5126015 127.0591474)',
+        4326
+        ),
+        naver_spot_id: '1117698303',
+        review_count: 45,
+        review_score: 4.58,
       },
       {
         name: '현대 모터스튜디오 서울',
@@ -251,7 +270,8 @@ module.exports = {
         tel: '1899-6611',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0343923 37.5212673)'
+          'POINT(37.5212673 127.0343923)',
+        4326
         ),
         naver_spot_id: '34745051',
         review_count: 104,
@@ -263,7 +283,8 @@ module.exports = {
         tel: '0507-1340-2057',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0363006 37.5260905)'
+          'POINT(37.5260905 127.0363006)',
+        4326
         ),
         naver_spot_id: '1729099036',
         review_count: 4,
@@ -275,7 +296,8 @@ module.exports = {
         tel: '02-568-1291',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0493651 37.5090947)'
+          'POINT(37.5090947 127.0493651)',
+        4326
         ),
         naver_spot_id: '13542608',
         review_count: 272,
@@ -287,7 +309,8 @@ module.exports = {
         tel: '0507-1466-0259',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0441206 37.5241628)'
+          'POINT(37.5241628 127.0441206)',
+        4326
         ),
         naver_spot_id: '13558974',
         review_count: 2,
@@ -299,23 +322,12 @@ module.exports = {
         tel: '02-2262-7206',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0594275 37.5116621)'
+          'POINT(37.5116621 127.0594275)',
+        4326
         ),
         naver_spot_id: '13336757',
         review_count: 12,
         review_score: 4.44,
-      },
-      {
-        name: 'L7 강남 바이 롯데',
-        address: '서울 강남구 삼성동 테헤란로 415',
-        tel: '02-2011-1000',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(127.0516501 37.5057154)'
-        ),
-        naver_spot_id: '1536938247',
-        review_count: 931,
-        review_score: 4.56,
       },
       {
         name: '롯데시네마 도곡',
@@ -323,11 +335,25 @@ module.exports = {
         tel: '1544-8855',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0472059 37.4875017)'
+          'POINT(37.4875017 127.0472059)',
+        4326
         ),
         naver_spot_id: '1787836446',
         review_count: 655,
         review_score: 4.38,
+      },
+      {
+        name: 'L7 강남 바이 롯데',
+        address: '서울 강남구 삼성동 테헤란로 415',
+        tel: '02-2011-1000',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5057154 127.0516501)',
+        4326
+        ),
+        naver_spot_id: '1536938247',
+        review_count: 931,
+        review_score: 4.56,
       },
       {
         name: '키이스케이프 메모리컴퍼니',
@@ -335,23 +361,12 @@ module.exports = {
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0256431 37.5041603)'
+          'POINT(37.5041603 127.0256431)',
+        4326
         ),
         naver_spot_id: '1584371654',
         review_count: 32,
         review_score: null,
-      },
-      {
-        name: 'CGV 압구정',
-        address: '서울 강남구 신사동 논현로 848',
-        tel: '1544-1122',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(127.0288499 37.5245166)'
-        ),
-        naver_spot_id: '12197890',
-        review_count: 2,
-        review_score: 4.38,
       },
       {
         name: '일상비일상의틈byU+',
@@ -359,11 +374,25 @@ module.exports = {
         tel: '070-4090-8005',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0267823 37.5005331)'
+          'POINT(37.5005331 127.0267823)',
+        4326
         ),
         naver_spot_id: '1900685487',
         review_count: 240,
         review_score: 4.63,
+      },
+      {
+        name: 'CGV 압구정',
+        address: '서울 강남구 신사동 논현로 848',
+        tel: '1544-1122',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5245166 127.0288499)',
+        4326
+        ),
+        naver_spot_id: '12197890',
+        review_count: 2,
+        review_score: 4.38,
       },
       {
         name: 'CGV 강남',
@@ -371,7 +400,8 @@ module.exports = {
         tel: '1544-1122',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0262445 37.5017831)'
+          'POINT(37.5017831 127.0262445)',
+        4326
         ),
         naver_spot_id: '12272750',
         review_count: 3,
@@ -383,7 +413,8 @@ module.exports = {
         tel: '02-2088-7330',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0479557 37.5060349)'
+          'POINT(37.5060349 127.0479557)',
+        4326
         ),
         naver_spot_id: '38457339',
         review_count: 527,
@@ -395,10 +426,11 @@ module.exports = {
         tel: '02-557-1221',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0310561 37.5058727)'
+          'POINT(37.5058727 127.0310561)',
+        4326
         ),
         naver_spot_id: '11658929',
-        review_count: 228,
+        review_count: 229,
         review_score: 4.29,
       },
       {
@@ -407,7 +439,8 @@ module.exports = {
         tel: '0507-1401-7845',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.050714 37.5026494)'
+          'POINT(37.5026494 127.050714)',
+        4326
         ),
         naver_spot_id: '12951209',
         review_count: 150,
@@ -419,23 +452,12 @@ module.exports = {
         tel: '1544-1122',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0370619 37.5228611)'
+          'POINT(37.5228611 127.0370619)',
+        4326
         ),
         naver_spot_id: '20574013',
         review_count: 902,
         review_score: 4.39,
-      },
-      {
-        name: '한솥 아트스페이스',
-        address: '서울 강남구 청담동 압구정로 459 B1층',
-        tel: '02-2033-9642',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(127.0470017 37.5254471)'
-        ),
-        naver_spot_id: '1337616617',
-        review_count: 2,
-        review_score: null,
       },
       {
         name: '더샵갤러리',
@@ -443,11 +465,25 @@ module.exports = {
         tel: '1577-8674',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.1058504 37.4751039)'
+          'POINT(37.4751039 127.1058504)',
+        4326
         ),
         naver_spot_id: '1796610552',
         review_count: 7,
         review_score: 4.92,
+      },
+      {
+        name: '한솥 아트스페이스',
+        address: '서울 강남구 청담동 압구정로 459 B1층',
+        tel: '02-2033-9642',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5254471 127.0470017)',
+        4326
+        ),
+        naver_spot_id: '1337616617',
+        review_count: 2,
+        review_score: null,
       },
       {
         name: '북쌔즈',
@@ -455,35 +491,12 @@ module.exports = {
         tel: '02-501-8804',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0447405 37.5040263)'
+          'POINT(37.5040263 127.0447405)',
+        4326
         ),
         naver_spot_id: '1526151711',
         review_count: 522,
         review_score: 4.47,
-      },
-      {
-        name: '키이스케이프 로그인2',
-        address: '서울 강남구 역삼동 강남대로98길 16 5층',
-        tel: null,
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(127.0280214 37.5006969)'
-        ),
-        naver_spot_id: '1068140037',
-        review_count: 25,
-        review_score: null,
-      },
-      {
-        name: 'Kia360',
-        address: '서울 강남구 압구정동 압구정로 417',
-        tel: '02-518-0360',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(127.0429225 37.5276447)'
-        ),
-        naver_spot_id: '494684198',
-        review_count: 11,
-        review_score: null,
       },
       {
         name: '식물관PH',
@@ -491,34 +504,37 @@ module.exports = {
         tel: '02-445-0405',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0943672 37.4826902)'
+          'POINT(37.4826902 127.0943672)',
+        4326
         ),
         naver_spot_id: '1121708764',
         review_count: 755,
         review_score: 4.34,
       },
       {
-        name: '메종에르메스도산파크',
-        address: '서울 강남구 신사동 도산대로45길 7',
-        tel: '02-540-0901',
+        name: 'Kia360',
+        address: '서울 강남구 압구정동 압구정로 417',
+        tel: '02-518-0360',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.035296 37.5227624)'
+          'POINT(37.5276447 127.0429225)',
+        4326
         ),
-        naver_spot_id: '18834405',
-        review_count: 178,
-        review_score: 4.61,
+        naver_spot_id: '494684198',
+        review_count: 11,
+        review_score: null,
       },
       {
-        name: '시그널헌터 가로수길점',
-        address: '서울 강남구 신사동 강남대로152길 40 석천빌딩 4층',
-        tel: '0507-1347-6027',
+        name: '키이스케이프 로그인2',
+        address: '서울 강남구 역삼동 강남대로98길 16 5층',
+        tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0225419 37.5179612)'
+          'POINT(37.5006969 127.0280214)',
+        4326
         ),
-        naver_spot_id: '1473752908',
-        review_count: 16,
+        naver_spot_id: '1068140037',
+        review_count: 25,
         review_score: null,
       },
       {
@@ -527,11 +543,51 @@ module.exports = {
         tel: '1544-2514',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0263152 37.5014285)'
+          'POINT(37.5014285 127.0263152)',
+        4326
         ),
         naver_spot_id: '30833453',
         review_count: 4,
         review_score: 4.53,
+      },
+      {
+        name: '메종에르메스도산파크',
+        address: '서울 강남구 신사동 도산대로45길 7',
+        tel: '02-540-0901',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5227624 127.035296)',
+        4326
+        ),
+        naver_spot_id: '18834405',
+        review_count: 178,
+        review_score: 4.61,
+      },
+      {
+        name: '현대백화점 무역센터점 문화홀',
+        address: '서울 강남구 삼성동 테헤란로 517 현대백화점 무역센터점 10층 문화홀',
+        tel: '02-3467-6608',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5087123 127.0600805)',
+        4326
+        ),
+        naver_spot_id: '1552142776',
+        review_count: 336,
+        review_score: 4.34,
+      },
+      {
+        name: '시그널헌터 가로수길점',
+        address: '서울 강남구 신사동 강남대로152길 40 석천빌딩 4층',
+        tel: '0507-1347-6027',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5179612 127.0225419)',
+        4326
+        ),
+        naver_spot_id: '1473752908',
+        review_count: 16,
+        review_score: null,
       },
       {
         name: '우리동네사진관 강남역',
@@ -539,10 +595,11 @@ module.exports = {
         tel: '02-533-5242',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0292963 37.4988903)'
+          'POINT(37.4988903 127.0292963)',
+        4326
         ),
         naver_spot_id: '31949675',
-        review_count: 726,
+        review_count: 725,
         review_score: null,
       },
       {
@@ -551,58 +608,24 @@ module.exports = {
         tel: '1588-7946',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0594112 37.5097047)'
+          'POINT(37.5097047 127.0594112)',
+        4326
         ),
         naver_spot_id: '11623586',
         review_count: 0,
         review_score: null,
       },
       {
-        name: 'GS아트센터',
-        address: '서울 강남구 역삼동 논현로 508 GS아트센터',
-        tel: '02-2005-0101',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(127.0375081 37.5022971)'
-        ),
-        naver_spot_id: '1890616739',
-        review_count: 0,
-        review_score: null,
-      },
-      {
-        name: '코엑스 오디토리움',
-        address: '서울 강남구 삼성동 봉은사로 524 코엑스 컨벤션 3F',
-        tel: '02-6000-0114',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(127.0587711 37.5127413)'
-        ),
-        naver_spot_id: '11663721',
-        review_count: 15,
-        review_score: 4.63,
-      },
-      {
-        name: '현대백화점 무역센터점 문화홀',
-        address: '서울 강남구 삼성동 테헤란로 517 현대백화점 무역센터점 10층 문화홀',
-        tel: '02-3467-6608',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(127.0600805 37.5087123)'
-        ),
-        naver_spot_id: '1552142776',
-        review_count: 336,
-        review_score: 4.34,
-      },
-      {
-        name: 'THEPLATZ 코엑스',
-        address: '서울 강남구 삼성동 영동대로 513 코엑스 2층 더플라츠',
+        name: '광림아트센터',
+        address: '서울 강남구 신사동 논현로163길 33',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0602919 37.5112175)'
+          'POINT(37.5239799 127.0259655)',
+        4326
         ),
-        naver_spot_id: '1472554585',
-        review_count: 0,
+        naver_spot_id: '792818770',
+        review_count: 7,
         review_score: null,
       },
       {
@@ -611,11 +634,38 @@ module.exports = {
         tel: '02-544-6250',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.027056 37.525289)'
+          'POINT(37.525289 127.027056)',
+        4326
         ),
         naver_spot_id: '38632459',
         review_count: 200,
         review_score: 4.25,
+      },
+      {
+        name: 'GS아트센터',
+        address: '서울 강남구 역삼동 논현로 508 GS아트센터',
+        tel: '02-2005-0101',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5022971 127.0375081)',
+        4326
+        ),
+        naver_spot_id: '1890616739',
+        review_count: 0,
+        review_score: null,
+      },
+      {
+        name: 'THEPLATZ 코엑스',
+        address: '서울 강남구 삼성동 영동대로 513 코엑스 2층 더플라츠',
+        tel: null,
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5112175 127.0602919)',
+        4326
+        ),
+        naver_spot_id: '1472554585',
+        review_count: 0,
+        review_score: null,
       }
     ];
 
@@ -750,7 +800,7 @@ module.exports = {
       ]);
     }
 
-    // 메가박스 코엑스점 이미지
+    // 메가박스 스타필드코엑스몰 이미지
     const existingImages_12307868 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
@@ -788,25 +838,6 @@ module.exports = {
       ]);
     }
 
-    // 코엑스 Hall D 이미지
-    const existingImages_13412854 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['13412854'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_13412854[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13412854' LIMIT 1)`),
-          image_url: 'http://blogfiles.naver.net/20150723_295/juhr0129_1437659649719KsD39_JPEG/%C4%DA%BF%A2%BD%BA_%C0%FC%BD%C3%C8%B8_%C5%B0%B4%FA%C6%AE%C6%E4%BE%EE027.JPG',
-        }
-      ]);
-    }
-
     // 광림아트센터 BBCH홀 이미지
     const existingImages_33431886 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -822,6 +853,25 @@ module.exports = {
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '33431886' LIMIT 1)`),
           image_url: 'http://blogfiles.naver.net/MjAyNDAxMjdfMTYy/MDAxNzA2MzQ1NDc0MDAx.Gz-0R5QG0VyR8sgH09PR7OX5snIvRgJN05KT0NX2SREg.YYvxmGNbuMgC686XVdwpI-xp2-hrWuCN1w4Hyjal564g.JPEG.suza95/IMG_8105.jpg#900x900',
+        }
+      ]);
+    }
+
+    // 코엑스 Hall D 이미지
+    const existingImages_13412854 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['13412854'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_13412854[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13412854' LIMIT 1)`),
+          image_url: 'http://blogfiles.naver.net/20150723_295/juhr0129_1437659649719KsD39_JPEG/%C4%DA%BF%A2%BD%BA_%C0%FC%BD%C3%C8%B8_%C5%B0%B4%FA%C6%AE%C6%E4%BE%EE027.JPG',
         }
       ]);
     }
@@ -883,25 +933,6 @@ module.exports = {
       ]);
     }
 
-    // 코엑스 코베 베이비페어 이미지
-    const existingImages_21652591 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['21652591'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_21652591[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '21652591' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20230320_193/16792807617538PnxI_PNG/%C1%A6%B8%F1%C0%BB_%C0%D4%B7%C2%C7%CF%BC%BC%BF%E4_%2865%29.png',
-        }
-      ]);
-    }
-
     // 4233마음센터 압구정점 이미지
     const existingImages_1296974626 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -917,6 +948,25 @@ module.exports = {
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1296974626' LIMIT 1)`),
           image_url: 'https://ldb-phinf.pstatic.net/20250213_233/1739409742615wyNXJ_JPEG/%BD%E1%B8%D3%C1%F8_%BB%E7%C1%F818.jpg',
+        }
+      ]);
+    }
+
+    // 코엑스 코베 베이비페어 이미지
+    const existingImages_21652591 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['21652591'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_21652591[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '21652591' LIMIT 1)`),
+          image_url: 'https://ldb-phinf.pstatic.net/20230320_193/16792807617538PnxI_PNG/%C1%A6%B8%F1%C0%BB_%C0%D4%B7%C2%C7%CF%BC%BC%BF%E4_%2865%29.png',
         }
       ]);
     }
@@ -1054,25 +1104,6 @@ module.exports = {
       ]);
     }
 
-    // L7 강남 바이 롯데 이미지
-    const existingImages_1536938247 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['1536938247'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_1536938247[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1536938247' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20190818_147/1566128623611Sza2N_JPEG/HRHuwpFTsYn9Wgod3-j3NdBk.jpeg.jpg',
-        }
-      ]);
-    }
-
     // 롯데시네마 도곡 이미지
     const existingImages_1787836446 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -1088,6 +1119,25 @@ module.exports = {
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1787836446' LIMIT 1)`),
           image_url: 'https://ldb-phinf.pstatic.net/20180601_285/15278189727220i12u_JPEG/IRtWK0eh0St0LbyTILYswKRT.jpg',
+        }
+      ]);
+    }
+
+    // L7 강남 바이 롯데 이미지
+    const existingImages_1536938247 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['1536938247'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_1536938247[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1536938247' LIMIT 1)`),
+          image_url: 'https://ldb-phinf.pstatic.net/20190818_147/1566128623611Sza2N_JPEG/HRHuwpFTsYn9Wgod3-j3NdBk.jpeg.jpg',
         }
       ]);
     }
@@ -1111,25 +1161,6 @@ module.exports = {
       ]);
     }
 
-    // CGV 압구정 이미지
-    const existingImages_12197890 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['12197890'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_12197890[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '12197890' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20190909_31/1568029121469QDD5m_JPEG/NTQ2FVPVimOAvhpsv4omETX-.jpg',
-        }
-      ]);
-    }
-
     // 일상비일상의틈byU+ 이미지
     const existingImages_1900685487 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -1145,6 +1176,25 @@ module.exports = {
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1900685487' LIMIT 1)`),
           image_url: 'https://ldb-phinf.pstatic.net/20210325_123/1616634006790Dg5X9_PNG/%C0%CF%BB%F3%BA%F1%C0%CF%BB%F3%C0%C7%C6%B4_%B0%C7%B9%B0%C4%C6.png',
+        }
+      ]);
+    }
+
+    // CGV 압구정 이미지
+    const existingImages_12197890 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['12197890'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_12197890[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '12197890' LIMIT 1)`),
+          image_url: 'https://ldb-phinf.pstatic.net/20190909_31/1568029121469QDD5m_JPEG/NTQ2FVPVimOAvhpsv4omETX-.jpg',
         }
       ]);
     }
@@ -1244,25 +1294,6 @@ module.exports = {
       ]);
     }
 
-    // 한솥 아트스페이스 이미지
-    const existingImages_1337616617 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['1337616617'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_1337616617[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1337616617' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20250326_180/1742969509895xb3Qr_JPEG/sns_1.jpg',
-        }
-      ]);
-    }
-
     // 더샵갤러리 이미지
     const existingImages_1796610552 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -1278,6 +1309,25 @@ module.exports = {
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1796610552' LIMIT 1)`),
           image_url: 'https://ldb-phinf.pstatic.net/20230913_158/1694585724593OhzUO_JPEG/%B4%F5%BC%A5%B0%B6%B7%AF%B8%AE2.0.jpg',
+        }
+      ]);
+    }
+
+    // 한솥 아트스페이스 이미지
+    const existingImages_1337616617 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['1337616617'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_1337616617[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1337616617' LIMIT 1)`),
+          image_url: 'https://ldb-phinf.pstatic.net/20250326_180/1742969509895xb3Qr_JPEG/sns_1.jpg',
         }
       ]);
     }
@@ -1301,25 +1351,6 @@ module.exports = {
       ]);
     }
 
-    // 키이스케이프 로그인2 이미지
-    const existingImages_1068140037 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['1068140037'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_1068140037[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1068140037' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20230509_232/1683606790084v5RJS_JPEG/KakaoTalk_20230509_133249592.jpg',
-        }
-      ]);
-    }
-
     // Kia360 이미지
     const existingImages_494684198 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -1339,21 +1370,21 @@ module.exports = {
       ]);
     }
 
-    // 시그널헌터 가로수길점 이미지
-    const existingImages_1473752908 = await queryInterface.sequelize.query(
+    // 키이스케이프 로그인2 이미지
+    const existingImages_1068140037 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['1473752908'],
+        replacements: ['1068140037'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
 
-    if (existingImages_1473752908[0].count === 0) {
+    if (existingImages_1068140037[0].count === 0) {
       // 새 이미지 추가
       spotImgData.push(...[
         {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1473752908' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20200313_87/1584081117623RxqHy_JPEG/ififT_Qhs3V0m16tZBvMpJBk.jpg',
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1068140037' LIMIT 1)`),
+          image_url: 'https://ldb-phinf.pstatic.net/20230509_232/1683606790084v5RJS_JPEG/KakaoTalk_20230509_133249592.jpg',
         }
       ]);
     }
@@ -1373,6 +1404,44 @@ module.exports = {
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '30833453' LIMIT 1)`),
           image_url: 'https://ldb-phinf.pstatic.net/20160422_144/1461310432490QKVIz_JPEG/176372566371038_0.jpeg',
+        }
+      ]);
+    }
+
+    // 현대백화점 무역센터점 문화홀 이미지
+    const existingImages_1552142776 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['1552142776'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_1552142776[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1552142776' LIMIT 1)`),
+          image_url: 'https://ldb-phinf.pstatic.net/20180405_132/1522894252245t0nDB_JPEG/MxoZjnYnsneIpVxILJg_7Cb5.jpg',
+        }
+      ]);
+    }
+
+    // 시그널헌터 가로수길점 이미지
+    const existingImages_1473752908 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['1473752908'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_1473752908[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1473752908' LIMIT 1)`),
+          image_url: 'https://ldb-phinf.pstatic.net/20200313_87/1584081117623RxqHy_JPEG/ififT_Qhs3V0m16tZBvMpJBk.jpg',
         }
       ]);
     }
@@ -1415,6 +1484,25 @@ module.exports = {
       ]);
     }
 
+    // 놀숲 압구정역점 이미지
+    const existingImages_38632459 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['38632459'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_38632459[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '38632459' LIMIT 1)`),
+          image_url: 'https://ldb-phinf.pstatic.net/20230516_227/1684219676236NtXKt_JPEG/KakaoTalk_20230515_161726215_02.jpg',
+        }
+      ]);
+    }
+
     // GS아트센터 이미지
     const existingImages_1890616739 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -1434,44 +1522,6 @@ module.exports = {
       ]);
     }
 
-    // 코엑스 오디토리움 이미지
-    const existingImages_11663721 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['11663721'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_11663721[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11663721' LIMIT 1)`),
-          image_url: 'http://blogfiles.naver.net/MjAxNzEwMDRfMTg1/MDAxNTA3MDkyOTY3Mzk4.ucGUqVAeHXe4p2IZIKm0aB-lJtY4spyvf6rbc41i3q8g.9-mkiuyjr64MU4LgoILVsiMoT12EX3mpBvvUq2FyuiIg.JPEG.envywho/%C5%A9%B1%E2%BA%AF%C8%AF_06.jpg#900x450',
-        }
-      ]);
-    }
-
-    // 현대백화점 무역센터점 문화홀 이미지
-    const existingImages_1552142776 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['1552142776'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_1552142776[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1552142776' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20180405_132/1522894252245t0nDB_JPEG/MxoZjnYnsneIpVxILJg_7Cb5.jpg',
-        }
-      ]);
-    }
-
     // THEPLATZ 코엑스 이미지
     const existingImages_1472554585 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -1487,25 +1537,6 @@ module.exports = {
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1472554585' LIMIT 1)`),
           image_url: 'https://ldb-phinf.pstatic.net/20250423_31/17453734118223tmrv_JPEG/%B4%F5_%C7%C3%B6%F3%C3%F7_%C0%FC%BD%C3%C8%A6.jpg',
-        }
-      ]);
-    }
-
-    // 놀숲 압구정역점 이미지
-    const existingImages_38632459 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['38632459'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_38632459[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '38632459' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20230516_227/1684219676236NtXKt_JPEG/KakaoTalk_20230515_161726215_02.jpg',
         }
       ]);
     }
@@ -1667,7 +1698,7 @@ module.exports = {
       }
     }
 
-    // 메가박스 코엑스점 카테고리 관계
+    // 메가박스 스타필드코엑스몰 카테고리 관계
     const existingCategories_12307868 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
@@ -1717,31 +1748,6 @@ module.exports = {
       }
     }
 
-    // 코엑스 Hall D 카테고리 관계
-    const existingCategories_13412854 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['13412854'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_13412854 = new Set(existingCategories_13412854.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_13412854 = [...new Set([
-      '복합 문화 공간'
-    ])];
-
-    for (const category of uniqueCategories_13412854) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_13412854.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13412854' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
     // 광림아트센터 BBCH홀 카테고리 관계
     const existingCategories_33431886 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -1762,6 +1768,31 @@ module.exports = {
       if (categoryId[category] && !existingCategoryIds_33431886.has(categoryId[category])) {
         spotCategoryRelationData.push({
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '33431886' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 코엑스 Hall D 카테고리 관계
+    const existingCategories_13412854 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['13412854'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_13412854 = new Set(existingCategories_13412854.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_13412854 = [...new Set([
+      '복합 문화 공간'
+    ])];
+
+    for (const category of uniqueCategories_13412854) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_13412854.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13412854' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -1842,31 +1873,6 @@ module.exports = {
       }
     }
 
-    // 코엑스 코베 베이비페어 카테고리 관계
-    const existingCategories_21652591 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['21652591'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_21652591 = new Set(existingCategories_21652591.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_21652591 = [...new Set([
-      '복합 문화 공간'
-    ])];
-
-    for (const category of uniqueCategories_21652591) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_21652591.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '21652591' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
     // 4233마음센터 압구정점 카테고리 관계
     const existingCategories_1296974626 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -1887,6 +1893,31 @@ module.exports = {
       if (categoryId[category] && !existingCategoryIds_1296974626.has(categoryId[category])) {
         spotCategoryRelationData.push({
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1296974626' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 코엑스 코베 베이비페어 카테고리 관계
+    const existingCategories_21652591 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['21652591'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_21652591 = new Set(existingCategories_21652591.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_21652591 = [...new Set([
+      '복합 문화 공간'
+    ])];
+
+    for (const category of uniqueCategories_21652591) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_21652591.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '21652591' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -1942,31 +1973,6 @@ module.exports = {
       }
     }
 
-    // 베페베이비페어 카테고리 관계
-    const existingCategories_1117698303 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['1117698303'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_1117698303 = new Set(existingCategories_1117698303.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_1117698303 = [...new Set([
-      '복합 문화 공간'
-    ])];
-
-    for (const category of uniqueCategories_1117698303) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_1117698303.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1117698303' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
     // 라움아트센터 카테고리 관계
     const existingCategories_19847263 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -1987,6 +1993,31 @@ module.exports = {
       if (categoryId[category] && !existingCategoryIds_19847263.has(categoryId[category])) {
         spotCategoryRelationData.push({
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '19847263' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 베페베이비페어 카테고리 관계
+    const existingCategories_1117698303 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['1117698303'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_1117698303 = new Set(existingCategories_1117698303.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_1117698303 = [...new Set([
+      '복합 문화 공간'
+    ])];
+
+    for (const category of uniqueCategories_1117698303) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_1117698303.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1117698303' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -2118,31 +2149,6 @@ module.exports = {
       }
     }
 
-    // L7 강남 바이 롯데 카테고리 관계
-    const existingCategories_1536938247 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['1536938247'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_1536938247 = new Set(existingCategories_1536938247.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_1536938247 = [...new Set([
-      '숙소'
-    ])];
-
-    for (const category of uniqueCategories_1536938247) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_1536938247.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1536938247' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
     // 롯데시네마 도곡 카테고리 관계
     const existingCategories_1787836446 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -2163,6 +2169,31 @@ module.exports = {
       if (categoryId[category] && !existingCategoryIds_1787836446.has(categoryId[category])) {
         spotCategoryRelationData.push({
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1787836446' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // L7 강남 바이 롯데 카테고리 관계
+    const existingCategories_1536938247 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['1536938247'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_1536938247 = new Set(existingCategories_1536938247.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_1536938247 = [...new Set([
+      '숙소'
+    ])];
+
+    for (const category of uniqueCategories_1536938247) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_1536938247.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1536938247' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -2193,31 +2224,6 @@ module.exports = {
       }
     }
 
-    // CGV 압구정 카테고리 관계
-    const existingCategories_12197890 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['12197890'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_12197890 = new Set(existingCategories_12197890.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_12197890 = [...new Set([
-      '복합 문화 공간'
-    ])];
-
-    for (const category of uniqueCategories_12197890) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_12197890.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '12197890' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
     // 일상비일상의틈byU+ 카테고리 관계
     const existingCategories_1900685487 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -2238,6 +2244,31 @@ module.exports = {
       if (categoryId[category] && !existingCategoryIds_1900685487.has(categoryId[category])) {
         spotCategoryRelationData.push({
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1900685487' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // CGV 압구정 카테고리 관계
+    const existingCategories_12197890 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['12197890'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_12197890 = new Set(existingCategories_12197890.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_12197890 = [...new Set([
+      '복합 문화 공간'
+    ])];
+
+    for (const category of uniqueCategories_12197890) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_12197890.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '12197890' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -2368,6 +2399,31 @@ module.exports = {
       }
     }
 
+    // 더샵갤러리 카테고리 관계
+    const existingCategories_1796610552 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['1796610552'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_1796610552 = new Set(existingCategories_1796610552.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_1796610552 = [...new Set([
+      '복합 문화 공간'
+    ])];
+
+    for (const category of uniqueCategories_1796610552) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_1796610552.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1796610552' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
     // 한솥 아트스페이스 카테고리 관계
     const existingCategories_1337616617 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -2389,31 +2445,6 @@ module.exports = {
       if (categoryId[category] && !existingCategoryIds_1337616617.has(categoryId[category])) {
         spotCategoryRelationData.push({
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1337616617' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
-    // 더샵갤러리 카테고리 관계
-    const existingCategories_1796610552 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['1796610552'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_1796610552 = new Set(existingCategories_1796610552.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_1796610552 = [...new Set([
-      '복합 문화 공간'
-    ])];
-
-    for (const category of uniqueCategories_1796610552) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_1796610552.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1796610552' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -2444,26 +2475,26 @@ module.exports = {
       }
     }
 
-    // 키이스케이프 로그인2 카테고리 관계
-    const existingCategories_1068140037 = await queryInterface.sequelize.query(
+    // 식물관PH 카테고리 관계
+    const existingCategories_1121708764 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['1068140037'],
+        replacements: ['1121708764'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
-    const existingCategoryIds_1068140037 = new Set(existingCategories_1068140037.map(cat => cat.spot_category_id));
+    const existingCategoryIds_1121708764 = new Set(existingCategories_1121708764.map(cat => cat.spot_category_id));
 
     // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_1068140037 = [...new Set([
-      '카페'
+    const uniqueCategories_1121708764 = [...new Set([
+      '복합 문화 공간'
     ])];
 
-    for (const category of uniqueCategories_1068140037) {
+    for (const category of uniqueCategories_1121708764) {
       const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_1068140037.has(categoryId[category])) {
+      if (categoryId[category] && !existingCategoryIds_1121708764.has(categoryId[category])) {
         spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1068140037' LIMIT 1)`),
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1121708764' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -2495,26 +2526,51 @@ module.exports = {
       }
     }
 
-    // 식물관PH 카테고리 관계
-    const existingCategories_1121708764 = await queryInterface.sequelize.query(
+    // 키이스케이프 로그인2 카테고리 관계
+    const existingCategories_1068140037 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['1121708764'],
+        replacements: ['1068140037'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
-    const existingCategoryIds_1121708764 = new Set(existingCategories_1121708764.map(cat => cat.spot_category_id));
+    const existingCategoryIds_1068140037 = new Set(existingCategories_1068140037.map(cat => cat.spot_category_id));
 
     // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_1121708764 = [...new Set([
-      '복합 문화 공간'
+    const uniqueCategories_1068140037 = [...new Set([
+      '카페'
     ])];
 
-    for (const category of uniqueCategories_1121708764) {
+    for (const category of uniqueCategories_1068140037) {
       const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_1121708764.has(categoryId[category])) {
+      if (categoryId[category] && !existingCategoryIds_1068140037.has(categoryId[category])) {
         spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1121708764' LIMIT 1)`),
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1068140037' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 알라딘 중고서점 강남점 카테고리 관계
+    const existingCategories_30833453 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['30833453'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_30833453 = new Set(existingCategories_30833453.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_30833453 = [...new Set([
+      '도서관'
+    ])];
+
+    for (const category of uniqueCategories_30833453) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_30833453.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '30833453' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -2545,6 +2601,31 @@ module.exports = {
       }
     }
 
+    // 현대백화점 무역센터점 문화홀 카테고리 관계
+    const existingCategories_1552142776 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['1552142776'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_1552142776 = new Set(existingCategories_1552142776.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_1552142776 = [...new Set([
+      '복합 문화 공간'
+    ])];
+
+    for (const category of uniqueCategories_1552142776) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_1552142776.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1552142776' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
     // 시그널헌터 가로수길점 카테고리 관계
     const existingCategories_1473752908 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -2565,31 +2646,6 @@ module.exports = {
       if (categoryId[category] && !existingCategoryIds_1473752908.has(categoryId[category])) {
         spotCategoryRelationData.push({
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1473752908' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
-    // 알라딘 중고서점 강남점 카테고리 관계
-    const existingCategories_30833453 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['30833453'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_30833453 = new Set(existingCategories_30833453.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_30833453 = [...new Set([
-      '도서관'
-    ])];
-
-    for (const category of uniqueCategories_30833453) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_30833453.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '30833453' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -2645,101 +2701,26 @@ module.exports = {
       }
     }
 
-    // GS아트센터 카테고리 관계
-    const existingCategories_1890616739 = await queryInterface.sequelize.query(
+    // 광림아트센터 카테고리 관계
+    const existingCategories_792818770 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['1890616739'],
+        replacements: ['792818770'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
-    const existingCategoryIds_1890616739 = new Set(existingCategories_1890616739.map(cat => cat.spot_category_id));
+    const existingCategoryIds_792818770 = new Set(existingCategories_792818770.map(cat => cat.spot_category_id));
 
     // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_1890616739 = [...new Set([
+    const uniqueCategories_792818770 = [...new Set([
       '복합 문화 공간'
     ])];
 
-    for (const category of uniqueCategories_1890616739) {
+    for (const category of uniqueCategories_792818770) {
       const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_1890616739.has(categoryId[category])) {
+      if (categoryId[category] && !existingCategoryIds_792818770.has(categoryId[category])) {
         spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1890616739' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
-    // 코엑스 오디토리움 카테고리 관계
-    const existingCategories_11663721 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['11663721'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_11663721 = new Set(existingCategories_11663721.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_11663721 = [...new Set([
-      '복합 문화 공간'
-    ])];
-
-    for (const category of uniqueCategories_11663721) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_11663721.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11663721' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
-    // 현대백화점 무역센터점 문화홀 카테고리 관계
-    const existingCategories_1552142776 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['1552142776'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_1552142776 = new Set(existingCategories_1552142776.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_1552142776 = [...new Set([
-      '복합 문화 공간'
-    ])];
-
-    for (const category of uniqueCategories_1552142776) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_1552142776.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1552142776' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
-    // THEPLATZ 코엑스 카테고리 관계
-    const existingCategories_1472554585 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['1472554585'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_1472554585 = new Set(existingCategories_1472554585.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_1472554585 = [...new Set([
-      '복합 문화 공간'
-    ])];
-
-    for (const category of uniqueCategories_1472554585) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_1472554585.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1472554585' LIMIT 1)`),
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '792818770' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -2765,6 +2746,56 @@ module.exports = {
       if (categoryId[category] && !existingCategoryIds_38632459.has(categoryId[category])) {
         spotCategoryRelationData.push({
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '38632459' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // GS아트센터 카테고리 관계
+    const existingCategories_1890616739 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['1890616739'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_1890616739 = new Set(existingCategories_1890616739.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_1890616739 = [...new Set([
+      '복합 문화 공간'
+    ])];
+
+    for (const category of uniqueCategories_1890616739) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_1890616739.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1890616739' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // THEPLATZ 코엑스 카테고리 관계
+    const existingCategories_1472554585 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['1472554585'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_1472554585 = new Set(existingCategories_1472554585.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_1472554585 = [...new Set([
+      '복합 문화 공간'
+    ])];
+
+    for (const category of uniqueCategories_1472554585) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_1472554585.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1472554585' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }

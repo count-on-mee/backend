@@ -91,9 +91,10 @@ module.exports = {
         tel: ${spot.tel ? `'${spot.tel.replace(/'/g, "\\'")}'` : 'null'},
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(${spot.location ? spot.location.longitude : 0} ${
-        spot.location ? spot.location.latitude : 0
-      })'
+          'POINT(${spot.location ? spot.location.latitude : 0} ${
+        spot.location ? spot.location.longitude : 0
+      })',
+        4326
         ),
         naver_spot_id: ${spot.naverSpotId ? `'${spot.naverSpotId}'` : 'null'},
         review_count: ${spot.reviewCount || 0},

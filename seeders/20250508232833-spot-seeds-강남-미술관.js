@@ -3,7 +3,7 @@
 /**
  * 네이버 장소 크롤링으로 생성된 Spot 데이터 시드 파일
  * 검색어: 강남 미술관
- * 생성일시: 2025-05-07T10:28:36.404Z
+ * 생성일시: 2025-05-08T14:28:41.020Z
  */
 
 module.exports = {
@@ -23,7 +23,8 @@ module.exports = {
         tel: '02-567-8878',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0604816 37.5075923)'
+          'POINT(37.5075923 127.0604816)',
+        4326
         ),
         naver_spot_id: '1035412616',
         review_count: 2,
@@ -35,7 +36,8 @@ module.exports = {
         tel: '0507-1466-0259',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0441206 37.5241628)'
+          'POINT(37.5241628 127.0441206)',
+        4326
         ),
         naver_spot_id: '13558974',
         review_count: 2,
@@ -47,7 +49,8 @@ module.exports = {
         tel: '0507-1405-0952',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0390957 37.5242986)'
+          'POINT(37.5242986 127.0390957)',
+        4326
         ),
         naver_spot_id: '123980096',
         review_count: 1,
@@ -59,7 +62,8 @@ module.exports = {
         tel: '02-3457-1665',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0558659 37.505783)'
+          'POINT(37.505783 127.0558659)',
+        4326
         ),
         naver_spot_id: '11785858',
         review_count: 8,
@@ -71,7 +75,8 @@ module.exports = {
         tel: '02-3432-1854',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0462434 37.525626)'
+          'POINT(37.525626 127.0462434)',
+        4326
         ),
         naver_spot_id: '1275364153',
         review_count: 222,
@@ -83,7 +88,8 @@ module.exports = {
         tel: '02-6929-4470',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0342941 37.5161707)'
+          'POINT(37.5161707 127.0342941)',
+        4326
         ),
         naver_spot_id: '37620674',
         review_count: 278,
@@ -95,7 +101,8 @@ module.exports = {
         tel: '0507-1430-9094',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0363088 37.5228375)'
+          'POINT(37.5228375 127.0363088)',
+        4326
         ),
         naver_spot_id: '1024484292',
         review_count: 0,
@@ -107,7 +114,8 @@ module.exports = {
         tel: '02-3412-0061',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0822266 37.4859382)'
+          'POINT(37.4859382 127.0822266)',
+        4326
         ),
         naver_spot_id: '19570302',
         review_count: 2,
@@ -119,7 +127,8 @@ module.exports = {
         tel: '02-6252-7777',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0655457 37.5033344)'
+          'POINT(37.5033344 127.0655457)',
+        4326
         ),
         naver_spot_id: '1191783554',
         review_count: 34,
@@ -131,7 +140,8 @@ module.exports = {
         tel: '02-6205-9411',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0253064 37.5227357)'
+          'POINT(37.5227357 127.0253064)',
+        4326
         ),
         naver_spot_id: '1158995940',
         review_count: 0,
@@ -143,7 +153,8 @@ module.exports = {
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0252985 37.5226113)'
+          'POINT(37.5226113 127.0252985)',
+        4326
         ),
         naver_spot_id: '1336506265',
         review_count: 0,
@@ -155,7 +166,8 @@ module.exports = {
         tel: '02-515-9411',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0252921 37.5227351)'
+          'POINT(37.5227351 127.0252921)',
+        4326
         ),
         naver_spot_id: '1117801240',
         review_count: 1,
@@ -167,7 +179,8 @@ module.exports = {
         tel: '0507-1414-0878',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.03852 37.5233726)'
+          'POINT(37.5233726 127.03852)',
+        4326
         ),
         naver_spot_id: '37114200',
         review_count: 3,
@@ -179,7 +192,8 @@ module.exports = {
         tel: '02-555-7150',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0310749 37.495495)'
+          'POINT(37.495495 127.0310749)',
+        4326
         ),
         naver_spot_id: '1848469710',
         review_count: 0,
@@ -191,22 +205,11 @@ module.exports = {
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.03828 37.4904269)'
+          'POINT(37.4904269 127.03828)',
+        4326
         ),
         naver_spot_id: '944574139',
         review_count: 1,
-        review_score: null,
-      },
-      {
-        name: '갤러리브릭스',
-        address: '서울 강남구 역삼동 논현로99길 14',
-        tel: null,
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(127.03419 37.503824)'
-        ),
-        naver_spot_id: '1035140440',
-        review_count: 2,
         review_score: null,
       },
       {
@@ -215,10 +218,24 @@ module.exports = {
         tel: '070-4153-2905',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0358471 37.5041297)'
+          'POINT(37.5041297 127.0358471)',
+        4326
         ),
         naver_spot_id: '1004026322',
         review_count: 0,
+        review_score: null,
+      },
+      {
+        name: '갤러리브릭스',
+        address: '서울 강남구 역삼동 논현로99길 14',
+        tel: null,
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.503824 127.03419)',
+        4326
+        ),
+        naver_spot_id: '1035140440',
+        review_count: 2,
         review_score: null,
       },
       {
@@ -227,7 +244,8 @@ module.exports = {
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0457406 37.5270494)'
+          'POINT(37.5270494 127.0457406)',
+        4326
         ),
         naver_spot_id: '637447632',
         review_count: 6,
@@ -239,7 +257,8 @@ module.exports = {
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0957699 37.484117)'
+          'POINT(37.484117 127.0957699)',
+        4326
         ),
         naver_spot_id: '1993015068',
         review_count: 1,
@@ -251,7 +270,8 @@ module.exports = {
         tel: '02-2014-6900',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(126.9994097 37.5380141)'
+          'POINT(37.5380141 126.9994097)',
+        4326
         ),
         naver_spot_id: '11582919',
         review_count: 420,
@@ -263,7 +283,8 @@ module.exports = {
         tel: '02-6233-7200',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0442175 37.543826)'
+          'POINT(37.543826 127.0442175)',
+        4326
         ),
         naver_spot_id: '36992369',
         review_count: 3,
@@ -275,7 +296,8 @@ module.exports = {
         tel: '02-425-1077',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.1179749 37.5169172)'
+          'POINT(37.5169172 127.1179749)',
+        4326
         ),
         naver_spot_id: '11785944',
         review_count: 406,
@@ -287,7 +309,8 @@ module.exports = {
         tel: '0507-1421-8116',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0017989 37.4543686)'
+          'POINT(37.4543686 127.0017989)',
+        4326
         ),
         naver_spot_id: '1250642070',
         review_count: 65,
@@ -299,7 +322,8 @@ module.exports = {
         tel: '1668-1352',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0127084 37.4798436)'
+          'POINT(37.4798436 127.0127084)',
+        4326
         ),
         naver_spot_id: '13549528',
         review_count: 179,
@@ -311,7 +335,8 @@ module.exports = {
         tel: '02-1544-7744',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.102829 37.512492)'
+          'POINT(37.512492 127.102829)',
+        4326
         ),
         naver_spot_id: '1000381360',
         review_count: 4,
@@ -323,7 +348,8 @@ module.exports = {
         tel: '02-425-3332',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.1029911 37.5134524)'
+          'POINT(37.5134524 127.1029911)',
+        4326
         ),
         naver_spot_id: '1854075589',
         review_count: 286,
@@ -335,7 +361,8 @@ module.exports = {
         tel: '02-597-5701',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0121759 37.5364251)'
+          'POINT(37.5364251 127.0121759)',
+        4326
         ),
         naver_spot_id: '34714075',
         review_count: 142,
@@ -347,7 +374,8 @@ module.exports = {
         tel: '0507-1402-5642',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0153203 37.4817537)'
+          'POINT(37.4817537 127.0153203)',
+        4326
         ),
         naver_spot_id: '11620360',
         review_count: 0,
@@ -359,7 +387,8 @@ module.exports = {
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0012899 37.5363466)'
+          'POINT(37.5363466 127.0012899)',
+        4326
         ),
         naver_spot_id: '1241089043',
         review_count: 119,
@@ -371,7 +400,8 @@ module.exports = {
         tel: '02-3456-7970',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0279546 37.4858412)'
+          'POINT(37.4858412 127.0279546)',
+        4326
         ),
         naver_spot_id: '11785927',
         review_count: 267,
@@ -383,7 +413,8 @@ module.exports = {
         tel: '02-418-1315',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.1139677 37.5166031)'
+          'POINT(37.5166031 127.1139677)',
+        4326
         ),
         naver_spot_id: '11785954',
         review_count: 62,
@@ -395,7 +426,8 @@ module.exports = {
         tel: '0507-1411-3579',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0935189 37.5023664)'
+          'POINT(37.5023664 127.0935189)',
+        4326
         ),
         naver_spot_id: '37069948',
         review_count: 0,
@@ -407,7 +439,8 @@ module.exports = {
         tel: '02-578-6663',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0123282 37.4577928)'
+          'POINT(37.4577928 127.0123282)',
+        4326
         ),
         naver_spot_id: '11665595',
         review_count: 0,
@@ -419,7 +452,8 @@ module.exports = {
         tel: '02-535-5844',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.02449 37.497345)'
+          'POINT(37.497345 127.02449)',
+        4326
         ),
         naver_spot_id: '110051033',
         review_count: 4,
@@ -431,7 +465,8 @@ module.exports = {
         tel: '02-3475-2490',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0169358 37.4893223)'
+          'POINT(37.4893223 127.0169358)',
+        4326
         ),
         naver_spot_id: '1997730041',
         review_count: 2,
@@ -443,7 +478,8 @@ module.exports = {
         tel: '0507-1325-9504',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.1174646 37.5379221)'
+          'POINT(37.5379221 127.1174646)',
+        4326
         ),
         naver_spot_id: '1509540682',
         review_count: 0,
@@ -455,7 +491,8 @@ module.exports = {
         tel: '02-6405-5700',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0018533 37.5349159)'
+          'POINT(37.5349159 127.0018533)',
+        4326
         ),
         naver_spot_id: '13437741',
         review_count: 0,
@@ -467,7 +504,8 @@ module.exports = {
         tel: '1668-1352',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0128419 37.4798511)'
+          'POINT(37.4798511 127.0128419)',
+        4326
         ),
         naver_spot_id: '37591725',
         review_count: 29,
@@ -479,7 +517,8 @@ module.exports = {
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0433439 37.4724341)'
+          'POINT(37.4724341 127.0433439)',
+        4326
         ),
         naver_spot_id: '18751385',
         review_count: 0,
@@ -1587,31 +1626,6 @@ module.exports = {
       }
     }
 
-    // 갤러리브릭스 카테고리 관계
-    const existingCategories_1035140440 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['1035140440'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_1035140440 = new Set(existingCategories_1035140440.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_1035140440 = [...new Set([
-      '미술관'
-    ])];
-
-    for (const category of uniqueCategories_1035140440) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_1035140440.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1035140440' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
     // 선&석 갤러리미술관 카테고리 관계
     const existingCategories_1004026322 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -1632,6 +1646,31 @@ module.exports = {
       if (categoryId[category] && !existingCategoryIds_1004026322.has(categoryId[category])) {
         spotCategoryRelationData.push({
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1004026322' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 갤러리브릭스 카테고리 관계
+    const existingCategories_1035140440 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['1035140440'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_1035140440 = new Set(existingCategories_1035140440.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_1035140440 = [...new Set([
+      '미술관'
+    ])];
+
+    for (const category of uniqueCategories_1035140440) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_1035140440.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1035140440' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }

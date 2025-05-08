@@ -3,7 +3,7 @@
 /**
  * 네이버 장소 크롤링으로 생성된 Spot 데이터 시드 파일
  * 검색어: 강남 숙소
- * 생성일시: 2025-05-07T10:28:05.262Z
+ * 생성일시: 2025-05-08T14:28:09.337Z
  */
 
 module.exports = {
@@ -23,7 +23,8 @@ module.exports = {
         tel: '02-555-5656',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0608688 37.5095449)'
+          'POINT(37.5095449 127.0608688)',
+        4326
         ),
         naver_spot_id: '11583199',
         review_count: 3,
@@ -35,7 +36,8 @@ module.exports = {
         tel: '02-567-1101',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0290022 37.50539)'
+          'POINT(37.50539 127.0290022)',
+        4326
         ),
         naver_spot_id: '11559924',
         review_count: 868,
@@ -47,23 +49,12 @@ module.exports = {
         tel: '02-727-7200',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0411011 37.5029272)'
+          'POINT(37.5029272 127.0411011)',
+        4326
         ),
         naver_spot_id: '1384506674',
         review_count: 718,
         review_score: 4.52,
-      },
-      {
-        name: '그랜드 머큐어 임피리얼 팰리스 서울 강남',
-        address: '서울 강남구 논현동 언주로 640',
-        tel: '02-3440-8000',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(127.0358099 37.5138761)'
-        ),
-        naver_spot_id: '36170631',
-        review_count: 391,
-        review_score: 4.3,
       },
       {
         name: '도미인 서울 강남',
@@ -71,11 +62,25 @@ module.exports = {
         tel: '02-548-5489',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0294946 37.5056299)'
+          'POINT(37.5056299 127.0294946)',
+        4326
         ),
         naver_spot_id: '578893981',
         review_count: 389,
         review_score: 4.68,
+      },
+      {
+        name: '그랜드 머큐어 임피리얼 팰리스 서울 강남',
+        address: '서울 강남구 논현동 언주로 640',
+        tel: '02-3440-8000',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5138761 127.0358099)',
+        4326
+        ),
+        naver_spot_id: '36170631',
+        review_count: 391,
+        review_score: 4.3,
       },
       {
         name: '신라스테이 삼성',
@@ -83,7 +88,8 @@ module.exports = {
         tel: '02-2175-9000',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0631739 37.5099463)'
+          'POINT(37.5099463 127.0631739)',
+        4326
         ),
         naver_spot_id: '1138352479',
         review_count: 978,
@@ -95,7 +101,8 @@ module.exports = {
         tel: '02-3443-5670',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0315912 37.511176)'
+          'POINT(37.511176 127.0315912)',
+        4326
         ),
         naver_spot_id: '1354448162',
         review_count: 327,
@@ -107,7 +114,8 @@ module.exports = {
         tel: '02-2190-4000',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.029631 37.5175769)'
+          'POINT(37.5175769 127.029631)',
+        4326
         ),
         naver_spot_id: '1398321943',
         review_count: 276,
@@ -119,23 +127,12 @@ module.exports = {
         tel: '02-2054-9000',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0412409 37.5050333)'
+          'POINT(37.5050333 127.0412409)',
+        4326
         ),
         naver_spot_id: '35532451',
         review_count: 427,
         review_score: 4.37,
-      },
-      {
-        name: '안다즈 서울강남',
-        address: '서울 강남구 신사동 논현로 854',
-        tel: '02-2193-1234',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(127.0289046 37.5255774)'
-        ),
-        naver_spot_id: '1848029285',
-        review_count: 1,
-        review_score: 4.44,
       },
       {
         name: '호텔리베라 청담',
@@ -143,11 +140,25 @@ module.exports = {
         tel: '02-3438-4000',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0543277 37.5238673)'
+          'POINT(37.5238673 127.0543277)',
+        4326
         ),
         naver_spot_id: '11583207',
         review_count: 507,
         review_score: 4.29,
+      },
+      {
+        name: '안다즈 서울강남',
+        address: '서울 강남구 신사동 논현로 854',
+        tel: '02-2193-1234',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5255774 127.0289046)',
+        4326
+        ),
+        naver_spot_id: '1848029285',
+        review_count: 1,
+        review_score: 4.44,
       },
       {
         name: '파크 하얏트 서울',
@@ -155,7 +166,8 @@ module.exports = {
         tel: '0507-1442-1234',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0641468 37.5086243)'
+          'POINT(37.5086243 127.0641468)',
+        4326
         ),
         naver_spot_id: '11728211',
         review_count: 963,
@@ -167,10 +179,11 @@ module.exports = {
         tel: '02-6474-5000',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.064558 37.5088358)'
+          'POINT(37.5088358 127.064558)',
+        4326
         ),
         naver_spot_id: '1071743467',
-        review_count: 893,
+        review_count: 894,
         review_score: 4.46,
       },
       {
@@ -179,7 +192,8 @@ module.exports = {
         tel: '0507-1353-7013',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0579973 37.5109812)'
+          'POINT(37.5109812 127.0579973)',
+        4326
         ),
         naver_spot_id: '12309433',
         review_count: 644,
@@ -191,7 +205,8 @@ module.exports = {
         tel: '02-2011-1000',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0516501 37.5057154)'
+          'POINT(37.5057154 127.0516501)',
+        4326
         ),
         naver_spot_id: '1536938247',
         review_count: 931,
@@ -203,7 +218,8 @@ module.exports = {
         tel: '02-3017-5003',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.024711 37.5177059)'
+          'POINT(37.5177059 127.024711)',
+        4326
         ),
         naver_spot_id: '1507543905',
         review_count: 37,
@@ -215,10 +231,11 @@ module.exports = {
         tel: '02-557-1221',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0310561 37.5058727)'
+          'POINT(37.5058727 127.0310561)',
+        4326
         ),
         naver_spot_id: '11658929',
-        review_count: 228,
+        review_count: 229,
         review_score: 4.29,
       },
       {
@@ -227,7 +244,8 @@ module.exports = {
         tel: '02-3011-8888',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.057088 37.505102)'
+          'POINT(37.505102 127.057088)',
+        4326
         ),
         naver_spot_id: '11569344',
         review_count: 109,
@@ -239,7 +257,8 @@ module.exports = {
         tel: '02-2050-6000',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0355647 37.5012691)'
+          'POINT(37.5012691 127.0355647)',
+        4326
         ),
         naver_spot_id: '1727726600',
         review_count: 198,
@@ -251,7 +270,8 @@ module.exports = {
         tel: '02-740-5000',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0491089 37.5030264)'
+          'POINT(37.5030264 127.0491089)',
+        4326
         ),
         naver_spot_id: '1577293666',
         review_count: 261,
@@ -263,7 +283,8 @@ module.exports = {
         tel: '0507-1427-9037',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0284974 37.5203178)'
+          'POINT(37.5203178 127.0284974)',
+        4326
         ),
         naver_spot_id: '1146070872',
         review_count: 173,
@@ -275,7 +296,8 @@ module.exports = {
         tel: '02-542-2391',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0252452 37.5188922)'
+          'POINT(37.5188922 127.0252452)',
+        4326
         ),
         naver_spot_id: '1100956876',
         review_count: 346,
@@ -287,7 +309,8 @@ module.exports = {
         tel: '0507-1487-9001',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0600186 37.5155895)'
+          'POINT(37.5155895 127.0600186)',
+        4326
         ),
         naver_spot_id: '1245880236',
         review_count: 243,
@@ -299,23 +322,12 @@ module.exports = {
         tel: '0507-1441-9500',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0315038 37.5068952)'
+          'POINT(37.5068952 127.0315038)',
+        4326
         ),
         naver_spot_id: '37182405',
         review_count: 580,
         review_score: 4.26,
-      },
-      {
-        name: '베스트웨스턴 프리미어 강남호텔',
-        address: '서울 강남구 논현동 봉은사로 139 베스트웨스턴 강남호텔',
-        tel: '02-6474-2000',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(127.0298082 37.506397)'
-        ),
-        naver_spot_id: '11655597',
-        review_count: 61,
-        review_score: 4.25,
       },
       {
         name: '호텔 페이토 삼성',
@@ -323,11 +335,25 @@ module.exports = {
         tel: '02-6936-9703',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0587107 37.5084491)'
+          'POINT(37.5084491 127.0587107)',
+        4326
         ),
         naver_spot_id: '37244057',
         review_count: 217,
         review_score: 4.34,
+      },
+      {
+        name: '베스트웨스턴 프리미어 강남호텔',
+        address: '서울 강남구 논현동 봉은사로 139 베스트웨스턴 강남호텔',
+        tel: '02-6474-2000',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.506397 127.0298082)',
+        4326
+        ),
+        naver_spot_id: '11655597',
+        review_count: 61,
+        review_score: 4.25,
       },
       {
         name: '알로프트 서울 강남',
@@ -335,7 +361,8 @@ module.exports = {
         tel: '0507-1441-9702',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0557611 37.5237282)'
+          'POINT(37.5237282 127.0557611)',
+        4326
         ),
         naver_spot_id: '35438508',
         review_count: 279,
@@ -347,7 +374,8 @@ module.exports = {
         tel: '02-553-6655',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.039844 37.502966)'
+          'POINT(37.502966 127.039844)',
+        4326
         ),
         naver_spot_id: '36640336',
         review_count: 48,
@@ -359,7 +387,8 @@ module.exports = {
         tel: '02-508-6247',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.038775 37.5024918)'
+          'POINT(37.5024918 127.038775)',
+        4326
         ),
         naver_spot_id: '1333454053',
         review_count: 88,
@@ -371,7 +400,8 @@ module.exports = {
         tel: '02-6711-9000',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0194875 37.5221247)'
+          'POINT(37.5221247 127.0194875)',
+        4326
         ),
         naver_spot_id: '20127347',
         review_count: 156,
@@ -383,23 +413,12 @@ module.exports = {
         tel: '0507-1498-0021',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0389983 37.5008392)'
+          'POINT(37.5008392 127.0389983)',
+        4326
         ),
         naver_spot_id: '1071776268',
         review_count: 35,
         review_score: null,
-      },
-      {
-        name: '호텔선샤인 서울',
-        address: '서울 강남구 신사동 도산대로 205 선샤인 관광호텔',
-        tel: '02-548-8222',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(127.0288468 37.520626)'
-        ),
-        naver_spot_id: '11595764',
-        review_count: 146,
-        review_score: 4.35,
       },
       {
         name: '화이트 린넨 하우스',
@@ -407,23 +426,25 @@ module.exports = {
         tel: '0507-1364-9069',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0252987 37.5177535)'
+          'POINT(37.5177535 127.0252987)',
+        4326
         ),
         naver_spot_id: '1520173510',
         review_count: 481,
         review_score: 5,
       },
       {
-        name: '호텔컬리넌 역삼',
-        address: '서울 강남구 역삼동 언주로87길 11',
-        tel: '02-562-3520',
+        name: '호텔선샤인 서울',
+        address: '서울 강남구 신사동 도산대로 205 선샤인 관광호텔',
+        tel: '02-548-8222',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0420955 37.501364)'
+          'POINT(37.520626 127.0288468)',
+        4326
         ),
-        naver_spot_id: '38642535',
-        review_count: 44,
-        review_score: 4.57,
+        naver_spot_id: '11595764',
+        review_count: 146,
+        review_score: 4.35,
       },
       {
         name: '호텔 크레센도 서울',
@@ -431,7 +452,8 @@ module.exports = {
         tel: '0507-1370-8800',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0469875 37.5108166)'
+          'POINT(37.5108166 127.0469875)',
+        4326
         ),
         naver_spot_id: '1986144087',
         review_count: 126,
@@ -443,23 +465,12 @@ module.exports = {
         tel: '0507-1446-4000',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0258988 37.5052828)'
+          'POINT(37.5052828 127.0258988)',
+        4326
         ),
         naver_spot_id: '37072605',
         review_count: 330,
         review_score: 4.35,
-      },
-      {
-        name: '에이든 바이 베스트웨스턴 청담',
-        address: '서울 강남구 논현동 도산대로 216',
-        tel: '02-6711-1234',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(127.0304852 37.5200753)'
-        ),
-        naver_spot_id: '1206416222',
-        review_count: 145,
-        review_score: 4.3,
       },
       {
         name: '오월호텔',
@@ -467,11 +478,38 @@ module.exports = {
         tel: '02-557-5001',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.041063 37.5005806)'
+          'POINT(37.5005806 127.041063)',
+        4326
         ),
         naver_spot_id: '1927343001',
         review_count: 74,
         review_score: 4.43,
+      },
+      {
+        name: '호텔컬리넌 역삼',
+        address: '서울 강남구 역삼동 언주로87길 11',
+        tel: '02-562-3520',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.501364 127.0420955)',
+        4326
+        ),
+        naver_spot_id: '38642535',
+        review_count: 44,
+        review_score: 4.57,
+      },
+      {
+        name: '에이든 바이 베스트웨스턴 청담',
+        address: '서울 강남구 논현동 도산대로 216',
+        tel: '02-6711-1234',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5200753 127.0304852)',
+        4326
+        ),
+        naver_spot_id: '1206416222',
+        review_count: 145,
+        review_score: 4.3,
       },
       {
         name: '호텔엔트라',
@@ -479,7 +517,8 @@ module.exports = {
         tel: '02-500-1500',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0484962 37.5240505)'
+          'POINT(37.5240505 127.0484962)',
+        4326
         ),
         naver_spot_id: '38703748',
         review_count: 190,
@@ -491,7 +530,8 @@ module.exports = {
         tel: '1644-3184',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0428374 37.5033582)'
+          'POINT(37.5033582 127.0428374)',
+        4326
         ),
         naver_spot_id: '200749713',
         review_count: 29,
@@ -503,7 +543,8 @@ module.exports = {
         tel: '02-2058-1000',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.04667 37.4761992)'
+          'POINT(37.4761992 127.04667)',
+        4326
         ),
         naver_spot_id: '35849267',
         review_count: 66,
@@ -515,7 +556,8 @@ module.exports = {
         tel: '0507-1442-8025',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0402862 37.5028452)'
+          'POINT(37.5028452 127.0402862)',
+        4326
         ),
         naver_spot_id: '1208859093',
         review_count: 19,
@@ -527,7 +569,8 @@ module.exports = {
         tel: '0507-1422-4900',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0418435 37.5016924)'
+          'POINT(37.5016924 127.0418435)',
+        4326
         ),
         naver_spot_id: '19449251',
         review_count: 66,
@@ -539,7 +582,8 @@ module.exports = {
         tel: '02-553-6333',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0396515 37.5010764)'
+          'POINT(37.5010764 127.0396515)',
+        4326
         ),
         naver_spot_id: '38526230',
         review_count: 29,
@@ -551,7 +595,8 @@ module.exports = {
         tel: '0507-1378-5791',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0515774 37.5061671)'
+          'POINT(37.5061671 127.0515774)',
+        4326
         ),
         naver_spot_id: '1978611306',
         review_count: 0,
@@ -563,7 +608,8 @@ module.exports = {
         tel: '02-517-8833',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0293181 37.5178459)'
+          'POINT(37.5178459 127.0293181)',
+        4326
         ),
         naver_spot_id: '1260749795',
         review_count: 118,
@@ -575,7 +621,8 @@ module.exports = {
         tel: '02-568-6200',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0354923 37.499391)'
+          'POINT(37.499391 127.0354923)',
+        4326
         ),
         naver_spot_id: '39116941',
         review_count: 92,
@@ -587,23 +634,12 @@ module.exports = {
         tel: '0507-1318-4920',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0384825 37.5024019)'
+          'POINT(37.5024019 127.0384825)',
+        4326
         ),
         naver_spot_id: '1086668480',
         review_count: 174,
         review_score: 4.77,
-      },
-      {
-        name: '마리 호텔',
-        address: '서울 강남구 역삼동 언주로87길 10',
-        tel: '0507-1493-0331',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(127.0420546 37.5015951)'
-        ),
-        naver_spot_id: '20585501',
-        review_count: 13,
-        review_score: 4.28,
       },
       {
         name: '호텔더디자이너스 리즈스윗 역삼',
@@ -611,11 +647,25 @@ module.exports = {
         tel: '02-501-3171',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0396283 37.5029241)'
+          'POINT(37.5029241 127.0396283)',
+        4326
         ),
         naver_spot_id: '1739442740',
         review_count: 22,
         review_score: null,
+      },
+      {
+        name: '마리 호텔',
+        address: '서울 강남구 역삼동 언주로87길 10',
+        tel: '0507-1493-0331',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5015951 127.0420546)',
+        4326
+        ),
+        naver_spot_id: '20585501',
+        review_count: 13,
+        review_score: 4.28,
       }
     ];
 
@@ -693,25 +743,6 @@ module.exports = {
       ]);
     }
 
-    // 그랜드 머큐어 임피리얼 팰리스 서울 강남 이미지
-    const existingImages_36170631 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['36170631'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_36170631[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '36170631' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20241206_258/1733467446894qbA5D_JPEG/%BF%DC%B0%FC%BB%E7%C1%F8.jpg',
-        }
-      ]);
-    }
-
     // 도미인 서울 강남 이미지
     const existingImages_578893981 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -727,6 +758,25 @@ module.exports = {
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '578893981' LIMIT 1)`),
           image_url: 'https://ldb-phinf.pstatic.net/20241108_61/1731045600400QsDCA_PNG/%BD%BA%C5%A9%B8%B0%BC%A6_2024-11-08_%BF%C0%C8%C4_2.59.43.png',
+        }
+      ]);
+    }
+
+    // 그랜드 머큐어 임피리얼 팰리스 서울 강남 이미지
+    const existingImages_36170631 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['36170631'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_36170631[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '36170631' LIMIT 1)`),
+          image_url: 'https://ldb-phinf.pstatic.net/20241206_258/1733467446894qbA5D_JPEG/%BF%DC%B0%FC%BB%E7%C1%F8.jpg',
         }
       ]);
     }
@@ -807,25 +857,6 @@ module.exports = {
       ]);
     }
 
-    // 안다즈 서울강남 이미지
-    const existingImages_1848029285 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['1848029285'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_1848029285[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1848029285' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20230117_74/1673940511012LzkhY_JPEG/Andaz-Seoul-Gangnam-Exterior-Entrance.jpg',
-        }
-      ]);
-    }
-
     // 호텔리베라 청담 이미지
     const existingImages_11583207 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -841,6 +872,25 @@ module.exports = {
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11583207' LIMIT 1)`),
           image_url: 'https://ldb-phinf.pstatic.net/20210510_298/1620629369917bwS5C_JPEG/%C1%D6%B0%E6.jpg',
+        }
+      ]);
+    }
+
+    // 안다즈 서울강남 이미지
+    const existingImages_1848029285 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['1848029285'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_1848029285[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1848029285' LIMIT 1)`),
+          image_url: 'https://ldb-phinf.pstatic.net/20230117_74/1673940511012LzkhY_JPEG/Andaz-Seoul-Gangnam-Exterior-Entrance.jpg',
         }
       ]);
     }
@@ -1092,25 +1142,6 @@ module.exports = {
       ]);
     }
 
-    // 베스트웨스턴 프리미어 강남호텔 이미지
-    const existingImages_11655597 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['11655597'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_11655597[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11655597' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20240814_83/1723599823125AyX3f_JPEG/%C8%A3%C5%DA_%C1%A4%B8%E9%BB%E7%C1%F8%28Full%29.jpg',
-        }
-      ]);
-    }
-
     // 호텔 페이토 삼성 이미지
     const existingImages_37244057 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -1126,6 +1157,25 @@ module.exports = {
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '37244057' LIMIT 1)`),
           image_url: 'https://ldb-phinf.pstatic.net/20250401_135/1743474539935TBc8b_JPEG/%C8%A3%C5%DA_%C6%E4%C0%CC%C5%E4_%BB%EF%BC%BA-%BF%DC%B0%FC.jpg',
+        }
+      ]);
+    }
+
+    // 베스트웨스턴 프리미어 강남호텔 이미지
+    const existingImages_11655597 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['11655597'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_11655597[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11655597' LIMIT 1)`),
+          image_url: 'https://ldb-phinf.pstatic.net/20240814_83/1723599823125AyX3f_JPEG/%C8%A3%C5%DA_%C1%A4%B8%E9%BB%E7%C1%F8%28Full%29.jpg',
         }
       ]);
     }
@@ -1225,25 +1275,6 @@ module.exports = {
       ]);
     }
 
-    // 호텔선샤인 서울 이미지
-    const existingImages_11595764 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['11595764'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_11595764[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11595764' LIMIT 1)`),
-          image_url: 'https://naverbooking-phinf.pstatic.net/20221021_34/166633813882154Pwi_JPEG/%BC%B1%BB%FE%C0%CE%BD%BA%C0%A7%C6%AE2.jpg',
-        }
-      ]);
-    }
-
     // 화이트 린넨 하우스 이미지
     const existingImages_1520173510 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -1263,21 +1294,21 @@ module.exports = {
       ]);
     }
 
-    // 호텔컬리넌 역삼 이미지
-    const existingImages_38642535 = await queryInterface.sequelize.query(
+    // 호텔선샤인 서울 이미지
+    const existingImages_11595764 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['38642535'],
+        replacements: ['11595764'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
 
-    if (existingImages_38642535[0].count === 0) {
+    if (existingImages_11595764[0].count === 0) {
       // 새 이미지 추가
       spotImgData.push(...[
         {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '38642535' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20200821_192/15979882321719Qlq5_JPEG/CZ9A6381.JPG',
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11595764' LIMIT 1)`),
+          image_url: 'https://naverbooking-phinf.pstatic.net/20221021_34/166633813882154Pwi_JPEG/%BC%B1%BB%FE%C0%CE%BD%BA%C0%A7%C6%AE2.jpg',
         }
       ]);
     }
@@ -1320,25 +1351,6 @@ module.exports = {
       ]);
     }
 
-    // 에이든 바이 베스트웨스턴 청담 이미지
-    const existingImages_1206416222 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['1206416222'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_1206416222[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1206416222' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20200811_207/1597133507532x0OJR_JPEG/cvOwbi5RmWCJ6AMlqkj1LYTB.jpg',
-        }
-      ]);
-    }
-
     // 오월호텔 이미지
     const existingImages_1927343001 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -1354,6 +1366,44 @@ module.exports = {
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1927343001' LIMIT 1)`),
           image_url: 'https://ldb-phinf.pstatic.net/20181121_192/1542786631357s2Q32_JPEG/yBVxDV8oIL4exF5-eKdTjmwm.jpeg.jpg',
+        }
+      ]);
+    }
+
+    // 호텔컬리넌 역삼 이미지
+    const existingImages_38642535 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['38642535'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_38642535[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '38642535' LIMIT 1)`),
+          image_url: 'https://ldb-phinf.pstatic.net/20200821_192/15979882321719Qlq5_JPEG/CZ9A6381.JPG',
+        }
+      ]);
+    }
+
+    // 에이든 바이 베스트웨스턴 청담 이미지
+    const existingImages_1206416222 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['1206416222'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_1206416222[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1206416222' LIMIT 1)`),
+          image_url: 'https://ldb-phinf.pstatic.net/20200811_207/1597133507532x0OJR_JPEG/cvOwbi5RmWCJ6AMlqkj1LYTB.jpg',
         }
       ]);
     }
@@ -1510,25 +1560,6 @@ module.exports = {
       ]);
     }
 
-    // 마리 호텔 이미지
-    const existingImages_20585501 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['20585501'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_20585501[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '20585501' LIMIT 1)`),
-          image_url: 'https://naverbooking-phinf.pstatic.net/20230327_252/1679920557772uB66s_JPEG/%BD%BA%C0%A7%C6%AE1.jpg',
-        }
-      ]);
-    }
-
     // 호텔더디자이너스 리즈스윗 역삼 이미지
     const existingImages_1739442740 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -1544,6 +1575,25 @@ module.exports = {
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1739442740' LIMIT 1)`),
           image_url: 'https://ldb-phinf.pstatic.net/20250218_77/1739840670359SDFek_PNG/003.png',
+        }
+      ]);
+    }
+
+    // 마리 호텔 이미지
+    const existingImages_20585501 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['20585501'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_20585501[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '20585501' LIMIT 1)`),
+          image_url: 'https://naverbooking-phinf.pstatic.net/20230327_252/1679920557772uB66s_JPEG/%BD%BA%C0%A7%C6%AE1.jpg',
         }
       ]);
     }
@@ -1630,31 +1680,6 @@ module.exports = {
       }
     }
 
-    // 그랜드 머큐어 임피리얼 팰리스 서울 강남 카테고리 관계
-    const existingCategories_36170631 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['36170631'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_36170631 = new Set(existingCategories_36170631.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_36170631 = [...new Set([
-      '숙소'
-    ])];
-
-    for (const category of uniqueCategories_36170631) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_36170631.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '36170631' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
     // 도미인 서울 강남 카테고리 관계
     const existingCategories_578893981 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -1675,6 +1700,31 @@ module.exports = {
       if (categoryId[category] && !existingCategoryIds_578893981.has(categoryId[category])) {
         spotCategoryRelationData.push({
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '578893981' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 그랜드 머큐어 임피리얼 팰리스 서울 강남 카테고리 관계
+    const existingCategories_36170631 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['36170631'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_36170631 = new Set(existingCategories_36170631.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_36170631 = [...new Set([
+      '숙소'
+    ])];
+
+    for (const category of uniqueCategories_36170631) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_36170631.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '36170631' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -1780,31 +1830,6 @@ module.exports = {
       }
     }
 
-    // 안다즈 서울강남 카테고리 관계
-    const existingCategories_1848029285 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['1848029285'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_1848029285 = new Set(existingCategories_1848029285.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_1848029285 = [...new Set([
-      '숙소'
-    ])];
-
-    for (const category of uniqueCategories_1848029285) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_1848029285.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1848029285' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
     // 호텔리베라 청담 카테고리 관계
     const existingCategories_11583207 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -1825,6 +1850,31 @@ module.exports = {
       if (categoryId[category] && !existingCategoryIds_11583207.has(categoryId[category])) {
         spotCategoryRelationData.push({
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11583207' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 안다즈 서울강남 카테고리 관계
+    const existingCategories_1848029285 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['1848029285'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_1848029285 = new Set(existingCategories_1848029285.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_1848029285 = [...new Set([
+      '숙소'
+    ])];
+
+    for (const category of uniqueCategories_1848029285) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_1848029285.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1848029285' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -2155,31 +2205,6 @@ module.exports = {
       }
     }
 
-    // 베스트웨스턴 프리미어 강남호텔 카테고리 관계
-    const existingCategories_11655597 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['11655597'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_11655597 = new Set(existingCategories_11655597.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_11655597 = [...new Set([
-      '숙소'
-    ])];
-
-    for (const category of uniqueCategories_11655597) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_11655597.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11655597' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
     // 호텔 페이토 삼성 카테고리 관계
     const existingCategories_37244057 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -2200,6 +2225,31 @@ module.exports = {
       if (categoryId[category] && !existingCategoryIds_37244057.has(categoryId[category])) {
         spotCategoryRelationData.push({
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '37244057' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 베스트웨스턴 프리미어 강남호텔 카테고리 관계
+    const existingCategories_11655597 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['11655597'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_11655597 = new Set(existingCategories_11655597.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_11655597 = [...new Set([
+      '숙소'
+    ])];
+
+    for (const category of uniqueCategories_11655597) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_11655597.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11655597' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -2330,31 +2380,6 @@ module.exports = {
       }
     }
 
-    // 호텔선샤인 서울 카테고리 관계
-    const existingCategories_11595764 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['11595764'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_11595764 = new Set(existingCategories_11595764.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_11595764 = [...new Set([
-      '숙소'
-    ])];
-
-    for (const category of uniqueCategories_11595764) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_11595764.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11595764' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
     // 화이트 린넨 하우스 카테고리 관계
     const existingCategories_1520173510 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -2380,26 +2405,26 @@ module.exports = {
       }
     }
 
-    // 호텔컬리넌 역삼 카테고리 관계
-    const existingCategories_38642535 = await queryInterface.sequelize.query(
+    // 호텔선샤인 서울 카테고리 관계
+    const existingCategories_11595764 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['38642535'],
+        replacements: ['11595764'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
-    const existingCategoryIds_38642535 = new Set(existingCategories_38642535.map(cat => cat.spot_category_id));
+    const existingCategoryIds_11595764 = new Set(existingCategories_11595764.map(cat => cat.spot_category_id));
 
     // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_38642535 = [...new Set([
+    const uniqueCategories_11595764 = [...new Set([
       '숙소'
     ])];
 
-    for (const category of uniqueCategories_38642535) {
+    for (const category of uniqueCategories_11595764) {
       const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_38642535.has(categoryId[category])) {
+      if (categoryId[category] && !existingCategoryIds_11595764.has(categoryId[category])) {
         spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '38642535' LIMIT 1)`),
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11595764' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -2455,31 +2480,6 @@ module.exports = {
       }
     }
 
-    // 에이든 바이 베스트웨스턴 청담 카테고리 관계
-    const existingCategories_1206416222 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['1206416222'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_1206416222 = new Set(existingCategories_1206416222.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_1206416222 = [...new Set([
-      '숙소'
-    ])];
-
-    for (const category of uniqueCategories_1206416222) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_1206416222.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1206416222' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
     // 오월호텔 카테고리 관계
     const existingCategories_1927343001 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -2500,6 +2500,56 @@ module.exports = {
       if (categoryId[category] && !existingCategoryIds_1927343001.has(categoryId[category])) {
         spotCategoryRelationData.push({
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1927343001' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 호텔컬리넌 역삼 카테고리 관계
+    const existingCategories_38642535 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['38642535'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_38642535 = new Set(existingCategories_38642535.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_38642535 = [...new Set([
+      '숙소'
+    ])];
+
+    for (const category of uniqueCategories_38642535) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_38642535.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '38642535' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 에이든 바이 베스트웨스턴 청담 카테고리 관계
+    const existingCategories_1206416222 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['1206416222'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_1206416222 = new Set(existingCategories_1206416222.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_1206416222 = [...new Set([
+      '숙소'
+    ])];
+
+    for (const category of uniqueCategories_1206416222) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_1206416222.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1206416222' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -2755,31 +2805,6 @@ module.exports = {
       }
     }
 
-    // 마리 호텔 카테고리 관계
-    const existingCategories_20585501 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['20585501'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_20585501 = new Set(existingCategories_20585501.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_20585501 = [...new Set([
-      '숙소'
-    ])];
-
-    for (const category of uniqueCategories_20585501) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_20585501.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '20585501' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
     // 호텔더디자이너스 리즈스윗 역삼 카테고리 관계
     const existingCategories_1739442740 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -2800,6 +2825,31 @@ module.exports = {
       if (categoryId[category] && !existingCategoryIds_1739442740.has(categoryId[category])) {
         spotCategoryRelationData.push({
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1739442740' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 마리 호텔 카테고리 관계
+    const existingCategories_20585501 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['20585501'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_20585501 = new Set(existingCategories_20585501.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_20585501 = [...new Set([
+      '숙소'
+    ])];
+
+    for (const category of uniqueCategories_20585501) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_20585501.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '20585501' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
