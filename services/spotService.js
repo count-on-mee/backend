@@ -1,4 +1,4 @@
-const { Spot, SpotCategory, SpotImg, UserSpot } = require('../models');
+const { Spot, SpotCategory, SpotImg, SpotScrap } = require('../models');
 const { literal } = require('sequelize');
 
 const calculateRadius = (zoomLevel) => {
@@ -37,10 +37,10 @@ exports.getSpots = async (userId, lat, lng, zoom) => {
       ...(userId
         ? [
             {
-              model: UserSpot,
-              as: 'userSpots',
+              model: SpotScrap,
+              as: 'spotScraps',
               attributes: ['userId'],
-              where: { userId },
+              where: { userId, isDeleted: false },
               required: false,
             },
           ]
