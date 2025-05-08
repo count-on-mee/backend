@@ -1,6 +1,5 @@
 const userService = require('../services/userService');
 const { UserDto } = require('../dtos');
-const { S3Uploader } = require('../utils');
 
 exports.getUser = async (req, res) => {
   try {
