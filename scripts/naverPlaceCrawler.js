@@ -212,7 +212,9 @@ class NaverPlaceCrawler {
                 longitude: parseFloat(data.x),
                 latitude: parseFloat(data.y),
               },
-              address: data.commonAddress + ' ' + data.roadAddress,
+              address:
+                data.commonAddress +
+                (data.roadAddress ? ' ' + data.roadAddress : ''),
               tel: data.phone || data.virtualPhone,
               reviewCount: parseInt(data.visitorReviewCount) || 0,
               reviewScore: data.visitorReviewScore || null,

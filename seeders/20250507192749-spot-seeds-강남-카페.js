@@ -175,7 +175,7 @@ module.exports = {
       },
       {
         name: 'VIEW376',
-        address: '서울 강남구 압구정동 null',
+        address: '서울 강남구 압구정동',
         tel: '0507-1387-7941',
         location: Sequelize.fn(
           'ST_GeomFromText',

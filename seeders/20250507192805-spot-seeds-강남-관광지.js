@@ -55,7 +55,7 @@ module.exports = {
       },
       {
         name: '양재천',
-        address: '서울 강남구 대치동 null',
+        address: '서울 강남구 대치동',
         tel: '02-3423-6255',
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -67,7 +67,7 @@ module.exports = {
       },
       {
         name: '가로수길',
-        address: '서울 강남구 신사동 null',
+        address: '서울 강남구 신사동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -115,7 +115,7 @@ module.exports = {
       },
       {
         name: '대모산',
-        address: '서울 강남구 개포동 null',
+        address: '서울 강남구 개포동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -139,7 +139,7 @@ module.exports = {
       },
       {
         name: '압구정로데오거리',
-        address: '서울 강남구 신사동 null',
+        address: '서울 강남구 신사동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -175,7 +175,7 @@ module.exports = {
       },
       {
         name: '마루공원',
-        address: '서울 강남구 일원동 null',
+        address: '서울 강남구 일원동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -187,7 +187,7 @@ module.exports = {
       },
       {
         name: '율현공원',
-        address: '서울 강남구 율현동 null',
+        address: '서울 강남구 율현동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -199,7 +199,7 @@ module.exports = {
       },
       {
         name: '대치유수지체육공원',
-        address: '서울 강남구 대치동 null',
+        address: '서울 강남구 대치동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -223,7 +223,7 @@ module.exports = {
       },
       {
         name: '일원에코파크',
-        address: '서울 강남구 일원동 null',
+        address: '서울 강남구 일원동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -247,7 +247,7 @@ module.exports = {
       },
       {
         name: '청담근린공원',
-        address: '서울 강남구 청담동 null',
+        address: '서울 강남구 청담동',
         tel: '02-3423-6245',
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -259,7 +259,7 @@ module.exports = {
       },
       {
         name: '도곡공원',
-        address: '서울 강남구 도곡동 null',
+        address: '서울 강남구 도곡동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -319,7 +319,7 @@ module.exports = {
       },
       {
         name: '매봉산',
-        address: '서울 강남구 도곡동 null',
+        address: '서울 강남구 도곡동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -343,7 +343,7 @@ module.exports = {
       },
       {
         name: '논현동가구거리',
-        address: '서울 강남구 논현동 null',
+        address: '서울 강남구 논현동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -367,7 +367,7 @@ module.exports = {
       },
       {
         name: '청담동명품거리',
-        address: '서울 강남구 청담동 null',
+        address: '서울 강남구 청담동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -403,7 +403,7 @@ module.exports = {
       },
       {
         name: '대모산숲속야생화원',
-        address: '서울 강남구 일원동 null',
+        address: '서울 강남구 일원동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -439,7 +439,7 @@ module.exports = {
       },
       {
         name: '청담배수지공원',
-        address: '서울 강남구 삼성동 null',
+        address: '서울 강남구 삼성동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -463,7 +463,7 @@ module.exports = {
       },
       {
         name: '논현동먹자골목',
-        address: '서울 강남구 논현동 null',
+        address: '서울 강남구 논현동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -475,7 +475,7 @@ module.exports = {
       },
       {
         name: '대모산도시자연공원',
-        address: '서울 강남구 일원동 null',
+        address: '서울 강남구 일원동',
         tel: '02-2104-1912',
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -523,7 +523,7 @@ module.exports = {
       },
       {
         name: '논현까치공원',
-        address: '서울 강남구 논현동 null',
+        address: '서울 강남구 논현동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -535,7 +535,7 @@ module.exports = {
       },
       {
         name: '은곡마을공원',
-        address: '서울 강남구 세곡동 null',
+        address: '서울 강남구 세곡동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -559,7 +559,7 @@ module.exports = {
       },
       {
         name: '율현공원',
-        address: '서울 강남구 율현동 null',
+        address: '서울 강남구 율현동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -583,7 +583,7 @@ module.exports = {
       },
       {
         name: '대청공원',
-        address: '서울 강남구 일원동 null',
+        address: '서울 강남구 일원동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -595,7 +595,7 @@ module.exports = {
       },
       {
         name: '세천공원',
-        address: '서울 강남구 세곡동 null',
+        address: '서울 강남구 세곡동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',

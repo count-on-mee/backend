@@ -19,7 +19,7 @@ module.exports = {
     const spotData = [
       {
         name: '봉은사선불당',
-        address: '서울 강남구 삼성동 null',
+        address: '서울 강남구 삼성동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -31,7 +31,7 @@ module.exports = {
       },
       {
         name: '안중근의사유묵',
-        address: '서울 강남구 청담동 null',
+        address: '서울 강남구 청담동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -43,7 +43,7 @@ module.exports = {
       },
       {
         name: '자수가사',
-        address: '서울 강남구 논현동 null',
+        address: '서울 강남구 논현동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -67,7 +67,7 @@ module.exports = {
       },
       {
         name: '자수사계분경도',
-        address: '서울 강남구 논현동 null',
+        address: '서울 강남구 논현동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -175,7 +175,7 @@ module.exports = {
       },
       {
         name: '서울석촌동고분군',
-        address: '서울 송파구 석촌동 null',
+        address: '서울 송파구 석촌동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -199,7 +199,7 @@ module.exports = {
       },
       {
         name: '서울방이동고분군',
-        address: '서울 송파구 방이동 null',
+        address: '서울 송파구 방이동',
         tel: '02-2147-2800',
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -211,7 +211,7 @@ module.exports = {
       },
       {
         name: '청권사',
-        address: '서울 서초구 방배동 null',
+        address: '서울 서초구 방배동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -223,7 +223,7 @@ module.exports = {
       },
       {
         name: '석촌동백제초기적석총',
-        address: '서울 송파구 석촌동 null',
+        address: '서울 송파구 석촌동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -235,7 +235,7 @@ module.exports = {
       },
       {
         name: '건국대학교 서울캠퍼스도정궁경원당',
-        address: '서울 광진구 화양동 null',
+        address: '서울 광진구 화양동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -247,7 +247,7 @@ module.exports = {
       },
       {
         name: '흥무대왕김유신사당',
-        address: '서울 용산구 보광동 null',
+        address: '서울 용산구 보광동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -259,7 +259,7 @@ module.exports = {
       },
       {
         name: '청권사 부묘소',
-        address: '서울 서초구 방배동 null',
+        address: '서울 서초구 방배동',
         tel: '02-584-3121',
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -283,7 +283,7 @@ module.exports = {
       },
       {
         name: '거창신씨묘역',
-        address: '서울 송파구 오금동 null',
+        address: '서울 송파구 오금동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -295,7 +295,7 @@ module.exports = {
       },
       {
         name: '뚝섬만세운동기념비',
-        address: '서울 성동구 성수동1가 null',
+        address: '서울 성동구 성수동1가',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -319,7 +319,7 @@ module.exports = {
       },
       {
         name: '성남모덕재',
-        address: '성남 수정구 복정동 null',
+        address: '성남 수정구 복정동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -331,7 +331,7 @@ module.exports = {
       },
       {
         name: '문화류씨묘역',
-        address: '서울 송파구 오금동 null',
+        address: '서울 송파구 오금동',
         tel: '02-410-3412',
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -343,7 +343,7 @@ module.exports = {
       },
       {
         name: '몽산화상법어약록',
-        address: '서울 서초구 잠원동 null',
+        address: '서울 서초구 잠원동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -355,7 +355,7 @@ module.exports = {
       },
       {
         name: '장단지',
-        address: '서울 서초구 반포동 null',
+        address: '서울 서초구 반포동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -367,7 +367,7 @@ module.exports = {
       },
       {
         name: '낙안읍지',
-        address: '서울 서초구 반포동 null',
+        address: '서울 서초구 반포동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -379,7 +379,7 @@ module.exports = {
       },
       {
         name: '집어',
-        address: '서울 서초구 반포동 null',
+        address: '서울 서초구 반포동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -391,7 +391,7 @@ module.exports = {
       },
       {
         name: '안중근의사유묵',
-        address: '서울 용산구 한남동 null',
+        address: '서울 용산구 한남동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -403,7 +403,7 @@ module.exports = {
       },
       {
         name: '유합',
-        address: '서울 서초구 반포동 null',
+        address: '서울 서초구 반포동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -415,7 +415,7 @@ module.exports = {
       },
       {
         name: '잡동산이',
-        address: '서울 서초구 반포동 null',
+        address: '서울 서초구 반포동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -427,7 +427,7 @@ module.exports = {
       },
       {
         name: '곡성군읍지',
-        address: '서울 서초구 반포동 null',
+        address: '서울 서초구 반포동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -439,7 +439,7 @@ module.exports = {
       },
       {
         name: '좌간필어',
-        address: '서울 서초구 반포동 null',
+        address: '서울 서초구 반포동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -451,7 +451,7 @@ module.exports = {
       },
       {
         name: '장암일고',
-        address: '서울 서초구 반포동 null',
+        address: '서울 서초구 반포동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -463,7 +463,7 @@ module.exports = {
       },
       {
         name: '하학지남',
-        address: '서울 서초구 반포동 null',
+        address: '서울 서초구 반포동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -475,7 +475,7 @@ module.exports = {
       },
       {
         name: '야은일고',
-        address: '서울 서초구 반포동 null',
+        address: '서울 서초구 반포동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -487,7 +487,7 @@ module.exports = {
       },
       {
         name: '양등시과',
-        address: '서울 서초구 반포동 null',
+        address: '서울 서초구 반포동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -499,7 +499,7 @@ module.exports = {
       },
       {
         name: '필득',
-        address: '서울 서초구 반포동 null',
+        address: '서울 서초구 반포동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -511,7 +511,7 @@ module.exports = {
       },
       {
         name: '신자하외제현유묵',
-        address: '서울 서초구 반포동 null',
+        address: '서울 서초구 반포동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',

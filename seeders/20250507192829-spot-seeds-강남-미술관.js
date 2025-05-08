@@ -235,7 +235,7 @@ module.exports = {
       },
       {
         name: '러브유어디포 강남파빌리온',
-        address: '서울 강남구 수서동 null',
+        address: '서울 강남구 수서동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
