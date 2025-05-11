@@ -9,6 +9,7 @@ class SpotDto {
       spotCategories,
       spotImgs,
       spotScraps,
+      userSpotScrap,
     } = spot;
 
     return {
@@ -22,7 +23,8 @@ class SpotDto {
       tel,
       categories: spotCategories?.map((category) => category.type) || [],
       imgUrls: spotImgs?.map((img) => img.imageUrl) || [],
-      isScraped: Boolean(spotScraps?.length > 0),
+      scrapedCount: spotScraps?.map((scrap) => scrap.userId).length || 0,
+      isScraped: Boolean(userSpotScrap?.userId),
     };
   }
 

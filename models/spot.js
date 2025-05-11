@@ -84,6 +84,12 @@ module.exports = (sequelize, DataTypes) => {
       sourceKey: 'spotId',
       as: 'spotScraps',
     });
+
+    Spot.hasOne(models.SpotScrap, {
+      foreignKey: 'spotId',
+      sourceKey: 'spotId',
+      as: 'userSpotScrap',
+    });
   };
 
   return Spot;
