@@ -74,11 +74,18 @@ exports.getSpots = async (userId, lat, lng, zoom) => {
         as: 'spotImgs',
         attributes: ['imageUrl'],
       },
+      {
+        model: SpotScrap,
+        as: 'spotScraps',
+        attributes: ['userId'],
+        where: { isDeleted: false },
+        required: false,
+      },
       ...(userId
         ? [
             {
               model: SpotScrap,
-              as: 'spotScraps',
+              as: 'userSpotScrap',
               attributes: ['userId'],
               where: { userId, isDeleted: false },
               required: false,
@@ -115,11 +122,18 @@ exports.getSpotById = async (userId, spotId) => {
         as: 'spotImgs',
         attributes: ['imageUrl'],
       },
+      {
+        model: SpotScrap,
+        as: 'spotScraps',
+        attributes: ['userId'],
+        where: { isDeleted: false },
+        required: false,
+      },
       ...(userId
         ? [
             {
               model: SpotScrap,
-              as: 'spotScraps',
+              as: 'userSpotScrap',
               attributes: ['userId'],
               where: { userId, isDeleted: false },
               required: false,
@@ -207,11 +221,18 @@ exports.searchSpots = async (userId, spotName, spotCategories) => {
         as: 'spotImgs',
         attributes: ['imageUrl'],
       },
+      {
+        model: SpotScrap,
+        as: 'spotScraps',
+        attributes: ['userId'],
+        where: { isDeleted: false },
+        required: false,
+      },
       ...(userId
         ? [
             {
               model: SpotScrap,
-              as: 'spotScraps',
+              as: 'userSpotScrap',
               attributes: ['userId'],
               where: { userId, isDeleted: false },
               required: false,
