@@ -7,7 +7,7 @@ class ScrapedSpotDto {
     return {
       spotScrapId,
       spotId,
-      title: name,
+      name,
       address,
       location: {
         lat: location.latitude,

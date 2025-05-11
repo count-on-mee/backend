@@ -13,7 +13,7 @@ class SpotDto {
 
     return {
       spotId,
-      title: name,
+      name,
       address,
       location: {
         lat: location.latitude,

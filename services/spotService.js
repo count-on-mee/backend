@@ -1,4 +1,13 @@
-const { Spot, SpotCategory, SpotImg, SpotScrap } = require('../models');
+const {
+  sequelize,
+  User,
+  Spot,
+  SpotCategory,
+  SpotImg,
+  SpotScrap,
+  SpotReview,
+  SpotReviewImg,
+} = require('../models');
 const { literal } = require('sequelize');
 
 const calculateRadius = (zoomLevel) => {
@@ -15,6 +24,37 @@ const calculateRadius = (zoomLevel) => {
   } else {
     throw new Error('Invalid zoom level');
   }
+};
+
+const getSpotCategoryIds = async (spotCategories) => {
+  let spotCategoryIds = [];
+
+  if (spotCategories && spotCategories.length > 0) {
+    const selectedCategories = await SpotCategory.findAll({
+      where: {
+        type: spotCategories,
+      },
+    });
+
+    spotCategoryIds = selectedCategories.map((cat) => cat.spotCategoryId);
+
+    const complexCultureSpace = selectedCategories.find(
+      (cat) => cat.type === '복합 문화 공간'
+    );
+    if (complexCultureSpace) {
+      const childCategories = await SpotCategory.findAll({
+        where: {
+          parentSpotCategoryId: complexCultureSpace.spotCategoryId,
+        },
+      });
+      spotCategoryIds = [
+        ...spotCategoryIds,
+        ...childCategories.map((cat) => cat.spotCategoryId),
+      ];
+    }
+  }
+
+  return spotCategoryIds;
 };
 
 exports.getSpots = async (userId, lat, lng, zoom) => {
@@ -62,6 +102,7 @@ exports.getSpots = async (userId, lat, lng, zoom) => {
 
 exports.getSpotById = async (userId, spotId) => {
   const spot = await Spot.findByPk(spotId, {
+    attributes: ['spotId', 'name', 'address', 'tel', 'location'],
     include: [
       {
         model: SpotCategory,
@@ -89,4 +130,103 @@ exports.getSpotById = async (userId, spotId) => {
   });
 
   return spot;
+};
+
+exports.createSpotReview = async (userId, spotId, content, reviewImages) => {
+  const transaction = await sequelize.transaction();
+  try {
+    const review = await SpotReview.create(
+      {
+        userId,
+        spotId,
+        content,
+      },
+      { transaction }
+    );
+
+    if (reviewImages && reviewImages.length > 0) {
+      await Promise.all(
+        reviewImages.map((reviewImage) =>
+          SpotReviewImg.create(
+            {
+              spotReviewId: review.spotReviewId,
+              imgUrl: reviewImage.location,
+            },
+            { transaction }
+          )
+        )
+      );
+    }
+
+    await transaction.commit();
+  } catch (error) {
+    await transaction.rollback();
+    throw error;
+  }
+};
+
+exports.getSpotReviewsBySpotId = async (spotId) => {
+  const spotReviews = await SpotReview.findAll({
+    where: { spotId },
+    include: [
+      {
+        model: SpotReviewImg,
+        as: 'spotReviewImgs',
+        attributes: ['imgUrl'],
+      },
+      {
+        model: User,
+        as: 'user',
+        attributes: ['userId', 'nickname', 'profileImgUrl'],
+      },
+    ],
+  });
+
+  return spotReviews;
+};
+
+exports.searchSpots = async (userId, spotName, spotCategories) => {
+  const spotCategoryIds = await getSpotCategoryIds(spotCategories);
+
+  const spots = await Spot.findAll({
+    attributes: ['spotId', 'name', 'address', 'tel', 'location'],
+    include: [
+      {
+        model: SpotCategory,
+        as: 'spotCategories',
+        attributes: ['type'],
+        through: { attributes: [] },
+        ...(spotCategoryIds.length > 0 && {
+          where: {
+            spotCategoryId: spotCategoryIds,
+          },
+        }),
+      },
+      {
+        model: SpotImg,
+        as: 'spotImgs',
+        attributes: ['imageUrl'],
+      },
+      ...(userId
+        ? [
+            {
+              model: SpotScrap,
+              as: 'spotScraps',
+              attributes: ['userId'],
+              where: { userId, isDeleted: false },
+              required: false,
+            },
+          ]
+        : []),
+    ],
+    ...(spotName && {
+      where: {
+        name: {
+          [Op.like]: `%${spotName}%`,
+        },
+      },
+    }),
+  });
+
+  return spots;
 };
