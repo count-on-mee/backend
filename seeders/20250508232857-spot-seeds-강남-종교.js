@@ -3,7 +3,7 @@
 /**
  * 네이버 장소 크롤링으로 생성된 Spot 데이터 시드 파일
  * 검색어: 강남 종교
- * 생성일시: 2025-05-07T10:28:59.959Z
+ * 생성일시: 2025-05-08T14:29:05.116Z
  */
 
 module.exports = {
@@ -23,7 +23,8 @@ module.exports = {
         tel: '0507-1429-4800',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0576546 37.5149197)'
+          'POINT(37.5149197 127.0576546)',
+        4326
         ),
         naver_spot_id: '11664007',
         review_count: 6,
@@ -35,7 +36,8 @@ module.exports = {
         tel: '02-552-8200',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0372499 37.5049892)'
+          'POINT(37.5049892 127.0372499)',
+        4326
         ),
         naver_spot_id: '18579378',
         review_count: 0,
@@ -47,7 +49,8 @@ module.exports = {
         tel: '02-512-9191',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0317454 37.5251035)'
+          'POINT(37.5251035 127.0317454)',
+        4326
         ),
         naver_spot_id: '12095391',
         review_count: 0,
@@ -59,7 +62,8 @@ module.exports = {
         tel: '02-516-5066',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0383938 37.5209227)'
+          'POINT(37.5209227 127.0383938)',
+        4326
         ),
         naver_spot_id: '13124329',
         review_count: 0,
@@ -71,7 +75,8 @@ module.exports = {
         tel: '02-445-4543',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0749125 37.4773763)'
+          'POINT(37.4773763 127.0749125)',
+        4326
         ),
         naver_spot_id: '18537102',
         review_count: 0,
@@ -83,7 +88,8 @@ module.exports = {
         tel: '02-577-5800',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0525916 37.4716779)'
+          'POINT(37.4716779 127.0525916)',
+        4326
         ),
         naver_spot_id: '11737282',
         review_count: 0,
@@ -95,7 +101,8 @@ module.exports = {
         tel: '02-2056-5600',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0256305 37.5244084)'
+          'POINT(37.5244084 127.0256305)',
+        4326
         ),
         naver_spot_id: '12135195',
         review_count: 0,
@@ -107,7 +114,8 @@ module.exports = {
         tel: '02-553-0801',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0417863 37.5004915)'
+          'POINT(37.5004915 127.0417863)',
+        4326
         ),
         naver_spot_id: '13139489',
         review_count: 0,
@@ -119,7 +127,8 @@ module.exports = {
         tel: '02-518-1335',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0272713 37.5172122)'
+          'POINT(37.5172122 127.0272713)',
+        4326
         ),
         naver_spot_id: '32812203',
         review_count: 0,
@@ -131,7 +140,8 @@ module.exports = {
         tel: '02-3447-0750',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0499851 37.5203767)'
+          'POINT(37.5203767 127.0499851)',
+        4326
         ),
         naver_spot_id: '13139942',
         review_count: 0,
@@ -143,21 +153,10 @@ module.exports = {
         tel: '02-3411-8104',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0884056 37.4860481)'
+          'POINT(37.4860481 127.0884056)',
+        4326
         ),
         naver_spot_id: '18850975',
-        review_count: 0,
-        review_score: null,
-      },
-      {
-        name: '천주교수서동성당',
-        address: '서울 강남구 수서동 광평로 199',
-        tel: '02-2226-0231',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(127.0948749 37.4846816)'
-        ),
-        naver_spot_id: '13139318',
         review_count: 0,
         review_score: null,
       },
@@ -167,9 +166,23 @@ module.exports = {
         tel: '02-459-8211',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.1122055 37.4729561)'
+          'POINT(37.4729561 127.1122055)',
+        4326
         ),
         naver_spot_id: '1439475592',
+        review_count: 0,
+        review_score: null,
+      },
+      {
+        name: '천주교수서동성당',
+        address: '서울 강남구 수서동 광평로 199',
+        tel: '02-2226-0231',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.4846816 127.0948749)',
+        4326
+        ),
+        naver_spot_id: '13139318',
         review_count: 0,
         review_score: null,
       },
@@ -179,33 +192,10 @@ module.exports = {
         tel: '02-3469-4600',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0334431 37.4933127)'
+          'POINT(37.4933127 127.0334431)',
+        4326
         ),
         naver_spot_id: '12034730',
-        review_count: 0,
-        review_score: null,
-      },
-      {
-        name: '청운교회',
-        address: '서울 강남구 역삼동 언주로65길 6 교회',
-        tel: '02-569-7001',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(127.0451633 37.4957785)'
-        ),
-        naver_spot_id: '12324933',
-        review_count: 0,
-        review_score: null,
-      },
-      {
-        name: '천주교일원동교회',
-        address: '서울 강남구 개포동 개포로109길 38 일원동천주교회',
-        tel: '02-2226-2291',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(127.0780263 37.494405)'
-        ),
-        naver_spot_id: '11853872',
         review_count: 0,
         review_score: null,
       },
@@ -215,9 +205,36 @@ module.exports = {
         tel: '02-515-1784',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0262966 37.5250899)'
+          'POINT(37.5250899 127.0262966)',
+        4326
         ),
         naver_spot_id: '13139463',
+        review_count: 0,
+        review_score: null,
+      },
+      {
+        name: '천주교일원동교회',
+        address: '서울 강남구 개포동 개포로109길 38 일원동천주교회',
+        tel: '02-2226-2291',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.494405 127.0780263)',
+        4326
+        ),
+        naver_spot_id: '11853872',
+        review_count: 0,
+        review_score: null,
+      },
+      {
+        name: '청운교회',
+        address: '서울 강남구 역삼동 언주로65길 6 교회',
+        tel: '02-569-7001',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.4957785 127.0451633)',
+        4326
+        ),
+        naver_spot_id: '12324933',
         review_count: 0,
         review_score: null,
       },
@@ -227,7 +244,8 @@ module.exports = {
         tel: '02-558-3882',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0621845 37.5051534)'
+          'POINT(37.5051534 127.0621845)',
+        4326
         ),
         naver_spot_id: '11557301',
         review_count: 0,
@@ -239,7 +257,8 @@ module.exports = {
         tel: '02-3462-9191',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0335537 37.488095)'
+          'POINT(37.488095 127.0335537)',
+        4326
         ),
         naver_spot_id: '11613104',
         review_count: 0,
@@ -251,22 +270,11 @@ module.exports = {
         tel: '02-574-4744',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.062853 37.4833063)'
+          'POINT(37.4833063 127.062853)',
+        4326
         ),
         naver_spot_id: '13138240',
         review_count: 3,
-        review_score: null,
-      },
-      {
-        name: '남서울은혜장로교회',
-        address: '서울 강남구 수서동 광평로20길 17',
-        tel: '02-3412-5555',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(127.0872007 37.4824403)'
-        ),
-        naver_spot_id: '12096474',
-        review_count: 0,
         review_score: null,
       },
       {
@@ -275,45 +283,23 @@ module.exports = {
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.1092113 37.4731169)'
+          'POINT(37.4731169 127.1092113)',
+        4326
         ),
         naver_spot_id: '18536306',
         review_count: 0,
         review_score: null,
       },
       {
-        name: '서울영동교회',
-        address: '서울 강남구 논현동 논현로132길 18',
-        tel: '02-544-8001',
+        name: '남서울은혜장로교회',
+        address: '서울 강남구 수서동 광평로20길 17',
+        tel: '02-3412-5555',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.031981 37.5150737)'
+          'POINT(37.4824403 127.0872007)',
+        4326
         ),
-        naver_spot_id: '12412244',
-        review_count: 0,
-        review_score: null,
-      },
-      {
-        name: '감람교회',
-        address: '서울 강남구 역삼동 논현로85길 71 감람교회',
-        tel: '02-557-6515',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(127.0326556 37.4973371)'
-        ),
-        naver_spot_id: '248876907',
-        review_count: 0,
-        review_score: null,
-      },
-      {
-        name: '양재동성당',
-        address: '서울 강남구 도곡동 강남대로48길 14 양재동성당',
-        tel: '02-3462-9981',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(127.0344932 37.486672)'
-        ),
-        naver_spot_id: '13139473',
+        naver_spot_id: '12096474',
         review_count: 0,
         review_score: null,
       },
@@ -323,9 +309,49 @@ module.exports = {
         tel: '02-3463-3801',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0514499 37.4872846)'
+          'POINT(37.4872846 127.0514499)',
+        4326
         ),
         naver_spot_id: '967702484',
+        review_count: 0,
+        review_score: null,
+      },
+      {
+        name: '양재동성당',
+        address: '서울 강남구 도곡동 강남대로48길 14 양재동성당',
+        tel: '02-3462-9981',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.486672 127.0344932)',
+        4326
+        ),
+        naver_spot_id: '13139473',
+        review_count: 0,
+        review_score: null,
+      },
+      {
+        name: '감람교회',
+        address: '서울 강남구 역삼동 논현로85길 71 감람교회',
+        tel: '02-557-6515',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.4973371 127.0326556)',
+        4326
+        ),
+        naver_spot_id: '248876907',
+        review_count: 0,
+        review_score: null,
+      },
+      {
+        name: '서울영동교회',
+        address: '서울 강남구 논현동 논현로132길 18',
+        tel: '02-544-8001',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5150737 127.031981)',
+        4326
+        ),
+        naver_spot_id: '12412244',
         review_count: 0,
         review_score: null,
       },
@@ -335,7 +361,8 @@ module.exports = {
         tel: '02-548-2443',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0318868 37.510292)'
+          'POINT(37.510292 127.0318868)',
+        4326
         ),
         naver_spot_id: '13138504',
         review_count: 0,
@@ -347,21 +374,10 @@ module.exports = {
         tel: '02-541-9241',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.030906 37.5263617)'
+          'POINT(37.5263617 127.030906)',
+        4326
         ),
         naver_spot_id: '13139455',
-        review_count: 0,
-        review_score: null,
-      },
-      {
-        name: '영동중앙교회',
-        address: '서울 강남구 논현동 도산대로24길 8',
-        tel: '02-518-1009',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(127.026293 37.5181674)'
-        ),
-        naver_spot_id: '12310460',
         review_count: 0,
         review_score: null,
       },
@@ -371,21 +387,23 @@ module.exports = {
         tel: '02-562-0195',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0598365 37.497745)'
+          'POINT(37.497745 127.0598365)',
+        4326
         ),
         naver_spot_id: '13032895',
         review_count: 0,
         review_score: null,
       },
       {
-        name: '대치2동성당',
-        address: '서울 강남구 대치동 도곡로 540',
-        tel: '02-565-1994',
+        name: '영동중앙교회',
+        address: '서울 강남구 논현동 도산대로24길 8',
+        tel: '02-518-1009',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0665903 37.5003456)'
+          'POINT(37.5181674 127.026293)',
+        4326
         ),
-        naver_spot_id: '12822367',
+        naver_spot_id: '12310460',
         review_count: 0,
         review_score: null,
       },
@@ -395,9 +413,23 @@ module.exports = {
         tel: '02-3411-9191',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0666853 37.4890021)'
+          'POINT(37.4890021 127.0666853)',
+        4326
         ),
         naver_spot_id: '12087231',
+        review_count: 0,
+        review_score: null,
+      },
+      {
+        name: '대치2동성당',
+        address: '서울 강남구 대치동 도곡로 540',
+        tel: '02-565-1994',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5003456 127.0665903)',
+        4326
+        ),
+        naver_spot_id: '12822367',
         review_count: 0,
         review_score: null,
       },
@@ -407,7 +439,8 @@ module.exports = {
         tel: '02-558-1106',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0613403 37.4965628)'
+          'POINT(37.4965628 127.0613403)',
+        4326
         ),
         naver_spot_id: '12083648',
         review_count: 0,
@@ -419,9 +452,23 @@ module.exports = {
         tel: '0507-1360-7333',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0503693 37.4729219)'
+          'POINT(37.4729219 127.0503693)',
+        4326
         ),
         naver_spot_id: '13375306',
+        review_count: 0,
+        review_score: null,
+      },
+      {
+        name: '천주교삼성동성당',
+        address: '서울 강남구 삼성동 선릉로112길 68',
+        tel: '02-2108-9400',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5124667 127.0492)',
+        4326
+        ),
+        naver_spot_id: '21844814',
         review_count: 0,
         review_score: null,
       },
@@ -431,33 +478,10 @@ module.exports = {
         tel: '02-562-4123',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.055676 37.496911)'
+          'POINT(37.496911 127.055676)',
+        4326
         ),
         naver_spot_id: '11871808',
-        review_count: 2,
-        review_score: null,
-      },
-      {
-        name: '천주교삼성동성당',
-        address: '서울 강남구 삼성동 선릉로112길 68',
-        tel: '02-2108-9400',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(127.0492 37.5124667)'
-        ),
-        naver_spot_id: '21844814',
-        review_count: 0,
-        review_score: null,
-      },
-      {
-        name: '압구정교회',
-        address: '서울 강남구 압구정동 압구정로29길 17 압구정교회',
-        tel: '02-540-4400',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(127.0279176 37.5285078)'
-        ),
-        naver_spot_id: '11568097',
         review_count: 2,
         review_score: null,
       },
@@ -467,45 +491,10 @@ module.exports = {
         tel: '02-572-6104',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0598033 37.4840645)'
+          'POINT(37.4840645 127.0598033)',
+        4326
         ),
         naver_spot_id: '12781446',
-        review_count: 0,
-        review_score: null,
-      },
-      {
-        name: '영동제일교회',
-        address: '서울 강남구 논현동 학동로6길 31',
-        tel: '02-518-5561',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(127.0253809 37.5103352)'
-        ),
-        naver_spot_id: '246317788',
-        review_count: 0,
-        review_score: null,
-      },
-      {
-        name: '원불교 강남교당',
-        address: '서울 강남구 자곡동 자곡로 204-19 원불교강남교당',
-        tel: '0507-1409-9962',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(127.1041626 37.4737527)'
-        ),
-        naver_spot_id: '13015156',
-        review_count: 0,
-        review_score: null,
-      },
-      {
-        name: '임마누엘교회',
-        address: '서울 강남구 율현동 밤고개로23길 7 임마누엘교회',
-        tel: '0507-1381-1918',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(127.1075786 37.4733469)'
-        ),
-        naver_spot_id: '1326142007',
         review_count: 0,
         review_score: null,
       },
@@ -515,9 +504,75 @@ module.exports = {
         tel: '02-511-3212',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.061325 37.5178667)'
+          'POINT(37.5178667 127.061325)',
+        4326
         ),
         naver_spot_id: '19931979',
+        review_count: 0,
+        review_score: null,
+      },
+      {
+        name: '임마누엘교회',
+        address: '서울 강남구 율현동 밤고개로23길 7 임마누엘교회',
+        tel: '0507-1381-1918',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.4733469 127.1075786)',
+        4326
+        ),
+        naver_spot_id: '1326142007',
+        review_count: 0,
+        review_score: null,
+      },
+      {
+        name: '영동제일교회',
+        address: '서울 강남구 논현동 학동로6길 31',
+        tel: '02-518-5561',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5103352 127.0253809)',
+        4326
+        ),
+        naver_spot_id: '246317788',
+        review_count: 0,
+        review_score: null,
+      },
+      {
+        name: '압구정교회',
+        address: '서울 강남구 압구정동 압구정로29길 17 압구정교회',
+        tel: '02-540-4400',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5285078 127.0279176)',
+        4326
+        ),
+        naver_spot_id: '11568097',
+        review_count: 2,
+        review_score: null,
+      },
+      {
+        name: '강남교회',
+        address: '서울 강남구 논현동 언주로121길 5',
+        tel: '02-548-2380',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5115167 127.0353375)',
+        4326
+        ),
+        naver_spot_id: '13446923',
+        review_count: 0,
+        review_score: null,
+      },
+      {
+        name: '원불교 강남교당',
+        address: '서울 강남구 자곡동 자곡로 204-19 원불교강남교당',
+        tel: '0507-1409-9962',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.4737527 127.1041626)',
+        4326
+        ),
+        naver_spot_id: '13015156',
         review_count: 0,
         review_score: null,
       },
@@ -527,33 +582,10 @@ module.exports = {
         tel: '070-4158-3107',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.039592 37.4870246)'
+          'POINT(37.4870246 127.039592)',
+        4326
         ),
         naver_spot_id: '20640735',
-        review_count: 0,
-        review_score: null,
-      },
-      {
-        name: '강남교회',
-        address: '서울 강남구 논현동 언주로121길 5',
-        tel: '02-548-2380',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(127.0353375 37.5115167)'
-        ),
-        naver_spot_id: '13446923',
-        review_count: 0,
-        review_score: null,
-      },
-      {
-        name: '충무성결교회',
-        address: '서울 강남구 대치동 삼성로85길 25',
-        tel: '02-558-1009',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(127.0552282 37.5045783)'
-        ),
-        naver_spot_id: '35155977',
         review_count: 0,
         review_score: null,
       },
@@ -563,9 +595,23 @@ module.exports = {
         tel: '02-451-0620',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0943018 37.4836977)'
+          'POINT(37.4836977 127.0943018)',
+        4326
         ),
         naver_spot_id: '12293619',
+        review_count: 0,
+        review_score: null,
+      },
+      {
+        name: '충무성결교회',
+        address: '서울 강남구 대치동 삼성로85길 25',
+        tel: '02-558-1009',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5045783 127.0552282)',
+        4326
+        ),
+        naver_spot_id: '35155977',
         review_count: 0,
         review_score: null,
       },
@@ -575,21 +621,10 @@ module.exports = {
         tel: '02-501-0691',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0704634 37.4942712)'
+          'POINT(37.4942712 127.0704634)',
+        4326
         ),
         naver_spot_id: '18819591',
-        review_count: 0,
-        review_score: null,
-      },
-      {
-        name: '불교총지종 총지사',
-        address: '서울 강남구 역삼동 도곡로25길 35',
-        tel: '02-552-1081',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(127.0403174 37.4951043)'
-        ),
-        naver_spot_id: '35993223',
         review_count: 0,
         review_score: null,
       },
@@ -599,21 +634,36 @@ module.exports = {
         tel: '02-445-8486',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.1028981 37.4790124)'
+          'POINT(37.4790124 127.1028981)',
+        4326
         ),
         naver_spot_id: '13581899',
         review_count: 1,
         review_score: null,
       },
       {
-        name: '서울남부교회',
-        address: '서울 강남구 삼성동 삼성로118길 8-4',
-        tel: '02-545-2043',
+        name: '불교총지종 총지사',
+        address: '서울 강남구 역삼동 도곡로25길 35',
+        tel: '02-552-1081',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(127.0527829 37.5154185)'
+          'POINT(37.4951043 127.0403174)',
+        4326
         ),
-        naver_spot_id: '13078159',
+        naver_spot_id: '35993223',
+        review_count: 0,
+        review_score: null,
+      },
+      {
+        name: '강남성은교회',
+        address: '서울 강남구 대치동 남부순환로391길 25 강남성은교회',
+        tel: '02-568-8361',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.493521 127.0565865)',
+        4326
+        ),
+        naver_spot_id: '19931837',
         review_count: 0,
         review_score: null,
       }
@@ -826,25 +876,6 @@ module.exports = {
       ]);
     }
 
-    // 천주교수서동성당 이미지
-    const existingImages_13139318 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['13139318'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_13139318[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13139318' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20200206_51/1580985178162geUP6_JPEG/RO4u6GoWwGQlaQHtJKZCCsaF.jpeg.jpg',
-        }
-      ]);
-    }
-
     // 세곡동 성당 이미지
     const existingImages_1439475592 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -860,6 +891,25 @@ module.exports = {
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1439475592' LIMIT 1)`),
           image_url: 'https://ldb-phinf.pstatic.net/20230716_161/1689471486141NXzFn_PNG/%BC%BC%B0%EE%B5%BF%BC%BA%B4%E7_%B3%D7%C0%CC%B9%F6_%BD%C5%B1%D4_%C7%C3%B7%B9%C0%CC%BD%BA_%B5%EE%B7%CF.png',
+        }
+      ]);
+    }
+
+    // 천주교수서동성당 이미지
+    const existingImages_13139318 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['13139318'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_13139318[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13139318' LIMIT 1)`),
+          image_url: 'https://ldb-phinf.pstatic.net/20200206_51/1580985178162geUP6_JPEG/RO4u6GoWwGQlaQHtJKZCCsaF.jpeg.jpg',
         }
       ]);
     }
@@ -883,25 +933,6 @@ module.exports = {
       ]);
     }
 
-    // 천주교일원동교회 이미지
-    const existingImages_11853872 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['11853872'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_11853872[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11853872' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20150901_177/1441056375352tQU6n_JPEG/11853872_0.jpg',
-        }
-      ]);
-    }
-
     // 천주교압구정성당 이미지
     const existingImages_13139463 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -917,6 +948,25 @@ module.exports = {
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13139463' LIMIT 1)`),
           image_url: 'https://ldb-phinf.pstatic.net/20150831_11/1440992867325YvAqo_PNG/116254558252564_0.png',
+        }
+      ]);
+    }
+
+    // 천주교일원동교회 이미지
+    const existingImages_11853872 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['11853872'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_11853872[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11853872' LIMIT 1)`),
+          image_url: 'https://ldb-phinf.pstatic.net/20150901_177/1441056375352tQU6n_JPEG/11853872_0.jpg',
         }
       ]);
     }
@@ -959,21 +1009,21 @@ module.exports = {
       ]);
     }
 
-    // 감람교회 이미지
-    const existingImages_248876907 = await queryInterface.sequelize.query(
+    // 천주교 도곡동성당 이미지
+    const existingImages_967702484 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['248876907'],
+        replacements: ['967702484'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
 
-    if (existingImages_248876907[0].count === 0) {
+    if (existingImages_967702484[0].count === 0) {
       // 새 이미지 추가
       spotImgData.push(...[
         {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '248876907' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20170717_182/1500275717417pbyhk_JPEG/186667564537246_0.jpeg',
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '967702484' LIMIT 1)`),
+          image_url: 'https://ldb-phinf.pstatic.net/20170307_18/14888700229334Emuk_PNG/186257563042.PNG',
         }
       ]);
     }
@@ -997,21 +1047,21 @@ module.exports = {
       ]);
     }
 
-    // 천주교 도곡동성당 이미지
-    const existingImages_967702484 = await queryInterface.sequelize.query(
+    // 감람교회 이미지
+    const existingImages_248876907 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['967702484'],
+        replacements: ['248876907'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
 
-    if (existingImages_967702484[0].count === 0) {
+    if (existingImages_248876907[0].count === 0) {
       // 새 이미지 추가
       spotImgData.push(...[
         {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '967702484' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20170307_18/14888700229334Emuk_PNG/186257563042.PNG',
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '248876907' LIMIT 1)`),
+          image_url: 'https://ldb-phinf.pstatic.net/20170717_182/1500275717417pbyhk_JPEG/186667564537246_0.jpeg',
         }
       ]);
     }
@@ -1035,25 +1085,6 @@ module.exports = {
       ]);
     }
 
-    // 대치2동성당 이미지
-    const existingImages_12822367 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['12822367'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_12822367[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '12822367' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20150831_145/1441026206381Q6p6r_JPEG/96352567941753_0.jpg',
-        }
-      ]);
-    }
-
     // 남서울중앙교회 이미지
     const existingImages_12087231 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -1069,6 +1100,25 @@ module.exports = {
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '12087231' LIMIT 1)`),
           image_url: 'https://ldb-phinf.pstatic.net/20200312_164/1583965877625E2ase_JPEG/Pkh7wtBC5Y-WxkZ_Z9Gd_vsj.jpeg.jpg',
+        }
+      ]);
+    }
+
+    // 대치2동성당 이미지
+    const existingImages_12822367 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['12822367'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_12822367[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '12822367' LIMIT 1)`),
+          image_url: 'https://ldb-phinf.pstatic.net/20150831_145/1441026206381Q6p6r_JPEG/96352567941753_0.jpg',
         }
       ]);
     }
@@ -1111,25 +1161,6 @@ module.exports = {
       ]);
     }
 
-    // 서울연합교회 이미지
-    const existingImages_11871808 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['11871808'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_11871808[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11871808' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20191111_212/1573455918031RG49W_JPEG/3cfkJMWb7telpHuWfh4PbiLa.jpg',
-        }
-      ]);
-    }
-
     // 천주교삼성동성당 이미지
     const existingImages_21844814 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -1149,6 +1180,25 @@ module.exports = {
       ]);
     }
 
+    // 서울연합교회 이미지
+    const existingImages_11871808 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['11871808'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_11871808[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11871808' LIMIT 1)`),
+          image_url: 'https://ldb-phinf.pstatic.net/20191111_212/1573455918031RG49W_JPEG/3cfkJMWb7telpHuWfh4PbiLa.jpg',
+        }
+      ]);
+    }
+
     // 개포동교회 이미지
     const existingImages_12781446 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -1164,6 +1214,44 @@ module.exports = {
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '12781446' LIMIT 1)`),
           image_url: 'https://ldb-phinf.pstatic.net/20150831_14/1441020321599Hv3DC_JPEG/116276568073504_0.jpg',
+        }
+      ]);
+    }
+
+    // 삼성제일교회 이미지
+    const existingImages_19931979 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['19931979'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_19931979[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '19931979' LIMIT 1)`),
+          image_url: 'https://ldb-phinf.pstatic.net/20220607_144/16545683040115bBHV_PNG/%BD%BA%C5%A9%B8%B0%BC%A6_2022-06-07_%BF%C0%C0%FC_11.16.21_%BA%B9%BB%E7.png',
+        }
+      ]);
+    }
+
+    // 임마누엘교회 이미지
+    const existingImages_1326142007 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['1326142007'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_1326142007[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1326142007' LIMIT 1)`),
+          image_url: 'https://ldb-phinf.pstatic.net/20231006_120/1696568069982BXwLU_JPEG/IMG_8221.jpeg',
         }
       ]);
     }
@@ -1206,44 +1294,6 @@ module.exports = {
       ]);
     }
 
-    // 임마누엘교회 이미지
-    const existingImages_1326142007 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['1326142007'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_1326142007[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1326142007' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20231006_120/1696568069982BXwLU_JPEG/IMG_8221.jpeg',
-        }
-      ]);
-    }
-
-    // 삼성제일교회 이미지
-    const existingImages_19931979 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['19931979'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_19931979[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '19931979' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20220607_144/16545683040115bBHV_PNG/%BD%BA%C5%A9%B8%B0%BC%A6_2022-06-07_%BF%C0%C0%FC_11.16.21_%BA%B9%BB%E7.png',
-        }
-      ]);
-    }
-
     // 주기쁨교회 이미지
     const existingImages_20640735 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -1259,25 +1309,6 @@ module.exports = {
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '20640735' LIMIT 1)`),
           image_url: 'https://ldb-phinf.pstatic.net/20250318_247/1742292502273EiOcu_JPEG/1742292436563.jpg',
-        }
-      ]);
-    }
-
-    // 충무성결교회 이미지
-    const existingImages_35155977 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['35155977'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_35155977[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '35155977' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20190125_9/154841476024017PfC_JPEG/zA8QU7grHA7NP2z1lviGETdL.jpg',
         }
       ]);
     }
@@ -1301,6 +1332,25 @@ module.exports = {
       ]);
     }
 
+    // 충무성결교회 이미지
+    const existingImages_35155977 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['35155977'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_35155977[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '35155977' LIMIT 1)`),
+          image_url: 'https://ldb-phinf.pstatic.net/20190125_9/154841476024017PfC_JPEG/zA8QU7grHA7NP2z1lviGETdL.jpg',
+        }
+      ]);
+    }
+
     // 극동교회 이미지
     const existingImages_18819591 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -1316,25 +1366,6 @@ module.exports = {
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '18819591' LIMIT 1)`),
           image_url: 'https://ldb-phinf.pstatic.net/20241207_151/1733571932641Rxzpr_JPEG/%B1%D8%B5%BF%B1%B3%C8%B8_%B9%AB%C1%F6%B0%B3.jpeg',
-        }
-      ]);
-    }
-
-    // 불교총지종 총지사 이미지
-    const existingImages_35993223 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['35993223'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_35993223[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '35993223' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20150901_111/14410348145260bXz8_JPEG/157069498231565_0.jpeg',
         }
       ]);
     }
@@ -1358,21 +1389,21 @@ module.exports = {
       ]);
     }
 
-    // 서울남부교회 이미지
-    const existingImages_13078159 = await queryInterface.sequelize.query(
+    // 불교총지종 총지사 이미지
+    const existingImages_35993223 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['13078159'],
+        replacements: ['35993223'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
 
-    if (existingImages_13078159[0].count === 0) {
+    if (existingImages_35993223[0].count === 0) {
       // 새 이미지 추가
       spotImgData.push(...[
         {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13078159' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20240814_292/1723616164676RVGhU_JPEG/KakaoTalk_20240814_151522265.jpg',
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '35993223' LIMIT 1)`),
+          image_url: 'https://ldb-phinf.pstatic.net/20150901_111/14410348145260bXz8_JPEG/157069498231565_0.jpeg',
         }
       ]);
     }
@@ -1659,31 +1690,6 @@ module.exports = {
       }
     }
 
-    // 천주교수서동성당 카테고리 관계
-    const existingCategories_13139318 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['13139318'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_13139318 = new Set(existingCategories_13139318.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_13139318 = [...new Set([
-      '종교'
-    ])];
-
-    for (const category of uniqueCategories_13139318) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_13139318.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13139318' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
     // 세곡동 성당 카테고리 관계
     const existingCategories_1439475592 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -1704,6 +1710,31 @@ module.exports = {
       if (categoryId[category] && !existingCategoryIds_1439475592.has(categoryId[category])) {
         spotCategoryRelationData.push({
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1439475592' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 천주교수서동성당 카테고리 관계
+    const existingCategories_13139318 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['13139318'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_13139318 = new Set(existingCategories_13139318.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_13139318 = [...new Set([
+      '종교'
+    ])];
+
+    for (const category of uniqueCategories_13139318) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_13139318.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13139318' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -1734,26 +1765,26 @@ module.exports = {
       }
     }
 
-    // 청운교회 카테고리 관계
-    const existingCategories_12324933 = await queryInterface.sequelize.query(
+    // 천주교압구정성당 카테고리 관계
+    const existingCategories_13139463 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['12324933'],
+        replacements: ['13139463'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
-    const existingCategoryIds_12324933 = new Set(existingCategories_12324933.map(cat => cat.spot_category_id));
+    const existingCategoryIds_13139463 = new Set(existingCategories_13139463.map(cat => cat.spot_category_id));
 
     // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_12324933 = [...new Set([
+    const uniqueCategories_13139463 = [...new Set([
       '종교'
     ])];
 
-    for (const category of uniqueCategories_12324933) {
+    for (const category of uniqueCategories_13139463) {
       const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_12324933.has(categoryId[category])) {
+      if (categoryId[category] && !existingCategoryIds_13139463.has(categoryId[category])) {
         spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '12324933' LIMIT 1)`),
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13139463' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -1784,26 +1815,26 @@ module.exports = {
       }
     }
 
-    // 천주교압구정성당 카테고리 관계
-    const existingCategories_13139463 = await queryInterface.sequelize.query(
+    // 청운교회 카테고리 관계
+    const existingCategories_12324933 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['13139463'],
+        replacements: ['12324933'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
-    const existingCategoryIds_13139463 = new Set(existingCategories_13139463.map(cat => cat.spot_category_id));
+    const existingCategoryIds_12324933 = new Set(existingCategories_12324933.map(cat => cat.spot_category_id));
 
     // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_13139463 = [...new Set([
+    const uniqueCategories_12324933 = [...new Set([
       '종교'
     ])];
 
-    for (const category of uniqueCategories_13139463) {
+    for (const category of uniqueCategories_12324933) {
       const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_13139463.has(categoryId[category])) {
+      if (categoryId[category] && !existingCategoryIds_12324933.has(categoryId[category])) {
         spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13139463' LIMIT 1)`),
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '12324933' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -1884,31 +1915,6 @@ module.exports = {
       }
     }
 
-    // 남서울은혜장로교회 카테고리 관계
-    const existingCategories_12096474 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['12096474'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_12096474 = new Set(existingCategories_12096474.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_12096474 = [...new Set([
-      '종교'
-    ])];
-
-    for (const category of uniqueCategories_12096474) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_12096474.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '12096474' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
     // 덕암사 카테고리 관계
     const existingCategories_18536306 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -1934,51 +1940,51 @@ module.exports = {
       }
     }
 
-    // 서울영동교회 카테고리 관계
-    const existingCategories_12412244 = await queryInterface.sequelize.query(
+    // 남서울은혜장로교회 카테고리 관계
+    const existingCategories_12096474 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['12412244'],
+        replacements: ['12096474'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
-    const existingCategoryIds_12412244 = new Set(existingCategories_12412244.map(cat => cat.spot_category_id));
+    const existingCategoryIds_12096474 = new Set(existingCategories_12096474.map(cat => cat.spot_category_id));
 
     // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_12412244 = [...new Set([
+    const uniqueCategories_12096474 = [...new Set([
       '종교'
     ])];
 
-    for (const category of uniqueCategories_12412244) {
+    for (const category of uniqueCategories_12096474) {
       const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_12412244.has(categoryId[category])) {
+      if (categoryId[category] && !existingCategoryIds_12096474.has(categoryId[category])) {
         spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '12412244' LIMIT 1)`),
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '12096474' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
     }
 
-    // 감람교회 카테고리 관계
-    const existingCategories_248876907 = await queryInterface.sequelize.query(
+    // 천주교 도곡동성당 카테고리 관계
+    const existingCategories_967702484 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['248876907'],
+        replacements: ['967702484'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
-    const existingCategoryIds_248876907 = new Set(existingCategories_248876907.map(cat => cat.spot_category_id));
+    const existingCategoryIds_967702484 = new Set(existingCategories_967702484.map(cat => cat.spot_category_id));
 
     // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_248876907 = [...new Set([
+    const uniqueCategories_967702484 = [...new Set([
       '종교'
     ])];
 
-    for (const category of uniqueCategories_248876907) {
+    for (const category of uniqueCategories_967702484) {
       const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_248876907.has(categoryId[category])) {
+      if (categoryId[category] && !existingCategoryIds_967702484.has(categoryId[category])) {
         spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '248876907' LIMIT 1)`),
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '967702484' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -2009,26 +2015,51 @@ module.exports = {
       }
     }
 
-    // 천주교 도곡동성당 카테고리 관계
-    const existingCategories_967702484 = await queryInterface.sequelize.query(
+    // 감람교회 카테고리 관계
+    const existingCategories_248876907 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['967702484'],
+        replacements: ['248876907'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
-    const existingCategoryIds_967702484 = new Set(existingCategories_967702484.map(cat => cat.spot_category_id));
+    const existingCategoryIds_248876907 = new Set(existingCategories_248876907.map(cat => cat.spot_category_id));
 
     // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_967702484 = [...new Set([
+    const uniqueCategories_248876907 = [...new Set([
       '종교'
     ])];
 
-    for (const category of uniqueCategories_967702484) {
+    for (const category of uniqueCategories_248876907) {
       const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_967702484.has(categoryId[category])) {
+      if (categoryId[category] && !existingCategoryIds_248876907.has(categoryId[category])) {
         spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '967702484' LIMIT 1)`),
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '248876907' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 서울영동교회 카테고리 관계
+    const existingCategories_12412244 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['12412244'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_12412244 = new Set(existingCategories_12412244.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_12412244 = [...new Set([
+      '종교'
+    ])];
+
+    for (const category of uniqueCategories_12412244) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_12412244.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '12412244' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -2084,31 +2115,6 @@ module.exports = {
       }
     }
 
-    // 영동중앙교회 카테고리 관계
-    const existingCategories_12310460 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['12310460'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_12310460 = new Set(existingCategories_12310460.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_12310460 = [...new Set([
-      '종교'
-    ])];
-
-    for (const category of uniqueCategories_12310460) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_12310460.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '12310460' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
     // 천주교대치동교회 카테고리 관계
     const existingCategories_13032895 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -2134,26 +2140,26 @@ module.exports = {
       }
     }
 
-    // 대치2동성당 카테고리 관계
-    const existingCategories_12822367 = await queryInterface.sequelize.query(
+    // 영동중앙교회 카테고리 관계
+    const existingCategories_12310460 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['12822367'],
+        replacements: ['12310460'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
-    const existingCategoryIds_12822367 = new Set(existingCategories_12822367.map(cat => cat.spot_category_id));
+    const existingCategoryIds_12310460 = new Set(existingCategories_12310460.map(cat => cat.spot_category_id));
 
     // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_12822367 = [...new Set([
+    const uniqueCategories_12310460 = [...new Set([
       '종교'
     ])];
 
-    for (const category of uniqueCategories_12822367) {
+    for (const category of uniqueCategories_12310460) {
       const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_12822367.has(categoryId[category])) {
+      if (categoryId[category] && !existingCategoryIds_12310460.has(categoryId[category])) {
         spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '12822367' LIMIT 1)`),
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '12310460' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -2179,6 +2185,31 @@ module.exports = {
       if (categoryId[category] && !existingCategoryIds_12087231.has(categoryId[category])) {
         spotCategoryRelationData.push({
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '12087231' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 대치2동성당 카테고리 관계
+    const existingCategories_12822367 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['12822367'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_12822367 = new Set(existingCategories_12822367.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_12822367 = [...new Set([
+      '종교'
+    ])];
+
+    for (const category of uniqueCategories_12822367) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_12822367.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '12822367' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -2234,31 +2265,6 @@ module.exports = {
       }
     }
 
-    // 서울연합교회 카테고리 관계
-    const existingCategories_11871808 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['11871808'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_11871808 = new Set(existingCategories_11871808.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_11871808 = [...new Set([
-      '종교'
-    ])];
-
-    for (const category of uniqueCategories_11871808) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_11871808.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11871808' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
     // 천주교삼성동성당 카테고리 관계
     const existingCategories_21844814 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -2284,26 +2290,26 @@ module.exports = {
       }
     }
 
-    // 압구정교회 카테고리 관계
-    const existingCategories_11568097 = await queryInterface.sequelize.query(
+    // 서울연합교회 카테고리 관계
+    const existingCategories_11871808 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['11568097'],
+        replacements: ['11871808'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
-    const existingCategoryIds_11568097 = new Set(existingCategories_11568097.map(cat => cat.spot_category_id));
+    const existingCategoryIds_11871808 = new Set(existingCategories_11871808.map(cat => cat.spot_category_id));
 
     // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_11568097 = [...new Set([
+    const uniqueCategories_11871808 = [...new Set([
       '종교'
     ])];
 
-    for (const category of uniqueCategories_11568097) {
+    for (const category of uniqueCategories_11871808) {
       const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_11568097.has(categoryId[category])) {
+      if (categoryId[category] && !existingCategoryIds_11871808.has(categoryId[category])) {
         spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11568097' LIMIT 1)`),
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11871808' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -2334,51 +2340,26 @@ module.exports = {
       }
     }
 
-    // 영동제일교회 카테고리 관계
-    const existingCategories_246317788 = await queryInterface.sequelize.query(
+    // 삼성제일교회 카테고리 관계
+    const existingCategories_19931979 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['246317788'],
+        replacements: ['19931979'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
-    const existingCategoryIds_246317788 = new Set(existingCategories_246317788.map(cat => cat.spot_category_id));
+    const existingCategoryIds_19931979 = new Set(existingCategories_19931979.map(cat => cat.spot_category_id));
 
     // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_246317788 = [...new Set([
+    const uniqueCategories_19931979 = [...new Set([
       '종교'
     ])];
 
-    for (const category of uniqueCategories_246317788) {
+    for (const category of uniqueCategories_19931979) {
       const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_246317788.has(categoryId[category])) {
+      if (categoryId[category] && !existingCategoryIds_19931979.has(categoryId[category])) {
         spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '246317788' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
-    // 원불교 강남교당 카테고리 관계
-    const existingCategories_13015156 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['13015156'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_13015156 = new Set(existingCategories_13015156.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_13015156 = [...new Set([
-      '종교'
-    ])];
-
-    for (const category of uniqueCategories_13015156) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_13015156.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13015156' LIMIT 1)`),
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '19931979' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -2409,51 +2390,51 @@ module.exports = {
       }
     }
 
-    // 삼성제일교회 카테고리 관계
-    const existingCategories_19931979 = await queryInterface.sequelize.query(
+    // 영동제일교회 카테고리 관계
+    const existingCategories_246317788 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['19931979'],
+        replacements: ['246317788'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
-    const existingCategoryIds_19931979 = new Set(existingCategories_19931979.map(cat => cat.spot_category_id));
+    const existingCategoryIds_246317788 = new Set(existingCategories_246317788.map(cat => cat.spot_category_id));
 
     // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_19931979 = [...new Set([
+    const uniqueCategories_246317788 = [...new Set([
       '종교'
     ])];
 
-    for (const category of uniqueCategories_19931979) {
+    for (const category of uniqueCategories_246317788) {
       const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_19931979.has(categoryId[category])) {
+      if (categoryId[category] && !existingCategoryIds_246317788.has(categoryId[category])) {
         spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '19931979' LIMIT 1)`),
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '246317788' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
     }
 
-    // 주기쁨교회 카테고리 관계
-    const existingCategories_20640735 = await queryInterface.sequelize.query(
+    // 압구정교회 카테고리 관계
+    const existingCategories_11568097 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['20640735'],
+        replacements: ['11568097'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
-    const existingCategoryIds_20640735 = new Set(existingCategories_20640735.map(cat => cat.spot_category_id));
+    const existingCategoryIds_11568097 = new Set(existingCategories_11568097.map(cat => cat.spot_category_id));
 
     // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_20640735 = [...new Set([
+    const uniqueCategories_11568097 = [...new Set([
       '종교'
     ])];
 
-    for (const category of uniqueCategories_20640735) {
+    for (const category of uniqueCategories_11568097) {
       const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_20640735.has(categoryId[category])) {
+      if (categoryId[category] && !existingCategoryIds_11568097.has(categoryId[category])) {
         spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '20640735' LIMIT 1)`),
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11568097' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -2484,26 +2465,51 @@ module.exports = {
       }
     }
 
-    // 충무성결교회 카테고리 관계
-    const existingCategories_35155977 = await queryInterface.sequelize.query(
+    // 원불교 강남교당 카테고리 관계
+    const existingCategories_13015156 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['35155977'],
+        replacements: ['13015156'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
-    const existingCategoryIds_35155977 = new Set(existingCategories_35155977.map(cat => cat.spot_category_id));
+    const existingCategoryIds_13015156 = new Set(existingCategories_13015156.map(cat => cat.spot_category_id));
 
     // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_35155977 = [...new Set([
+    const uniqueCategories_13015156 = [...new Set([
       '종교'
     ])];
 
-    for (const category of uniqueCategories_35155977) {
+    for (const category of uniqueCategories_13015156) {
       const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_35155977.has(categoryId[category])) {
+      if (categoryId[category] && !existingCategoryIds_13015156.has(categoryId[category])) {
         spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '35155977' LIMIT 1)`),
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13015156' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 주기쁨교회 카테고리 관계
+    const existingCategories_20640735 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['20640735'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_20640735 = new Set(existingCategories_20640735.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_20640735 = [...new Set([
+      '종교'
+    ])];
+
+    for (const category of uniqueCategories_20640735) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_20640735.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '20640735' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -2534,6 +2540,31 @@ module.exports = {
       }
     }
 
+    // 충무성결교회 카테고리 관계
+    const existingCategories_35155977 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['35155977'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_35155977 = new Set(existingCategories_35155977.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_35155977 = [...new Set([
+      '종교'
+    ])];
+
+    for (const category of uniqueCategories_35155977) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_35155977.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '35155977' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
     // 극동교회 카테고리 관계
     const existingCategories_18819591 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -2554,31 +2585,6 @@ module.exports = {
       if (categoryId[category] && !existingCategoryIds_18819591.has(categoryId[category])) {
         spotCategoryRelationData.push({
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '18819591' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
-    // 불교총지종 총지사 카테고리 관계
-    const existingCategories_35993223 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['35993223'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_35993223 = new Set(existingCategories_35993223.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_35993223 = [...new Set([
-      '종교'
-    ])];
-
-    for (const category of uniqueCategories_35993223) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_35993223.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '35993223' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -2609,26 +2615,51 @@ module.exports = {
       }
     }
 
-    // 서울남부교회 카테고리 관계
-    const existingCategories_13078159 = await queryInterface.sequelize.query(
+    // 불교총지종 총지사 카테고리 관계
+    const existingCategories_35993223 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['13078159'],
+        replacements: ['35993223'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
-    const existingCategoryIds_13078159 = new Set(existingCategories_13078159.map(cat => cat.spot_category_id));
+    const existingCategoryIds_35993223 = new Set(existingCategories_35993223.map(cat => cat.spot_category_id));
 
     // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_13078159 = [...new Set([
+    const uniqueCategories_35993223 = [...new Set([
       '종교'
     ])];
 
-    for (const category of uniqueCategories_13078159) {
+    for (const category of uniqueCategories_35993223) {
       const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_13078159.has(categoryId[category])) {
+      if (categoryId[category] && !existingCategoryIds_35993223.has(categoryId[category])) {
         spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13078159' LIMIT 1)`),
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '35993223' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 강남성은교회 카테고리 관계
+    const existingCategories_19931837 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['19931837'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_19931837 = new Set(existingCategories_19931837.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_19931837 = [...new Set([
+      '종교'
+    ])];
+
+    for (const category of uniqueCategories_19931837) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_19931837.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '19931837' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }

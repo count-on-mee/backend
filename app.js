@@ -5,7 +5,12 @@ const express = require('express');
 const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-const { authRouter, userRouter } = require('./routers');
+const {
+  authRouter,
+  userRouter,
+  spotRouter,
+  scrapRouter,
+} = require('./routers');
 
 const app = express();
 
@@ -22,5 +27,7 @@ app.use(passport.initialize());
 
 app.use('/auth', authRouter);
 app.use('/users', userRouter);
+app.use('/spots', spotRouter);
+app.use('/scraps', scrapRouter);
 
 module.exports = app;

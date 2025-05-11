@@ -78,6 +78,12 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: 'CASCADE',
       onUpdate: 'CASCADE',
     });
+
+    Spot.hasMany(models.SpotScrap, {
+      foreignKey: 'spotId',
+      sourceKey: 'spotId',
+      as: 'spotScraps',
+    });
   };
 
   return Spot;

@@ -1,5 +1,4 @@
 const { User } = require('../models');
-const { S3Uploader } = require('../utils');
 
 exports.getUserById = async (userId) => {
   try {
