@@ -17,7 +17,6 @@ router.get(
   spotController.searchSpots
 );
 router.get('/:spotId', optionalAuth, spotController.getSpotById);
-
 router.post(
   '/:spotId/reviews',
   requireAuth,

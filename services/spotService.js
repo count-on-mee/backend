@@ -8,7 +8,7 @@ const {
   SpotReview,
   SpotReviewImg,
 } = require('../models');
-const { literal } = require('sequelize');
+const { literal, Op } = require('sequelize');
 
 const calculateRadius = (zoomLevel) => {
   if (zoomLevel >= 7 && zoomLevel <= 10) {

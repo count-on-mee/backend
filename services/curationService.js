@@ -10,6 +10,7 @@ const {
   CurationSpot,
   CurationScrap,
 } = require('../models');
+const { Op } = require('sequelize');
 
 const getCurationCategoryIds = async (categories) => {
   const curationCategories = await CurationCategory.findAll({
@@ -236,4 +237,94 @@ exports.getCurationById = async (userId, curationId) => {
   });
 
   return curation;
+};
+
+exports.searchCurations = async (userId, curationName, curationCategories) => {
+  const curations = await Curation.findAll({
+    attributes: ['curationId', 'name', 'description', 'imgUrl'],
+    include: [
+      {
+        model: CurationCategory,
+        as: 'curationCategories',
+        attributes: ['type'],
+        through: { attributes: [] },
+        ...(curationCategories.length > 0 && {
+          where: {
+            type: curationCategories,
+          },
+        }),
+      },
+      {
+        model: CurationSpot,
+        as: 'curationSpots',
+        attributes: ['spotId', 'order'],
+        include: [
+          {
+            model: Spot,
+            as: 'spot',
+            attributes: ['spotId', 'name', 'address', 'tel', 'location'],
+            include: [
+              {
+                model: SpotCategory,
+                as: 'spotCategories',
+                attributes: ['type'],
+                through: { attributes: [] },
+              },
+              {
+                model: SpotImg,
+                as: 'spotImgs',
+                attributes: ['imageUrl'],
+              },
+              {
+                model: SpotScrap,
+                as: 'spotScraps',
+                attributes: ['userId'],
+                where: { isDeleted: false },
+                required: false,
+              },
+              ...(userId
+                ? [
+                    {
+                      model: SpotScrap,
+                      as: 'userSpotScrap',
+                      attributes: ['userId'],
+                      where: { userId, isDeleted: false },
+                      required: false,
+                    },
+                  ]
+                : []),
+            ],
+          },
+        ],
+      },
+      {
+        model: CurationScrap,
+        as: 'curationScraps',
+        attributes: ['userId'],
+        where: { isDeleted: false },
+        required: false,
+      },
+      ...(userId
+        ? [
+            {
+              model: CurationScrap,
+              as: 'userCurationScrap',
+              attributes: ['userId'],
+              where: { userId, isDeleted: false },
+              required: false,
+            },
+          ]
+        : []),
+    ],
+    order: [['curationSpots', 'order', 'ASC']],
+    ...(curationName && {
+      where: {
+        name: {
+          [Op.like]: `%${curationName}%`,
+        },
+      },
+    }),
+  });
+
+  return curations;
 };

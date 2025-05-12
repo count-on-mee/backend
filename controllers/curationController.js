@@ -52,3 +52,28 @@ exports.getCurationById = async (req, res) => {
     });
   }
 };
+
+exports.searchCurations = async (req, res) => {
+  try {
+    const userId = req.user?.userId;
+    const { name: curationName, categories } = req.query;
+    const curationCategories = categories
+      ? Array.isArray(categories)
+        ? categories
+        : [categories]
+      : [];
+
+    const searchedCurations = await curationService.searchCurations(
+      userId,
+      curationName,
+      curationCategories
+    );
+
+    const searchedCurationDtos = CurationDto.fromMany(searchedCurations);
+    res.status(200).json(searchedCurationDtos);
+  } catch (error) {
+    res.status(404).json({
+      message: error.message || '큐레이션 검색에 실패했습니다.',
+    });
+  }
+};
