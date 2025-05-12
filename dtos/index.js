@@ -1,12 +1,14 @@
 const UserDto = require('./users/userDto');
 const SpotDto = require('./spots/spotDto');
 const SpotReviewDto = require('./spots/spotReviewDto');
-const ScrapedSpotDto = require('./scraps/ScrapedSpotDto');
+const CurationDto = require('./curations/curationDto');
+const ScrapedSpotDto = require('./scraps/scrapedSpotDto');
 
 const dtos = {
   UserDto,
   SpotDto,
   SpotReviewDto,
+  CurationDto,
   ScrapedSpotDto,
 };
 

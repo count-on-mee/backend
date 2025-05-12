@@ -1,4 +1,5 @@
 const curationService = require('../services/curationService');
+const { CurationDto } = require('../dtos');
 
 exports.createCuration = async (req, res) => {
   try {
@@ -17,6 +18,37 @@ exports.createCuration = async (req, res) => {
   } catch (error) {
     res.status(400).json({
       message: error.message || '큐레이션 생성에 실패했습니다.',
+    });
+  }
+};
+
+exports.getCurations = async (req, res) => {
+  try {
+    const userId = req.user?.userId;
+
+    const curations = await curationService.getCurations(userId);
+
+    const curationDtos = CurationDto.fromMany(curations);
+    res.status(200).json(curationDtos);
+  } catch (error) {
+    res.status(404).json({
+      message: error.message || '큐레이션 조회에 실패했습니다.',
+    });
+  }
+};
+
+exports.getCurationById = async (req, res) => {
+  try {
+    const userId = req.user?.userId;
+    const { curationId } = req.params;
+
+    const curation = await curationService.getCurationById(userId, curationId);
+
+    const curationDto = CurationDto.from(curation);
+    res.status(200).json(curationDto);
+  } catch (error) {
+    res.status(404).json({
+      message: error.message || '큐레이션 조회에 실패했습니다.',
     });
   }
 };

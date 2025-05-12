@@ -57,6 +57,18 @@ module.exports = (sequelize, DataTypes) => {
       otherKey: 'curationCategoryId',
       as: 'curationCategories',
     });
+
+    Curation.hasMany(models.CurationScrap, {
+      foreignKey: 'curationId',
+      sourceKey: 'curationId',
+      as: 'curationScraps',
+    });
+
+    Curation.hasOne(models.CurationScrap, {
+      foreignKey: 'curationId',
+      sourceKey: 'curationId',
+      as: 'userCurationScrap',
+    });
   };
 
   return Curation;

@@ -18,7 +18,6 @@ router.get(
 );
 router.get('/:spotId', optionalAuth, spotController.getSpotById);
 
-router.get('/:spotId/reviews', spotController.getSpotReviewsBySpotId);
 router.post(
   '/:spotId/reviews',
   requireAuth,
@@ -26,5 +25,6 @@ router.post(
   createSpotReviewValidator,
   spotController.createSpotReview
 );
+router.get('/:spotId/reviews', spotController.getSpotReviewsBySpotId);
 
 module.exports = router;
