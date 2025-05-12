@@ -9,6 +9,7 @@ const {
   authRouter,
   userRouter,
   spotRouter,
+  curationRouter,
   scrapRouter,
 } = require('./routers');
 
@@ -28,6 +29,7 @@ app.use(passport.initialize());
 app.use('/auth', authRouter);
 app.use('/users', userRouter);
 app.use('/spots', spotRouter);
+app.use('/curations', curationRouter);
 app.use('/scraps', scrapRouter);
 
 module.exports = app;
