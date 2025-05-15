@@ -28,6 +28,13 @@ module.exports = (sequelize, DataTypes) => {
       tableName: 'spot_category',
       timestamps: false,
       underscored: true,
+      indexes: [
+        {
+          unique: true,
+          fields: ['type'],
+          name: 'uk_type',
+        },
+      ],
     }
   );
 
