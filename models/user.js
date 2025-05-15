@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
           isEmail: true,
         },
       },
-      profileImgUrl: {
+      imgUrl: {
         type: DataTypes.TEXT,
         allowNull: true,
       },

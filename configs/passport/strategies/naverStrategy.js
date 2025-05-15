@@ -26,7 +26,7 @@ const naverStrategy = new NaverStrategy(
         name: profile.name,
         nickname,
         email: profile.email,
-        profileImgUrl: profile.profileImage,
+        imgUrl: profile.profileImage,
         oauthProvider: 'naver',
         oauthId: profile.id,
       });
