@@ -19,7 +19,7 @@ module.exports = {
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
       },
-      expense_type: {
+      type: {
         type: Sequelize.ENUM(
           'transportation',
           'accommodation',
@@ -28,7 +28,7 @@ module.exports = {
         ),
         allowNull: false,
       },
-      expense_detail: {
+      detail: {
         type: Sequelize.STRING,
         allowNull: false,
       },

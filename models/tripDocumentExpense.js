@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
           key: 'trip_document_id',
         },
       },
-      expenseType: {
+      type: {
         type: DataTypes.ENUM(
           'transportation',
           'accommodation',
@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
         ),
         allowNull: false,
       },
-      expenseDetail: {
+      detail: {
         type: DataTypes.STRING,
         allowNull: false,
       },

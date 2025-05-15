@@ -100,8 +100,8 @@ exports.createTrip = async (
     const defaultTripDocumentExpenses = expenseTypes.map(
       ({ type, detail }) => ({
         tripDocumentId: tripDocument.tripDocumentId,
-        expenseType: type,
-        expenseDetail: detail,
+        type,
+        detail,
         amount: 0,
       })
     );
