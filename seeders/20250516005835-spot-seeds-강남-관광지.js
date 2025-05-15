@@ -3,7 +3,7 @@
 /**
  * 네이버 장소 크롤링으로 생성된 Spot 데이터 시드 파일
  * 검색어: 강남 관광지
- * 생성일시: 2025-05-08T14:28:17.139Z
+ * 생성일시: 2025-05-15T15:58:42.668Z
  */
 
 module.exports = {
@@ -18,6 +18,19 @@ module.exports = {
     // 장소 데이터 추가/업데이트
     const spotData = [
       {
+        name: '코엑스아쿠아리움',
+        address: '서울 강남구 삼성동 영동대로 513',
+        tel: '0507-1435-7203',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.513368 127.0583803)',
+        4326
+        ),
+        naver_spot_id: '11606845',
+        review_count: 45,
+        review_score: 4.5,
+      },
+      {
         name: '봉은사',
         address: '서울 강남구 삼성동 봉은사로 531 봉은사',
         tel: '0507-1429-4800',
@@ -29,19 +42,6 @@ module.exports = {
         naver_spot_id: '11664007',
         review_count: 6,
         review_score: null,
-      },
-      {
-        name: '코엑스아쿠아리움',
-        address: '서울 강남구 삼성동 영동대로 513',
-        tel: '0507-1435-7203',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(37.513368 127.0583802)',
-        4326
-        ),
-        naver_spot_id: '11606845',
-        review_count: 45,
-        review_score: 4.5,
       },
       {
         name: '선정릉',
@@ -66,20 +66,7 @@ module.exports = {
         4326
         ),
         naver_spot_id: '12375874',
-        review_count: 183,
-        review_score: null,
-      },
-      {
-        name: '가로수길',
-        address: '서울 강남구 신사동',
-        tel: null,
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(37.5197043 127.0231136)',
-        4326
-        ),
-        naver_spot_id: '13491811',
-        review_count: 25,
+        review_count: 185,
         review_score: null,
       },
       {
@@ -109,6 +96,19 @@ module.exports = {
         review_score: null,
       },
       {
+        name: '가로수길',
+        address: '서울 강남구 신사동',
+        tel: null,
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5197043 127.0231136)',
+        4326
+        ),
+        naver_spot_id: '13491811',
+        review_count: 25,
+        review_score: null,
+      },
+      {
         name: '삼성해맞이공원',
         address: '서울 강남구 삼성동 영동대로128길 39',
         tel: null,
@@ -135,30 +135,17 @@ module.exports = {
         review_score: null,
       },
       {
-        name: '선릉성종왕릉',
-        address: '서울 강남구 삼성동 선릉로100길 1',
-        tel: '02-568-1291',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(37.5087684 127.0454398)',
-        4326
-        ),
-        naver_spot_id: '12182110',
-        review_count: 151,
-        review_score: 4.41,
-      },
-      {
-        name: '압구정로데오거리',
-        address: '서울 강남구 신사동',
+        name: '마루공원',
+        address: '서울 강남구 일원동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(37.5268138 127.0361236)',
+          'POINT(37.4962948 127.0808482)',
         4326
         ),
-        naver_spot_id: '13491361',
-        review_count: 1,
-        review_score: null,
+        naver_spot_id: '18850444',
+        review_count: 17,
+        review_score: 4.83,
       },
       {
         name: '청담근린공원',
@@ -174,6 +161,19 @@ module.exports = {
         review_score: 5,
       },
       {
+        name: '선릉성종왕릉',
+        address: '서울 강남구 삼성동 선릉로100길 1',
+        tel: '02-568-1291',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5087684 127.0454398)',
+        4326
+        ),
+        naver_spot_id: '12182110',
+        review_count: 151,
+        review_score: 4.41,
+      },
+      {
         name: '피규어뮤지엄w',
         address: '서울 강남구 청담동 선릉로158길 3 Ys Roo',
         tel: '02-512-8865',
@@ -184,46 +184,7 @@ module.exports = {
         ),
         naver_spot_id: '36368850',
         review_count: 1,
-        review_score: 4.35,
-      },
-      {
-        name: '은진농장',
-        address: '서울 강남구 세곡동 헌릉로718길 44 은진농장',
-        tel: '0507-1321-7463',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(37.4620997 127.1175663)',
-        4326
-        ),
-        naver_spot_id: '1430820935',
-        review_count: 125,
-        review_score: null,
-      },
-      {
-        name: '마루공원',
-        address: '서울 강남구 일원동',
-        tel: null,
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(37.4962948 127.0808482)',
-        4326
-        ),
-        naver_spot_id: '18850444',
-        review_count: 17,
-        review_score: 4.83,
-      },
-      {
-        name: '율현공원',
-        address: '서울 강남구 율현동',
-        tel: null,
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(37.4725132 127.115249)',
-        4326
-        ),
-        naver_spot_id: '814449025',
-        review_count: 8,
-        review_score: null,
+        review_score: 4.36,
       },
       {
         name: '구룡마을',
@@ -236,6 +197,45 @@ module.exports = {
         ),
         naver_spot_id: '33997153',
         review_count: 3,
+        review_score: null,
+      },
+      {
+        name: '압구정로데오거리',
+        address: '서울 강남구 신사동',
+        tel: null,
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5268138 127.0361236)',
+        4326
+        ),
+        naver_spot_id: '13491361',
+        review_count: 1,
+        review_score: null,
+      },
+      {
+        name: '은진농장',
+        address: '서울 강남구 세곡동 헌릉로718길 44 은진농장',
+        tel: '0507-1321-7463',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.4620997 127.1175663)',
+        4326
+        ),
+        naver_spot_id: '1430820935',
+        review_count: 126,
+        review_score: null,
+      },
+      {
+        name: '율현공원',
+        address: '서울 강남구 율현동',
+        tel: null,
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.4725132 127.115249)',
+        4326
+        ),
+        naver_spot_id: '814449025',
+        review_count: 8,
         review_score: null,
       },
       {
@@ -252,19 +252,6 @@ module.exports = {
         review_score: null,
       },
       {
-        name: '일원에코파크',
-        address: '서울 강남구 일원동',
-        tel: null,
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(37.4951936 127.0874426)',
-        4326
-        ),
-        naver_spot_id: '1792059339',
-        review_count: 8,
-        review_score: null,
-      },
-      {
         name: '학동공원',
         address: '서울 강남구 논현동 강남대로140길 47',
         tel: null,
@@ -278,6 +265,19 @@ module.exports = {
         review_score: null,
       },
       {
+        name: '일원에코파크',
+        address: '서울 강남구 일원동',
+        tel: null,
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.4951936 127.0874426)',
+        4326
+        ),
+        naver_spot_id: '1792059339',
+        review_count: 8,
+        review_score: null,
+      },
+      {
         name: '도곡공원',
         address: '서울 강남구 도곡동',
         tel: null,
@@ -288,6 +288,32 @@ module.exports = {
         ),
         naver_spot_id: '18852184',
         review_count: 41,
+        review_score: null,
+      },
+      {
+        name: '강남세곡체육공원',
+        address: '서울 강남구 율현동',
+        tel: null,
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.4675392 127.1137532)',
+        4326
+        ),
+        naver_spot_id: '1817628634',
+        review_count: 6,
+        review_score: null,
+      },
+      {
+        name: '아노블리81',
+        address: '서울 강남구 청담동 도산대로 419',
+        tel: '02-3448-0441',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5238471 127.0416493)',
+        4326
+        ),
+        naver_spot_id: '1318284239',
+        review_count: 3,
         review_score: null,
       },
       {
@@ -317,32 +343,6 @@ module.exports = {
         review_score: null,
       },
       {
-        name: '아노블리81',
-        address: '서울 강남구 청담동 도산대로 419',
-        tel: '02-3448-0441',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(37.5238471 127.0416493)',
-        4326
-        ),
-        naver_spot_id: '1318284239',
-        review_count: 3,
-        review_score: null,
-      },
-      {
-        name: '강남세곡체육공원',
-        address: '서울 강남구 율현동',
-        tel: null,
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(37.4675392 127.1137532)',
-        4326
-        ),
-        naver_spot_id: '1817628634',
-        review_count: 6,
-        review_score: null,
-      },
-      {
         name: '전주이씨광평대군묘역',
         address: '서울 강남구 수서동 광평로31길 20',
         tel: '02-459-4733',
@@ -369,16 +369,16 @@ module.exports = {
         review_score: null,
       },
       {
-        name: '논현동가구거리',
-        address: '서울 강남구 논현동',
-        tel: null,
+        name: '생각하는박물관',
+        address: '서울 강남구 청담동 삼성로147길 34 2층 (파란대문)',
+        tel: '02-723-7814',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(37.5130215 127.0256712)',
+          'POINT(37.5208073 127.0466176)',
         4326
         ),
-        naver_spot_id: '18843331',
-        review_count: 2,
+        naver_spot_id: '12331878',
+        review_count: 1,
         review_score: null,
       },
       {
@@ -395,29 +395,55 @@ module.exports = {
         review_score: null,
       },
       {
-        name: '생각하는박물관',
-        address: '서울 강남구 청담동 삼성로147길 34 2층 (파란대문)',
-        tel: '02-723-7814',
+        name: '대치동학원가',
+        address: '서울 강남구 대치동 도곡로 445-2 구두수선대',
+        tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(37.5208073 127.0466176)',
+          'POINT(37.4979664 127.0579918)',
         4326
         ),
-        naver_spot_id: '12331878',
-        review_count: 1,
+        naver_spot_id: '20649246',
+        review_count: 29,
         review_score: null,
       },
       {
-        name: '아쿠아트',
-        address: '서울 강남구 삼성동 영동대로 513 코엑스아쿠아리움 가기 전 어항만들기 체험장',
-        tel: '0507-1377-1758',
+        name: '대모산숲속야생화원',
+        address: '서울 강남구 일원동',
+        tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(37.5116621 127.0594275)',
+          'POINT(37.4803617 127.079531)',
         4326
         ),
-        naver_spot_id: '1621292145',
-        review_count: 12,
+        naver_spot_id: '1045285278',
+        review_count: 4,
+        review_score: null,
+      },
+      {
+        name: '럭셔리멀티스파',
+        address: '서울 강남구 역삼동 봉은사로 138',
+        tel: null,
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5057709 127.0298417)',
+        4326
+        ),
+        naver_spot_id: '1185330823',
+        review_count: 0,
+        review_score: null,
+      },
+      {
+        name: '논현동가구거리',
+        address: '서울 강남구 논현동',
+        tel: null,
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5130215 127.0256712)',
+        4326
+        ),
+        naver_spot_id: '18843331',
+        review_count: 2,
         review_score: null,
       },
       {
@@ -434,42 +460,29 @@ module.exports = {
         review_score: 4,
       },
       {
-        name: '대모산숲속야생화원',
+        name: '탄천양재천방문자센터',
+        address: '서울 강남구 대치동 남부순환로 3143 탄천.양재천 방문자센터',
+        tel: null,
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5003304 127.0746093)',
+        4326
+        ),
+        naver_spot_id: '18827280',
+        review_count: 1,
+        review_score: null,
+      },
+      {
+        name: '대모산도시자연공원',
         address: '서울 강남구 일원동',
-        tel: null,
+        tel: '02-2104-1912',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(37.4803617 127.079531)',
+          'POINT(37.4796489 127.0809639)',
         4326
         ),
-        naver_spot_id: '1045285278',
-        review_count: 4,
-        review_score: null,
-      },
-      {
-        name: '대치동학원가',
-        address: '서울 강남구 대치동 도곡로 445-2 구두수선대',
-        tel: null,
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(37.4979664 127.0579918)',
-        4326
-        ),
-        naver_spot_id: '20649246',
-        review_count: 29,
-        review_score: null,
-      },
-      {
-        name: '럭셔리멀티스파',
-        address: '서울 강남구 역삼동 봉은사로 138',
-        tel: null,
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(37.5057709 127.0298417)',
-        4326
-        ),
-        naver_spot_id: '1185330823',
-        review_count: 0,
+        naver_spot_id: '13470517',
+        review_count: 2,
         review_score: null,
       },
       {
@@ -499,6 +512,19 @@ module.exports = {
         review_score: 4.54,
       },
       {
+        name: '역삼개나리공원',
+        address: '서울 강남구 역삼동 논현로79길 24',
+        tel: null,
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.4976865 127.0362049)',
+        4326
+        ),
+        naver_spot_id: '18789937',
+        review_count: 3,
+        review_score: null,
+      },
+      {
         name: '한솔공원',
         address: '서울 강남구 일원동 광평로10길 14-17',
         tel: null,
@@ -509,6 +535,45 @@ module.exports = {
         ),
         naver_spot_id: '18850484',
         review_count: 0,
+        review_score: null,
+      },
+      {
+        name: '늘벗공원',
+        address: '서울 강남구 대치동 선릉로 118',
+        tel: null,
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.4895141 127.0570478)',
+        4326
+        ),
+        naver_spot_id: '18820036',
+        review_count: 4,
+        review_score: null,
+      },
+      {
+        name: '아쿠아트',
+        address: '서울 강남구 삼성동 영동대로 513 코엑스아쿠아리움 가기 전 어항만들기 체험장',
+        tel: '0507-1377-1758',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5116621 127.0594275)',
+        4326
+        ),
+        naver_spot_id: '1621292145',
+        review_count: 12,
+        review_score: null,
+      },
+      {
+        name: '강남메디컬투어센터',
+        address: '서울 강남구 압구정동 압구정로 161 강남관광정보센터 1층',
+        tel: '02-1661-2230',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5268119 127.0269907)',
+        4326
+        ),
+        naver_spot_id: '980722330',
+        review_count: 3,
         review_score: null,
       },
       {
@@ -525,29 +590,29 @@ module.exports = {
         review_score: null,
       },
       {
-        name: '대모산도시자연공원',
+        name: '대청공원',
         address: '서울 강남구 일원동',
-        tel: '02-2104-1912',
+        tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(37.4796489 127.0809639)',
+          'POINT(37.4924993 127.0825552)',
         4326
         ),
-        naver_spot_id: '13470517',
+        naver_spot_id: '18849559',
         review_count: 2,
         review_score: null,
       },
       {
-        name: '역삼개나리공원',
-        address: '서울 강남구 역삼동 논현로79길 24',
+        name: '역삼까치공원',
+        address: '서울 강남구 역삼동',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(37.4976865 127.0362049)',
+          'POINT(37.4972384 127.0307586)',
         4326
         ),
-        naver_spot_id: '18789937',
-        review_count: 3,
+        naver_spot_id: '37670902',
+        review_count: 7,
         review_score: null,
       },
       {
@@ -577,16 +642,16 @@ module.exports = {
         review_score: null,
       },
       {
-        name: '늘벗공원',
-        address: '서울 강남구 대치동 선릉로 118',
+        name: '역삼문화 휴가든',
+        address: '서울 강남구 역삼동 테헤란로7길 21',
         tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(37.4895141 127.0570478)',
+          'POINT(37.5013852 127.0304598)',
         4326
         ),
-        naver_spot_id: '18820036',
-        review_count: 4,
+        naver_spot_id: '1084823048',
+        review_count: 9,
         review_score: null,
       },
       {
@@ -601,71 +666,6 @@ module.exports = {
         naver_spot_id: '18848431',
         review_count: 4,
         review_score: null,
-      },
-      {
-        name: '탄천어울림공원',
-        address: '서울 강남구 수서동 광평로60길 16',
-        tel: null,
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(37.4876603 127.1063298)',
-        4326
-        ),
-        naver_spot_id: '18851069',
-        review_count: 0,
-        review_score: null,
-      },
-      {
-        name: '세천공원',
-        address: '서울 강남구 세곡동',
-        tel: null,
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(37.4665734 127.095569)',
-        4326
-        ),
-        naver_spot_id: '1716735682',
-        review_count: 2,
-        review_score: null,
-      },
-      {
-        name: '대청공원',
-        address: '서울 강남구 일원동',
-        tel: null,
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(37.4924993 127.0825552)',
-        4326
-        ),
-        naver_spot_id: '18849559',
-        review_count: 2,
-        review_score: null,
-      },
-      {
-        name: '강남메디컬투어센터',
-        address: '서울 강남구 압구정동 압구정로 161 강남관광정보센터 1층',
-        tel: '02-1661-2230',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(37.5268119 127.0269907)',
-        4326
-        ),
-        naver_spot_id: '980722330',
-        review_count: 3,
-        review_score: null,
-      },
-      {
-        name: '정릉중종왕릉',
-        address: '서울 강남구 삼성동 선릉로100길 1 선릉정릉',
-        tel: '02-568-1291',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(37.5089271 127.0519144)',
-        4326
-        ),
-        naver_spot_id: '19846927',
-        review_count: 40,
-        review_score: 4.66,
       }
     ];
 
@@ -686,25 +686,6 @@ module.exports = {
     // 이미지 데이터 처리 - 기존 이미지가 있으면 스킵
     const spotImgData = [];
 
-    // 봉은사 이미지
-    const existingImages_11664007 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['11664007'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_11664007[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11664007' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20150831_263/1441013645471rTy35_JPEG/11664007_0.jpg',
-        }
-      ]);
-    }
-
     // 코엑스아쿠아리움 이미지
     const existingImages_11606845 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -719,7 +700,26 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11606845' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20250430_114/1746003878139P7ONN_PNG/WG_%B3%D7%C0%CC%B9%F6%BD%E6%B3%D7%C0%CF_%BA%AE%B5%B9-01.png',
+          img_url: 'https://ldb-phinf.pstatic.net/20250430_114/1746003878139P7ONN_PNG/WG_%B3%D7%C0%CC%B9%F6%BD%E6%B3%D7%C0%CF_%BA%AE%B5%B9-01.png',
+        }
+      ]);
+    }
+
+    // 봉은사 이미지
+    const existingImages_11664007 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['11664007'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_11664007[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11664007' LIMIT 1)`),
+          img_url: 'https://ldb-phinf.pstatic.net/20150831_263/1441013645471rTy35_JPEG/11664007_0.jpg',
         }
       ]);
     }
@@ -738,7 +738,7 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13542608' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20190916_25/1568595239731lIJGq_JPEG/7hQK5lF6NKMu3Lcq_K8aFNKZ.jpeg.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20190916_25/1568595239731lIJGq_JPEG/7hQK5lF6NKMu3Lcq_K8aFNKZ.jpeg.jpg',
         }
       ]);
     }
@@ -757,26 +757,7 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '12375874' LIMIT 1)`),
-          image_url: 'http://blogfiles.naver.net/MjAxNzA2MDVfMTkx/MDAxNDk2NjQ4MTM0OTA2.ej4HLNpZDvi70FTqNj5rfO78TioFSgB2hw7MEkutrtAg.kh3Gl8dGChyWnGuF8LyOBB-ER4HW8YUVyCNE80KAW4Ag.JPEG.mementosyhk/_DSC1928_00001.jpg#740x493',
-        }
-      ]);
-    }
-
-    // 가로수길 이미지
-    const existingImages_13491811 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['13491811'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_13491811[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13491811' LIMIT 1)`),
-          image_url: 'http://blogfiles.naver.net/MjAyMzAzMjJfMjYy/MDAxNjc5NDk2NDcwODkz.MK_a1xIeAFjHQlzCJEIlz6iIHiX-aaA4U4TyW4WOKJ0g.37Szqtplj_JwloBub6kDzbdN2HV8s46AvKJCLY-O5acg.JPEG.hexeph/20230312_175833.jpg#4000x3000',
+          img_url: 'http://blogfiles.naver.net/MjAxNzA2MDVfMTkx/MDAxNDk2NjQ4MTM0OTA2.ej4HLNpZDvi70FTqNj5rfO78TioFSgB2hw7MEkutrtAg.kh3Gl8dGChyWnGuF8LyOBB-ER4HW8YUVyCNE80KAW4Ag.JPEG.mementosyhk/_DSC1928_00001.jpg#740x493',
         }
       ]);
     }
@@ -795,7 +776,7 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11622407' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20150831_158/1441007211120pT9l2_JPEG/106977548050318_0.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20150831_158/1441007211120pT9l2_JPEG/106977548050318_0.jpg',
         }
       ]);
     }
@@ -814,7 +795,26 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1716057332' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20230125_19/1674636838121KswRv_JPEG/902A1105-A3E6-45A1-873C-C1F9AE012745.jpeg',
+          img_url: 'https://ldb-phinf.pstatic.net/20230125_19/1674636838121KswRv_JPEG/902A1105-A3E6-45A1-873C-C1F9AE012745.jpeg',
+        }
+      ]);
+    }
+
+    // 가로수길 이미지
+    const existingImages_13491811 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['13491811'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_13491811[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13491811' LIMIT 1)`),
+          img_url: 'http://blogfiles.naver.net/MjAyMzAzMjJfMjYy/MDAxNjc5NDk2NDcwODkz.MK_a1xIeAFjHQlzCJEIlz6iIHiX-aaA4U4TyW4WOKJ0g.37Szqtplj_JwloBub6kDzbdN2HV8s46AvKJCLY-O5acg.JPEG.hexeph/20230312_175833.jpg#4000x3000',
         }
       ]);
     }
@@ -833,7 +833,7 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1213220888' LIMIT 1)`),
-          image_url: 'http://blogfiles.naver.net/MjAyMzA5MTFfMTcg/MDAxNjk0NDMzOTk0MDI3.HIC-zrO6M4Hn141XOshZMfXijTV8DE1Ya3vngxpsXDsg.XrtSoFrDjRbP9_gcPbYNNgSEtA0sActVrlgHsr2tNZIg.JPEG.travelgeo/20230910%A3%DF214218.jpg#4000x3000',
+          img_url: 'http://blogfiles.naver.net/MjAyMzA5MTFfMTcg/MDAxNjk0NDMzOTk0MDI3.HIC-zrO6M4Hn141XOshZMfXijTV8DE1Ya3vngxpsXDsg.XrtSoFrDjRbP9_gcPbYNNgSEtA0sActVrlgHsr2tNZIg.JPEG.travelgeo/20230910%A3%DF214218.jpg#4000x3000',
         }
       ]);
     }
@@ -852,83 +852,7 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11491346' LIMIT 1)`),
-          image_url: 'http://blogfiles.naver.net/MjAxNzAzMTVfMjIx/MDAxNDg5NTczNzYzODkw.Xqw2QjpfsmHzBF_YhRTkAMj-3YjpaRpZ4QWH5PuRvVog._6l-mWNhTxper8a_449-ISvlVNzYRze39_3-4rHWEDMg.JPEG.jh94645/170315_%BC%AD%BF%EF%B0%AD%B3%B2_%B4%EB%B8%F0%BB%EA_4.JPG#900x600',
-        }
-      ]);
-    }
-
-    // 선릉성종왕릉 이미지
-    const existingImages_12182110 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['12182110'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_12182110[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '12182110' LIMIT 1)`),
-          image_url: 'http://blogfiles.naver.net/MjAxODA0MjFfMjMy/MDAxNTI0MzE0OTU4MTk3.ZmjdNqSnVXcr3gP7Vc4xXV__WV57n3frybEhJdsBSwIg.EqkZduUCoZJBj2qVNs4UPHhyW1iJxa3dP93pJRjEcZ4g.JPEG.ohmark/IMG_9819.jpg#2000x1333',
-        }
-      ]);
-    }
-
-    // 청담근린공원 이미지
-    const existingImages_13542595 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['13542595'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_13542595[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13542595' LIMIT 1)`),
-          image_url: 'http://blogfiles.naver.net/MjAxNjEwMjBfMTUx/MDAxNDc2OTM4NTU0MTU3.ym72zXi4xHiteBXRKqpFOBhXlqwLM88MPvA7tUtqXdAg.9Ko1Jq1Z8TfYtmL9e3hr-DWBDIotcxervE3Rwsw4eewg.JPEG.kimjeehyoung/KakaoTalk_20161020_132723335.jpg#900x506',
-        }
-      ]);
-    }
-
-    // 피규어뮤지엄w 이미지
-    const existingImages_36368850 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['36368850'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_36368850[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '36368850' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20180706_200/1530865520610TSd9m_JPEG/%28.jpg',
-        }
-      ]);
-    }
-
-    // 은진농장 이미지
-    const existingImages_1430820935 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['1430820935'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_1430820935[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1430820935' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20240404_194/1712227964207fV6Fj_JPEG/20240404_083711.jpg',
+          img_url: 'http://blogfiles.naver.net/MjAxNzAzMTVfMjIx/MDAxNDg5NTczNzYzODkw.Xqw2QjpfsmHzBF_YhRTkAMj-3YjpaRpZ4QWH5PuRvVog._6l-mWNhTxper8a_449-ISvlVNzYRze39_3-4rHWEDMg.JPEG.jh94645/170315_%BC%AD%BF%EF%B0%AD%B3%B2_%B4%EB%B8%F0%BB%EA_4.JPG#900x600',
         }
       ]);
     }
@@ -947,26 +871,64 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '18850444' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20200202_268/1580628994517HiN1z_JPEG/OfKRMy186UeagZarwVNLXYNg.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20200202_268/1580628994517HiN1z_JPEG/OfKRMy186UeagZarwVNLXYNg.jpg',
         }
       ]);
     }
 
-    // 율현공원 이미지
-    const existingImages_814449025 = await queryInterface.sequelize.query(
+    // 청담근린공원 이미지
+    const existingImages_13542595 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['814449025'],
+        replacements: ['13542595'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
 
-    if (existingImages_814449025[0].count === 0) {
+    if (existingImages_13542595[0].count === 0) {
       // 새 이미지 추가
       spotImgData.push(...[
         {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '814449025' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20200118_52/1579323845064XJV5s_JPEG/9z63xstZVspOt4M_Cipip-98.jpg',
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13542595' LIMIT 1)`),
+          img_url: 'http://blogfiles.naver.net/MjAxNjEwMjBfMTUx/MDAxNDc2OTM4NTU0MTU3.ym72zXi4xHiteBXRKqpFOBhXlqwLM88MPvA7tUtqXdAg.9Ko1Jq1Z8TfYtmL9e3hr-DWBDIotcxervE3Rwsw4eewg.JPEG.kimjeehyoung/KakaoTalk_20161020_132723335.jpg#900x506',
+        }
+      ]);
+    }
+
+    // 선릉성종왕릉 이미지
+    const existingImages_12182110 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['12182110'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_12182110[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '12182110' LIMIT 1)`),
+          img_url: 'http://blogfiles.naver.net/MjAxODA0MjFfMjMy/MDAxNTI0MzE0OTU4MTk3.ZmjdNqSnVXcr3gP7Vc4xXV__WV57n3frybEhJdsBSwIg.EqkZduUCoZJBj2qVNs4UPHhyW1iJxa3dP93pJRjEcZ4g.JPEG.ohmark/IMG_9819.jpg#2000x1333',
+        }
+      ]);
+    }
+
+    // 피규어뮤지엄w 이미지
+    const existingImages_36368850 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['36368850'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_36368850[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '36368850' LIMIT 1)`),
+          img_url: 'https://ldb-phinf.pstatic.net/20180706_200/1530865520610TSd9m_JPEG/%28.jpg',
         }
       ]);
     }
@@ -985,7 +947,45 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '33997153' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20210128_189/1611798677269loOoF_JPEG/qMOK3Fl8jGBrJkFUvX6--SFF.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20210128_189/1611798677269loOoF_JPEG/qMOK3Fl8jGBrJkFUvX6--SFF.jpg',
+        }
+      ]);
+    }
+
+    // 은진농장 이미지
+    const existingImages_1430820935 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['1430820935'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_1430820935[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1430820935' LIMIT 1)`),
+          img_url: 'https://ldb-phinf.pstatic.net/20240404_194/1712227964207fV6Fj_JPEG/20240404_083711.jpg',
+        }
+      ]);
+    }
+
+    // 율현공원 이미지
+    const existingImages_814449025 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['814449025'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_814449025[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '814449025' LIMIT 1)`),
+          img_url: 'https://ldb-phinf.pstatic.net/20200118_52/1579323845064XJV5s_JPEG/9z63xstZVspOt4M_Cipip-98.jpg',
         }
       ]);
     }
@@ -1004,26 +1004,7 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '431256125' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20200218_34/1581995009380h2pHz_JPEG/Eg-wpUGPStDS4CHFFVC338BY.jpg',
-        }
-      ]);
-    }
-
-    // 일원에코파크 이미지
-    const existingImages_1792059339 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['1792059339'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_1792059339[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1792059339' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20200202_175/1580606731016wlPwt_JPEG/MbagT9t9KpSMhRStVzcgeO4R.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20200218_34/1581995009380h2pHz_JPEG/Eg-wpUGPStDS4CHFFVC338BY.jpg',
         }
       ]);
     }
@@ -1042,26 +1023,26 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13491285' LIMIT 1)`),
-          image_url: 'http://blogfiles.naver.net/MjAxNjExMjFfMjg1/MDAxNDc5NzE5ODI2Nzk3.lsh6IaiQ0xRok5jyQHNhZs8y3gsQcZWKrckaIKZZFkog.HRMTmx2pE43DH3IYX4opoOq-7e9Wc-cqzgsuX1tZvSkg.JPEG.rgongsil/%B7%B9%C0%CE%BA%B8%BF%EC%BA%CE%B5%BF%BB%EA_%C7%D0%B5%BF%B1%D9%B8%B0%B0%F8%BF%F8.jpg#900x506',
+          img_url: 'http://blogfiles.naver.net/MjAxNjExMjFfMjg1/MDAxNDc5NzE5ODI2Nzk3.lsh6IaiQ0xRok5jyQHNhZs8y3gsQcZWKrckaIKZZFkog.HRMTmx2pE43DH3IYX4opoOq-7e9Wc-cqzgsuX1tZvSkg.JPEG.rgongsil/%B7%B9%C0%CE%BA%B8%BF%EC%BA%CE%B5%BF%BB%EA_%C7%D0%B5%BF%B1%D9%B8%B0%B0%F8%BF%F8.jpg#900x506',
         }
       ]);
     }
 
-    // 도산 안창호 기념관 이미지
-    const existingImages_11620336 = await queryInterface.sequelize.query(
+    // 일원에코파크 이미지
+    const existingImages_1792059339 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['11620336'],
+        replacements: ['1792059339'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
 
-    if (existingImages_11620336[0].count === 0) {
+    if (existingImages_1792059339[0].count === 0) {
       // 새 이미지 추가
       spotImgData.push(...[
         {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11620336' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20150831_64/144100669577626Sys_JPEG/11620336_0.jpg',
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1792059339' LIMIT 1)`),
+          img_url: 'https://ldb-phinf.pstatic.net/20200202_175/1580606731016wlPwt_JPEG/MbagT9t9KpSMhRStVzcgeO4R.jpg',
         }
       ]);
     }
@@ -1080,7 +1061,26 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1817628634' LIMIT 1)`),
-          image_url: 'http://blogfiles.naver.net/MjAyMzEwMjRfMTI0/MDAxNjk4MTEwNzEyNTg0.BktE1jypMIcne8LpNoV01Ex0HQHqW1tPhplfGbNRv0Ug.y_ZYK02exnwpMohXHdIeyJh7a6GSBalRB_McZjqHHYIg.JPEG.alicegangnam/%BC%BC%B0%EE%C3%BC%C0%B0%B0%F8%BF%F8_%C3%E0%B1%B8%C0%E5.jpg#4000x2664',
+          img_url: 'http://blogfiles.naver.net/MjAyMzEwMjRfMTI0/MDAxNjk4MTEwNzEyNTg0.BktE1jypMIcne8LpNoV01Ex0HQHqW1tPhplfGbNRv0Ug.y_ZYK02exnwpMohXHdIeyJh7a6GSBalRB_McZjqHHYIg.JPEG.alicegangnam/%BC%BC%B0%EE%C3%BC%C0%B0%B0%F8%BF%F8_%C3%E0%B1%B8%C0%E5.jpg#4000x2664',
+        }
+      ]);
+    }
+
+    // 도산 안창호 기념관 이미지
+    const existingImages_11620336 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['11620336'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_11620336[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11620336' LIMIT 1)`),
+          img_url: 'https://ldb-phinf.pstatic.net/20150831_64/144100669577626Sys_JPEG/11620336_0.jpg',
         }
       ]);
     }
@@ -1099,26 +1099,7 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '20104032' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20190905_158/1567670370909LdknK_JPEG/lqOJNkKjFlHQnVvxAsScMe0_.jpg',
-        }
-      ]);
-    }
-
-    // 청담동명품거리 이미지
-    const existingImages_34615836 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['34615836'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_34615836[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '34615836' LIMIT 1)`),
-          image_url: 'http://blogfiles.naver.net/MjAxNzAxMDhfMjcg/MDAxNDgzODEwOTE0OTA5.0vjU0HXF0nhYXd-gHme7l_lDU6-7C5VQaOqtwpzdPcog.DNL6G3IPKEPvIM2JblGagxE5BGKlAURnFxUFmGeswbwg.JPEG.hjjo100/IMG_6993.JPG#900x600',
+          img_url: 'https://ldb-phinf.pstatic.net/20190905_158/1567670370909LdknK_JPEG/lqOJNkKjFlHQnVvxAsScMe0_.jpg',
         }
       ]);
     }
@@ -1137,26 +1118,26 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '12331878' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20230316_252/1678929803528isMWS_PNG/1111%B7%CE%B0%ED.png',
+          img_url: 'https://ldb-phinf.pstatic.net/20230316_252/1678929803528isMWS_PNG/1111%B7%CE%B0%ED.png',
         }
       ]);
     }
 
-    // 아쿠아트 이미지
-    const existingImages_1621292145 = await queryInterface.sequelize.query(
+    // 청담동명품거리 이미지
+    const existingImages_34615836 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['1621292145'],
+        replacements: ['34615836'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
 
-    if (existingImages_1621292145[0].count === 0) {
+    if (existingImages_34615836[0].count === 0) {
       // 새 이미지 추가
       spotImgData.push(...[
         {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1621292145' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20240404_9/1712208881522S77nB_PNG/5.png',
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '34615836' LIMIT 1)`),
+          img_url: 'http://blogfiles.naver.net/MjAxNzAxMDhfMjcg/MDAxNDgzODEwOTE0OTA5.0vjU0HXF0nhYXd-gHme7l_lDU6-7C5VQaOqtwpzdPcog.DNL6G3IPKEPvIM2JblGagxE5BGKlAURnFxUFmGeswbwg.JPEG.hjjo100/IMG_6993.JPG#900x600',
         }
       ]);
     }
@@ -1175,26 +1156,26 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1045285278' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20200426_264/1587877718199cCBqX_JPEG/npepX3XepZmKqbLE9Vwx2xDN.jpeg.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20200426_264/1587877718199cCBqX_JPEG/npepX3XepZmKqbLE9Vwx2xDN.jpeg.jpg',
         }
       ]);
     }
 
-    // 청담배수지공원 이미지
-    const existingImages_826700069 = await queryInterface.sequelize.query(
+    // 탄천양재천방문자센터 이미지
+    const existingImages_18827280 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['826700069'],
+        replacements: ['18827280'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
 
-    if (existingImages_826700069[0].count === 0) {
+    if (existingImages_18827280[0].count === 0) {
       // 새 이미지 추가
       spotImgData.push(...[
         {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '826700069' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20170525_157/1495681646563PzeYn_JPEG/186475523743_0.jpg',
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '18827280' LIMIT 1)`),
+          img_url: 'https://ldb-phinf.pstatic.net/20191207_41/1575708054046Krga3_JPEG/RJrrOSsSfN9cOg59xZ_6qXxq.jpg',
         }
       ]);
     }
@@ -1213,7 +1194,26 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13470517' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20150901_173/1441042325679OkVou_JPEG/116677585055571_0.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20150901_173/1441042325679OkVou_JPEG/116677585055571_0.jpg',
+        }
+      ]);
+    }
+
+    // 청담배수지공원 이미지
+    const existingImages_826700069 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['826700069'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_826700069[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '826700069' LIMIT 1)`),
+          img_url: 'https://ldb-phinf.pstatic.net/20170525_157/1495681646563PzeYn_JPEG/186475523743_0.jpg',
         }
       ]);
     }
@@ -1232,64 +1232,26 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '18789937' LIMIT 1)`),
-          image_url: 'http://blogfiles.naver.net/MjAyMDA1MDZfMjE3/MDAxNTg4NzczODM2NTUy.iJsoJRdM_13xNwenjMCRu_6_qnlORzDxfyhmumzLNXAg.Kvytia-Qqyo_NnuAqNxiUqM1Y2dE8tor4Yy7dNmGsuwg.JPEG.jhj8637/20200506_170123.jpg#900x900',
+          img_url: 'http://blogfiles.naver.net/MjAyMDA1MDZfMjE3/MDAxNTg4NzczODM2NTUy.iJsoJRdM_13xNwenjMCRu_6_qnlORzDxfyhmumzLNXAg.Kvytia-Qqyo_NnuAqNxiUqM1Y2dE8tor4Yy7dNmGsuwg.JPEG.jhj8637/20200506_170123.jpg#900x900',
         }
       ]);
     }
 
-    // 논현까치공원 이미지
-    const existingImages_18836081 = await queryInterface.sequelize.query(
+    // 아쿠아트 이미지
+    const existingImages_1621292145 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['18836081'],
+        replacements: ['1621292145'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
 
-    if (existingImages_18836081[0].count === 0) {
+    if (existingImages_1621292145[0].count === 0) {
       // 새 이미지 추가
       spotImgData.push(...[
         {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '18836081' LIMIT 1)`),
-          image_url: 'http://blogfiles.naver.net/MjAyMTEyMDhfMTgz/MDAxNjM4OTAxNzE4NDgy.76Qo-vArP1r0JlWA6o4YZ01jECpvRcwJoNGp_SuDzIsg.CX6QlXhiwp_NqRMdZn4ny8v7AVO3sDjdc6FbmMa0uJMg.JPEG.pakkh6969/20211208%A3%DF012652.jpg#900x675',
-        }
-      ]);
-    }
-
-    // 세천공원 이미지
-    const existingImages_1716735682 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['1716735682'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_1716735682[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1716735682' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20200314_271/15841597925255VIRI_JPEG/hMVz9VBHQ_4iSlZvSUTmZydI.jpeg.jpg',
-        }
-      ]);
-    }
-
-    // 대청공원 이미지
-    const existingImages_18849559 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['18849559'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_18849559[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '18849559' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20200202_30/1580648437807DRnHV_JPEG/bJZuJSIfNWXDpGKJLV8pVsjD.jpg',
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1621292145' LIMIT 1)`),
+          img_url: 'https://ldb-phinf.pstatic.net/20240404_9/1712208881522S77nB_PNG/5.png',
         }
       ]);
     }
@@ -1308,26 +1270,45 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '980722330' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20231122_126/1700631485629LLGeY_JPEG/%BC%BE%C5%CD%28%C3%E0%BC%D2%29.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20231122_126/1700631485629LLGeY_JPEG/%BC%BE%C5%CD%28%C3%E0%BC%D2%29.jpg',
         }
       ]);
     }
 
-    // 정릉중종왕릉 이미지
-    const existingImages_19846927 = await queryInterface.sequelize.query(
+    // 대청공원 이미지
+    const existingImages_18849559 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['19846927'],
+        replacements: ['18849559'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
 
-    if (existingImages_19846927[0].count === 0) {
+    if (existingImages_18849559[0].count === 0) {
       // 새 이미지 추가
       spotImgData.push(...[
         {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '19846927' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20150831_40/14410186706322EbIG_JPEG/126354537345049_0.jpg',
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '18849559' LIMIT 1)`),
+          img_url: 'https://ldb-phinf.pstatic.net/20200202_30/1580648437807DRnHV_JPEG/bJZuJSIfNWXDpGKJLV8pVsjD.jpg',
+        }
+      ]);
+    }
+
+    // 논현까치공원 이미지
+    const existingImages_18836081 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['18836081'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_18836081[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '18836081' LIMIT 1)`),
+          img_url: 'http://blogfiles.naver.net/MjAyMTEyMDhfMTgz/MDAxNjM4OTAxNzE4NDgy.76Qo-vArP1r0JlWA6o4YZ01jECpvRcwJoNGp_SuDzIsg.CX6QlXhiwp_NqRMdZn4ny8v7AVO3sDjdc6FbmMa0uJMg.JPEG.pakkh6969/20211208%A3%DF012652.jpg#900x675',
         }
       ]);
     }
@@ -1338,31 +1319,6 @@ module.exports = {
 
     // 카테고리 관계 처리 - 중복되지 않는 카테고리만 추가
     const spotCategoryRelationData = [];
-
-    // 봉은사 카테고리 관계
-    const existingCategories_11664007 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['11664007'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_11664007 = new Set(existingCategories_11664007.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_11664007 = [...new Set([
-      '종교'
-    ])];
-
-    for (const category of uniqueCategories_11664007) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_11664007.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11664007' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
 
     // 코엑스아쿠아리움 카테고리 관계
     const existingCategories_11606845 = await queryInterface.sequelize.query(
@@ -1384,6 +1340,31 @@ module.exports = {
       if (categoryId[category] && !existingCategoryIds_11606845.has(categoryId[category])) {
         spotCategoryRelationData.push({
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11606845' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 봉은사 카테고리 관계
+    const existingCategories_11664007 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['11664007'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_11664007 = new Set(existingCategories_11664007.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_11664007 = [...new Set([
+      '종교'
+    ])];
+
+    for (const category of uniqueCategories_11664007) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_11664007.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11664007' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -1439,31 +1420,6 @@ module.exports = {
       }
     }
 
-    // 가로수길 카테고리 관계
-    const existingCategories_13491811 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['13491811'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_13491811 = new Set(existingCategories_13491811.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_13491811 = [...new Set([
-      '관광지'
-    ])];
-
-    for (const category of uniqueCategories_13491811) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_13491811.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13491811' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
     // 도산공원 카테고리 관계
     const existingCategories_11622407 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -1509,6 +1465,31 @@ module.exports = {
       if (categoryId[category] && !existingCategoryIds_1716057332.has(categoryId[category])) {
         spotCategoryRelationData.push({
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1716057332' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 가로수길 카테고리 관계
+    const existingCategories_13491811 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['13491811'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_13491811 = new Set(existingCategories_13491811.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_13491811 = [...new Set([
+      '관광지'
+    ])];
+
+    for (const category of uniqueCategories_13491811) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_13491811.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13491811' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -1564,51 +1545,26 @@ module.exports = {
       }
     }
 
-    // 선릉성종왕릉 카테고리 관계
-    const existingCategories_12182110 = await queryInterface.sequelize.query(
+    // 마루공원 카테고리 관계
+    const existingCategories_18850444 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['12182110'],
+        replacements: ['18850444'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
-    const existingCategoryIds_12182110 = new Set(existingCategories_12182110.map(cat => cat.spot_category_id));
+    const existingCategoryIds_18850444 = new Set(existingCategories_18850444.map(cat => cat.spot_category_id));
 
     // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_12182110 = [...new Set([
-      '자연'
-    ])];
-
-    for (const category of uniqueCategories_12182110) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_12182110.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '12182110' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
-    // 압구정로데오거리 카테고리 관계
-    const existingCategories_13491361 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['13491361'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_13491361 = new Set(existingCategories_13491361.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_13491361 = [...new Set([
+    const uniqueCategories_18850444 = [...new Set([
       '관광지'
     ])];
 
-    for (const category of uniqueCategories_13491361) {
+    for (const category of uniqueCategories_18850444) {
       const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_13491361.has(categoryId[category])) {
+      if (categoryId[category] && !existingCategoryIds_18850444.has(categoryId[category])) {
         spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13491361' LIMIT 1)`),
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '18850444' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -1639,6 +1595,31 @@ module.exports = {
       }
     }
 
+    // 선릉성종왕릉 카테고리 관계
+    const existingCategories_12182110 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['12182110'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_12182110 = new Set(existingCategories_12182110.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_12182110 = [...new Set([
+      '자연'
+    ])];
+
+    for (const category of uniqueCategories_12182110) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_12182110.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '12182110' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
     // 피규어뮤지엄w 카테고리 관계
     const existingCategories_36368850 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -1659,81 +1640,6 @@ module.exports = {
       if (categoryId[category] && !existingCategoryIds_36368850.has(categoryId[category])) {
         spotCategoryRelationData.push({
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '36368850' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
-    // 은진농장 카테고리 관계
-    const existingCategories_1430820935 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['1430820935'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_1430820935 = new Set(existingCategories_1430820935.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_1430820935 = [...new Set([
-      '관광지'
-    ])];
-
-    for (const category of uniqueCategories_1430820935) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_1430820935.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1430820935' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
-    // 마루공원 카테고리 관계
-    const existingCategories_18850444 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['18850444'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_18850444 = new Set(existingCategories_18850444.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_18850444 = [...new Set([
-      '관광지'
-    ])];
-
-    for (const category of uniqueCategories_18850444) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_18850444.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '18850444' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
-    // 율현공원 카테고리 관계
-    const existingCategories_814449025 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['814449025'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_814449025 = new Set(existingCategories_814449025.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_814449025 = [...new Set([
-      '관광지'
-    ])];
-
-    for (const category of uniqueCategories_814449025) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_814449025.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '814449025' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -1764,6 +1670,81 @@ module.exports = {
       }
     }
 
+    // 압구정로데오거리 카테고리 관계
+    const existingCategories_13491361 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['13491361'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_13491361 = new Set(existingCategories_13491361.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_13491361 = [...new Set([
+      '관광지'
+    ])];
+
+    for (const category of uniqueCategories_13491361) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_13491361.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13491361' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 은진농장 카테고리 관계
+    const existingCategories_1430820935 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['1430820935'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_1430820935 = new Set(existingCategories_1430820935.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_1430820935 = [...new Set([
+      '관광지'
+    ])];
+
+    for (const category of uniqueCategories_1430820935) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_1430820935.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1430820935' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 율현공원 카테고리 관계
+    const existingCategories_814449025 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['814449025'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_814449025 = new Set(existingCategories_814449025.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_814449025 = [...new Set([
+      '관광지'
+    ])];
+
+    for (const category of uniqueCategories_814449025) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_814449025.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '814449025' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
     // 대치유수지체육공원 카테고리 관계
     const existingCategories_431256125 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -1784,31 +1765,6 @@ module.exports = {
       if (categoryId[category] && !existingCategoryIds_431256125.has(categoryId[category])) {
         spotCategoryRelationData.push({
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '431256125' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
-    // 일원에코파크 카테고리 관계
-    const existingCategories_1792059339 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['1792059339'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_1792059339 = new Set(existingCategories_1792059339.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_1792059339 = [...new Set([
-      '관광지'
-    ])];
-
-    for (const category of uniqueCategories_1792059339) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_1792059339.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1792059339' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -1839,6 +1795,31 @@ module.exports = {
       }
     }
 
+    // 일원에코파크 카테고리 관계
+    const existingCategories_1792059339 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['1792059339'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_1792059339 = new Set(existingCategories_1792059339.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_1792059339 = [...new Set([
+      '관광지'
+    ])];
+
+    for (const category of uniqueCategories_1792059339) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_1792059339.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1792059339' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
     // 도곡공원 카테고리 관계
     const existingCategories_18852184 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -1859,6 +1840,56 @@ module.exports = {
       if (categoryId[category] && !existingCategoryIds_18852184.has(categoryId[category])) {
         spotCategoryRelationData.push({
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '18852184' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 강남세곡체육공원 카테고리 관계
+    const existingCategories_1817628634 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['1817628634'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_1817628634 = new Set(existingCategories_1817628634.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_1817628634 = [...new Set([
+      '관광지'
+    ])];
+
+    for (const category of uniqueCategories_1817628634) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_1817628634.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1817628634' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 아노블리81 카테고리 관계
+    const existingCategories_1318284239 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['1318284239'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_1318284239 = new Set(existingCategories_1318284239.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_1318284239 = [...new Set([
+      '복합 문화 공간'
+    ])];
+
+    for (const category of uniqueCategories_1318284239) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_1318284239.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1318284239' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -1915,56 +1946,6 @@ module.exports = {
       }
     }
 
-    // 아노블리81 카테고리 관계
-    const existingCategories_1318284239 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['1318284239'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_1318284239 = new Set(existingCategories_1318284239.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_1318284239 = [...new Set([
-      '복합 문화 공간'
-    ])];
-
-    for (const category of uniqueCategories_1318284239) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_1318284239.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1318284239' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
-    // 강남세곡체육공원 카테고리 관계
-    const existingCategories_1817628634 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['1817628634'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_1817628634 = new Set(existingCategories_1817628634.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_1817628634 = [...new Set([
-      '관광지'
-    ])];
-
-    for (const category of uniqueCategories_1817628634) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_1817628634.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1817628634' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
     // 전주이씨광평대군묘역 카테고리 관계
     const existingCategories_20104032 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -2015,26 +1996,26 @@ module.exports = {
       }
     }
 
-    // 논현동가구거리 카테고리 관계
-    const existingCategories_18843331 = await queryInterface.sequelize.query(
+    // 생각하는박물관 카테고리 관계
+    const existingCategories_12331878 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['18843331'],
+        replacements: ['12331878'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
-    const existingCategoryIds_18843331 = new Set(existingCategories_18843331.map(cat => cat.spot_category_id));
+    const existingCategoryIds_12331878 = new Set(existingCategories_12331878.map(cat => cat.spot_category_id));
 
     // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_18843331 = [...new Set([
+    const uniqueCategories_12331878 = [...new Set([
       '관광지'
     ])];
 
-    for (const category of uniqueCategories_18843331) {
+    for (const category of uniqueCategories_12331878) {
       const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_18843331.has(categoryId[category])) {
+      if (categoryId[category] && !existingCategoryIds_12331878.has(categoryId[category])) {
         spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '18843331' LIMIT 1)`),
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '12331878' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -2065,76 +2046,26 @@ module.exports = {
       }
     }
 
-    // 생각하는박물관 카테고리 관계
-    const existingCategories_12331878 = await queryInterface.sequelize.query(
+    // 대치동학원가 카테고리 관계
+    const existingCategories_20649246 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['12331878'],
+        replacements: ['20649246'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
-    const existingCategoryIds_12331878 = new Set(existingCategories_12331878.map(cat => cat.spot_category_id));
+    const existingCategoryIds_20649246 = new Set(existingCategories_20649246.map(cat => cat.spot_category_id));
 
     // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_12331878 = [...new Set([
+    const uniqueCategories_20649246 = [...new Set([
       '관광지'
     ])];
 
-    for (const category of uniqueCategories_12331878) {
+    for (const category of uniqueCategories_20649246) {
       const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_12331878.has(categoryId[category])) {
+      if (categoryId[category] && !existingCategoryIds_20649246.has(categoryId[category])) {
         spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '12331878' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
-    // 아쿠아트 카테고리 관계
-    const existingCategories_1621292145 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['1621292145'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_1621292145 = new Set(existingCategories_1621292145.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_1621292145 = [...new Set([
-      '관광지'
-    ])];
-
-    for (const category of uniqueCategories_1621292145) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_1621292145.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1621292145' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
-    // 역삼문화공원 카테고리 관계
-    const existingCategories_13542444 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['13542444'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_13542444 = new Set(existingCategories_13542444.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_13542444 = [...new Set([
-      '관광지'
-    ])];
-
-    for (const category of uniqueCategories_13542444) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_13542444.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13542444' LIMIT 1)`),
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '20649246' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -2165,31 +2096,6 @@ module.exports = {
       }
     }
 
-    // 대치동학원가 카테고리 관계
-    const existingCategories_20649246 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['20649246'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_20649246 = new Set(existingCategories_20649246.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_20649246 = [...new Set([
-      '관광지'
-    ])];
-
-    for (const category of uniqueCategories_20649246) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_20649246.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '20649246' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
     // 럭셔리멀티스파 카테고리 관계
     const existingCategories_1185330823 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -2210,6 +2116,106 @@ module.exports = {
       if (categoryId[category] && !existingCategoryIds_1185330823.has(categoryId[category])) {
         spotCategoryRelationData.push({
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1185330823' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 논현동가구거리 카테고리 관계
+    const existingCategories_18843331 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['18843331'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_18843331 = new Set(existingCategories_18843331.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_18843331 = [...new Set([
+      '관광지'
+    ])];
+
+    for (const category of uniqueCategories_18843331) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_18843331.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '18843331' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 역삼문화공원 카테고리 관계
+    const existingCategories_13542444 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['13542444'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_13542444 = new Set(existingCategories_13542444.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_13542444 = [...new Set([
+      '관광지'
+    ])];
+
+    for (const category of uniqueCategories_13542444) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_13542444.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13542444' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 탄천양재천방문자센터 카테고리 관계
+    const existingCategories_18827280 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['18827280'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_18827280 = new Set(existingCategories_18827280.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_18827280 = [...new Set([
+      '관광지'
+    ])];
+
+    for (const category of uniqueCategories_18827280) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_18827280.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '18827280' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 대모산도시자연공원 카테고리 관계
+    const existingCategories_13470517 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['13470517'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_13470517 = new Set(existingCategories_13470517.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_13470517 = [...new Set([
+      '관광지'
+    ])];
+
+    for (const category of uniqueCategories_13470517) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_13470517.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13470517' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -2265,6 +2271,31 @@ module.exports = {
       }
     }
 
+    // 역삼개나리공원 카테고리 관계
+    const existingCategories_18789937 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['18789937'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_18789937 = new Set(existingCategories_18789937.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_18789937 = [...new Set([
+      '관광지'
+    ])];
+
+    for (const category of uniqueCategories_18789937) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_18789937.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '18789937' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
     // 한솔공원 카테고리 관계
     const existingCategories_18850484 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -2285,6 +2316,81 @@ module.exports = {
       if (categoryId[category] && !existingCategoryIds_18850484.has(categoryId[category])) {
         spotCategoryRelationData.push({
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '18850484' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 늘벗공원 카테고리 관계
+    const existingCategories_18820036 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['18820036'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_18820036 = new Set(existingCategories_18820036.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_18820036 = [...new Set([
+      '관광지'
+    ])];
+
+    for (const category of uniqueCategories_18820036) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_18820036.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '18820036' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 아쿠아트 카테고리 관계
+    const existingCategories_1621292145 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['1621292145'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_1621292145 = new Set(existingCategories_1621292145.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_1621292145 = [...new Set([
+      '관광지'
+    ])];
+
+    for (const category of uniqueCategories_1621292145) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_1621292145.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1621292145' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 강남메디컬투어센터 카테고리 관계
+    const existingCategories_980722330 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['980722330'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_980722330 = new Set(existingCategories_980722330.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_980722330 = [...new Set([
+      '관광지'
+    ])];
+
+    for (const category of uniqueCategories_980722330) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_980722330.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '980722330' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -2315,51 +2421,51 @@ module.exports = {
       }
     }
 
-    // 대모산도시자연공원 카테고리 관계
-    const existingCategories_13470517 = await queryInterface.sequelize.query(
+    // 대청공원 카테고리 관계
+    const existingCategories_18849559 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['13470517'],
+        replacements: ['18849559'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
-    const existingCategoryIds_13470517 = new Set(existingCategories_13470517.map(cat => cat.spot_category_id));
+    const existingCategoryIds_18849559 = new Set(existingCategories_18849559.map(cat => cat.spot_category_id));
 
     // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_13470517 = [...new Set([
+    const uniqueCategories_18849559 = [...new Set([
       '관광지'
     ])];
 
-    for (const category of uniqueCategories_13470517) {
+    for (const category of uniqueCategories_18849559) {
       const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_13470517.has(categoryId[category])) {
+      if (categoryId[category] && !existingCategoryIds_18849559.has(categoryId[category])) {
         spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13470517' LIMIT 1)`),
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '18849559' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
     }
 
-    // 역삼개나리공원 카테고리 관계
-    const existingCategories_18789937 = await queryInterface.sequelize.query(
+    // 역삼까치공원 카테고리 관계
+    const existingCategories_37670902 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['18789937'],
+        replacements: ['37670902'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
-    const existingCategoryIds_18789937 = new Set(existingCategories_18789937.map(cat => cat.spot_category_id));
+    const existingCategoryIds_37670902 = new Set(existingCategories_37670902.map(cat => cat.spot_category_id));
 
     // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_18789937 = [...new Set([
+    const uniqueCategories_37670902 = [...new Set([
       '관광지'
     ])];
 
-    for (const category of uniqueCategories_18789937) {
+    for (const category of uniqueCategories_37670902) {
       const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_18789937.has(categoryId[category])) {
+      if (categoryId[category] && !existingCategoryIds_37670902.has(categoryId[category])) {
         spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '18789937' LIMIT 1)`),
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '37670902' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -2415,26 +2521,26 @@ module.exports = {
       }
     }
 
-    // 늘벗공원 카테고리 관계
-    const existingCategories_18820036 = await queryInterface.sequelize.query(
+    // 역삼문화 휴가든 카테고리 관계
+    const existingCategories_1084823048 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['18820036'],
+        replacements: ['1084823048'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
-    const existingCategoryIds_18820036 = new Set(existingCategories_18820036.map(cat => cat.spot_category_id));
+    const existingCategoryIds_1084823048 = new Set(existingCategories_1084823048.map(cat => cat.spot_category_id));
 
     // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_18820036 = [...new Set([
+    const uniqueCategories_1084823048 = [...new Set([
       '관광지'
     ])];
 
-    for (const category of uniqueCategories_18820036) {
+    for (const category of uniqueCategories_1084823048) {
       const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_18820036.has(categoryId[category])) {
+      if (categoryId[category] && !existingCategoryIds_1084823048.has(categoryId[category])) {
         spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '18820036' LIMIT 1)`),
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1084823048' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -2460,131 +2566,6 @@ module.exports = {
       if (categoryId[category] && !existingCategoryIds_18848431.has(categoryId[category])) {
         spotCategoryRelationData.push({
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '18848431' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
-    // 탄천어울림공원 카테고리 관계
-    const existingCategories_18851069 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['18851069'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_18851069 = new Set(existingCategories_18851069.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_18851069 = [...new Set([
-      '관광지'
-    ])];
-
-    for (const category of uniqueCategories_18851069) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_18851069.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '18851069' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
-    // 세천공원 카테고리 관계
-    const existingCategories_1716735682 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['1716735682'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_1716735682 = new Set(existingCategories_1716735682.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_1716735682 = [...new Set([
-      '관광지'
-    ])];
-
-    for (const category of uniqueCategories_1716735682) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_1716735682.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1716735682' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
-    // 대청공원 카테고리 관계
-    const existingCategories_18849559 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['18849559'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_18849559 = new Set(existingCategories_18849559.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_18849559 = [...new Set([
-      '관광지'
-    ])];
-
-    for (const category of uniqueCategories_18849559) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_18849559.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '18849559' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
-    // 강남메디컬투어센터 카테고리 관계
-    const existingCategories_980722330 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['980722330'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_980722330 = new Set(existingCategories_980722330.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_980722330 = [...new Set([
-      '관광지'
-    ])];
-
-    for (const category of uniqueCategories_980722330) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_980722330.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '980722330' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
-    // 정릉중종왕릉 카테고리 관계
-    const existingCategories_19846927 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['19846927'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_19846927 = new Set(existingCategories_19846927.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_19846927 = [...new Set([
-      '자연'
-    ])];
-
-    for (const category of uniqueCategories_19846927) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_19846927.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '19846927' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }

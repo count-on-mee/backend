@@ -13,7 +13,7 @@ class SpotBasicDto {
       },
       tel,
       categories: spotCategories?.map((category) => category.type) || [],
-      imgUrls: spotImgs?.map((img) => img.imageUrl) || [],
+      imgUrls: spotImgs?.map((img) => img.imgUrl) || [],
     };
   }
 

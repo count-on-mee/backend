@@ -72,7 +72,7 @@ exports.getSpots = async (userId, lat, lng, zoom) => {
       {
         model: SpotImg,
         as: 'spotImgs',
-        attributes: ['imageUrl'],
+        attributes: ['imgUrl'],
       },
       {
         model: SpotScrap,
@@ -120,7 +120,7 @@ exports.getSpotById = async (userId, spotId) => {
       {
         model: SpotImg,
         as: 'spotImgs',
-        attributes: ['imageUrl'],
+        attributes: ['imgUrl'],
       },
       {
         model: SpotScrap,
@@ -219,7 +219,7 @@ exports.searchSpots = async (userId, spotName, spotCategories) => {
       {
         model: SpotImg,
         as: 'spotImgs',
-        attributes: ['imageUrl'],
+        attributes: ['imgUrl'],
       },
       {
         model: SpotScrap,

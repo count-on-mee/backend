@@ -165,7 +165,7 @@ exports.getTripById = async (userId, tripId) => {
               {
                 model: SpotImg,
                 as: 'spotImgs',
-                attributes: ['imageUrl'],
+                attributes: ['imgUrl'],
               },
             ],
           },

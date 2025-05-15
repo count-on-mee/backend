@@ -27,7 +27,7 @@ const getRandomSpotImg = async (spots) => {
       spotId: spots.map((spot) => spot.spotId),
     },
   });
-  const availableImgs = spotImgs.map((spotImage) => spotImage.imageUrl);
+  const availableImgs = spotImgs.map((spotImage) => spotImage.imgUrl);
 
   return availableImgs.length > 0
     ? availableImgs[Math.floor(Math.random() * availableImgs.length)]
@@ -112,7 +112,7 @@ exports.getCurations = async (userId) => {
               {
                 model: SpotImg,
                 as: 'spotImgs',
-                attributes: ['imageUrl'],
+                attributes: ['imgUrl'],
               },
               {
                 model: SpotScrap,
@@ -190,7 +190,7 @@ exports.getCurationById = async (userId, curationId) => {
               {
                 model: SpotImg,
                 as: 'spotImgs',
-                attributes: ['imageUrl'],
+                attributes: ['imgUrl'],
               },
               {
                 model: SpotScrap,
@@ -273,7 +273,7 @@ exports.searchCurations = async (userId, curationName, curationCategories) => {
               {
                 model: SpotImg,
                 as: 'spotImgs',
-                attributes: ['imageUrl'],
+                attributes: ['imgUrl'],
               },
               {
                 model: SpotScrap,
