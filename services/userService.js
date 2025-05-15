@@ -23,7 +23,7 @@ exports.updateUser = async (userId, userData) => {
     }
 
     const updateData = {};
-    if (userData.nickname !== undefined) {
+    if (userData.nickname) {
       updateData.nickname = userData.nickname;
     }
     if (userData.profileImgUrl) {
