@@ -51,12 +51,6 @@ module.exports = (sequelize, DataTypes) => {
       as: 'tripDocument',
     });
 
-    TripDocumentSpotCandidate.hasMany(models.TripDocumentSpotCandidateComment, {
-      foreignKey: 'tripDocumentSpotCandidateId',
-      sourceKey: 'tripDocumentSpotCandidateId',
-      as: 'comments',
-    });
-
     TripDocumentSpotCandidate.belongsTo(models.User, {
       foreignKey: 'userId',
       targetKey: 'userId',

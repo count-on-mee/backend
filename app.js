@@ -11,6 +11,7 @@ const {
   spotRouter,
   curationRouter,
   scrapRouter,
+  tripRouter,
 } = require('./routers');
 
 const app = express();
@@ -31,5 +32,6 @@ app.use('/users', userRouter);
 app.use('/spots', spotRouter);
 app.use('/curations', curationRouter);
 app.use('/scraps', scrapRouter);
+app.use('/trips', tripRouter);
 
 module.exports = app;
