@@ -42,5 +42,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
+  TripItinerary.associate = (models) => {
+    TripItinerary.belongsTo(models.Spot, {
+      foreignKey: 'spotId',
+      sourceKey: 'spotId',
+      as: 'spot',
+    });
+  };
+
   return TripItinerary;
 };

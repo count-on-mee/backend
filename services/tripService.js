@@ -1,5 +1,9 @@
 const {
   sequelize,
+  User,
+  Spot,
+  SpotCategory,
+  SpotImg,
   TripDestination,
   Trip,
   TripDestinationRelation,
@@ -109,4 +113,70 @@ exports.createTrip = async (
     await transaction.rollback();
     throw error;
   }
+};
+
+exports.getTrips = async (userId) => {
+  const trips = await Trip.findAll({
+    include: [
+      {
+        model: User,
+        as: 'participants',
+        attributes: ['userId'],
+        through: {
+          attributes: [],
+        },
+        where: {
+          userId,
+        },
+      },
+    ],
+  });
+
+  return trips;
+};
+
+exports.getTripById = async (userId, tripId) => {
+  const tripParticipant = await TripUser.findOne({
+    where: { tripId, userId },
+  });
+  if (!tripParticipant) {
+    throw new Error('여행 참여자가 아닙니다.');
+  }
+
+  const trip = await Trip.findOne({
+    where: { tripId },
+    include: [
+      {
+        model: TripItinerary,
+        as: 'itineraries',
+        attributes: ['spotId', 'day', 'order'],
+        include: [
+          {
+            model: Spot,
+            as: 'spot',
+            attributes: ['spotId', 'name', 'address', 'tel', 'location'],
+            include: [
+              {
+                model: SpotCategory,
+                as: 'spotCategories',
+                attributes: ['type'],
+                through: { attributes: [] },
+              },
+              {
+                model: SpotImg,
+                as: 'spotImgs',
+                attributes: ['imageUrl'],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+    order: [
+      ['itineraries', 'day', 'ASC'],
+      ['itineraries', 'order', 'ASC'],
+    ],
+  });
+
+  return trip;
 };
