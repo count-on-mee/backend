@@ -67,3 +67,26 @@ exports.getTripById = async (req, res) => {
     });
   }
 };
+
+exports.updateTrip = async (req, res) => {
+  try {
+    const { userId } = req.user;
+    const { tripId } = req.params;
+    const { title, startDate, endDate } = req.body;
+
+    const updatedTrip = await tripService.updateTrip(
+      userId,
+      tripId,
+      title,
+      startDate,
+      endDate
+    );
+
+    const tripDto = TripDto.from(updatedTrip);
+    res.status(200).json(tripDto);
+  } catch (error) {
+    res.status(400).json({
+      message: error.message || '여행 수정에 실패했습니다.',
+    });
+  }
+};

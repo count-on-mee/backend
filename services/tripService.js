@@ -180,3 +180,33 @@ exports.getTripById = async (userId, tripId) => {
 
   return trip;
 };
+
+exports.updateTrip = async (userId, tripId, title, startDate, endDate) => {
+  const trip = await Trip.findOne({
+    where: { tripId },
+  });
+  if (!trip) {
+    throw new Error('여행 정보를 찾을 수 없습니다.');
+  }
+
+  const tripParticipant = await TripUser.findOne({
+    where: { tripId, userId },
+  });
+  if (!tripParticipant) {
+    throw new Error('여행 참여자가 아닙니다.');
+  }
+
+  const updateData = {};
+  if (title) {
+    updateData.title = title;
+  }
+  if (startDate) {
+    updateData.startDate = startDate;
+  }
+  if (endDate) {
+    updateData.endDate = endDate;
+  }
+
+  await trip.update(updateData);
+  return trip;
+};
