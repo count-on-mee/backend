@@ -19,7 +19,7 @@ module.exports = {
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
       },
-      name: {
+      accommodation: {
         type: Sequelize.STRING,
         allowNull: false,
       },

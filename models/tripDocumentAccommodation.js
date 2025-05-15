@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
           key: 'trip_document_id',
         },
       },
-      name: {
+      accommodation: {
         type: DataTypes.STRING,
         allowNull: false,
       },
