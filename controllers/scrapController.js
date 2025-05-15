@@ -38,7 +38,7 @@ exports.unscrapSpot = async (req, res) => {
 
     await scrapService.unscrapSpot(userId, spotId);
 
-    res.status(200).json({ message: '스크랩이 삭제되었습니다.' });
+    res.status(204).json({ message: '스크랩이 삭제되었습니다.' });
   } catch (error) {
     res.status(404).json({
       message: error.message || '스팟 스크랩 삭제에 실패했습니다.',
@@ -83,7 +83,7 @@ exports.unscrapCuration = async (req, res) => {
 
     await scrapService.unscrapCuration(userId, curationId);
 
-    res.status(200).json({ message: '큐레이션 스크랩이 삭제되었습니다.' });
+    res.status(204).json({ message: '큐레이션 스크랩이 삭제되었습니다.' });
   } catch (error) {
     res.status(404).json({
       message: error.message || '큐레이션 스크랩 삭제에 실패했습니다.',
