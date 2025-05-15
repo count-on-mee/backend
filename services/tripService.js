@@ -210,3 +210,21 @@ exports.updateTrip = async (userId, tripId, title, startDate, endDate) => {
   await trip.update(updateData);
   return trip;
 };
+
+exports.deleteTrip = async (userId, tripId) => {
+  const trip = await Trip.findOne({
+    where: { tripId },
+  });
+  if (!trip) {
+    throw new Error('여행 정보를 찾을 수 없습니다.');
+  }
+
+  const tripParticipant = await TripUser.findOne({
+    where: { tripId, userId },
+  });
+  if (!tripParticipant) {
+    throw new Error('여행 참여자가 아닙니다.');
+  }
+
+  await trip.destroy();
+};

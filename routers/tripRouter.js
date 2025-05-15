@@ -14,5 +14,6 @@ router.patch(
   updateTripValidator,
   tripController.updateTrip
 );
+router.delete('/:tripId', requireAuth, tripController.deleteTrip);
 
 module.exports = router;
