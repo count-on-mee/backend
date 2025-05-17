@@ -42,7 +42,7 @@ module.exports = {
         ),
         allowNull: false,
       },
-      duration_minutes: {
+      duration_minute: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
