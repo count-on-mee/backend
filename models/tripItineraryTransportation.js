@@ -43,6 +43,10 @@ module.exports = (sequelize, DataTypes) => {
         ),
         allowNull: false,
       },
+      distanceKilometer: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
       durationMinute: {
         type: DataTypes.INTEGER,
         allowNull: false,

@@ -42,6 +42,10 @@ module.exports = {
         ),
         allowNull: false,
       },
+      distance_kilometer: {
+        type: Sequelize.DECIMAL(10, 1),
+        allowNull: false,
+      },
       duration_minute: {
         type: Sequelize.INTEGER,
         allowNull: false,
