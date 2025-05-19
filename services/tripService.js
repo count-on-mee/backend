@@ -238,13 +238,27 @@ exports.getTrips = async (userId) => {
   return trips;
 };
 
-exports.getTripById = async (userId, tripId) => {
+const verifyTrip = async (tripId) => {
+  const trip = await Trip.findOne({
+    where: { tripId },
+  });
+  if (!trip) {
+    throw new Error('여행 정보를 찾을 수 없습니다.');
+  }
+  return trip;
+};
+const verifyTripParticipant = async (userId, tripId) => {
   const tripParticipant = await TripUser.findOne({
     where: { tripId, userId },
   });
   if (!tripParticipant) {
     throw new Error('여행 참여자가 아닙니다.');
   }
+  return tripParticipant;
+};
+
+exports.getTripById = async (userId, tripId) => {
+  await verifyTripParticipant(userId, tripId);
 
   const trip = await Trip.findOne({
     where: { tripId },
@@ -309,19 +323,8 @@ exports.getTripById = async (userId, tripId) => {
 };
 
 exports.updateTrip = async (userId, tripId, title, startDate, endDate) => {
-  const trip = await Trip.findOne({
-    where: { tripId },
-  });
-  if (!trip) {
-    throw new Error('여행 정보를 찾을 수 없습니다.');
-  }
-
-  const tripParticipant = await TripUser.findOne({
-    where: { tripId, userId },
-  });
-  if (!tripParticipant) {
-    throw new Error('여행 참여자가 아닙니다.');
-  }
+  const trip = await verifyTrip(tripId);
+  await verifyTripParticipant(userId, tripId);
 
   const updateData = {};
   if (title) {
@@ -339,19 +342,8 @@ exports.updateTrip = async (userId, tripId, title, startDate, endDate) => {
 };
 
 exports.deleteTrip = async (userId, tripId) => {
-  const trip = await Trip.findOne({
-    where: { tripId },
-  });
-  if (!trip) {
-    throw new Error('여행 정보를 찾을 수 없습니다.');
-  }
-
-  const tripParticipant = await TripUser.findOne({
-    where: { tripId, userId },
-  });
-  if (!tripParticipant) {
-    throw new Error('여행 참여자가 아닙니다.');
-  }
+  const trip = await verifyTrip(tripId);
+  await verifyTripParticipant(userId, tripId);
 
   await trip.destroy();
 };
