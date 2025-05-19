@@ -8,6 +8,7 @@ const ScrapedCurationDto = require('./scraps/scrapedCurationDto');
 const TripDestinationDto = require('./trips/tripDestinationDto');
 const TripDto = require('./trips/tripDto');
 const TripDetailDto = require('./trips/tripDetailDto');
+const ItineraryTransportationDto = require('./trips/itineraryTransportationDto');
 
 const dtos = {
   UserDto,
@@ -20,6 +21,7 @@ const dtos = {
   TripDestinationDto,
   TripDto,
   TripDetailDto,
+  ItineraryTransportationDto,
 };
 
 module.exports = dtos;

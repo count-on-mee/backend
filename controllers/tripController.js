@@ -57,9 +57,12 @@ exports.getTripById = async (req, res) => {
     const { userId } = req.user;
     const { tripId } = req.params;
 
-    const tripDetail = await tripService.getTripById(userId, tripId);
+    const { trip, transportation } = await tripService.getTripById(
+      userId,
+      tripId
+    );
 
-    const tripDetailDto = TripDetailDto.from(tripDetail);
+    const tripDetailDto = TripDetailDto.from(trip, transportation);
     res.status(200).json(tripDetailDto);
   } catch (error) {
     res.status(404).json({

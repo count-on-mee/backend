@@ -44,7 +44,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       distanceKilometer: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.DECIMAL(10, 1),
         allowNull: false,
       },
       durationMinute: {

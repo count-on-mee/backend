@@ -9,12 +9,15 @@ const {
   TripDestinationRelation,
   TripUser,
   TripItinerary,
+  TripItineraryTransportation,
   TripDocument,
   TripDocumentExpense,
   TripDocumentAccommodation,
   TripDocumentSpotCandidate,
   TripDocumentTask,
 } = require('../models');
+const { Op } = require('sequelize');
+const routeService = require('./routeService');
 
 const getTripDestinationIds = async (destinations) => {
   const tripDestinations = await TripDestination.findAll({
@@ -25,6 +28,145 @@ const getTripDestinationIds = async (destinations) => {
   return tripDestinations.map(
     (tripDestination) => tripDestination.tripDestinationId
   );
+};
+
+const createTripBasicInfo = async (title, startDate, endDate, transaction) => {
+  return await Trip.create(
+    {
+      title,
+      startDate,
+      endDate,
+    },
+    { transaction }
+  );
+};
+
+const createTripDestinations = async (tripId, destinations, transaction) => {
+  const tripDestinationIds = await getTripDestinationIds(destinations);
+  if (tripDestinationIds && tripDestinationIds.length > 0) {
+    const tripDestinations = tripDestinationIds.map((tripDestinationId) => ({
+      tripId,
+      tripDestinationId,
+    }));
+    await TripDestinationRelation.bulkCreate(tripDestinations, { transaction });
+  }
+};
+
+const createTripParticipant = async (tripId, userId, transaction) => {
+  await TripUser.create(
+    {
+      tripId,
+      userId,
+    },
+    { transaction }
+  );
+};
+
+const createTripItineraries = async (
+  tripId,
+  spotIds,
+  startDate,
+  endDate,
+  transaction
+) => {
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+  const totalDays = Math.ceil((end - start) / (1000 * 60 * 60 * 24)) + 1;
+  const spotsPerDay = Math.ceil(spotIds.length / totalDays);
+
+  const tripItineraries = spotIds.map((spotId, index) => {
+    const day = Math.floor(index / spotsPerDay) + 1;
+    const order = (index % spotsPerDay) + 1;
+
+    return {
+      tripId,
+      spotId,
+      day,
+      order,
+    };
+  });
+
+  return await TripItinerary.bulkCreate(tripItineraries, { transaction });
+};
+
+const createTripItineraryTransportation = async (
+  tripItineraries,
+  transaction
+) => {
+  const result = [];
+
+  for (let i = 0; i < tripItineraries.length - 1; i++) {
+    const currentItinerary = tripItineraries[i];
+    const nextItinerary = tripItineraries[i + 1];
+
+    if (currentItinerary.day === nextItinerary.day) {
+      try {
+        const [currentSpot, nextSpot] = await Promise.all([
+          Spot.findByPk(currentItinerary.spotId),
+          Spot.findByPk(nextItinerary.spotId),
+        ]);
+
+        const { durationMinute, distanceKilometer } =
+          await routeService.getDuration(currentSpot, nextSpot);
+
+        const transportation = await TripItineraryTransportation.create(
+          {
+            departureTripItineraryId: currentItinerary.tripItineraryId,
+            destinationTripItineraryId: nextItinerary.tripItineraryId,
+            type: 'CAR',
+            durationMinute,
+            distanceKilometer,
+          },
+          { transaction }
+        );
+
+        result.push(transportation);
+      } catch (error) {
+        const transportation = await TripItineraryTransportation.create(
+          {
+            departureTripItineraryId: currentItinerary.tripItineraryId,
+            destinationTripItineraryId: nextItinerary.tripItineraryId,
+            type: 'CAR',
+            durationMinute: 0,
+            distanceKilometer: 0,
+          },
+          { transaction }
+        );
+
+        result.push(transportation);
+      }
+    }
+  }
+
+  return result;
+};
+
+const createTripDocument = async (tripId, transaction) => {
+  const tripDocument = await TripDocument.create(
+    {
+      tripId,
+    },
+    { transaction }
+  );
+
+  const expenseTypes = [
+    { type: 'transportation', detail: '수단명' },
+    { type: 'accommodation', detail: '숙소명' },
+    { type: 'meal', detail: '식당명' },
+    { type: 'other', detail: '항목명' },
+  ];
+
+  const defaultTripDocumentExpenses = expenseTypes.map(({ type, detail }) => ({
+    tripDocumentId: tripDocument.tripDocumentId,
+    type,
+    detail,
+    amount: 0,
+  }));
+
+  await TripDocumentExpense.bulkCreate(defaultTripDocumentExpenses, {
+    transaction,
+  });
+  return tripDocument;
 };
 
 exports.getTripDestinations = async () => {
@@ -41,71 +183,32 @@ exports.createTrip = async (
   spotIds
 ) => {
   const transaction = await sequelize.transaction();
+
   try {
-    const trip = await Trip.create({
+    const trip = await createTripBasicInfo(
       title,
       startDate,
       endDate,
-    });
+      transaction
+    );
 
-    const tripDestinationIds = await getTripDestinationIds(destinations);
-    if (tripDestinationIds && tripDestinationIds.length > 0) {
-      const tripDestinations = tripDestinationIds.map((tripDestinationId) => ({
-        tripId: trip.tripId,
-        tripDestinationId,
-      }));
-      await TripDestinationRelation.bulkCreate(tripDestinations);
-    }
+    await createTripDestinations(trip.tripId, destinations, transaction);
 
-    await TripUser.create({
-      tripId: trip.tripId,
-      userId,
-    });
+    await createTripParticipant(trip.tripId, userId, transaction);
 
     if (spotIds && spotIds.length > 0) {
-      // 여행 기간 계산 (일 단위)
-      const start = new Date(startDate);
-      const end = new Date(endDate);
-      const totalDays = Math.ceil((end - start) / (1000 * 60 * 60 * 24)) + 1;
+      const tripItineraries = await createTripItineraries(
+        trip.tripId,
+        spotIds,
+        startDate,
+        endDate,
+        transaction
+      );
 
-      // 각 날짜별로 방문할 장소 수 계산
-      const spotsPerDay = Math.ceil(spotIds.length / totalDays);
-
-      // 데이터 생성
-      const tripItineraries = spotIds.map((spotId, index) => {
-        const day = Math.floor(index / spotsPerDay) + 1;
-        const order = (index % spotsPerDay) + 1;
-
-        return {
-          tripId: trip.tripId,
-          spotId,
-          day,
-          order,
-        };
-      });
-
-      await TripItinerary.bulkCreate(tripItineraries);
+      await createTripItineraryTransportation(tripItineraries, transaction);
     }
 
-    const tripDocument = await TripDocument.create({
-      tripId: trip.tripId,
-    });
-
-    const expenseTypes = [
-      { type: 'transportation', detail: '수단명' },
-      { type: 'accommodation', detail: '숙소명' },
-      { type: 'meal', detail: '식당명' },
-      { type: 'other', detail: '항목명' },
-    ];
-    const defaultTripDocumentExpenses = expenseTypes.map(
-      ({ type, detail }) => ({
-        tripDocumentId: tripDocument.tripDocumentId,
-        type,
-        detail,
-        amount: 0,
-      })
-    );
-    await TripDocumentExpense.bulkCreate(defaultTripDocumentExpenses);
+    await createTripDocument(trip.tripId, transaction);
 
     await transaction.commit();
     return trip;
@@ -149,7 +252,7 @@ exports.getTripById = async (userId, tripId) => {
       {
         model: TripItinerary,
         as: 'itineraries',
-        attributes: ['spotId', 'day', 'order'],
+        attributes: ['tripItineraryId', 'spotId', 'day', 'order'],
         include: [
           {
             model: Spot,
@@ -178,7 +281,31 @@ exports.getTripById = async (userId, tripId) => {
     ],
   });
 
-  return trip;
+  const transportation = await TripItineraryTransportation.findAll({
+    where: {
+      [Op.or]: [
+        {
+          departureTripItineraryId: trip.itineraries.map(
+            (itinerary) => itinerary.tripItineraryId
+          ),
+        },
+        {
+          destinationTripItineraryId: trip.itineraries.map(
+            (itinerary) => itinerary.tripItineraryId
+          ),
+        },
+      ],
+    },
+    attributes: [
+      'departureTripItineraryId',
+      'destinationTripItineraryId',
+      'type',
+      'durationMinute',
+      'distanceKilometer',
+    ],
+  });
+
+  return { trip, transportation };
 };
 
 exports.updateTrip = async (userId, tripId, title, startDate, endDate) => {
