@@ -25,7 +25,7 @@ exports.scrapSpot = async (req, res) => {
 
     res.status(201).json({ message: '스팟이 스크랩되었습니다.' });
   } catch (error) {
-    res.status(404).json({
+    res.status(400).json({
       message: error.message || '스팟 스크랩에 실패했습니다.',
     });
   }
@@ -70,7 +70,7 @@ exports.scrapCuration = async (req, res) => {
 
     res.status(201).json({ message: '큐레이션이 스크랩되었습니다.' });
   } catch (error) {
-    res.status(404).json({
+    res.status(400).json({
       message: error.message || '큐레이션 스크랩에 실패했습니다.',
     });
   }
