@@ -6,6 +6,7 @@ const createCurationValidator = require('./curations/createCurationValidator');
 const searchCurationValidator = require('./curations/searchCurationValidator');
 const createTripValidator = require('./trips/createTripValidator');
 const updateTripValidator = require('./trips/updateTripValidator');
+const createItineraryValidator = require('./trips/createItineraryValidator');
 
 module.exports = {
   updateUserValidator,
@@ -16,4 +17,5 @@ module.exports = {
   searchCurationValidator,
   createTripValidator,
   updateTripValidator,
+  createItineraryValidator,
 };

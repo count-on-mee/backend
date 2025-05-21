@@ -110,3 +110,19 @@ exports.deleteTrip = async (req, res) => {
     });
   }
 };
+
+exports.createItinerary = async (req, res) => {
+  try {
+    const { userId } = req.user;
+    const { tripId } = req.params;
+    const { spotId, day, order } = req.body;
+
+    await tripService.createItinerary(userId, tripId, spotId, day, order);
+
+    res.status(201).json({ message: '여행 일정 생성에 성공했습니다.' });
+  } catch (error) {
+    res.status(400).json({
+      message: error.message || '여행 일정 생성에 실패했습니다.',
+    });
+  }
+};

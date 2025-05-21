@@ -257,6 +257,16 @@ const verifyTripParticipant = async (userId, tripId) => {
   return tripParticipant;
 };
 
+const verifyItineraryOrder = async (tripId, day, order) => {
+  const lastOrder = await TripItinerary.max('order', {
+    where: { tripId, day },
+  });
+  if (lastOrder && order > lastOrder + 1) {
+    throw new Error('유효하지 않은 일정 순서입니다.');
+  }
+  return lastOrder;
+};
+
 exports.getTripById = async (userId, tripId) => {
   await verifyTripParticipant(userId, tripId);
 
@@ -346,4 +356,116 @@ exports.deleteTrip = async (userId, tripId) => {
   await verifyTripParticipant(userId, tripId);
 
   await trip.destroy();
+};
+
+exports.createItinerary = async (userId, tripId, spotId, day, order) => {
+  await verifyTrip(tripId);
+  await verifyTripParticipant(userId, tripId);
+  await verifyItineraryOrder(tripId, day, order);
+
+  const transaction = await sequelize.transaction();
+
+  try {
+    const existedItineraries = await TripItinerary.findAll({
+      where: {
+        tripId,
+        day,
+        order: {
+          [Op.gte]: order,
+        },
+      },
+      order: [['order', 'DESC']],
+      transaction,
+    });
+
+    for (const existedItinerary of existedItineraries) {
+      await existedItinerary.increment('order', { transaction });
+    }
+
+    const newItinerary = await TripItinerary.create(
+      {
+        tripId,
+        spotId,
+        day,
+        order,
+      },
+      { transaction }
+    );
+
+    const prevItinerary = await TripItinerary.findOne({
+      where: {
+        tripId,
+        day,
+        order: order - 1,
+      },
+      transaction,
+    });
+
+    const nextItinerary = await TripItinerary.findOne({
+      where: {
+        tripId,
+        day,
+        order: order + 1,
+      },
+      transaction,
+    });
+
+    if (prevItinerary && nextItinerary) {
+      await TripItineraryTransportation.destroy({
+        where: {
+          departureTripItineraryId: prevItinerary.tripItineraryId,
+          destinationTripItineraryId: nextItinerary.tripItineraryId,
+        },
+        transaction,
+      });
+    }
+
+    if (prevItinerary) {
+      const [prevSpot, newSpot] = await Promise.all([
+        Spot.findByPk(prevItinerary.spotId),
+        Spot.findByPk(spotId),
+      ]);
+
+      const { durationMinute, distanceKilometer } =
+        await routeService.getDuration(prevSpot, newSpot);
+
+      await TripItineraryTransportation.create(
+        {
+          departureTripItineraryId: prevItinerary.tripItineraryId,
+          destinationTripItineraryId: newItinerary.tripItineraryId,
+          type: 'CAR',
+          durationMinute,
+          distanceKilometer,
+        },
+        { transaction }
+      );
+    }
+
+    if (nextItinerary) {
+      const [newSpot, nextSpot] = await Promise.all([
+        Spot.findByPk(spotId),
+        Spot.findByPk(nextItinerary.spotId),
+      ]);
+
+      const { durationMinute, distanceKilometer } =
+        await routeService.getDuration(newSpot, nextSpot);
+
+      await TripItineraryTransportation.create(
+        {
+          departureTripItineraryId: newItinerary.tripItineraryId,
+          destinationTripItineraryId: nextItinerary.tripItineraryId,
+          type: 'CAR',
+          durationMinute,
+          distanceKilometer,
+        },
+        { transaction }
+      );
+    }
+
+    await transaction.commit();
+    return newItinerary;
+  } catch (error) {
+    await transaction.rollback();
+    throw error;
+  }
 };
