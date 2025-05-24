@@ -191,7 +191,7 @@ exports.getSpotReviewsBySpotId = async (spotId) => {
       {
         model: User,
         as: 'user',
-        attributes: ['userId', 'nickname', 'profileImgUrl'],
+        attributes: ['userId', 'nickname', 'imgUrl'],
       },
     ],
   });
