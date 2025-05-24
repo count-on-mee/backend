@@ -32,5 +32,10 @@ router.patch(
   moveItinerariesValidator,
   tripController.moveItineraries
 );
+router.delete(
+  '/:tripId/itineraries/:itineraryId',
+  requireAuth,
+  tripController.deleteItinerary
+);
 
 module.exports = router;

@@ -648,3 +648,89 @@ exports.moveItineraries = async (userId, tripId, moves) => {
     throw error;
   }
 };
+
+exports.deleteItinerary = async (userId, tripId, itineraryId) => {
+  await verifyTrip(tripId);
+  await verifyTripParticipant(userId, tripId);
+  await verifyItinerary(tripId, [itineraryId]);
+
+  const transaction = await sequelize.transaction();
+
+  try {
+    const itinerary = await TripItinerary.findOne({
+      where: { tripItineraryId: itineraryId },
+      transaction,
+    });
+
+    await TripItineraryTransportation.destroy({
+      where: {
+        [Op.or]: [
+          { departureTripItineraryId: itineraryId },
+          { destinationTripItineraryId: itineraryId },
+        ],
+      },
+      transaction,
+    });
+
+    const [prevItinerary, nextItinerary] = await Promise.all([
+      TripItinerary.findOne({
+        where: {
+          tripId,
+          day: itinerary.day,
+          order: itinerary.order - 1,
+        },
+        transaction,
+      }),
+      TripItinerary.findOne({
+        where: {
+          tripId,
+          day: itinerary.day,
+          order: itinerary.order + 1,
+        },
+        transaction,
+      }),
+    ]);
+
+    if (prevItinerary && nextItinerary) {
+      const [prevSpot, nextSpot] = await Promise.all([
+        Spot.findByPk(prevItinerary.spotId),
+        Spot.findByPk(nextItinerary.spotId),
+      ]);
+
+      const { durationMinute, distanceKilometer } =
+        await routeService.getDuration(prevSpot, nextSpot);
+
+      await TripItineraryTransportation.create(
+        {
+          departureTripItineraryId: prevItinerary.tripItineraryId,
+          destinationTripItineraryId: nextItinerary.tripItineraryId,
+          type: 'CAR',
+          durationMinute,
+          distanceKilometer,
+        },
+        { transaction }
+      );
+    }
+
+    await itinerary.destroy({ transaction });
+
+    const remainingItineraries = await TripItinerary.findAll({
+      where: {
+        tripId,
+        day: itinerary.day,
+        order: { [Op.gt]: itinerary.order },
+      },
+      order: [['order', 'ASC']],
+      transaction,
+    });
+
+    for (const remainingItinerary of remainingItineraries) {
+      await remainingItinerary.increment('order', { by: -1, transaction });
+    }
+
+    await transaction.commit();
+  } catch (error) {
+    await transaction.rollback();
+    throw error;
+  }
+};

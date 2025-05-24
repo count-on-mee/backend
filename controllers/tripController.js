@@ -142,3 +142,18 @@ exports.moveItineraries = async (req, res) => {
     });
   }
 };
+
+exports.deleteItinerary = async (req, res) => {
+  try {
+    const { userId } = req.user;
+    const { tripId, itineraryId } = req.params;
+
+    await tripService.deleteItinerary(userId, tripId, itineraryId);
+
+    res.status(204).json({ message: '여행 일정 삭제에 성공했습니다.' });
+  } catch (error) {
+    res.status(400).json({
+      message: error.message || '여행 일정 삭제에 실패했습니다.',
+    });
+  }
+};
