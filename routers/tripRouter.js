@@ -6,6 +6,7 @@ const {
   createTripValidator,
   updateTripValidator,
   createItineraryValidator,
+  moveItinerariesValidator,
 } = require('../validators');
 
 router.get('/destinations', tripController.getTripDestinations);
@@ -24,6 +25,12 @@ router.post(
   requireAuth,
   createItineraryValidator,
   tripController.createItinerary
+);
+router.patch(
+  '/:tripId/itineraries',
+  requireAuth,
+  moveItinerariesValidator,
+  tripController.moveItineraries
 );
 
 module.exports = router;

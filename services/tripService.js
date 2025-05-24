@@ -267,6 +267,19 @@ const verifyItineraryOrder = async (tripId, day, order) => {
   return lastOrder;
 };
 
+const verifyItinerary = async (tripId, tripItineraryIds) => {
+  const itineraries = await TripItinerary.findAll({
+    where: {
+      tripItineraryId: tripItineraryIds,
+      tripId,
+    },
+  });
+  if (itineraries.length !== tripItineraryIds.length) {
+    throw new Error('일부 일정을 찾을 수 없습니다.');
+  }
+  return itineraries;
+};
+
 exports.getTripById = async (userId, tripId) => {
   await verifyTripParticipant(userId, tripId);
 
@@ -464,6 +477,172 @@ exports.createItinerary = async (userId, tripId, spotId, day, order) => {
 
     await transaction.commit();
     return newItinerary;
+  } catch (error) {
+    await transaction.rollback();
+    throw error;
+  }
+};
+
+exports.moveItineraries = async (userId, tripId, moves) => {
+  await verifyTrip(tripId);
+  await verifyTripParticipant(userId, tripId);
+  await verifyItinerary(
+    tripId,
+    moves.map((move) => move.itineraryId)
+  );
+
+  const transaction = await sequelize.transaction();
+
+  try {
+    for (const move of moves) {
+      const { itineraryId, day, order } = move;
+
+      const itinerary = await TripItinerary.findOne({
+        where: { tripItineraryId: itineraryId },
+        transaction,
+      });
+
+      await TripItineraryTransportation.destroy({
+        where: {
+          [Op.or]: [
+            { departureTripItineraryId: itineraryId },
+            { destinationTripItineraryId: itineraryId },
+          ],
+        },
+        transaction,
+      });
+
+      if (itinerary.day !== day) {
+        const existedItineraries = await TripItinerary.findAll({
+          where: {
+            tripId,
+            day: itinerary.day,
+            order: { [Op.gt]: itinerary.order },
+          },
+          order: [['order', 'DESC']],
+          transaction,
+        });
+
+        for (const existedItinerary of existedItineraries) {
+          await existedItinerary.increment('order', { by: -1, transaction });
+        }
+
+        const newDayItineraries = await TripItinerary.findAll({
+          where: {
+            tripId,
+            day,
+            order: { [Op.gte]: order },
+          },
+          order: [['order', 'DESC']],
+          transaction,
+        });
+
+        for (const newDayItinerary of newDayItineraries) {
+          await newDayItinerary.increment('order', { by: 1, transaction });
+        }
+      } else if (itinerary.order !== order) {
+        if (itinerary.order < order) {
+          const betweenItineraries = await TripItinerary.findAll({
+            where: {
+              tripId,
+              day,
+              order: {
+                [Op.gt]: itinerary.order,
+                [Op.lte]: order,
+              },
+            },
+            order: [['order', 'DESC']],
+            transaction,
+          });
+
+          for (const betweenItinerary of betweenItineraries) {
+            await betweenItinerary.increment('order', { by: -1, transaction });
+          }
+        } else {
+          const betweenItineraries = await TripItinerary.findAll({
+            where: {
+              tripId,
+              day,
+              order: {
+                [Op.gte]: order,
+                [Op.lt]: itinerary.order,
+              },
+            },
+            order: [['order', 'ASC']],
+            transaction,
+          });
+
+          for (const betweenItinerary of betweenItineraries) {
+            await betweenItinerary.increment('order', { by: 1, transaction });
+          }
+        }
+      }
+
+      await itinerary.update({ day, order }, { transaction });
+
+      const [prevItinerary, nextItinerary] = await Promise.all([
+        TripItinerary.findOne({
+          where: {
+            tripId,
+            day,
+            order: order - 1,
+          },
+          transaction,
+        }),
+        TripItinerary.findOne({
+          where: {
+            tripId,
+            day,
+            order: order + 1,
+          },
+          transaction,
+        }),
+      ]);
+
+      if (prevItinerary) {
+        const [prevSpot, currentSpot] = await Promise.all([
+          Spot.findByPk(prevItinerary.spotId),
+          Spot.findByPk(itinerary.spotId),
+        ]);
+
+        const { durationMinute, distanceKilometer } =
+          await routeService.getDuration(prevSpot, currentSpot);
+
+        await TripItineraryTransportation.create(
+          {
+            departureTripItineraryId: prevItinerary.tripItineraryId,
+            destinationTripItineraryId: itineraryId,
+            type: 'CAR',
+            durationMinute,
+            distanceKilometer,
+          },
+          { transaction }
+        );
+      }
+
+      if (nextItinerary) {
+        const [currentSpot, nextSpot] = await Promise.all([
+          Spot.findByPk(itinerary.spotId),
+          Spot.findByPk(nextItinerary.spotId),
+        ]);
+
+        const { durationMinute, distanceKilometer } =
+          await routeService.getDuration(currentSpot, nextSpot);
+
+        await TripItineraryTransportation.create(
+          {
+            departureTripItineraryId: itineraryId,
+            destinationTripItineraryId: nextItinerary.tripItineraryId,
+            type: 'CAR',
+            durationMinute,
+            distanceKilometer,
+          },
+          { transaction }
+        );
+      }
+    }
+
+    await transaction.commit();
   } catch (error) {
     await transaction.rollback();
     throw error;

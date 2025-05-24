@@ -126,3 +126,19 @@ exports.createItinerary = async (req, res) => {
     });
   }
 };
+
+exports.moveItineraries = async (req, res) => {
+  try {
+    const { userId } = req.user;
+    const { tripId } = req.params;
+    const { moves } = req.body;
+
+    await tripService.moveItineraries(userId, tripId, moves);
+
+    res.status(200).json({ message: '여행 일정이 성공적으로 이동되었습니다.' });
+  } catch (error) {
+    res.status(400).json({
+      message: error.message || '여행 일정 이동에 실패했습니다.',
+    });
+  }
+};
