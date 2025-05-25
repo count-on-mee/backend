@@ -37,5 +37,15 @@ router.delete(
   requireAuth,
   tripController.deleteItinerary
 );
+router.post(
+  '/:tripId/invitations',
+  requireAuth,
+  tripController.createInvitation
+);
+router.post(
+  '/invitations/:invitationCode',
+  requireAuth,
+  tripController.acceptInvitation
+);
 
 module.exports = router;

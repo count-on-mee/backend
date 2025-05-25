@@ -8,6 +8,7 @@ const {
   Trip,
   TripDestinationRelation,
   TripUser,
+  TripInvitation,
   TripItinerary,
   TripItineraryTransportation,
   TripDocument,
@@ -17,6 +18,7 @@ const {
   TripDocumentTask,
 } = require('../models');
 const { Op } = require('sequelize');
+const crypto = require('crypto');
 const routeService = require('./routeService');
 
 const getTripDestinationIds = async (destinations) => {
@@ -733,4 +735,54 @@ exports.deleteItinerary = async (userId, tripId, itineraryId) => {
     await transaction.rollback();
     throw error;
   }
+};
+
+exports.createInvitation = async (userId, tripId) => {
+  await verifyTrip(tripId);
+  await verifyTripParticipant(userId, tripId);
+
+  const existedInvitation = await TripInvitation.findOne({
+    where: { tripId },
+  });
+
+  if (existedInvitation) {
+    return existedInvitation.invitationCode;
+  }
+
+  const invitationCode = crypto.randomBytes(16).toString('hex');
+  const invitation = await TripInvitation.create({
+    tripId,
+    invitationCode,
+  });
+
+  return invitation.invitationCode;
+};
+
+exports.acceptInvitation = async (userId, invitationCode) => {
+  const invitation = await TripInvitation.findOne({
+    where: { invitationCode },
+  });
+
+  if (!invitation) {
+    throw new Error('초대 코드를 찾을 수 없습니다.');
+  }
+
+  const trip = await Trip.findOne({
+    where: { tripId: invitation.tripId },
+  });
+
+  const tripParticipant = await TripUser.findOne({
+    where: { tripId: trip.tripId, userId },
+  });
+
+  if (tripParticipant) {
+    throw new Error('이미 참여한 여행입니다.');
+  }
+
+  await TripUser.create({
+    tripId: trip.tripId,
+    userId,
+  });
+
+  return trip.tripId;
 };

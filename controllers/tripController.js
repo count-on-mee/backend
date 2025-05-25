@@ -157,3 +157,33 @@ exports.deleteItinerary = async (req, res) => {
     });
   }
 };
+
+exports.createInvitation = async (req, res) => {
+  try {
+    const { userId } = req.user;
+    const { tripId } = req.params;
+
+    const invitationCode = await tripService.createInvitation(userId, tripId);
+
+    res.status(201).json({ invitationCode });
+  } catch (error) {
+    res.status(400).json({
+      message: error.message || '여행 초대 생성에 실패했습니다.',
+    });
+  }
+};
+
+exports.acceptInvitation = async (req, res) => {
+  try {
+    const { userId } = req.user;
+    const { invitationCode } = req.params;
+
+    const tripId = await tripService.acceptInvitation(userId, invitationCode);
+
+    res.status(200).json({ tripId });
+  } catch (error) {
+    res.status(400).json({
+      message: error.message || '여행 초대 수락에 실패했습니다.',
+    });
+  }
+};
