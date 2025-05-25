@@ -1,12 +1,10 @@
 'use strict';
 
-const { up } = require('../migrations/20250423000013-create-curation-category');
-
 module.exports = (sequelize, DataTypes) => {
-  const TripInvite = sequelize.define(
-    'TripInvite',
+  const TripInvitation = sequelize.define(
+    'TripInvitation',
     {
-      tripInviteId: {
+      tripInvitationId: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
@@ -21,27 +19,27 @@ module.exports = (sequelize, DataTypes) => {
           key: 'trip_id',
         },
       },
-      inviteCode: {
+      invitationCode: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
       },
     },
     {
-      tableName: 'trip_invite',
+      tableName: 'trip_invitation',
       timestamps: true,
       updatedAt: false,
       underscored: true,
     }
   );
 
-  TripInvite.associate = (models) => {
-    TripInvite.belongsTo(models.Trip, {
+  TripInvitation.associate = (models) => {
+    TripInvitation.belongsTo(models.Trip, {
       foreignKey: 'tripId',
       targetKey: 'tripId',
       as: 'trip',
     });
   };
 
-  return TripInvite;
+  return TripInvitation;
 };

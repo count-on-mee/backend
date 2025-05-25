@@ -51,10 +51,10 @@ module.exports = (sequelize, DataTypes) => {
       as: 'itineraries',
     });
 
-    Trip.hasOne(models.TripInvite, {
+    Trip.hasOne(models.TripInvitation, {
       foreignKey: 'tripId',
       sourceKey: 'tripId',
-      as: 'tripInvite',
+      as: 'tripInvitation',
     });
 
     Trip.hasOne(models.TripDocument, {
