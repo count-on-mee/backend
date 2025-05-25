@@ -16,17 +16,17 @@ class UserDto {
     if (!user.email) {
       throw new Error('사용자 이메일은 필수 항목입니다.');
     }
-    if (!user.profileImgUrl) {
-      throw new Error('사용자 프로필 이미지는 필수 항목입니다.');
+    if (!user.imgUrl) {
+      throw new Error('프로필 이미지가 없습니다.');
     }
 
-    const { userId, name, nickname, email, profileImgUrl } = user;
+    const { userId, name, nickname, email, imgUrl } = user;
     return {
       userId,
       name,
       nickname,
       email,
-      profileImgUrl,
+      imgUrl,
     };
   }
 

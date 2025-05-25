@@ -218,7 +218,7 @@ class NaverPlaceCrawler {
               tel: data.phone || data.virtualPhone,
               reviewCount: parseInt(data.visitorReviewCount) || 0,
               reviewScore: data.visitorReviewScore || null,
-              imageUrls: Array.isArray(data.imageUrls)
+              imgUrls: Array.isArray(data.imageUrls)
                 ? data.imageUrls
                 : data.imageUrl
                 ? [data.imageUrl]
@@ -495,7 +495,7 @@ class NaverPlaceCrawler {
       }
 
       // 이미지 처리 - 기존 이미지가 있으면 스킵
-      if (spotData.imageUrls && spotData.imageUrls.length > 0) {
+      if (spotData.imgUrls && spotData.imgUrls.length > 0) {
         const existingImages = await SpotImg.findAll({
           where: { spotId: spot.spotId },
           transaction,
@@ -503,9 +503,9 @@ class NaverPlaceCrawler {
 
         if (existingImages.length === 0) {
           // 새 이미지 추가
-          const imageData = spotData.imageUrls.map((url) => ({
+          const imageData = spotData.imgUrls.map((imgUrl) => ({
             spotId: spot.spotId,
-            imageUrl: url,
+            imgUrl,
           }));
 
           await SpotImg.bulkCreate(imageData, { transaction });

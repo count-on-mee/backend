@@ -14,7 +14,7 @@ exports.getUserById = async (userId) => {
   }
 };
 
-exports.updateUser = async (userId, userData) => {
+exports.updateUser = async (userId, nickname, imgUrl) => {
   try {
     const user = await User.findByPk(userId);
 
@@ -23,11 +23,11 @@ exports.updateUser = async (userId, userData) => {
     }
 
     const updateData = {};
-    if (userData.nickname !== undefined) {
-      updateData.nickname = userData.nickname;
+    if (nickname) {
+      updateData.nickname = nickname;
     }
-    if (userData.profileImgUrl) {
-      updateData.profileImgUrl = userData.profileImgUrl.location;
+    if (imgUrl) {
+      updateData.imgUrl = imgUrl.location;
     }
 
     await user.update(updateData);

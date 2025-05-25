@@ -51,10 +51,10 @@ module.exports = (sequelize, DataTypes) => {
       as: 'itineraries',
     });
 
-    Trip.hasOne(models.TripInvite, {
+    Trip.hasOne(models.TripInvitation, {
       foreignKey: 'tripId',
       sourceKey: 'tripId',
-      as: 'tripInvite',
+      as: 'tripInvitation',
     });
 
     Trip.hasOne(models.TripDocument, {
@@ -67,6 +67,20 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'tripDocumentId',
       sourceKey: 'tripId',
       as: 'expenseDocument',
+      scope: {
+        include: [
+          {
+            model: models.TripDocument,
+            where: { tripId: sequelize.col('Trip.tripId') },
+          },
+        ],
+      },
+    });
+
+    Trip.hasOne(models.TripDocumentAccommodation, {
+      foreignKey: 'tripDocumentId',
+      sourceKey: 'tripId',
+      as: 'accommodationDocument',
       scope: {
         include: [
           {

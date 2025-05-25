@@ -3,7 +3,7 @@
 /**
  * 네이버 장소 크롤링으로 생성된 Spot 데이터 시드 파일
  * 검색어: 강남 도서관
- * 생성일시: 2025-05-08T14:28:49.344Z
+ * 생성일시: 2025-05-15T15:59:14.101Z
  */
 
 module.exports = {
@@ -23,11 +23,11 @@ module.exports = {
         tel: '02-6002-3031',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(37.5100516 127.060182)',
+          'POINT(37.5100517 127.0601821)',
         4326
         ),
         naver_spot_id: '214665616',
-        review_count: 204,
+        review_count: 205,
         review_score: null,
       },
       {
@@ -92,46 +92,7 @@ module.exports = {
         4326
         ),
         naver_spot_id: '20481471',
-        review_count: 1,
-        review_score: null,
-      },
-      {
-        name: '현대카드 쿠킹라이브러리',
-        address: '서울 강남구 신사동 압구정로46길 46',
-        tel: '02-513-2900',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(37.525663 127.0356863)',
-        4326
-        ),
-        naver_spot_id: '813993515',
         review_count: 2,
-        review_score: null,
-      },
-      {
-        name: '못골한옥어린이도서관',
-        address: '서울 강남구 자곡동 자곡로7길 3',
-        tel: '02-2226-5930',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(37.4731055 127.0994191)',
-        4326
-        ),
-        naver_spot_id: '1670200001',
-        review_count: 0,
-        review_score: null,
-      },
-      {
-        name: '서울특별시교육청 강남도서관',
-        address: '서울 강남구 삼성동 선릉로116길 45 서울특별시교육청 강남도서관',
-        tel: '02-3448-4741',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(37.5137232 127.0469807)',
-        4326
-        ),
-        naver_spot_id: '11591979',
-        review_count: 0,
         review_score: null,
       },
       {
@@ -145,6 +106,19 @@ module.exports = {
         ),
         naver_spot_id: '1198601582',
         review_count: 5,
+        review_score: null,
+      },
+      {
+        name: '서울특별시교육청 강남도서관',
+        address: '서울 강남구 삼성동 선릉로116길 45 서울특별시교육청 강남도서관',
+        tel: '02-3448-4741',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5137232 127.0469807)',
+        4326
+        ),
+        naver_spot_id: '11591979',
+        review_count: 0,
         review_score: null,
       },
       {
@@ -187,6 +161,32 @@ module.exports = {
         review_score: 4.46,
       },
       {
+        name: '현대카드 쿠킹라이브러리',
+        address: '서울 강남구 신사동 압구정로46길 46',
+        tel: '02-513-2900',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.525663 127.0356863)',
+        4326
+        ),
+        naver_spot_id: '813993515',
+        review_count: 2,
+        review_score: null,
+      },
+      {
+        name: '못골한옥어린이도서관',
+        address: '서울 강남구 자곡동 자곡로7길 3',
+        tel: '02-2226-5930',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.4731055 127.0994191)',
+        4326
+        ),
+        naver_spot_id: '1670200001',
+        review_count: 0,
+        review_score: null,
+      },
+      {
         name: '강남구립 행복한도서관',
         address: '서울 강남구 대치동 영동대로65길 24 대치2동주민센터 3층',
         tel: '02-567-3833',
@@ -196,6 +196,19 @@ module.exports = {
         4326
         ),
         naver_spot_id: '13182267',
+        review_count: 0,
+        review_score: null,
+      },
+      {
+        name: '강남구립 대치도서관',
+        address: '서울 강남구 대치동 삼성로 212 은마아파트 복지상가 2층 215호',
+        tel: '02-565-6666',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.4958832 127.0639536)',
+        4326
+        ),
+        naver_spot_id: '13457473',
         review_count: 0,
         review_score: null,
       },
@@ -210,6 +223,19 @@ module.exports = {
         ),
         naver_spot_id: '13441777',
         review_count: 1,
+        review_score: null,
+      },
+      {
+        name: '즐거운 도서관',
+        address: '서울 강남구 대치동 도곡로77길 23 대치4동주민센터',
+        tel: '02-565-7533',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.4997257 127.0578185)',
+        4326
+        ),
+        naver_spot_id: '13462097',
+        review_count: 0,
         review_score: null,
       },
       {
@@ -239,32 +265,6 @@ module.exports = {
         review_score: null,
       },
       {
-        name: '강남구립 대치도서관',
-        address: '서울 강남구 대치동 삼성로 212 은마아파트 복지상가 2층 215호',
-        tel: '02-565-6666',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(37.4958832 127.0639536)',
-        4326
-        ),
-        naver_spot_id: '13457473',
-        review_count: 0,
-        review_score: null,
-      },
-      {
-        name: '즐거운 도서관',
-        address: '서울 강남구 대치4동 도곡로77길 23 대치4동주민센터',
-        tel: '02-565-7533',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(37.4997257 127.0578185)',
-        4326
-        ),
-        naver_spot_id: '13462097',
-        review_count: 0,
-        review_score: null,
-      },
-      {
         name: '열린도서관',
         address: '서울 강남구 일원동 일원로 115 삼성생명빌딩 B동 203호',
         tel: '02-3412-3970',
@@ -279,7 +279,7 @@ module.exports = {
       },
       {
         name: '서울특별시교육청 개포도서관',
-        address: '서울 강남구 개포2동 선릉로4길 30 개포도서관',
+        address: '서울 강남구 개포동 선릉로4길 30 개포도서관',
         tel: '02-3460-8200',
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -288,19 +288,6 @@ module.exports = {
         ),
         naver_spot_id: '11591991',
         review_count: 1,
-        review_score: null,
-      },
-      {
-        name: '역삼2 작은도서관',
-        address: '서울 강남구 역삼동 언주로 314 강남프라자 2층',
-        tel: '02-567-0930',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(37.495899 127.0464934)',
-        4326
-        ),
-        naver_spot_id: '36818290',
-        review_count: 0,
         review_score: null,
       },
       {
@@ -313,6 +300,19 @@ module.exports = {
         4326
         ),
         naver_spot_id: '1626725566',
+        review_count: 0,
+        review_score: null,
+      },
+      {
+        name: '역삼2 작은도서관',
+        address: '서울 강남구 역삼동 언주로 314 강남프라자 2층',
+        tel: '02-567-0930',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.495899 127.0464934)',
+        4326
+        ),
+        naver_spot_id: '36818290',
         review_count: 0,
         review_score: null,
       },
@@ -357,7 +357,7 @@ module.exports = {
       },
       {
         name: '대치1 작은도서관',
-        address: '서울 강남구 대치1동 남부순환로391길 19 대치1문화센터 지하1층',
+        address: '서울 강남구 대치동 남부순환로391길 19 대치1문화센터 지하1층',
         tel: '02-3452-1170',
         location: Sequelize.fn(
           'ST_GeomFromText',
@@ -395,6 +395,19 @@ module.exports = {
         review_score: null,
       },
       {
+        name: '독학재수학원 잇올 스파르타 대치센터 2관',
+        address: '서울 강남구 대치동 역삼로 428 우일빌딩 5, 6, 7층',
+        tel: '0507-1366-6205',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5013046 127.0539121)',
+        4326
+        ),
+        naver_spot_id: '1537658691',
+        review_count: 23,
+        review_score: null,
+      },
+      {
         name: '개포도서관스마트도서관',
         address: '서울 강남구 개포동 선릉로4길 30',
         tel: '02-3460-8251',
@@ -405,32 +418,6 @@ module.exports = {
         ),
         naver_spot_id: '1323875812',
         review_count: 0,
-        review_score: null,
-      },
-      {
-        name: '통계청 나라셈도서관',
-        address: '서울 강남구 논현동 언주로 721 서울세관 별관 4층',
-        tel: '02-3438-8500',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(37.5182805 127.0338164)',
-        4326
-        ),
-        naver_spot_id: '36860245',
-        review_count: 0,
-        review_score: null,
-      },
-      {
-        name: '율현공원 책쉼터',
-        address: '서울 강남구 율현동 밤고개로21길 85',
-        tel: null,
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(37.4746397 127.1150605)',
-        4326
-        ),
-        naver_spot_id: '1799213783',
-        review_count: 1,
         review_score: null,
       },
       {
@@ -447,19 +434,6 @@ module.exports = {
         review_score: null,
       },
       {
-        name: '독학재수학원 잇올 스파르타 대치센터 2관',
-        address: '서울 강남구 대치동 역삼로 428 우일빌딩 5, 6, 7층',
-        tel: '0507-1366-6205',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(37.5013046 127.0539121)',
-        4326
-        ),
-        naver_spot_id: '1537658691',
-        review_count: 23,
-        review_score: null,
-      },
-      {
         name: '잇올 스파르타 대치센터 3관',
         address: '서울 강남구 대치동 역삼로 428 우일빌딩 5, 6, 7층',
         tel: '0507-1398-5272',
@@ -473,28 +447,15 @@ module.exports = {
         review_score: null,
       },
       {
-        name: '개포4동 작은도서관',
-        address: '서울 강남구 개포동 개포로24길 33 3층',
-        tel: '02-3423-7884',
+        name: '통계청 나라셈도서관',
+        address: '서울 강남구 논현동 언주로 721 서울세관 별관 4층',
+        tel: '02-3438-8500',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(37.4771773 127.0498361)',
+          'POINT(37.5182805 127.0338164)',
         4326
         ),
-        naver_spot_id: '36332534',
-        review_count: 0,
-        review_score: null,
-      },
-      {
-        name: '신사동 작은도서관',
-        address: '서울 강남구 신사동 압구정로 128',
-        tel: '02-3423-7334',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(37.5239832 127.0227995)',
-        4326
-        ),
-        naver_spot_id: '36818242',
+        naver_spot_id: '36860245',
         review_count: 0,
         review_score: null,
       },
@@ -512,28 +473,28 @@ module.exports = {
         review_score: null,
       },
       {
-        name: '다움영어도서관',
-        address: '서울 강남구 일원동 개포로124길 7',
-        tel: '02-445-0714',
+        name: '율현공원 책쉼터',
+        address: '서울 강남구 율현동 밤고개로21길 85',
+        tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(37.4941231 127.0828779)',
+          'POINT(37.4746397 127.1150605)',
         4326
         ),
-        naver_spot_id: '36818849',
-        review_count: 0,
+        naver_spot_id: '1799213783',
+        review_count: 1,
         review_score: null,
       },
       {
-        name: '일원1동작은도서관',
-        address: '서울 강남구 일원동 양재대로55길 14',
-        tel: '02-3423-8384',
+        name: '개포4동 작은도서관',
+        address: '서울 강남구 개포동 개포로24길 33 3층',
+        tel: '02-3423-7884',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(37.4918671 127.0880441)',
+          'POINT(37.4771773 127.0498361)',
         4326
         ),
-        naver_spot_id: '1993683100',
+        naver_spot_id: '36332534',
         review_count: 0,
         review_score: null,
       },
@@ -547,6 +508,19 @@ module.exports = {
         4326
         ),
         naver_spot_id: '36818073',
+        review_count: 0,
+        review_score: null,
+      },
+      {
+        name: '신사동 작은도서관',
+        address: '서울 강남구 신사동 압구정로 128',
+        tel: '02-3423-7334',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5239832 127.0227995)',
+        4326
+        ),
+        naver_spot_id: '36818242',
         review_count: 0,
         review_score: null,
       },
@@ -577,15 +551,15 @@ module.exports = {
         review_score: null,
       },
       {
-        name: '도곡2동 작은 도서관',
-        address: '서울 강남구 도곡동 남부순환로378길 34-9 도곡2동주민센터',
-        tel: '02-3423-7584',
+        name: '아름다운도서관',
+        address: '서울 강남구 대치동 삼성로70길 4 지층',
+        tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(37.48371 127.04636)',
+          'POINT(37.5020239 127.0597511)',
         4326
         ),
-        naver_spot_id: '36332565',
+        naver_spot_id: '1841844952',
         review_count: 0,
         review_score: null,
       },
@@ -603,28 +577,28 @@ module.exports = {
         review_score: null,
       },
       {
-        name: '빛어린이도서관',
-        address: '서울 강남구 신사동 논현로153길 26',
-        tel: null,
+        name: '도곡2동 작은 도서관',
+        address: '서울 강남구 도곡동 남부순환로378길 34-9 도곡2동주민센터',
+        tel: '02-3423-7584',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(37.5207155 127.025806)',
+          'POINT(37.48371 127.04636)',
         4326
         ),
-        naver_spot_id: '1803956250',
+        naver_spot_id: '36332565',
         review_count: 0,
         review_score: null,
       },
       {
-        name: '아름다운도서관',
-        address: '서울 강남구 대치동 삼성로70길 4 지층',
-        tel: null,
+        name: '다움영어도서관',
+        address: '서울 강남구 일원동 개포로124길 7',
+        tel: '02-445-0714',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(37.5020239 127.0597511)',
+          'POINT(37.4941231 127.0828779)',
         4326
         ),
-        naver_spot_id: '1841844952',
+        naver_spot_id: '36818849',
         review_count: 0,
         review_score: null,
       },
@@ -642,15 +616,41 @@ module.exports = {
         review_score: null,
       },
       {
-        name: '서울특별시립강남도서관 어린이실',
-        address: '서울 강남구 삼성2동 선릉로116길 57',
-        tel: '02-3448-4742',
+        name: '빛어린이도서관',
+        address: '서울 강남구 신사동 논현로153길 26',
+        tel: null,
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(37.5146351 127.0467662)',
+          'POINT(37.5207155 127.025806)',
         4326
         ),
-        naver_spot_id: '1713974105',
+        naver_spot_id: '1803956250',
+        review_count: 0,
+        review_score: null,
+      },
+      {
+        name: '일원1동작은도서관',
+        address: '서울 강남구 일원동 양재대로55길 14',
+        tel: '02-3423-8384',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.4918671 127.0880441)',
+        4326
+        ),
+        naver_spot_id: '1993683100',
+        review_count: 0,
+        review_score: null,
+      },
+      {
+        name: '한국지식재산연구원지식재산전문도서관',
+        address: '서울 강남구 역삼동 테헤란로 131 3층',
+        tel: null,
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5000906 127.0331266)',
+        4326
+        ),
+        naver_spot_id: '20952104',
         review_count: 0,
         review_score: null,
       },
@@ -700,7 +700,7 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '214665616' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20190319_33/1552967920088148O7_JPEG/9-0j9Ot1jftF4yMiHpZdX1Tp.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20190319_33/1552967920088148O7_JPEG/9-0j9Ot1jftF4yMiHpZdX1Tp.jpg',
         }
       ]);
     }
@@ -719,7 +719,7 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11797439' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20230720_262/1689811424559ku00M_JPEG/%B5%B5%BC%AD%B0%FC_%C0%FC%B0%E6%282%29-1.JPG',
+          img_url: 'https://ldb-phinf.pstatic.net/20230720_262/1689811424559ku00M_JPEG/%B5%B5%BC%AD%B0%FC_%C0%FC%B0%E6%282%29-1.JPG',
         }
       ]);
     }
@@ -738,7 +738,7 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1707276455' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20231124_100/1700787129516hqUf4_JPEG/%C5%A9%B1%E2%BA%AF%C8%AF%B0%B3%C6%F7%C7%CF%B4%C3%B2%DE%B5%B5%BC%AD%B0%FC_%C0%FC%B0%E6_%281%29.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20231124_100/1700787129516hqUf4_JPEG/%C5%A9%B1%E2%BA%AF%C8%AF%B0%B3%C6%F7%C7%CF%B4%C3%B2%DE%B5%B5%BC%AD%B0%FC_%C0%FC%B0%E6_%281%29.jpg',
         }
       ]);
     }
@@ -757,7 +757,7 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1609022606' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20191127_270/1574824349098hVQAQ_JPEG/MeF17-ZKjWqU0qS0MRExnN7m.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20191127_270/1574824349098hVQAQ_JPEG/MeF17-ZKjWqU0qS0MRExnN7m.jpg',
         }
       ]);
     }
@@ -776,45 +776,7 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '20481471' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20150901_228/14410517881633s724_JPEG/146261595124928_0.jpeg',
-        }
-      ]);
-    }
-
-    // 못골한옥어린이도서관 이미지
-    const existingImages_1670200001 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['1670200001'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_1670200001[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1670200001' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20200313_85/15840998243932Kdg6_JPEG/ePLSgIPQHUKFtMlrhzbKwx8L.jpeg.jpg',
-        }
-      ]);
-    }
-
-    // 서울특별시교육청 강남도서관 이미지
-    const existingImages_11591979 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['11591979'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_11591979[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11591979' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20241112_234/1731386968899bmS6H_JPEG/%B5%B5%BC%AD%B0%FC_%C0%FC%B0%E6_1.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20150901_228/14410517881633s724_JPEG/146261595124928_0.jpeg',
         }
       ]);
     }
@@ -833,7 +795,26 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1198601582' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20200205_269/1580855657951R3SDv_JPEG/4VsyrIpS34O56JwJ4Vehb-Cq.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20200205_269/1580855657951R3SDv_JPEG/4VsyrIpS34O56JwJ4Vehb-Cq.jpg',
+        }
+      ]);
+    }
+
+    // 서울특별시교육청 강남도서관 이미지
+    const existingImages_11591979 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['11591979'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_11591979[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11591979' LIMIT 1)`),
+          img_url: 'https://ldb-phinf.pstatic.net/20241112_234/1731386968899bmS6H_JPEG/%B5%B5%BC%AD%B0%FC_%C0%FC%B0%E6_1.jpg',
         }
       ]);
     }
@@ -852,7 +833,26 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1314987148' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20220106_21/1641454258992larV7_JPEG/%B4%EB%C4%A12%B0%FC_%2824%29.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20220106_21/1641454258992larV7_JPEG/%B4%EB%C4%A12%B0%FC_%2824%29.jpg',
+        }
+      ]);
+    }
+
+    // 못골한옥어린이도서관 이미지
+    const existingImages_1670200001 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['1670200001'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_1670200001[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1670200001' LIMIT 1)`),
+          img_url: 'https://ldb-phinf.pstatic.net/20200313_85/15840998243932Kdg6_JPEG/ePLSgIPQHUKFtMlrhzbKwx8L.jpeg.jpg',
         }
       ]);
     }
@@ -871,7 +871,7 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13457473' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20240811_26/1723340916682km9jA_JPEG/%B4%EB%C4%A1%B5%B5%BC%AD%B0%FC_%C0%D4%B1%B8.JPG',
+          img_url: 'https://ldb-phinf.pstatic.net/20240811_26/1723340916682km9jA_JPEG/%B4%EB%C4%A1%B5%B5%BC%AD%B0%FC_%C0%D4%B1%B8.JPG',
         }
       ]);
     }
@@ -890,7 +890,7 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '34259452' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20200420_281/1587353487818YrJ54_JPEG/SUHbVZCGy8GhJ6aHcrZ-j1zs.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20200420_281/1587353487818YrJ54_JPEG/SUHbVZCGy8GhJ6aHcrZ-j1zs.jpg',
         }
       ]);
     }
@@ -909,7 +909,7 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11591991' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20240724_55/1721805785963h8uHI_PNG/%C8%DE%B0%FC%BE%C8%B3%BB_%C0%D3%BD%C3%BB%E7%B9%AB%BD%C7%C1%D6%BC%D2_-001.png',
+          img_url: 'https://ldb-phinf.pstatic.net/20240724_55/1721805785963h8uHI_PNG/%C8%DE%B0%FC%BE%C8%B3%BB_%C0%D3%BD%C3%BB%E7%B9%AB%BD%C7%C1%D6%BC%D2_-001.png',
         }
       ]);
     }
@@ -928,7 +928,7 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1642554970' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20201116_8/1605495208262eClrY_JPEG/QPtAq67YASKhjQ0LzEGHpsqQ.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20201116_8/1605495208262eClrY_JPEG/QPtAq67YASKhjQ0LzEGHpsqQ.jpg',
         }
       ]);
     }
@@ -947,64 +947,7 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1444989802' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20250313_98/1741826849716jwOVk_PNG/%B0%AD%B3%B2%BC%BE%C5%CD_0.png',
-        }
-      ]);
-    }
-
-    // 개포도서관스마트도서관 이미지
-    const existingImages_1323875812 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['1323875812'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_1323875812[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1323875812' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20210827_270/1630028230907FJWtm_JPEG/l4HbTJ9PQqH69psxwtT65suN.jpg',
-        }
-      ]);
-    }
-
-    // 통계청 나라셈도서관 이미지
-    const existingImages_36860245 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['36860245'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_36860245[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '36860245' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20160616_141/1466045075528hxui0_PNG/176566517455377_0.png',
-        }
-      ]);
-    }
-
-    // 율현공원 책쉼터 이미지
-    const existingImages_1799213783 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['1799213783'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_1799213783[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1799213783' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20240709_81/1720484679557vIiPd_JPEG/IMG_1521.jpeg',
+          img_url: 'https://ldb-phinf.pstatic.net/20250313_98/1741826849716jwOVk_PNG/%B0%AD%B3%B2%BC%BE%C5%CD_0.png',
         }
       ]);
     }
@@ -1023,7 +966,26 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1537658691' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20220415_75/1649991313133IR7VU_JPEG/%B4%EB%C4%A12%B0%FC_%287%29.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20220415_75/1649991313133IR7VU_JPEG/%B4%EB%C4%A12%B0%FC_%287%29.jpg',
+        }
+      ]);
+    }
+
+    // 개포도서관스마트도서관 이미지
+    const existingImages_1323875812 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['1323875812'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_1323875812[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1323875812' LIMIT 1)`),
+          img_url: 'https://ldb-phinf.pstatic.net/20210827_270/1630028230907FJWtm_JPEG/l4HbTJ9PQqH69psxwtT65suN.jpg',
         }
       ]);
     }
@@ -1042,26 +1004,26 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1083415611' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20220415_201/1650000639151AmVif_JPEG/%B7%CE%B0%ED%C1%B6%B8%ED.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20220415_201/1650000639151AmVif_JPEG/%B7%CE%B0%ED%C1%B6%B8%ED.jpg',
         }
       ]);
     }
 
-    // 개포4동 작은도서관 이미지
-    const existingImages_36332534 = await queryInterface.sequelize.query(
+    // 통계청 나라셈도서관 이미지
+    const existingImages_36860245 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['36332534'],
+        replacements: ['36860245'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
 
-    if (existingImages_36332534[0].count === 0) {
+    if (existingImages_36860245[0].count === 0) {
       // 새 이미지 추가
       spotImgData.push(...[
         {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '36332534' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20221202_71/1669960561741jxeov_JPEG/1669960544915.jpg',
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '36860245' LIMIT 1)`),
+          img_url: 'https://ldb-phinf.pstatic.net/20160616_141/1466045075528hxui0_PNG/176566517455377_0.png',
         }
       ]);
     }
@@ -1080,26 +1042,45 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1340782203' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20250313_107/1741826852735lUuwq_PNG/%B0%AD%B3%B2%BC%BE%C5%CD_0.png',
+          img_url: 'https://ldb-phinf.pstatic.net/20250313_107/1741826852735lUuwq_PNG/%B0%AD%B3%B2%BC%BE%C5%CD_0.png',
         }
       ]);
     }
 
-    // 다움영어도서관 이미지
-    const existingImages_36818849 = await queryInterface.sequelize.query(
+    // 율현공원 책쉼터 이미지
+    const existingImages_1799213783 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['36818849'],
+        replacements: ['1799213783'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
 
-    if (existingImages_36818849[0].count === 0) {
+    if (existingImages_1799213783[0].count === 0) {
       // 새 이미지 추가
       spotImgData.push(...[
         {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '36818849' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20200202_128/1580627573572SMCNc_JPEG/nrnn0R2EakRz6B69E1i8TvaD.jpg',
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1799213783' LIMIT 1)`),
+          img_url: 'https://ldb-phinf.pstatic.net/20240709_81/1720484679557vIiPd_JPEG/IMG_1521.jpeg',
+        }
+      ]);
+    }
+
+    // 개포4동 작은도서관 이미지
+    const existingImages_36332534 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['36332534'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_36332534[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '36332534' LIMIT 1)`),
+          img_url: 'https://ldb-phinf.pstatic.net/20221202_71/1669960561741jxeov_JPEG/1669960544915.jpg',
         }
       ]);
     }
@@ -1118,26 +1099,26 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '37445620' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20160108_231/1452228431049jN9jt_JPEG/176054524830097_0.jpeg',
+          img_url: 'https://ldb-phinf.pstatic.net/20160108_231/1452228431049jN9jt_JPEG/176054524830097_0.jpeg',
         }
       ]);
     }
 
-    // 빛어린이도서관 이미지
-    const existingImages_1803956250 = await queryInterface.sequelize.query(
+    // 다움영어도서관 이미지
+    const existingImages_36818849 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['1803956250'],
+        replacements: ['36818849'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
 
-    if (existingImages_1803956250[0].count === 0) {
+    if (existingImages_36818849[0].count === 0) {
       // 새 이미지 추가
       spotImgData.push(...[
         {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1803956250' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20190525_103/15587215679016ps2h_JPEG/MmOdQUSan_s0WZblql0nR2Fa.jpg',
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '36818849' LIMIT 1)`),
+          img_url: 'https://ldb-phinf.pstatic.net/20200202_128/1580627573572SMCNc_JPEG/nrnn0R2EakRz6B69E1i8TvaD.jpg',
         }
       ]);
     }
@@ -1156,7 +1137,26 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1566783756' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20230921_37/1695253824633a2D7S_JPEG/20230916_134738.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20230921_37/1695253824633a2D7S_JPEG/20230916_134738.jpg',
+        }
+      ]);
+    }
+
+    // 빛어린이도서관 이미지
+    const existingImages_1803956250 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['1803956250'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_1803956250[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1803956250' LIMIT 1)`),
+          img_url: 'https://ldb-phinf.pstatic.net/20190525_103/15587215679016ps2h_JPEG/MmOdQUSan_s0WZblql0nR2Fa.jpg',
         }
       ]);
     }
@@ -1318,51 +1318,26 @@ module.exports = {
       }
     }
 
-    // 현대카드 쿠킹라이브러리 카테고리 관계
-    const existingCategories_813993515 = await queryInterface.sequelize.query(
+    // 못골도서관 카테고리 관계
+    const existingCategories_1198601582 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['813993515'],
+        replacements: ['1198601582'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
-    const existingCategoryIds_813993515 = new Set(existingCategories_813993515.map(cat => cat.spot_category_id));
+    const existingCategoryIds_1198601582 = new Set(existingCategories_1198601582.map(cat => cat.spot_category_id));
 
     // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_813993515 = [...new Set([
+    const uniqueCategories_1198601582 = [...new Set([
       '도서관'
     ])];
 
-    for (const category of uniqueCategories_813993515) {
+    for (const category of uniqueCategories_1198601582) {
       const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_813993515.has(categoryId[category])) {
+      if (categoryId[category] && !existingCategoryIds_1198601582.has(categoryId[category])) {
         spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '813993515' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
-    // 못골한옥어린이도서관 카테고리 관계
-    const existingCategories_1670200001 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['1670200001'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_1670200001 = new Set(existingCategories_1670200001.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_1670200001 = [...new Set([
-      '도서관'
-    ])];
-
-    for (const category of uniqueCategories_1670200001) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_1670200001.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1670200001' LIMIT 1)`),
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1198601582' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -1388,31 +1363,6 @@ module.exports = {
       if (categoryId[category] && !existingCategoryIds_11591979.has(categoryId[category])) {
         spotCategoryRelationData.push({
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11591979' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
-    // 못골도서관 카테고리 관계
-    const existingCategories_1198601582 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['1198601582'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_1198601582 = new Set(existingCategories_1198601582.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_1198601582 = [...new Set([
-      '도서관'
-    ])];
-
-    for (const category of uniqueCategories_1198601582) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_1198601582.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1198601582' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -1493,6 +1443,56 @@ module.exports = {
       }
     }
 
+    // 현대카드 쿠킹라이브러리 카테고리 관계
+    const existingCategories_813993515 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['813993515'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_813993515 = new Set(existingCategories_813993515.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_813993515 = [...new Set([
+      '도서관'
+    ])];
+
+    for (const category of uniqueCategories_813993515) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_813993515.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '813993515' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 못골한옥어린이도서관 카테고리 관계
+    const existingCategories_1670200001 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['1670200001'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_1670200001 = new Set(existingCategories_1670200001.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_1670200001 = [...new Set([
+      '도서관'
+    ])];
+
+    for (const category of uniqueCategories_1670200001) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_1670200001.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1670200001' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
     // 강남구립 행복한도서관 카테고리 관계
     const existingCategories_13182267 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -1518,6 +1518,31 @@ module.exports = {
       }
     }
 
+    // 강남구립 대치도서관 카테고리 관계
+    const existingCategories_13457473 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['13457473'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_13457473 = new Set(existingCategories_13457473.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_13457473 = [...new Set([
+      '도서관'
+    ])];
+
+    for (const category of uniqueCategories_13457473) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_13457473.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13457473' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
     // 역삼푸른솔도서관 카테고리 관계
     const existingCategories_13441777 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -1538,6 +1563,31 @@ module.exports = {
       if (categoryId[category] && !existingCategoryIds_13441777.has(categoryId[category])) {
         spotCategoryRelationData.push({
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13441777' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 즐거운 도서관 카테고리 관계
+    const existingCategories_13462097 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['13462097'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_13462097 = new Set(existingCategories_13462097.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_13462097 = [...new Set([
+      '도서관'
+    ])];
+
+    for (const category of uniqueCategories_13462097) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_13462097.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13462097' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -1593,56 +1643,6 @@ module.exports = {
       }
     }
 
-    // 강남구립 대치도서관 카테고리 관계
-    const existingCategories_13457473 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['13457473'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_13457473 = new Set(existingCategories_13457473.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_13457473 = [...new Set([
-      '도서관'
-    ])];
-
-    for (const category of uniqueCategories_13457473) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_13457473.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13457473' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
-    // 즐거운 도서관 카테고리 관계
-    const existingCategories_13462097 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['13462097'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_13462097 = new Set(existingCategories_13462097.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_13462097 = [...new Set([
-      '도서관'
-    ])];
-
-    for (const category of uniqueCategories_13462097) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_13462097.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13462097' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
     // 열린도서관 카테고리 관계
     const existingCategories_34259452 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -1693,31 +1693,6 @@ module.exports = {
       }
     }
 
-    // 역삼2 작은도서관 카테고리 관계
-    const existingCategories_36818290 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['36818290'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_36818290 = new Set(existingCategories_36818290.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_36818290 = [...new Set([
-      '도서관'
-    ])];
-
-    for (const category of uniqueCategories_36818290) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_36818290.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '36818290' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
     // 강남구립청담도서관 카테고리 관계
     const existingCategories_1626725566 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -1738,6 +1713,31 @@ module.exports = {
       if (categoryId[category] && !existingCategoryIds_1626725566.has(categoryId[category])) {
         spotCategoryRelationData.push({
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1626725566' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 역삼2 작은도서관 카테고리 관계
+    const existingCategories_36818290 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['36818290'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_36818290 = new Set(existingCategories_36818290.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_36818290 = [...new Set([
+      '도서관'
+    ])];
+
+    for (const category of uniqueCategories_36818290) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_36818290.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '36818290' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -1893,6 +1893,31 @@ module.exports = {
       }
     }
 
+    // 독학재수학원 잇올 스파르타 대치센터 2관 카테고리 관계
+    const existingCategories_1537658691 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['1537658691'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_1537658691 = new Set(existingCategories_1537658691.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_1537658691 = [...new Set([
+      '도서관'
+    ])];
+
+    for (const category of uniqueCategories_1537658691) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_1537658691.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1537658691' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
     // 개포도서관스마트도서관 카테고리 관계
     const existingCategories_1323875812 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -1913,56 +1938,6 @@ module.exports = {
       if (categoryId[category] && !existingCategoryIds_1323875812.has(categoryId[category])) {
         spotCategoryRelationData.push({
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1323875812' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
-    // 통계청 나라셈도서관 카테고리 관계
-    const existingCategories_36860245 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['36860245'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_36860245 = new Set(existingCategories_36860245.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_36860245 = [...new Set([
-      '도서관'
-    ])];
-
-    for (const category of uniqueCategories_36860245) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_36860245.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '36860245' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
-    // 율현공원 책쉼터 카테고리 관계
-    const existingCategories_1799213783 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['1799213783'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_1799213783 = new Set(existingCategories_1799213783.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_1799213783 = [...new Set([
-      '도서관'
-    ])];
-
-    for (const category of uniqueCategories_1799213783) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_1799213783.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1799213783' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -1993,31 +1968,6 @@ module.exports = {
       }
     }
 
-    // 독학재수학원 잇올 스파르타 대치센터 2관 카테고리 관계
-    const existingCategories_1537658691 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['1537658691'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_1537658691 = new Set(existingCategories_1537658691.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_1537658691 = [...new Set([
-      '도서관'
-    ])];
-
-    for (const category of uniqueCategories_1537658691) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_1537658691.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1537658691' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
     // 잇올 스파르타 대치센터 3관 카테고리 관계
     const existingCategories_1083415611 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -2043,51 +1993,26 @@ module.exports = {
       }
     }
 
-    // 개포4동 작은도서관 카테고리 관계
-    const existingCategories_36332534 = await queryInterface.sequelize.query(
+    // 통계청 나라셈도서관 카테고리 관계
+    const existingCategories_36860245 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['36332534'],
+        replacements: ['36860245'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
-    const existingCategoryIds_36332534 = new Set(existingCategories_36332534.map(cat => cat.spot_category_id));
+    const existingCategoryIds_36860245 = new Set(existingCategories_36860245.map(cat => cat.spot_category_id));
 
     // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_36332534 = [...new Set([
+    const uniqueCategories_36860245 = [...new Set([
       '도서관'
     ])];
 
-    for (const category of uniqueCategories_36332534) {
+    for (const category of uniqueCategories_36860245) {
       const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_36332534.has(categoryId[category])) {
+      if (categoryId[category] && !existingCategoryIds_36860245.has(categoryId[category])) {
         spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '36332534' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
-    // 신사동 작은도서관 카테고리 관계
-    const existingCategories_36818242 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['36818242'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_36818242 = new Set(existingCategories_36818242.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_36818242 = [...new Set([
-      '도서관'
-    ])];
-
-    for (const category of uniqueCategories_36818242) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_36818242.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '36818242' LIMIT 1)`),
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '36860245' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -2118,51 +2043,51 @@ module.exports = {
       }
     }
 
-    // 다움영어도서관 카테고리 관계
-    const existingCategories_36818849 = await queryInterface.sequelize.query(
+    // 율현공원 책쉼터 카테고리 관계
+    const existingCategories_1799213783 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['36818849'],
+        replacements: ['1799213783'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
-    const existingCategoryIds_36818849 = new Set(existingCategories_36818849.map(cat => cat.spot_category_id));
+    const existingCategoryIds_1799213783 = new Set(existingCategories_1799213783.map(cat => cat.spot_category_id));
 
     // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_36818849 = [...new Set([
+    const uniqueCategories_1799213783 = [...new Set([
       '도서관'
     ])];
 
-    for (const category of uniqueCategories_36818849) {
+    for (const category of uniqueCategories_1799213783) {
       const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_36818849.has(categoryId[category])) {
+      if (categoryId[category] && !existingCategoryIds_1799213783.has(categoryId[category])) {
         spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '36818849' LIMIT 1)`),
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1799213783' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
     }
 
-    // 일원1동작은도서관 카테고리 관계
-    const existingCategories_1993683100 = await queryInterface.sequelize.query(
+    // 개포4동 작은도서관 카테고리 관계
+    const existingCategories_36332534 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['1993683100'],
+        replacements: ['36332534'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
-    const existingCategoryIds_1993683100 = new Set(existingCategories_1993683100.map(cat => cat.spot_category_id));
+    const existingCategoryIds_36332534 = new Set(existingCategories_36332534.map(cat => cat.spot_category_id));
 
     // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_1993683100 = [...new Set([
+    const uniqueCategories_36332534 = [...new Set([
       '도서관'
     ])];
 
-    for (const category of uniqueCategories_1993683100) {
+    for (const category of uniqueCategories_36332534) {
       const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_1993683100.has(categoryId[category])) {
+      if (categoryId[category] && !existingCategoryIds_36332534.has(categoryId[category])) {
         spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1993683100' LIMIT 1)`),
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '36332534' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -2188,6 +2113,31 @@ module.exports = {
       if (categoryId[category] && !existingCategoryIds_36818073.has(categoryId[category])) {
         spotCategoryRelationData.push({
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '36818073' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 신사동 작은도서관 카테고리 관계
+    const existingCategories_36818242 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['36818242'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_36818242 = new Set(existingCategories_36818242.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_36818242 = [...new Set([
+      '도서관'
+    ])];
+
+    for (const category of uniqueCategories_36818242) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_36818242.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '36818242' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -2243,26 +2193,26 @@ module.exports = {
       }
     }
 
-    // 도곡2동 작은 도서관 카테고리 관계
-    const existingCategories_36332565 = await queryInterface.sequelize.query(
+    // 아름다운도서관 카테고리 관계
+    const existingCategories_1841844952 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['36332565'],
+        replacements: ['1841844952'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
-    const existingCategoryIds_36332565 = new Set(existingCategories_36332565.map(cat => cat.spot_category_id));
+    const existingCategoryIds_1841844952 = new Set(existingCategories_1841844952.map(cat => cat.spot_category_id));
 
     // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_36332565 = [...new Set([
+    const uniqueCategories_1841844952 = [...new Set([
       '도서관'
     ])];
 
-    for (const category of uniqueCategories_36332565) {
+    for (const category of uniqueCategories_1841844952) {
       const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_36332565.has(categoryId[category])) {
+      if (categoryId[category] && !existingCategoryIds_1841844952.has(categoryId[category])) {
         spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '36332565' LIMIT 1)`),
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1841844952' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -2293,51 +2243,51 @@ module.exports = {
       }
     }
 
-    // 빛어린이도서관 카테고리 관계
-    const existingCategories_1803956250 = await queryInterface.sequelize.query(
+    // 도곡2동 작은 도서관 카테고리 관계
+    const existingCategories_36332565 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['1803956250'],
+        replacements: ['36332565'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
-    const existingCategoryIds_1803956250 = new Set(existingCategories_1803956250.map(cat => cat.spot_category_id));
+    const existingCategoryIds_36332565 = new Set(existingCategories_36332565.map(cat => cat.spot_category_id));
 
     // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_1803956250 = [...new Set([
+    const uniqueCategories_36332565 = [...new Set([
       '도서관'
     ])];
 
-    for (const category of uniqueCategories_1803956250) {
+    for (const category of uniqueCategories_36332565) {
       const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_1803956250.has(categoryId[category])) {
+      if (categoryId[category] && !existingCategoryIds_36332565.has(categoryId[category])) {
         spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1803956250' LIMIT 1)`),
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '36332565' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
     }
 
-    // 아름다운도서관 카테고리 관계
-    const existingCategories_1841844952 = await queryInterface.sequelize.query(
+    // 다움영어도서관 카테고리 관계
+    const existingCategories_36818849 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['1841844952'],
+        replacements: ['36818849'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
-    const existingCategoryIds_1841844952 = new Set(existingCategories_1841844952.map(cat => cat.spot_category_id));
+    const existingCategoryIds_36818849 = new Set(existingCategories_36818849.map(cat => cat.spot_category_id));
 
     // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_1841844952 = [...new Set([
+    const uniqueCategories_36818849 = [...new Set([
       '도서관'
     ])];
 
-    for (const category of uniqueCategories_1841844952) {
+    for (const category of uniqueCategories_36818849) {
       const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_1841844952.has(categoryId[category])) {
+      if (categoryId[category] && !existingCategoryIds_36818849.has(categoryId[category])) {
         spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1841844952' LIMIT 1)`),
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '36818849' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -2368,26 +2318,76 @@ module.exports = {
       }
     }
 
-    // 서울특별시립강남도서관 어린이실 카테고리 관계
-    const existingCategories_1713974105 = await queryInterface.sequelize.query(
+    // 빛어린이도서관 카테고리 관계
+    const existingCategories_1803956250 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['1713974105'],
+        replacements: ['1803956250'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
-    const existingCategoryIds_1713974105 = new Set(existingCategories_1713974105.map(cat => cat.spot_category_id));
+    const existingCategoryIds_1803956250 = new Set(existingCategories_1803956250.map(cat => cat.spot_category_id));
 
     // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_1713974105 = [...new Set([
+    const uniqueCategories_1803956250 = [...new Set([
       '도서관'
     ])];
 
-    for (const category of uniqueCategories_1713974105) {
+    for (const category of uniqueCategories_1803956250) {
       const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_1713974105.has(categoryId[category])) {
+      if (categoryId[category] && !existingCategoryIds_1803956250.has(categoryId[category])) {
         spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1713974105' LIMIT 1)`),
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1803956250' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 일원1동작은도서관 카테고리 관계
+    const existingCategories_1993683100 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['1993683100'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_1993683100 = new Set(existingCategories_1993683100.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_1993683100 = [...new Set([
+      '도서관'
+    ])];
+
+    for (const category of uniqueCategories_1993683100) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_1993683100.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1993683100' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 한국지식재산연구원지식재산전문도서관 카테고리 관계
+    const existingCategories_20952104 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['20952104'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_20952104 = new Set(existingCategories_20952104.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_20952104 = [...new Set([
+      '도서관'
+    ])];
+
+    for (const category of uniqueCategories_20952104) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_20952104.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '20952104' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }

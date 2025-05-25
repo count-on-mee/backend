@@ -13,12 +13,20 @@ module.exports = (sequelize, DataTypes) => {
       type: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
       },
     },
     {
       tableName: 'faq_category',
       timestamps: false,
       underscored: true,
+      indexes: [
+        {
+          unique: true,
+          fields: ['type'],
+          name: 'uk_type',
+        },
+      ],
     }
   );
 

@@ -1,10 +1,10 @@
 'use strict';
 
 module.exports = (sequelize, DataTypes) => {
-  const TripDocumentExpense = sequelize.define(
-    'TripDocumentExpense',
+  const TripDocumentAccommodation = sequelize.define(
+    'TripDocumentAccommodation',
     {
-      tripDocumentExpenseId: {
+      tripDocumentAccommodationId: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
@@ -18,38 +18,37 @@ module.exports = (sequelize, DataTypes) => {
           key: 'trip_document_id',
         },
       },
-      type: {
-        type: DataTypes.ENUM(
-          'transportation',
-          'accommodation',
-          'meal',
-          'other'
-        ),
-        allowNull: false,
-      },
-      detail: {
+      accommodation: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      amount: {
-        type: DataTypes.INTEGER,
+      checkInDate: {
+        type: DataTypes.DATE,
         allowNull: false,
+      },
+      checkOutDate: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      },
+      memo: {
+        type: DataTypes.STRING,
+        allowNull: true,
       },
     },
     {
-      tableName: 'trip_document_expense',
+      tableName: 'trip_document_accommodation',
       timestamps: true,
       underscored: true,
     }
   );
 
-  TripDocumentExpense.associate = (models) => {
-    TripDocumentExpense.belongsTo(models.TripDocument, {
+  TripDocumentAccommodation.associate = (models) => {
+    TripDocumentAccommodation.belongsTo(models.TripDocument, {
       foreignKey: 'tripDocumentId',
       targetKey: 'tripDocumentId',
       as: 'tripDocument',
     });
   };
 
-  return TripDocumentExpense;
+  return TripDocumentAccommodation;
 };

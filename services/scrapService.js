@@ -26,7 +26,7 @@ exports.getScrapedSpots = async (userId) => {
           {
             model: SpotImg,
             as: 'spotImgs',
-            attributes: ['imageUrl'],
+            attributes: ['imgUrl'],
           },
         ],
       },

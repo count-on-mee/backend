@@ -124,7 +124,7 @@ module.exports = {
 `;
 
     results.forEach((spot, index) => {
-      if (spot.imageUrls && spot.imageUrls.length > 0 && spot.naverSpotId) {
+      if (spot.imgUrls && spot.imgUrls.length > 0 && spot.naverSpotId) {
         seedFileContent += `
     // ${spot.name} 이미지
     const existingImages_${
@@ -143,13 +143,13 @@ module.exports = {
       // 새 이미지 추가
       spotImgData.push(...[
 `;
-        spot.imageUrls.forEach((url, idx) => {
+        spot.imgUrls.forEach((url, idx) => {
           seedFileContent += `        {
           spot_id: Sequelize.literal(\`(SELECT spot_id FROM spot WHERE naver_spot_id = '${
             spot.naverSpotId ? spot.naverSpotId.replace(/'/g, "\\'") : ''
           }' LIMIT 1)\`),
-          image_url: '${url.replace(/'/g, "\\'")}',
-        }${idx < spot.imageUrls.length - 1 ? ',' : ''}
+          img_url: '${url.replace(/'/g, "\\'")}',
+        }${idx < spot.imgUrls.length - 1 ? ',' : ''}
 `;
         });
         seedFileContent += `      ]);

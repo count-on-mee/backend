@@ -26,7 +26,7 @@ const googleStrategy = new GoogleStrategy(
         name: profile._json.name,
         nickname,
         email: profile._json.email,
-        profileImgUrl: profile._json.picture,
+        imgUrl: profile._json.picture,
         oauthProvider: 'google',
         oauthId: profile._json.sub,
       });

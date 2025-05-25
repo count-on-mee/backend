@@ -25,9 +25,15 @@ module.exports = {
         onUpdate: 'CASCADE',
       },
     });
+
+    await queryInterface.addIndex('spot_category', ['type'], {
+      unique: true,
+      name: 'uk_type',
+    });
   },
 
   async down(queryInterface, Sequelize) {
+    await queryInterface.removeIndex('spot_category', 'uk_type');
     await queryInterface.dropTable('spot_category');
   },
 };

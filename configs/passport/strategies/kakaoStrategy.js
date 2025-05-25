@@ -25,7 +25,7 @@ const kakaoStrategy = new KakaoStrategy(
         name: profile.username,
         nickname,
         email: profile._json.kakao_account.email,
-        profileImgUrl: profile._json.properties.thumbnail_image,
+        imgUrl: profile._json.properties.thumbnail_image,
         oauthProvider: 'kakao',
         oauthId: profile.id.toString(),
       });

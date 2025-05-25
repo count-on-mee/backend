@@ -9,7 +9,7 @@ class SpotReviewDto {
       spotReviewImgs,
       user,
     } = spotReview;
-    const { userId, nickname, profileImgUrl } = user;
+    const { userId, nickname, imgUrl } = user;
 
     return {
       spotReviewId,
@@ -21,7 +21,7 @@ class SpotReviewDto {
       author: {
         userId,
         nickname,
-        profileImgUrl,
+        imgUrl,
       },
     };
   }

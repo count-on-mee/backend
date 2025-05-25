@@ -2,8 +2,8 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('trip_invite', {
-      trip_invite_id: {
+    await queryInterface.createTable('trip_invitation', {
+      trip_invitation_id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
@@ -20,7 +20,7 @@ module.exports = {
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
       },
-      invite_code: {
+      invitation_code: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,
@@ -33,6 +33,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('trip_invite');
+    await queryInterface.dropTable('trip_invitation');
   },
 };

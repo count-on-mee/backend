@@ -2,8 +2,8 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('trip_document_expense', {
-      trip_document_expense_id: {
+    await queryInterface.createTable('trip_document_accommodation', {
+      trip_document_accommodation_id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
@@ -19,22 +19,21 @@ module.exports = {
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
       },
-      type: {
-        type: Sequelize.ENUM(
-          'transportation',
-          'accommodation',
-          'meal',
-          'other'
-        ),
-        allowNull: false,
-      },
-      detail: {
+      accommodation: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      amount: {
-        type: Sequelize.INTEGER,
+      check_in_date: {
+        type: Sequelize.DATE,
         allowNull: false,
+      },
+      check_out_date: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+      memo: {
+        type: Sequelize.STRING,
+        allowNull: true,
       },
       created_at: {
         type: Sequelize.DATE,
@@ -45,14 +44,9 @@ module.exports = {
         allowNull: false,
       },
     });
-
-    // 성능 향상을 위한 인덱스 추가
-    await queryInterface.addIndex('trip_document_expense', [
-      'trip_document_id',
-    ]);
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('trip_document_expense');
+    await queryInterface.dropTable('trip_document_accommodation');
   },
 };

@@ -3,7 +3,7 @@
 /**
  * 네이버 장소 크롤링으로 생성된 Spot 데이터 시드 파일
  * 검색어: 강남 박물관
- * 생성일시: 2025-05-08T14:28:32.938Z
+ * 생성일시: 2025-05-15T15:58:58.331Z
  */
 
 module.exports = {
@@ -18,19 +18,6 @@ module.exports = {
     // 장소 데이터 추가/업데이트
     const spotData = [
       {
-        name: '피규어뮤지엄w',
-        address: '서울 강남구 청담동 선릉로158길 3 Ys Roo',
-        tel: '02-512-8865',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(37.5257643 127.0404047)',
-        4326
-        ),
-        naver_spot_id: '36368850',
-        review_count: 1,
-        review_score: null,
-      },
-      {
         name: '호림박물관 신사분관',
         address: '서울 강남구 신사동 도산대로 317 호림박물관 신사분관',
         tel: '02-541-3525',
@@ -41,6 +28,19 @@ module.exports = {
         ),
         naver_spot_id: '37392356',
         review_count: 146,
+        review_score: null,
+      },
+      {
+        name: '피규어뮤지엄w',
+        address: '서울 강남구 청담동 선릉로158길 3 Ys Roo',
+        tel: '02-512-8865',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5257643 127.0404047)',
+        4326
+        ),
+        naver_spot_id: '36368850',
+        review_count: 1,
         review_score: null,
       },
       {
@@ -196,7 +196,7 @@ module.exports = {
         4326
         ),
         naver_spot_id: '1538888364',
-        review_count: 16,
+        review_count: 17,
         review_score: null,
       },
       {
@@ -226,19 +226,6 @@ module.exports = {
         review_score: null,
       },
       {
-        name: '전기박물관',
-        address: '서울 서초구 서초동 효령로72길 60 한전아트센터',
-        tel: '02-2105-8190',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(37.4860563 127.0281415)',
-        4326
-        ),
-        naver_spot_id: '11620550',
-        review_count: 2,
-        review_score: null,
-      },
-      {
         name: '키즈마린파크',
         address: '서울 송파구 가락동 송파대로28길 28 1층 키즈마린파크',
         tel: '02-6956-5278',
@@ -249,6 +236,19 @@ module.exports = {
         ),
         naver_spot_id: '1967672838',
         review_count: 0,
+        review_score: null,
+      },
+      {
+        name: '전기박물관',
+        address: '서울 서초구 서초동 효령로72길 60 한전아트센터',
+        tel: '02-2105-8190',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.4860563 127.0281415)',
+        4326
+        ),
+        naver_spot_id: '11620550',
+        review_count: 2,
         review_score: null,
       },
       {
@@ -265,32 +265,6 @@ module.exports = {
         review_score: null,
       },
       {
-        name: '아해박물관',
-        address: '과천 주암동 추사로 133 아해한국전통문화어린이박물관',
-        tel: '02-3418-5501',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(37.4575827 127.0299884)',
-        4326
-        ),
-        naver_spot_id: '19497338',
-        review_count: 1,
-        review_score: null,
-      },
-      {
-        name: '렛츠런파크 서울 말박물관',
-        address: '과천 주암동 경마공원대로 107',
-        tel: '02-509-1287',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(37.447852 127.012159)',
-        4326
-        ),
-        naver_spot_id: '11620645',
-        review_count: 30,
-        review_score: null,
-      },
-      {
         name: '국악박물관',
         address: '서울 서초구 서초동 남부순환로 2364',
         tel: '02-580-3130',
@@ -301,6 +275,19 @@ module.exports = {
         ),
         naver_spot_id: '1102659180',
         review_count: 0,
+        review_score: null,
+      },
+      {
+        name: '아해박물관',
+        address: '과천 주암동 추사로 133 아해한국전통문화어린이박물관',
+        tel: '02-3418-5501',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.4575827 127.0299884)',
+        4326
+        ),
+        naver_spot_id: '19497338',
+        review_count: 1,
         review_score: null,
       },
       {
@@ -330,19 +317,6 @@ module.exports = {
         review_score: null,
       },
       {
-        name: '분재박물관',
-        address: '서울 서초구 내곡동 신흥안길 40-10',
-        tel: '02-577-0002',
-        location: Sequelize.fn(
-          'ST_GeomFromText',
-          'POINT(37.4532041 127.0758123)',
-        4326
-        ),
-        naver_spot_id: '11784531',
-        review_count: 2,
-        review_score: null,
-      },
-      {
         name: '건국대학교 박물관',
         address: '서울 광진구 화양동 능동로 120 건국대학교',
         tel: '0507-1430-3880',
@@ -356,16 +330,29 @@ module.exports = {
         review_score: null,
       },
       {
-        name: '서울올림픽기념관',
-        address: '서울 송파구 방이동 올림픽로 424',
-        tel: '02-410-1354',
+        name: '렛츠런파크 서울 말박물관',
+        address: '과천 주암동 경마공원대로 107',
+        tel: '02-509-1287',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(37.5203253 127.1155411)',
+          'POINT(37.447852 127.012159)',
         4326
         ),
-        naver_spot_id: '11620325',
-        review_count: 6,
+        naver_spot_id: '11620645',
+        review_count: 30,
+        review_score: null,
+      },
+      {
+        name: '분재박물관',
+        address: '서울 서초구 내곡동 신흥안길 40-10',
+        tel: '02-577-0002',
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.4532041 127.0758123)',
+        4326
+        ),
+        naver_spot_id: '11784531',
+        review_count: 2,
         review_score: null,
       },
       {
@@ -382,16 +369,16 @@ module.exports = {
         review_score: null,
       },
       {
-        name: '국립스포츠박물관(2026년예정)',
-        address: '서울 송파구 방이동 올림픽로 448 서울올림픽파크텔',
-        tel: null,
+        name: '서울올림픽기념관',
+        address: '서울 송파구 방이동 올림픽로 424',
+        tel: '02-410-1354',
         location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(37.5202094 127.1152765)',
+          'POINT(37.5203253 127.1155411)',
         4326
         ),
-        naver_spot_id: '1247172122',
-        review_count: 0,
+        naver_spot_id: '11620325',
+        review_count: 6,
         review_score: null,
       },
       {
@@ -404,6 +391,19 @@ module.exports = {
         4326
         ),
         naver_spot_id: '1563048969',
+        review_count: 0,
+        review_score: null,
+      },
+      {
+        name: '국립스포츠박물관(2026년예정)',
+        address: '서울 송파구 방이동 올림픽로 448 서울올림픽파크텔',
+        tel: null,
+        location: Sequelize.fn(
+          'ST_GeomFromText',
+          'POINT(37.5202094 127.1152765)',
+        4326
+        ),
+        naver_spot_id: '1247172122',
         review_count: 0,
         review_score: null,
       },
@@ -439,29 +439,6 @@ module.exports = {
     // 이미지 데이터 처리 - 기존 이미지가 있으면 스킵
     const spotImgData = [];
 
-    // 피규어뮤지엄w 이미지
-    const existingImages_36368850 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['36368850'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_36368850[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '36368850' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20180706_200/1530865520610TSd9m_JPEG/%28.jpg',
-        },
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '36368850' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20180706_234/1530865520635p5jhX_JPEG/1.jpg',
-        }
-      ]);
-    }
-
     // 호림박물관 신사분관 이미지
     const existingImages_37392356 = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -476,11 +453,34 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '37392356' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20220412_16/16497253725446OR6j_JPEG/KakaoTalk_20220407_093239937.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20220412_16/16497253725446OR6j_JPEG/KakaoTalk_20220407_093239937.jpg',
         },
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '37392356' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20240202_222/17068369938270KFTV_JPEG/HORIM_06.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20240202_222/17068369938270KFTV_JPEG/HORIM_06.jpg',
+        }
+      ]);
+    }
+
+    // 피규어뮤지엄w 이미지
+    const existingImages_36368850 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['36368850'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_36368850[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '36368850' LIMIT 1)`),
+          img_url: 'https://ldb-phinf.pstatic.net/20180706_200/1530865520610TSd9m_JPEG/%28.jpg',
+        },
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '36368850' LIMIT 1)`),
+          img_url: 'https://ldb-phinf.pstatic.net/20180706_234/1530865520635p5jhX_JPEG/1.jpg',
         }
       ]);
     }
@@ -499,7 +499,7 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13581899' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20200321_216/1584764946874jhgnc_JPEG/_CqGqwGd-G7lYMcdINckRwzV.jpeg.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20200321_216/1584764946874jhgnc_JPEG/_CqGqwGd-G7lYMcdINckRwzV.jpeg.jpg',
         }
       ]);
     }
@@ -518,11 +518,11 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13475891' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20211206_117/1638755742592rsb5N_JPEG/3X3A3800.JPG',
+          img_url: 'https://ldb-phinf.pstatic.net/20211206_117/1638755742592rsb5N_JPEG/3X3A3800.JPG',
         },
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13475891' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20211206_248/16387557599970luj7_JPEG/%C0%D4%B1%B8_%B0%FC%BC%BC%C3%BB_CI_%C1%B6%C7%FC%B9%B0_%B9%E8%B0%E6_%C1%A6%B0%C5%C7%CF%B0%ED_%B9%E6%C6%D0%BF%CD_%C7%CF%B4%DC_%C1%B6%B8%ED%B8%B8_%BB%F0%C0%D4.JPG',
+          img_url: 'https://ldb-phinf.pstatic.net/20211206_248/16387557599970luj7_JPEG/%C0%D4%B1%B8_%B0%FC%BC%BC%C3%BB_CI_%C1%B6%C7%FC%B9%B0_%B9%E8%B0%E6_%C1%A6%B0%C5%C7%CF%B0%ED_%B9%E6%C6%D0%BF%CD_%C7%CF%B4%DC_%C1%B6%B8%ED%B8%B8_%BB%F0%C0%D4.JPG',
         }
       ]);
     }
@@ -541,11 +541,11 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '12779777' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20250423_249/1745403113555IJtgb_JPEG/20250418_200143.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20250423_249/1745403113555IJtgb_JPEG/20250418_200143.jpg',
         },
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '12779777' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20250423_115/1745403113637WW5aI_JPEG/20250418_200655.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20250423_115/1745403113637WW5aI_JPEG/20250418_200655.jpg',
         }
       ]);
     }
@@ -564,11 +564,11 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '34585596' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20150901_209/1441101075486q0aeW_JPEG/156756558521211_0.jpeg',
+          img_url: 'https://ldb-phinf.pstatic.net/20150901_209/1441101075486q0aeW_JPEG/156756558521211_0.jpeg',
         },
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '34585596' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20150901_262/1441101075708sh8qh_JPEG/156756558521211_1.jpeg',
+          img_url: 'https://ldb-phinf.pstatic.net/20150901_262/1441101075708sh8qh_JPEG/156756558521211_1.jpeg',
         }
       ]);
     }
@@ -587,11 +587,11 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '36424279' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20150901_59/14410718873136gMoF_JPEG/166265567673684_0.jpeg',
+          img_url: 'https://ldb-phinf.pstatic.net/20150901_59/14410718873136gMoF_JPEG/166265567673684_0.jpeg',
         },
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '36424279' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20150901_250/1441071887509Ghdwp_JPEG/166265567673684_1.jpeg',
+          img_url: 'https://ldb-phinf.pstatic.net/20150901_250/1441071887509Ghdwp_JPEG/166265567673684_1.jpeg',
         }
       ]);
     }
@@ -610,7 +610,7 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1779648805' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20221125_179/1669342004070Se8jl_JPEG/KakaoTalk_Photo_2022-11-25-11-05-51.jpeg',
+          img_url: 'https://ldb-phinf.pstatic.net/20221125_179/1669342004070Se8jl_JPEG/KakaoTalk_Photo_2022-11-25-11-05-51.jpeg',
         }
       ]);
     }
@@ -629,11 +629,11 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '18882132' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20250304_219/1741049070372VjoiW_JPEG/%C7%D1%BC%BA%B9%E9%C1%A6%B9%DA%B9%B0%B0%FC_%C8%F7%C5%B8%C0%CC%C6%AE_%C6%F7%BD%BA%C5%CD.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20250304_219/1741049070372VjoiW_JPEG/%C7%D1%BC%BA%B9%E9%C1%A6%B9%DA%B9%B0%B0%FC_%C8%F7%C5%B8%C0%CC%C6%AE_%C6%F7%BD%BA%C5%CD.jpg',
         },
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '18882132' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20241108_22/1731032017501UvhCE_JPEG/%C6%F7%BD%BA%C5%CD_%C3%D6%C1%BE.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20241108_22/1731032017501UvhCE_JPEG/%C6%F7%BD%BA%C5%CD_%C3%D6%C1%BE.jpg',
         }
       ]);
     }
@@ -652,11 +652,11 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1906572873' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20190423_110/1555994285004BnOC2_PNG/bVmZUb_l6iodcuvc26l6wkJl.png',
+          img_url: 'https://ldb-phinf.pstatic.net/20190423_110/1555994285004BnOC2_PNG/bVmZUb_l6iodcuvc26l6wkJl.png',
         },
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1906572873' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20190423_11/1555994284800RptkR_PNG/T50tTJk4wd-Uq_R5IsoEk-6l.png',
+          img_url: 'https://ldb-phinf.pstatic.net/20190423_11/1555994284800RptkR_PNG/T50tTJk4wd-Uq_R5IsoEk-6l.png',
         }
       ]);
     }
@@ -675,11 +675,11 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11620605' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20190827_105/1566869781522F5iK1_JPEG/IMGL6085.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20190827_105/1566869781522F5iK1_JPEG/IMGL6085.jpg',
         },
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11620605' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20190827_202/1566869781506nPdBD_JPEG/_MGL6029.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20190827_202/1566869781506nPdBD_JPEG/_MGL6029.jpg',
         }
       ]);
     }
@@ -698,11 +698,11 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1538888364' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20250213_283/1739423325470I9ClT_JPEG/_DSF4609_%BC%F6%C1%A4.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20250213_283/1739423325470I9ClT_JPEG/_DSF4609_%BC%F6%C1%A4.jpg',
         },
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1538888364' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20250213_269/1739423325311Qeduz_JPEG/_DSF9568_%BC%F6%C1%A4.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20250213_269/1739423325311Qeduz_JPEG/_DSF9568_%BC%F6%C1%A4.jpg',
         }
       ]);
     }
@@ -721,7 +721,7 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11620616' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20240705_113/1720152029787yrAyr_JPEG/%BE%EE%B9%DA%C0%FC%B0%E6%BB%E7%C1%F8_240627_%283%29.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20240705_113/1720152029787yrAyr_JPEG/%BE%EE%B9%DA%C0%FC%B0%E6%BB%E7%C1%F8_240627_%283%29.jpg',
         }
       ]);
     }
@@ -740,11 +740,11 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13017518' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20150901_150/1441050510580VAiPm_JPEG/116358474563418_0.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20150901_150/1441050510580VAiPm_JPEG/116358474563418_0.jpg',
         },
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '13017518' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20150901_225/1441050510748LSWg1_JPEG/116358474563418_1.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20150901_225/1441050510748LSWg1_JPEG/116358474563418_1.jpg',
         }
       ]);
     }
@@ -763,11 +763,11 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1967672838' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20220929_175/1664414135455hVMTS_PNG/%C7%C3%B7%B9%C0%CC%BD%BA_%B5%EE%B7%CF-001.png',
+          img_url: 'https://ldb-phinf.pstatic.net/20250515_156/17472683461407G3Di_JPEG/001.jpg',
         },
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1967672838' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20220528_6/1653746309147LlkrT_JPEG/Screenshot_20220528-225732_Naver_Cafe.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20220929_175/1664414135455hVMTS_PNG/%C7%C3%B7%B9%C0%CC%BD%BA_%B5%EE%B7%CF-001.png',
         }
       ]);
     }
@@ -786,57 +786,11 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '21135846' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20150901_67/1441078192044zyzx2_JPEG/146470627625166_0.jpeg',
+          img_url: 'https://ldb-phinf.pstatic.net/20150901_67/1441078192044zyzx2_JPEG/146470627625166_0.jpeg',
         },
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '21135846' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20150901_26/1441078192283CCUuD_JPEG/146470627625166_1.jpeg',
-        }
-      ]);
-    }
-
-    // 아해박물관 이미지
-    const existingImages_19497338 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['19497338'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_19497338[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '19497338' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20190103_251/1546495946352MGBpl_JPEG/wHjrvqr-yECNA7UpTTjGpM-u.JPG.jpg',
-        },
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '19497338' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20190103_297/15464959603186UWoc_JPEG/wPTASKxhIMxX74c2itfsN68G.JPG.jpg',
-        }
-      ]);
-    }
-
-    // 렛츠런파크 서울 말박물관 이미지
-    const existingImages_11620645 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['11620645'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_11620645[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11620645' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20150831_171/1441006793948Gwdhg_JPEG/11620645_0.jpg',
-        },
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11620645' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20150831_240/1441006794144Y63gz_JPEG/11620645_1.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20150901_26/1441078192283CCUuD_JPEG/146470627625166_1.jpeg',
         }
       ]);
     }
@@ -855,7 +809,30 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1102659180' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20220722_108/1658468612365XD6AB_JPEG/6828C124-A37E-4165-B985-2133624DAA5F.jpeg',
+          img_url: 'https://ldb-phinf.pstatic.net/20220722_108/1658468612365XD6AB_JPEG/6828C124-A37E-4165-B985-2133624DAA5F.jpeg',
+        }
+      ]);
+    }
+
+    // 아해박물관 이미지
+    const existingImages_19497338 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['19497338'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_19497338[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '19497338' LIMIT 1)`),
+          img_url: 'https://ldb-phinf.pstatic.net/20190103_251/1546495946352MGBpl_JPEG/wHjrvqr-yECNA7UpTTjGpM-u.JPG.jpg',
+        },
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '19497338' LIMIT 1)`),
+          img_url: 'https://ldb-phinf.pstatic.net/20190103_297/15464959603186UWoc_JPEG/wPTASKxhIMxX74c2itfsN68G.JPG.jpg',
         }
       ]);
     }
@@ -874,34 +851,11 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '21423937' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20150901_42/1441089130304AD9RS_JPEG/21423937_0.jpeg',
+          img_url: 'https://ldb-phinf.pstatic.net/20150901_42/1441089130304AD9RS_JPEG/21423937_0.jpeg',
         },
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '21423937' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20150901_156/1441089130548GoHBq_JPEG/21423937_1.jpeg',
-        }
-      ]);
-    }
-
-    // 분재박물관 이미지
-    const existingImages_11784531 = await queryInterface.sequelize.query(
-      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['11784531'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-
-    if (existingImages_11784531[0].count === 0) {
-      // 새 이미지 추가
-      spotImgData.push(...[
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11784531' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20150901_198/1441038834161RHhbX_JPEG/11784531_0.jpg',
-        },
-        {
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11784531' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20150901_198/14410388343898iKPz_JPEG/11784531_1.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20150901_156/1441089130548GoHBq_JPEG/21423937_1.jpeg',
         }
       ]);
     }
@@ -920,7 +874,53 @@ module.exports = {
       spotImgData.push(...[
         {
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11785116' LIMIT 1)`),
-          image_url: 'https://ldb-phinf.pstatic.net/20150901_183/14410390455278zeRK_JPEG/11785116_0.jpg',
+          img_url: 'https://ldb-phinf.pstatic.net/20150901_183/14410390455278zeRK_JPEG/11785116_0.jpg',
+        }
+      ]);
+    }
+
+    // 렛츠런파크 서울 말박물관 이미지
+    const existingImages_11620645 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['11620645'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_11620645[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11620645' LIMIT 1)`),
+          img_url: 'https://ldb-phinf.pstatic.net/20150831_171/1441006793948Gwdhg_JPEG/11620645_0.jpg',
+        },
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11620645' LIMIT 1)`),
+          img_url: 'https://ldb-phinf.pstatic.net/20150831_240/1441006794144Y63gz_JPEG/11620645_1.jpg',
+        }
+      ]);
+    }
+
+    // 분재박물관 이미지
+    const existingImages_11784531 = await queryInterface.sequelize.query(
+      'SELECT COUNT(*) as count FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['11784531'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (existingImages_11784531[0].count === 0) {
+      // 새 이미지 추가
+      spotImgData.push(...[
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11784531' LIMIT 1)`),
+          img_url: 'https://ldb-phinf.pstatic.net/20150901_198/1441038834161RHhbX_JPEG/11784531_0.jpg',
+        },
+        {
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11784531' LIMIT 1)`),
+          img_url: 'https://ldb-phinf.pstatic.net/20150901_198/14410388343898iKPz_JPEG/11784531_1.jpg',
         }
       ]);
     }
@@ -931,31 +931,6 @@ module.exports = {
 
     // 카테고리 관계 처리 - 중복되지 않는 카테고리만 추가
     const spotCategoryRelationData = [];
-
-    // 피규어뮤지엄w 카테고리 관계
-    const existingCategories_36368850 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['36368850'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_36368850 = new Set(existingCategories_36368850.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_36368850 = [...new Set([
-      '박물관'
-    ])];
-
-    for (const category of uniqueCategories_36368850) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_36368850.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '36368850' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
 
     // 호림박물관 신사분관 카테고리 관계
     const existingCategories_37392356 = await queryInterface.sequelize.query(
@@ -977,6 +952,31 @@ module.exports = {
       if (categoryId[category] && !existingCategoryIds_37392356.has(categoryId[category])) {
         spotCategoryRelationData.push({
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '37392356' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 피규어뮤지엄w 카테고리 관계
+    const existingCategories_36368850 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['36368850'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_36368850 = new Set(existingCategories_36368850.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_36368850 = [...new Set([
+      '박물관'
+    ])];
+
+    for (const category of uniqueCategories_36368850) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_36368850.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '36368850' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -1332,31 +1332,6 @@ module.exports = {
       }
     }
 
-    // 전기박물관 카테고리 관계
-    const existingCategories_11620550 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['11620550'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_11620550 = new Set(existingCategories_11620550.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_11620550 = [...new Set([
-      '박물관'
-    ])];
-
-    for (const category of uniqueCategories_11620550) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_11620550.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11620550' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
     // 키즈마린파크 카테고리 관계
     const existingCategories_1967672838 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -1377,6 +1352,31 @@ module.exports = {
       if (categoryId[category] && !existingCategoryIds_1967672838.has(categoryId[category])) {
         spotCategoryRelationData.push({
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1967672838' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 전기박물관 카테고리 관계
+    const existingCategories_11620550 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['11620550'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_11620550 = new Set(existingCategories_11620550.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_11620550 = [...new Set([
+      '박물관'
+    ])];
+
+    for (const category of uniqueCategories_11620550) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_11620550.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11620550' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -1407,56 +1407,6 @@ module.exports = {
       }
     }
 
-    // 아해박물관 카테고리 관계
-    const existingCategories_19497338 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['19497338'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_19497338 = new Set(existingCategories_19497338.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_19497338 = [...new Set([
-      '박물관'
-    ])];
-
-    for (const category of uniqueCategories_19497338) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_19497338.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '19497338' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
-    // 렛츠런파크 서울 말박물관 카테고리 관계
-    const existingCategories_11620645 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['11620645'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_11620645 = new Set(existingCategories_11620645.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_11620645 = [...new Set([
-      '박물관'
-    ])];
-
-    for (const category of uniqueCategories_11620645) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_11620645.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11620645' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
     // 국악박물관 카테고리 관계
     const existingCategories_1102659180 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -1477,6 +1427,31 @@ module.exports = {
       if (categoryId[category] && !existingCategoryIds_1102659180.has(categoryId[category])) {
         spotCategoryRelationData.push({
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1102659180' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 아해박물관 카테고리 관계
+    const existingCategories_19497338 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['19497338'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_19497338 = new Set(existingCategories_19497338.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_19497338 = [...new Set([
+      '박물관'
+    ])];
+
+    for (const category of uniqueCategories_19497338) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_19497338.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '19497338' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -1532,6 +1507,56 @@ module.exports = {
       }
     }
 
+    // 건국대학교 박물관 카테고리 관계
+    const existingCategories_11785116 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['11785116'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_11785116 = new Set(existingCategories_11785116.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_11785116 = [...new Set([
+      '박물관'
+    ])];
+
+    for (const category of uniqueCategories_11785116) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_11785116.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11785116' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
+    // 렛츠런파크 서울 말박물관 카테고리 관계
+    const existingCategories_11620645 = await queryInterface.sequelize.query(
+      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
+      {
+        replacements: ['11620645'],
+        type: queryInterface.sequelize.QueryTypes.SELECT
+      }
+    );
+    const existingCategoryIds_11620645 = new Set(existingCategories_11620645.map(cat => cat.spot_category_id));
+
+    // 중복되지 않는 카테고리만 추가
+    const uniqueCategories_11620645 = [...new Set([
+      '박물관'
+    ])];
+
+    for (const category of uniqueCategories_11620645) {
+      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
+      if (categoryId[category] && !existingCategoryIds_11620645.has(categoryId[category])) {
+        spotCategoryRelationData.push({
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11620645' LIMIT 1)`),
+          spot_category_id: categoryId[category],
+        });
+      }
+    }
+
     // 분재박물관 카테고리 관계
     const existingCategories_11784531 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
@@ -1557,26 +1582,26 @@ module.exports = {
       }
     }
 
-    // 건국대학교 박물관 카테고리 관계
-    const existingCategories_11785116 = await queryInterface.sequelize.query(
+    // 기록매체박물관 카테고리 관계
+    const existingCategories_84136431 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['11785116'],
+        replacements: ['84136431'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
-    const existingCategoryIds_11785116 = new Set(existingCategories_11785116.map(cat => cat.spot_category_id));
+    const existingCategoryIds_84136431 = new Set(existingCategories_84136431.map(cat => cat.spot_category_id));
 
     // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_11785116 = [...new Set([
+    const uniqueCategories_84136431 = [...new Set([
       '박물관'
     ])];
 
-    for (const category of uniqueCategories_11785116) {
+    for (const category of uniqueCategories_84136431) {
       const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_11785116.has(categoryId[category])) {
+      if (categoryId[category] && !existingCategoryIds_84136431.has(categoryId[category])) {
         spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '11785116' LIMIT 1)`),
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '84136431' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -1608,26 +1633,26 @@ module.exports = {
       }
     }
 
-    // 기록매체박물관 카테고리 관계
-    const existingCategories_84136431 = await queryInterface.sequelize.query(
+    // 디지털박물관 카테고리 관계
+    const existingCategories_1563048969 = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       {
-        replacements: ['84136431'],
+        replacements: ['1563048969'],
         type: queryInterface.sequelize.QueryTypes.SELECT
       }
     );
-    const existingCategoryIds_84136431 = new Set(existingCategories_84136431.map(cat => cat.spot_category_id));
+    const existingCategoryIds_1563048969 = new Set(existingCategories_1563048969.map(cat => cat.spot_category_id));
 
     // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_84136431 = [...new Set([
+    const uniqueCategories_1563048969 = [...new Set([
       '박물관'
     ])];
 
-    for (const category of uniqueCategories_84136431) {
+    for (const category of uniqueCategories_1563048969) {
       const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_84136431.has(categoryId[category])) {
+      if (categoryId[category] && !existingCategoryIds_1563048969.has(categoryId[category])) {
         spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '84136431' LIMIT 1)`),
+          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1563048969' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }
@@ -1653,31 +1678,6 @@ module.exports = {
       if (categoryId[category] && !existingCategoryIds_1247172122.has(categoryId[category])) {
         spotCategoryRelationData.push({
           spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1247172122' LIMIT 1)`),
-          spot_category_id: categoryId[category],
-        });
-      }
-    }
-
-    // 디지털박물관 카테고리 관계
-    const existingCategories_1563048969 = await queryInterface.sequelize.query(
-      'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
-      {
-        replacements: ['1563048969'],
-        type: queryInterface.sequelize.QueryTypes.SELECT
-      }
-    );
-    const existingCategoryIds_1563048969 = new Set(existingCategories_1563048969.map(cat => cat.spot_category_id));
-
-    // 중복되지 않는 카테고리만 추가
-    const uniqueCategories_1563048969 = [...new Set([
-      '박물관'
-    ])];
-
-    for (const category of uniqueCategories_1563048969) {
-      const categoryId = {"식당":1,"카페":2,"숙소":3,"관광지":4,"자연":5,"복합 문화 공간":6,"박물관":7,"미술관":8,"도서관":9,"역사":10,"종교":11};
-      if (categoryId[category] && !existingCategoryIds_1563048969.has(categoryId[category])) {
-        spotCategoryRelationData.push({
-          spot_id: Sequelize.literal(`(SELECT spot_id FROM spot WHERE naver_spot_id = '1563048969' LIMIT 1)`),
           spot_category_id: categoryId[category],
         });
       }

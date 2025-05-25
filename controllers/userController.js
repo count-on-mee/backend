@@ -19,14 +19,9 @@ exports.updateUser = async (req, res) => {
   try {
     const { userId } = req.user;
     const { nickname } = req.body;
-    const profileImgUrl = req.file;
+    const imgUrl = req.file;
 
-    const userData = {
-      nickname,
-      profileImgUrl,
-    };
-
-    const updatedUser = await userService.updateUser(userId, userData);
+    const updatedUser = await userService.updateUser(userId, nickname, imgUrl);
 
     const userDto = UserDto.from(updatedUser);
     res.status(200).json(userDto);

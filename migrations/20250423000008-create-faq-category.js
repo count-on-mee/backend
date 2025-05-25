@@ -14,9 +14,15 @@ module.exports = {
         allowNull: false,
       },
     });
+
+    await queryInterface.addIndex('faq_category', ['type'], {
+      unique: true,
+      name: 'uk_type',
+    });
   },
 
   async down(queryInterface, Sequelize) {
+    await queryInterface.removeIndex('faq_category', 'uk_type');
     await queryInterface.dropTable('faq_category');
   },
 };

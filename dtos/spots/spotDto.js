@@ -1,28 +1,11 @@
+const SpotBasicDto = require('./spotBasicDto');
+
 class SpotDto {
   static from(spot) {
-    const {
-      spotId,
-      name,
-      address,
-      location,
-      tel,
-      spotCategories,
-      spotImgs,
-      spotScraps,
-      userSpotScrap,
-    } = spot;
+    const { spotScraps, userSpotScrap } = spot;
 
     return {
-      spotId,
-      name,
-      address,
-      location: {
-        lat: location.latitude,
-        lng: location.longitude,
-      },
-      tel,
-      categories: spotCategories?.map((category) => category.type) || [],
-      imgUrls: spotImgs?.map((img) => img.imageUrl) || [],
+      ...SpotBasicDto.from(spot),
       scrapedCount: spotScraps?.map((scrap) => scrap.userId).length || 0,
       isScraped: Boolean(userSpotScrap?.userId),
     };
