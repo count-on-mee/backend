@@ -68,7 +68,7 @@ jobs:
             cd $APP_DIR
 
             # 초기 설치 확인 및 실행
-            if [ ! -f deploy/install.sh ]; then
+            if [ ! -d .git ]; then
               echo "Running initial installation..."
               git clone https://github.com/count-on-mee/backend.git .
               git switch deploy/36-cicd
