@@ -72,9 +72,9 @@ jobs:
               echo "Running initial installation..."
               git clone https://github.com/count-on-mee/backend.git .
               cd backend
-              chmod +x deploy/install.sh
-              chmod +x deploy/deploy.sh
-              chmod +x deploy/nginx/update-nginx.sh
+              chmod +x ./deploy/install.sh
+              chmod +x ./deploy/deploy.sh
+              chmod +x ./deploy/nginx/update-nginx.sh
               ./deploy/install.sh
             fi
 
