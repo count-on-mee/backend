@@ -2,11 +2,11 @@
 
 # 프로젝트 디렉토리 설정
 APP_DIR=~/apps/count-on-me
-cd $APP_DIR
+cd $APP_DIR/backend
 
 # Git 최신 코드 가져오기
-git fetch origin main
-git reset --hard origin/main
+git fetch origin deploy/36-cicd
+git reset --hard origin/deploy/36-cicd
 
 # 의존성 설치
 npm install --production
