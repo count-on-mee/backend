@@ -71,21 +71,14 @@ jobs:
             if [ ! -f deploy/install.sh ]; then
               echo "Running initial installation..."
               git clone https://github.com/count-on-mee/backend.git .
+              cd backend
               chmod +x deploy/install.sh
+              chmod +x deploy/deploy.sh
+              chmod +x deploy/nginx/update-nginx.sh
               ./deploy/install.sh
             fi
 
             # 애플리케이션 배포
-            chmod +x deploy/deploy.sh
             ./deploy/deploy.sh
-
-      - name: Update - Nginx & SSL
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ubuntu
-          key: ${{ secrets.EC2_SSH_KEY }}
-          script: |
-            cd ~/apps/count-on-me
-            chmod +x deploy/nginx/update-nginx.sh
+            # nginx & ssl 업데이트
             ./deploy/nginx/update-nginx.sh
