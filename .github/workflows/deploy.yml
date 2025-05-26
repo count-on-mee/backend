@@ -71,6 +71,7 @@ jobs:
             if [ ! -f deploy/install.sh ]; then
               echo "Running initial installation..."
               git clone https://github.com/count-on-mee/backend.git .
+              git switch deploy/36-cicd
 
               chmod +x ./deploy/install.sh
               chmod +x ./deploy/deploy.sh
