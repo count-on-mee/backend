@@ -2,7 +2,7 @@
 
 # 프로젝트 디렉토리 설정
 APP_DIR=~/apps/count-on-me
-cd $APP_DIR/backend
+cd $APP_DIR
 
 # Git 최신 코드 가져오기
 git fetch origin deploy/36-cicd
