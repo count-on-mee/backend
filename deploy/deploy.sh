@@ -21,5 +21,5 @@ else
     pm2 start npm --name "count-on-me" -- start
 fi
 
-# 로그 확인
-pm2 logs count-on-me 
+# 로그 확인 (최근 20줄만)
+pm2 logs count-on-me --lines 20 
