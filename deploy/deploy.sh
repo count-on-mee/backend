@@ -12,7 +12,7 @@ git reset --hard origin/main
 npm install --production
 
 # 데이터베이스 마이그레이션
-npm run migrate
+npm run migrate -- --env=production
 
 # PM2로 애플리케이션 재시작
 if pm2 list | grep -q "count-on-me"; then
@@ -26,5 +26,5 @@ pm2 start ecosystem.config.js --env production
 # PM2 프로세스 저장 및 시작
 pm2 save
 
-# 로그 확인 (최근 20줄만)
-pm2 logs count-on-me --lines 20 
+# 로그 확인 (최근 20줄만, 3초 타임아웃)
+timeout 3s pm2 logs count-on-me --lines 20 || true 
