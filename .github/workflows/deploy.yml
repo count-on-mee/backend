@@ -34,6 +34,7 @@ jobs:
             # 초기 설치 확인 및 실행
             if [ ! -d .git ]; then
               echo "Running initial installation..."
+              sudo apt-get install -y git
               git clone https://github.com/count-on-mee/backend.git .
               git switch deploy/36-cicd
               chmod +x ./deploy/install.sh

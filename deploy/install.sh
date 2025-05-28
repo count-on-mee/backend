@@ -5,7 +5,7 @@ sudo apt-get update
 sudo apt-get upgrade -y
 
 # 필수 패키지 설치
-sudo apt-get install -y curl git nginx
+sudo apt-get install -y curl nginx
 
 # Node.js 18.x LTS 설치
 curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
