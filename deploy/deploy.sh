@@ -11,9 +11,6 @@ git reset --hard origin/main
 # 의존성 설치
 npm install --production
 
-# 데이터베이스 마이그레이션
-NODE_ENV=production npm run migrate
-
 # PM2로 애플리케이션 재시작
 if pm2 list | grep -q "count-on-me"; then
     # 기존 프로세스 중지
@@ -25,5 +22,8 @@ pm2 start ecosystem.config.js --env production
 
 # PM2 프로세스 저장 및 시작
 pm2 save
+
+# 데이터베이스 마이그레이션
+NODE_ENV=production npm run migrate
 
 echo "배포가 완료되었습니다." 
