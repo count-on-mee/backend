@@ -25,42 +25,6 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
-          envs: |
-            NODE_ENV=production
-            PORT=3000
-            CLIENT_URL=${{ secrets.CLIENT_URL }}
-
-            # Database
-            DB_HOST=${{ secrets.DB_HOST }}
-            DB_PORT=${{ secrets.DB_PORT }}
-            DB_USERNAME=${{ secrets.DB_USERNAME }}
-            DB_PASSWORD=${{ secrets.DB_PASSWORD }}
-            DB_NAME=${{ secrets.DB_NAME }}
-
-            # JWT
-            JWT_ACCESS_SECRET=${{ secrets.JWT_ACCESS_SECRET }}
-            JWT_REFRESH_SECRET=${{ secrets.JWT_REFRESH_SECRET }}
-
-            # OAuth
-            GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}
-            GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }}
-            GOOGLE_CALLBACK_URI=${{ secrets.GOOGLE_CALLBACK_URI }}
-            KAKAO_CLIENT_ID=${{ secrets.KAKAO_CLIENT_ID }}
-            KAKAO_CALLBACK_URI=${{ secrets.KAKAO_CALLBACK_URI }}
-            NAVER_CLIENT_ID=${{ secrets.NAVER_CLIENT_ID }}
-            NAVER_CLIENT_SECRET=${{ secrets.NAVER_CLIENT_SECRET }}
-            NAVER_CALLBACK_URI=${{ secrets.NAVER_CALLBACK_URI }}
-
-            # AWS
-            AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}
-            AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
-            AWS_REGION=${{ secrets.AWS_REGION }}
-            AWS_S3_BUCKET=${{ secrets.AWS_S3_BUCKET }}
-            AWS_BUCKET_NAME=${{ secrets.AWS_S3_BUCKET }}
-
-            # Naver Cloud Platform
-            NCP_MAP_ID=${{ secrets.NCP_MAP_ID }}
-            NPC_MAP_SECRET=${{ secrets.NPC_MAP_SECRET }}
           script: |
             # 프로젝트 디렉토리 설정
             APP_DIR=~/apps/count-on-me
@@ -75,6 +39,35 @@ jobs:
               chmod +x ./deploy/install.sh
               ./deploy/install.sh
             fi
+
+            # 환경변수 설정
+            cat > $APP_DIR/.env.production << EOL
+            NODE_ENV=production
+            PORT=3000
+            CLIENT_URL=${{ secrets.CLIENT_URL }}
+            DB_HOST=${{ secrets.DB_HOST }}
+            DB_PORT=${{ secrets.DB_PORT }}
+            DB_USERNAME=${{ secrets.DB_USERNAME }}
+            DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+            DB_NAME=${{ secrets.DB_NAME }}
+            JWT_ACCESS_SECRET=${{ secrets.JWT_ACCESS_SECRET }}
+            JWT_REFRESH_SECRET=${{ secrets.JWT_REFRESH_SECRET }}
+            GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}
+            GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }}
+            GOOGLE_CALLBACK_URI=${{ secrets.GOOGLE_CALLBACK_URI }}
+            KAKAO_CLIENT_ID=${{ secrets.KAKAO_CLIENT_ID }}
+            KAKAO_CALLBACK_URI=${{ secrets.KAKAO_CALLBACK_URI }}
+            NAVER_CLIENT_ID=${{ secrets.NAVER_CLIENT_ID }}
+            NAVER_CLIENT_SECRET=${{ secrets.NAVER_CLIENT_SECRET }}
+            NAVER_CALLBACK_URI=${{ secrets.NAVER_CALLBACK_URI }}
+            AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}
+            AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            AWS_REGION=${{ secrets.AWS_REGION }}
+            AWS_S3_BUCKET=${{ secrets.AWS_S3_BUCKET }}
+            AWS_BUCKET_NAME=${{ secrets.AWS_S3_BUCKET }}
+            NCP_MAP_ID=${{ secrets.NCP_MAP_ID }}
+            NPC_MAP_SECRET=${{ secrets.NPC_MAP_SECRET }}
+            EOL
 
             # 애플리케이션 배포
             chmod +x ./deploy/deploy.sh

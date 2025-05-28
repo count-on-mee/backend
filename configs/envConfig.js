@@ -28,13 +28,6 @@ const loadEnv = () => {
     );
   }
 
-  // 프로덕션 환경에서는 process.env에서 직접 환경변수를 사용
-  if (env === ENVIRONMENTS.PRODUCTION) {
-    validateRequiredEnvVars();
-    return;
-  }
-
-  // 개발 및 테스트 환경에서는 .env 파일 사용
   const envPath = getEnvPath(env);
   const envFilePath = path.resolve(__dirname, '..', envPath);
 
