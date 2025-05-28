@@ -2,7 +2,7 @@ name: Deploy to EC2
 
 on:
   push:
-    branches: [deploy/36-cicd]
+    branches: [main]
 
 jobs:
   deploy:
@@ -11,13 +11,6 @@ jobs:
     steps:
       - name: Setup - Checkout Repository
         uses: actions/checkout@v2
-
-      # - name: Setup - Configure AWS Credentials
-      #   uses: aws-actions/configure-aws-credentials@v1
-      #   with:
-      #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #     aws-region: ap-northeast-2
 
       - name: Deploy - Application
         uses: appleboy/ssh-action@master
@@ -34,9 +27,7 @@ jobs:
             # 초기 설치 확인 및 실행
             if [ ! -d .git ]; then
               echo "Running initial installation..."
-              sudo apt-get install -y git
               git clone https://github.com/count-on-mee/backend.git .
-              git switch deploy/36-cicd
               chmod +x ./deploy/install.sh
               ./deploy/install.sh
             fi
@@ -72,7 +63,3 @@ jobs:
             # 애플리케이션 배포
             chmod +x ./deploy/deploy.sh
             ./deploy/deploy.sh
-
-            # # nginx & ssl 업데이트
-            # chmod +x ./deploy/nginx/update-nginx.sh
-            # ./deploy/nginx/update-nginx.sh

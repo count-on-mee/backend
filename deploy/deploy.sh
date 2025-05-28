@@ -5,8 +5,8 @@ APP_DIR=~/apps/count-on-me
 cd $APP_DIR
 
 # Git 최신 코드 가져오기
-git fetch origin deploy/36-cicd
-git reset --hard origin/deploy/36-cicd
+git fetch origin main
+git reset --hard origin/main
 
 # 의존성 설치
 npm install --production
