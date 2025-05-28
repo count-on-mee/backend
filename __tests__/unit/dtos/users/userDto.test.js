@@ -7,7 +7,7 @@ describe('UserDto 클래스 테스트', () => {
     name: '홍길동',
     nickname: '행복한 호랑이',
     email: 'test@example.com',
-    profileImgUrl: 'https://example.com/profile.jpg',
+    imgUrl: 'https://example.com/profile.jpg',
     oauthProvider: 'google',
     oauthId: '12345678',
     createdAt: new Date('2025-04-01'),
@@ -28,7 +28,7 @@ describe('UserDto 클래스 테스트', () => {
         name: '홍길동',
         nickname: '행복한 호랑이',
         email: 'test@example.com',
-        profileImgUrl: 'https://example.com/profile.jpg',
+        imgUrl: 'https://example.com/profile.jpg',
       });
     });
 
@@ -86,15 +86,13 @@ describe('UserDto 클래스 테스트', () => {
       );
     });
 
-    it('profileImgUrl이 없으면 에러를 발생시켜야 함', () => {
+    it('imgUrl이 없으면 에러를 발생시켜야 함', () => {
       // Given
-      const { profileImgUrl, ...userWithoutProfileImg } = userData;
-      const user = userWithoutProfileImg;
+      const { imgUrl, ...userWithoutImgUrl } = userData;
+      const user = userWithoutImgUrl;
 
       // When & Then
-      expect(() => UserDto.from(user)).toThrow(
-        '사용자 프로필 이미지는 필수 항목입니다.'
-      );
+      expect(() => UserDto.from(user)).toThrow('프로필 이미지가 없습니다.');
     });
   });
 
@@ -107,7 +105,7 @@ describe('UserDto 클래스 테스트', () => {
         name: '김철수',
         nickname: '즐거운 토끼',
         email: 'test2@example.com',
-        profileImgUrl: 'https://example.com/profile2.jpg',
+        imgUrl: 'https://example.com/profile2.jpg',
         oauthProvider: 'kakao',
         oauthId: '87654321',
         createdAt: new Date('2025-04-01'),
@@ -126,14 +124,14 @@ describe('UserDto 클래스 테스트', () => {
           name: '홍길동',
           nickname: '행복한 호랑이',
           email: 'test@example.com',
-          profileImgUrl: 'https://example.com/profile.jpg',
+          imgUrl: 'https://example.com/profile.jpg',
         },
         {
           userId: '223e4567-e89b-12d3-a456-426614174001',
           name: '김철수',
           nickname: '즐거운 토끼',
           email: 'test2@example.com',
-          profileImgUrl: 'https://example.com/profile2.jpg',
+          imgUrl: 'https://example.com/profile2.jpg',
         },
       ]);
     });

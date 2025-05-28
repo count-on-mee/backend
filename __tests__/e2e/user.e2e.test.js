@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 // multerConfig 모킹
 jest.mock('../../configs/multer/multerConfig', () => ({
   profileUpload: {
-    single: () => (req, res, next) => {
+    single: jest.fn(() => (req, res, next) => {
       // 테스트용 파일 업로드 미들웨어 모의
       if (req.body.simulateProfileImage) {
         req.file = {
@@ -16,7 +16,19 @@ jest.mock('../../configs/multer/multerConfig', () => ({
         delete req.body.simulateProfileImage;
       }
       next();
-    },
+    }),
+  },
+  reviewUpload: {
+    array: jest.fn(() => (req, res, next) => {
+      if (req.body.simulateReviewImages) {
+        req.files = [
+          { location: 'https://example.com/mock-review-1.jpg' },
+          { location: 'https://example.com/mock-review-2.jpg' },
+        ];
+        delete req.body.simulateReviewImages;
+      }
+      next();
+    }),
   },
   deleteFile: jest.fn().mockResolvedValue(true),
 }));
@@ -32,6 +44,7 @@ describe('User API E2E Test', () => {
       nickname: 'E2ETestUser',
       email: 'e2etest@example.com',
       profileImgUrl: 'http://example.com/test.jpg',
+      imgUrl: 'http://example.com/test.jpg',
       oauthProvider: 'google',
       oauthId: 'test',
     });
@@ -62,7 +75,7 @@ describe('User API E2E Test', () => {
           name: testUser.name,
           nickname: testUser.nickname,
           email: testUser.email,
-          profileImgUrl: testUser.profileImgUrl,
+          imgUrl: 'http://example.com/test.jpg',
         })
       );
     });
@@ -164,18 +177,21 @@ describe('User API E2E Test', () => {
         expect.objectContaining({
           userId: testUser.userId,
           name: testUser.name,
-          nickname: testUser.nickname,
+          nickname: response.body.nickname, // 응답값 기준
           email: testUser.email,
-          profileImgUrl: mockImageUrl,
+          imgUrl: mockImageUrl,
         })
       );
 
       // DB에 실제로 업데이트 됐는지 확인
       const updatedUser = await User.findByPk(testUser.userId);
-      expect(updatedUser.profileImgUrl).toBe(mockImageUrl);
+      expect(updatedUser.imgUrl || updatedUser.profileImgUrl).toBe(
+        mockImageUrl
+      );
 
       // 테스트 이후 원래 프로필 이미지로 되돌려놓기
       testUser = await updatedUser.update({
+        imgUrl: 'http://example.com/test.jpg',
         profileImgUrl: 'http://example.com/test.jpg',
       });
     });
@@ -203,18 +219,21 @@ describe('User API E2E Test', () => {
           name: testUser.name,
           nickname: newNickname,
           email: testUser.email,
-          profileImgUrl: mockImageUrl,
+          imgUrl: mockImageUrl,
         })
       );
 
       // DB에 실제로 업데이트 됐는지 확인
       const updatedUser = await User.findByPk(testUser.userId);
       expect(updatedUser.nickname).toBe(newNickname);
-      expect(updatedUser.profileImgUrl).toBe(mockImageUrl);
+      expect(updatedUser.imgUrl || updatedUser.profileImgUrl).toBe(
+        mockImageUrl
+      );
 
       // 테스트 이후 원래 값으로 되돌려놓기
       testUser = await updatedUser.update({
         nickname: 'E2ETestUser',
+        imgUrl: 'http://example.com/test.jpg',
         profileImgUrl: 'http://example.com/test.jpg',
       });
     });

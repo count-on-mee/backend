@@ -8,7 +8,7 @@ exports.authenticate = (req, res) => {
 
     res.cookie('refreshToken', refreshToken, JwtUtil.getCookieOptions());
     res.redirect(
-      `http://localhost:5173/auth-callback?accessToken=${accessToken}`
+      `${process.env.CLIENT_URL}/auth-callback?accessToken=${accessToken}`
     );
   } catch (error) {
     res.status(401).json({ message: '인증 처리 중 오류가 발생했습니다.' });

@@ -1,14 +1,28 @@
 const userController = require('../../../controllers/userController');
 const userService = require('../../../services/userService');
-const { UserDto } = require('../../../dtos');
 
 // 서비스와 DTO 모킹
 jest.mock('../../../services/userService');
-jest.mock('../../../dtos', () => ({
-  UserDto: {
-    from: jest.fn(),
-  },
+jest.mock('../../../dtos/users/userDto', () => ({
+  from: jest.fn().mockImplementation((user) => ({
+    userId: user.userId,
+    name: user.name,
+    nickname: user.nickname,
+    email: user.email,
+    imgUrl: user.imgUrl,
+  })),
+  fromMany: jest.fn().mockImplementation((users) =>
+    users.map((user) => ({
+      userId: user.userId,
+      name: user.name,
+      nickname: user.nickname,
+      email: user.email,
+      imgUrl: user.imgUrl,
+    }))
+  ),
 }));
+
+const UserDto = require('../../../dtos/users/userDto');
 
 describe('UserController', () => {
   describe('getUser', () => {
@@ -31,16 +45,18 @@ describe('UserController', () => {
     it('유저 정보를 성공적으로 조회하면 200 상태코드와 함께 UserDto를 반환한다', async () => {
       // Arrange
       const mockUser = {
-        id: 'test-user-id',
+        userId: 'test-user-id',
+        name: '테스트유저',
         email: 'test@test.com',
         nickname: 'testUser',
-        profileImgUrl: 'http://example.com/img.jpg',
+        imgUrl: 'http://example.com/img.jpg',
       };
       const mockUserDto = {
-        id: 'test-user-id',
+        userId: 'test-user-id',
+        name: '테스트유저',
         email: 'test@test.com',
         nickname: 'testUser',
-        profileImgUrl: 'http://example.com/img.jpg',
+        imgUrl: 'http://example.com/img.jpg',
       };
 
       userService.getUserById.mockResolvedValue(mockUser);
@@ -113,16 +129,18 @@ describe('UserController', () => {
 
       const mockUpdatedUser = {
         userId: 'test-user-id',
+        name: '테스트유저',
         nickname: '새로운닉네임',
         email: 'test@test.com',
-        profileImgUrl: 'http://example.com/img.jpg',
+        imgUrl: 'http://example.com/img.jpg',
       };
 
       const mockUserDto = {
         userId: 'test-user-id',
+        name: '테스트유저',
         nickname: '새로운닉네임',
         email: 'test@test.com',
-        profileImgUrl: 'http://example.com/img.jpg',
+        imgUrl: 'http://example.com/img.jpg',
       };
 
       userService.updateUser.mockResolvedValue(mockUpdatedUser);
@@ -132,10 +150,11 @@ describe('UserController', () => {
       await userController.updateUser(mockReq, mockRes);
 
       // Assert
-      expect(userService.updateUser).toHaveBeenCalledWith('test-user-id', {
-        nickname: '새로운닉네임',
-        profileImgUrl: null,
-      });
+      expect(userService.updateUser).toHaveBeenCalledWith(
+        'test-user-id',
+        '새로운닉네임',
+        null
+      );
       expect(UserDto.from).toHaveBeenCalledWith(mockUpdatedUser);
       expect(mockRes.status).toHaveBeenCalledWith(200);
       expect(mockRes.json).toHaveBeenCalledWith(mockUserDto);
@@ -149,16 +168,18 @@ describe('UserController', () => {
 
       const mockUpdatedUser = {
         userId: 'test-user-id',
+        name: '테스트유저',
         nickname: '테스트유저',
         email: 'test@test.com',
-        profileImgUrl: 'https://example.com/new-profile.jpg',
+        imgUrl: 'https://example.com/new-profile.jpg',
       };
 
       const mockUserDto = {
         userId: 'test-user-id',
+        name: '테스트유저',
         nickname: '테스트유저',
         email: 'test@test.com',
-        profileImgUrl: 'https://example.com/new-profile.jpg',
+        imgUrl: 'https://example.com/new-profile.jpg',
       };
 
       userService.updateUser.mockResolvedValue(mockUpdatedUser);
@@ -168,12 +189,13 @@ describe('UserController', () => {
       await userController.updateUser(mockReq, mockRes);
 
       // Assert
-      expect(userService.updateUser).toHaveBeenCalledWith('test-user-id', {
-        nickname: undefined,
-        profileImgUrl: {
+      expect(userService.updateUser).toHaveBeenCalledWith(
+        'test-user-id',
+        undefined,
+        {
           location: 'https://example.com/new-profile.jpg',
-        },
-      });
+        }
+      );
       expect(UserDto.from).toHaveBeenCalledWith(mockUpdatedUser);
       expect(mockRes.status).toHaveBeenCalledWith(200);
       expect(mockRes.json).toHaveBeenCalledWith(mockUserDto);
@@ -188,16 +210,18 @@ describe('UserController', () => {
 
       const mockUpdatedUser = {
         userId: 'test-user-id',
+        name: '테스트유저',
         nickname: '새로운닉네임',
         email: 'test@test.com',
-        profileImgUrl: 'https://example.com/new-profile.jpg',
+        imgUrl: 'https://example.com/new-profile.jpg',
       };
 
       const mockUserDto = {
         userId: 'test-user-id',
+        name: '테스트유저',
         nickname: '새로운닉네임',
         email: 'test@test.com',
-        profileImgUrl: 'https://example.com/new-profile.jpg',
+        imgUrl: 'https://example.com/new-profile.jpg',
       };
 
       userService.updateUser.mockResolvedValue(mockUpdatedUser);
@@ -207,12 +231,13 @@ describe('UserController', () => {
       await userController.updateUser(mockReq, mockRes);
 
       // Assert
-      expect(userService.updateUser).toHaveBeenCalledWith('test-user-id', {
-        nickname: '새로운닉네임',
-        profileImgUrl: {
+      expect(userService.updateUser).toHaveBeenCalledWith(
+        'test-user-id',
+        '새로운닉네임',
+        {
           location: 'https://example.com/new-profile.jpg',
-        },
-      });
+        }
+      );
       expect(UserDto.from).toHaveBeenCalledWith(mockUpdatedUser);
       expect(mockRes.status).toHaveBeenCalledWith(200);
       expect(mockRes.json).toHaveBeenCalledWith(mockUserDto);
@@ -228,10 +253,11 @@ describe('UserController', () => {
       await userController.updateUser(mockReq, mockRes);
 
       // Assert
-      expect(userService.updateUser).toHaveBeenCalledWith('test-user-id', {
-        nickname: '새로운닉네임',
-        profileImgUrl: null,
-      });
+      expect(userService.updateUser).toHaveBeenCalledWith(
+        'test-user-id',
+        '새로운닉네임',
+        null
+      );
       expect(mockRes.status).toHaveBeenCalledWith(400);
       expect(mockRes.json).toHaveBeenCalledWith({
         message: errorMessage,
@@ -247,10 +273,11 @@ describe('UserController', () => {
       await userController.updateUser(mockReq, mockRes);
 
       // Assert
-      expect(userService.updateUser).toHaveBeenCalledWith('test-user-id', {
-        nickname: '새로운닉네임',
-        profileImgUrl: null,
-      });
+      expect(userService.updateUser).toHaveBeenCalledWith(
+        'test-user-id',
+        '새로운닉네임',
+        null
+      );
       expect(mockRes.status).toHaveBeenCalledWith(400);
       expect(mockRes.json).toHaveBeenCalledWith({
         message: '프로필 업데이트에 실패했습니다.',

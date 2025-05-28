@@ -1,4 +1,4 @@
-const { updateUserValidator } = require('../../../validators');
+const updateUserValidator = require('../../../validators/users/updateUserValidator');
 const { validationResult } = require('express-validator');
 const httpMocks = require('node-mocks-http');
 
@@ -39,9 +39,11 @@ describe('userValidator 유닛 테스트', () => {
       req.body.nickname = '테스트닉네임';
 
       // Act
-      const validationMiddleware =
-        updateUserValidator[updateUserValidator.length - 1];
-      validationMiddleware(req, res, next);
+      updateUserValidator.forEach((middleware) => {
+        if (typeof middleware === 'function') {
+          middleware(req, res, next);
+        }
+      });
 
       // Assert
       expect(next).toHaveBeenCalled();
@@ -52,9 +54,11 @@ describe('userValidator 유닛 테스트', () => {
       req.file = { location: 'https://example.com/image.jpg' };
 
       // Act
-      const validationMiddleware =
-        updateUserValidator[updateUserValidator.length - 1];
-      validationMiddleware(req, res, next);
+      updateUserValidator.forEach((middleware) => {
+        if (typeof middleware === 'function') {
+          middleware(req, res, next);
+        }
+      });
 
       // Assert
       expect(next).toHaveBeenCalled();
@@ -66,9 +70,11 @@ describe('userValidator 유닛 테스트', () => {
       req.file = { location: 'https://example.com/image.jpg' };
 
       // Act
-      const validationMiddleware =
-        updateUserValidator[updateUserValidator.length - 1];
-      validationMiddleware(req, res, next);
+      updateUserValidator.forEach((middleware) => {
+        if (typeof middleware === 'function') {
+          middleware(req, res, next);
+        }
+      });
 
       // Assert
       expect(next).toHaveBeenCalled();
@@ -78,9 +84,11 @@ describe('userValidator 유닛 테스트', () => {
       // Arrange - req는 기본적으로 빈 객체
 
       // Act
-      const validationMiddleware =
-        updateUserValidator[updateUserValidator.length - 1];
-      validationMiddleware(req, res, next);
+      updateUserValidator.forEach((middleware) => {
+        if (typeof middleware === 'function') {
+          middleware(req, res, next);
+        }
+      });
 
       // Assert
       expect(res.statusCode).toBe(400);
@@ -110,9 +118,11 @@ describe('userValidator 유닛 테스트', () => {
       });
 
       // Act
-      const validationMiddleware =
-        updateUserValidator[updateUserValidator.length - 1];
-      validationMiddleware(req, res, next);
+      updateUserValidator.forEach((middleware) => {
+        if (typeof middleware === 'function') {
+          middleware(req, res, next);
+        }
+      });
 
       // Assert
       expect(res.statusCode).toBe(400);

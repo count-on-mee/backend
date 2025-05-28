@@ -4,7 +4,7 @@ const {
   reissue,
 } = require('../../../controllers/authController');
 const authService = require('../../../services/authService');
-const { JwtUtil } = require('../../../utils');
+const JwtUtil = require('../../../utils/JwtUtil');
 
 // JwtUtil과 authService 모듈 mock
 jest.mock('../../../utils/JwtUtil', () => ({
