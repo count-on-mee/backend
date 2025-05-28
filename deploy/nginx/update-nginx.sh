@@ -9,7 +9,7 @@ echo "Nginx 설정 업데이트를 시작합니다..."
 echo "SSL 인증서 상태를 확인합니다..."
 if ! sudo certbot certificates | grep -q "VALID: 30 days"; then
   echo "SSL 인증서 갱신이 필요합니다..."
-  sudo certbot --nginx -d api.countonme.site --non-interactive --agree-tos --email your-email@example.com
+  sudo certbot --nginx -d api.countonme.site --non-interactive --agree-tos --email insoosos1234@gmail.com
 else
   echo "SSL 인증서가 유효합니다."
 fi

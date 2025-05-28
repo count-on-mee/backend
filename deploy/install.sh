@@ -25,7 +25,12 @@ sudo rm /etc/nginx/sites-enabled/default
 sudo cp deploy/nginx/count-on-me.conf /etc/nginx/sites-available/count-on-me
 sudo ln -s /etc/nginx/sites-available/count-on-me /etc/nginx/sites-enabled/
 
-# Nginx 재시작
-sudo systemctl restart nginx
+
+# Nginx 시작
+sudo nginx -t
+sudo systemctl reload nginx
+
+# Let's Encrypt 인증서 발급
+sudo certbot --nginx -d api.countonme.site
 
 echo "초기 설치가 완료되었습니다." 

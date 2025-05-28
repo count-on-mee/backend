@@ -72,6 +72,6 @@ jobs:
             chmod +x ./deploy/deploy.sh
             ./deploy/deploy.sh
 
-            # nginx & ssl 업데이트
-            chmod +x ./deploy/nginx/update-nginx.sh
-            ./deploy/nginx/update-nginx.sh
+            # # nginx & ssl 업데이트
+            # chmod +x ./deploy/nginx/update-nginx.sh
+            # ./deploy/nginx/update-nginx.sh
