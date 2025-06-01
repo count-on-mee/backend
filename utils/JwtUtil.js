@@ -46,6 +46,7 @@ class JwtUtil {
     return {
       httpOnly: true,
       secure: true,
+      sameSite: 'strict',
       maxAge: 14 * 24 * 60 * 60 * 1000, // 14d
     };
   }
