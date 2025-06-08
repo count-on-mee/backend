@@ -104,20 +104,6 @@ module.exports = (sequelize, DataTypes) => {
         ],
       },
     });
-
-    Trip.hasOne(models.TripDocumentSpotCandidate, {
-      foreignKey: 'tripDocumentId',
-      sourceKey: 'tripId',
-      as: 'spotCandidateDocument',
-      scope: {
-        include: [
-          {
-            model: models.TripDocument,
-            where: { tripId: sequelize.col('Trip.tripId') },
-          },
-        ],
-      },
-    });
   };
 
   return Trip;

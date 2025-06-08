@@ -35,22 +35,22 @@ module.exports = (sequelize, DataTypes) => {
       as: 'trip',
     });
 
-    TripDocument.hasOne(models.TripDocumentExpense, {
+    TripDocument.hasMany(models.TripDocumentExpense, {
       foreignKey: 'tripDocumentId',
       sourceKey: 'tripDocumentId',
-      as: 'expenseDocument',
+      as: 'expenses',
     });
 
-    TripDocument.hasOne(models.TripDocumentTask, {
+    TripDocument.hasMany(models.TripDocumentAccommodation, {
       foreignKey: 'tripDocumentId',
       sourceKey: 'tripDocumentId',
-      as: 'taskDocument',
+      as: 'accommodations',
     });
 
-    TripDocument.hasOne(models.TripDocumentSpotCandidate, {
+    TripDocument.hasMany(models.TripDocumentTask, {
       foreignKey: 'tripDocumentId',
       sourceKey: 'tripDocumentId',
-      as: 'spotCandidateDocument',
+      as: 'tasks',
     });
   };
 
