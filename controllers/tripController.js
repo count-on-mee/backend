@@ -187,3 +187,63 @@ exports.acceptInvitation = async (req, res) => {
     });
   }
 };
+
+exports.getDocuments = async (req, res) => {
+  try {
+    const { userId } = req.user;
+    const { tripId } = req.params;
+
+    const documents = await tripService.getDocuments(userId, tripId);
+
+    res.status(200).json(documents);
+  } catch (error) {
+    res.status(404).json({
+      message: error.message || '여행 문서 조회에 실패했습니다.',
+    });
+  }
+};
+
+exports.getExpenses = async (req, res) => {
+  try {
+    const { userId } = req.user;
+    const { tripId } = req.params;
+
+    const expenses = await tripService.getExpenses(userId, tripId);
+
+    res.status(200).json({ expenses });
+  } catch (error) {
+    res.status(404).json({
+      message: error.message || '여행 경비 조회에 실패했습니다.',
+    });
+  }
+};
+
+exports.getAccommodations = async (req, res) => {
+  try {
+    const { userId } = req.user;
+    const { tripId } = req.params;
+
+    const accommodations = await tripService.getAccommodations(userId, tripId);
+
+    res.status(200).json({ accommodations });
+  } catch (error) {
+    res.status(404).json({
+      message: error.message || '여행 숙소 조회에 실패했습니다.',
+    });
+  }
+};
+
+exports.getTasks = async (req, res) => {
+  try {
+    const { userId } = req.user;
+    const { tripId } = req.params;
+
+    const tasks = await tripService.getTasks(userId, tripId);
+
+    res.status(200).json({ tasks });
+  } catch (error) {
+    res.status(404).json({
+      message: error.message || '여행 할 일 조회에 실패했습니다.',
+    });
+  }
+};
