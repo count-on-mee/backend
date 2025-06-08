@@ -47,5 +47,17 @@ router.post(
   requireAuth,
   tripController.acceptInvitation
 );
+router.get('/:tripId/documents', requireAuth, tripController.getDocuments);
+router.get(
+  '/:tripId/documents/expenses',
+  requireAuth,
+  tripController.getExpenses
+);
+router.get(
+  '/:tripId/documents/accommodations',
+  requireAuth,
+  tripController.getAccommodations
+);
+router.get('/:tripId/documents/tasks', requireAuth, tripController.getTasks);
 
 module.exports = router;

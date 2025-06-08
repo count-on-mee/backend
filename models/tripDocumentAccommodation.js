@@ -23,11 +23,11 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       checkInDate: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull: false,
       },
       checkOutDate: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull: false,
       },
       memo: {

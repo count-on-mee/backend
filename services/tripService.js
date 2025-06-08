@@ -14,12 +14,12 @@ const {
   TripDocument,
   TripDocumentExpense,
   TripDocumentAccommodation,
-  TripDocumentSpotCandidate,
   TripDocumentTask,
 } = require('../models');
 const { Op } = require('sequelize');
 const crypto = require('crypto');
 const routeService = require('./routeService');
+const { RedisCacheManager } = require('../utils');
 
 const getTripDestinationIds = async (destinations) => {
   const tripDestinations = await TripDestination.findAll({
@@ -785,4 +785,63 @@ exports.acceptInvitation = async (userId, invitationCode) => {
   });
 
   return trip.tripId;
+};
+
+exports.getDocuments = async (userId, tripId) => {
+  await verifyTrip(tripId);
+  await verifyTripParticipant(userId, tripId);
+
+  const document = await TripDocument.findOne({
+    where: { tripId },
+    attributes: ['tripDocumentId'],
+  });
+
+  const { tripDocumentId } = document;
+  const expenses = await RedisCacheManager.getDocument(
+    tripDocumentId,
+    'expenses'
+  );
+  const accommodations = await RedisCacheManager.getDocument(
+    tripDocumentId,
+    'accommodations'
+  );
+  const tasks = await RedisCacheManager.getDocument(tripDocumentId, 'tasks');
+
+  return { document, expenses, accommodations, tasks };
+};
+
+exports.getExpenses = async (userId, tripId) => {
+  await verifyTrip(tripId);
+  await verifyTripParticipant(userId, tripId);
+
+  const { tripDocumentId } = await TripDocument.findOne({
+    where: { tripId },
+    attributes: ['tripDocumentId'],
+  });
+
+  return await RedisCacheManager.getDocument(tripDocumentId, 'expenses');
+};
+
+exports.getAccommodations = async (userId, tripId) => {
+  await verifyTrip(tripId);
+  await verifyTripParticipant(userId, tripId);
+
+  const { tripDocumentId } = await TripDocument.findOne({
+    where: { tripId },
+    attributes: ['tripDocumentId'],
+  });
+
+  return await RedisCacheManager.getDocument(tripDocumentId, 'accommodations');
+};
+
+exports.getTasks = async (userId, tripId) => {
+  await verifyTrip(tripId);
+  await verifyTripParticipant(userId, tripId);
+
+  const { tripDocumentId } = await TripDocument.findOne({
+    where: { tripId },
+    attributes: ['tripDocumentId'],
+  });
+
+  return await RedisCacheManager.getDocument(tripDocumentId, 'tasks');
 };
