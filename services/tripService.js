@@ -791,23 +791,26 @@ exports.getDocuments = async (userId, tripId) => {
   await verifyTrip(tripId);
   await verifyTripParticipant(userId, tripId);
 
-  const document = await TripDocument.findOne({
+  const { tripDocumentId } = await TripDocument.findOne({
     where: { tripId },
     attributes: ['tripDocumentId'],
   });
 
-  const { tripDocumentId } = document;
-  const expenses = await RedisCacheManager.getDocument(
-    tripDocumentId,
-    'expenses'
+  const [participantCount, expenses, accommodations, tasks] = await Promise.all(
+    [
+      RedisCacheManager.getDocument(tripDocumentId, 'participant_count'),
+      RedisCacheManager.getDocument(tripDocumentId, 'expenses'),
+      RedisCacheManager.getDocument(tripDocumentId, 'accommodations'),
+      RedisCacheManager.getDocument(tripDocumentId, 'tasks'),
+    ]
   );
-  const accommodations = await RedisCacheManager.getDocument(
-    tripDocumentId,
-    'accommodations'
-  );
-  const tasks = await RedisCacheManager.getDocument(tripDocumentId, 'tasks');
 
-  return { document, expenses, accommodations, tasks };
+  return {
+    document: { tripDocumentId, participantCount },
+    expenses,
+    accommodations,
+    tasks,
+  };
 };
 
 exports.getExpenses = async (userId, tripId) => {

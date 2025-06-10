@@ -3,6 +3,7 @@ const {
   handleExpenseEvents,
   handleAccommodationEvents,
   handleTaskEvents,
+  handleParticipantEvents,
 } = require('./socketHandlers');
 const { TripDocument } = require('./models');
 
@@ -43,6 +44,7 @@ exports.initializeSocket = (server) => {
       handleExpenseEvents(socket);
       handleAccommodationEvents(socket);
       handleTaskEvents(socket);
+      handleParticipantEvents(socket);
 
       socket.on('disconnect', async () => {
         const tripId = socket.handshake.query.tripId;
