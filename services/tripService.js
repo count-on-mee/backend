@@ -18,6 +18,7 @@ const {
 } = require('../models');
 const { Op } = require('sequelize');
 const crypto = require('crypto');
+const axios = require('axios');
 const routeService = require('./routeService');
 const { RedisCacheManager } = require('../utils');
 
@@ -71,24 +72,100 @@ const createTripItineraries = async (
   endDate,
   transaction
 ) => {
-  const start = new Date(startDate);
-  const end = new Date(endDate);
-  const totalDays = Math.ceil((end - start) / (1000 * 60 * 60 * 24)) + 1;
-  const spotsPerDay = Math.ceil(spotIds.length / totalDays);
+  try {
+    // 1. 각 장소의 상세 정보 조회
+    const spots = await Spot.findAll({
+      where: { spotId: spotIds },
+      include: [
+        {
+          model: SpotCategory,
+          as: 'spotCategories',
+          attributes: ['type'],
+        },
+      ],
+      attributes: ['spotId', 'name', 'address', 'location'],
+    });
 
-  const tripItineraries = spotIds.map((spotId, index) => {
-    const day = Math.floor(index / spotsPerDay) + 1;
-    const order = (index % spotsPerDay) + 1;
-
-    return {
-      tripId,
-      spotId,
-      day,
-      order,
+    // 2. Clova Studio에 전달할 프롬프트 구성
+    const prompt = {
+      spots: spots.map((spot) => ({
+        spotId: spot.spotId,
+        name: spot.name,
+        categories: spot.spotCategories.map((cat) => cat.type),
+        address: spot.address,
+        location: spot.location,
+      })),
+      startDate,
+      endDate,
+      totalDays:
+        Math.ceil(
+          (new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24)
+        ) + 1,
     };
-  });
 
-  return await TripItinerary.bulkCreate(tripItineraries, { transaction });
+    // 3. Clova Studio API 호출
+    const response = await axios.post(
+      'https://clovastudio.apigw.ntruss.com/testapp/v1/chat-completions/HCX-003',
+      {
+        messages: [
+          {
+            role: 'system',
+            content:
+              '당신은 여행 일정을 최적화하는 전문가입니다. 주어진 장소들을 여행 기간에 맞게 최적의 순서로 배치해주세요. 응답은 다음과 같은 JSON 형식으로 해주세요: { days: [{ spots: [{ spotId: string, order: number }] }] }',
+          },
+          {
+            role: 'user',
+            content: JSON.stringify(prompt),
+          },
+        ],
+        temperature: 0.01,
+        maxTokens: 4096,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.NCP_CLOVA_TEST_KEY}`,
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+
+    // 4. LLM 응답 파싱
+    const itineraryPlan = JSON.parse(response.data.result.message.content);
+
+    // 5. LLM이 제안한 일정으로 TripItinerary 생성
+    const tripItineraries = itineraryPlan.days.flatMap((dayPlan, dayIndex) =>
+      dayPlan.spots.map((spot, orderIndex) => ({
+        tripId,
+        spotId: spot.spotId,
+        day: dayIndex + 1,
+        order: orderIndex + 1,
+      }))
+    );
+
+    return await TripItinerary.bulkCreate(tripItineraries, { transaction });
+  } catch (error) {
+    console.error('Clova Studio API 호출 중 오류 발생:', error);
+
+    // API 호출 실패 시 기존 로직으로 폴백
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    const totalDays = Math.ceil((end - start) / (1000 * 60 * 60 * 24)) + 1;
+    const spotsPerDay = Math.ceil(spotIds.length / totalDays);
+
+    const tripItineraries = spotIds.map((spotId, index) => {
+      const day = Math.floor(index / spotsPerDay) + 1;
+      const order = (index % spotsPerDay) + 1;
+
+      return {
+        tripId,
+        spotId,
+        day,
+        order,
+      };
+    });
+
+    return await TripItinerary.bulkCreate(tripItineraries, { transaction });
+  }
 };
 
 const createTripItineraryTransportation = async (
