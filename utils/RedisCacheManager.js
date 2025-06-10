@@ -154,6 +154,16 @@ class RedisCacheManager {
 
   static async loadFromDatabase(tripDocumentId, type) {
     try {
+      if (type === 'participant_count') {
+        const { participantCount } = await TripDocument.findByPk(
+          tripDocumentId,
+          {
+            attributes: ['participantCount'],
+          }
+        );
+        return participantCount;
+      }
+
       const tripDocument = await TripDocument.findByPk(tripDocumentId, {
         include: [
           {
@@ -268,6 +278,12 @@ class RedisCacheManager {
 
   static async updateDatabase(tripDocumentId, type, data, transaction) {
     switch (type) {
+      case 'participant_count':
+        await TripDocument.update(
+          { participantCount: data },
+          { where: { tripDocumentId }, transaction }
+        );
+        break;
       case 'expenses':
         await TripDocumentExpense.bulkCreate(
           data.map((expense) => ({
