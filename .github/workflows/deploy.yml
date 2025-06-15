@@ -57,9 +57,10 @@ jobs:
             AWS_REGION=${{ secrets.AWS_REGION }}
             AWS_BUCKET_NAME=${{ secrets.AWS_BUCKET_NAME }}
             NCP_MAP_ID=${{ secrets.NCP_MAP_ID }}
-            NPC_MAP_SECRET=${{ secrets.NPC_MAP_SECRET }}
+            NCP_MAP_SECRET=${{ secrets.NCP_MAP_SECRET }}
             REDIS_HOST=${{ secrets.REDIS_HOST }}
             REDIS_PORT=${{ secrets.REDIS_PORT }}
+            NCP_CLOVA_TEST_KEY=${{ secrets.NCP_CLOVA_TEST_KEY }}
             EOL
 
             # 애플리케이션 배포

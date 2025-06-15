@@ -78,7 +78,12 @@ const validateRequiredEnvVars = () => {
 
     // Naver Cloud Platform
     'NCP_MAP_ID',
-    'NPC_MAP_SECRET',
+    'NCP_MAP_SECRET',
+    'NCP_CLOVA_TEST_KEY',
+
+    // Redis
+    'REDIS_HOST',
+    'REDIS_PORT',
 
     // Client
     'CLIENT_URL',
