@@ -11,7 +11,7 @@ exports.getDuration = async (departureSpot, destinationSpot) => {
         },
         headers: {
           'X-NCP-APIGW-API-KEY-ID': process.env.NCP_MAP_ID,
-          'X-NCP-APIGW-API-KEY': process.env.NPC_MAP_SECRET,
+          'X-NCP-APIGW-API-KEY': process.env.NCP_MAP_SECRET,
         },
       }
     );
