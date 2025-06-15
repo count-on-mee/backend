@@ -383,15 +383,66 @@ exports.updateTrip = async (userId, tripId, title, startDate, endDate) => {
   if (title) {
     updateData.title = title;
   }
-  if (startDate) {
-    updateData.startDate = startDate;
-  }
-  if (endDate) {
-    updateData.endDate = endDate;
-  }
 
-  await trip.update(updateData);
-  return trip;
+  const transaction = await sequelize.transaction();
+  try {
+    if (startDate || endDate) {
+      const newStartDate = startDate || trip.startDate;
+      const newEndDate = endDate || trip.endDate;
+
+      const currentPeriod =
+        Math.ceil(
+          (new Date(trip.endDate) - new Date(trip.startDate)) /
+            (1000 * 60 * 60 * 24)
+        ) + 1;
+      const newPeriod =
+        Math.ceil(
+          (new Date(newEndDate) - new Date(newStartDate)) /
+            (1000 * 60 * 60 * 24)
+        ) + 1;
+
+      // 여행 기간의 길이가 다른 경우에만 일정 재생성
+      if (currentPeriod !== newPeriod) {
+        const existingItineraries = await TripItinerary.findAll({
+          where: { tripId },
+          order: [
+            ['day', 'ASC'],
+            ['order', 'ASC'],
+          ],
+          transaction,
+        });
+
+        const spotIds = existingItineraries.map(
+          (itinerary) => itinerary.spotId
+        );
+
+        await TripItinerary.destroy({
+          where: { tripId },
+          transaction,
+        });
+
+        const tripItineraries = await createTripItineraries(
+          tripId,
+          spotIds,
+          newStartDate,
+          newEndDate,
+          transaction
+        );
+
+        await createTripItineraryTransportation(tripItineraries, transaction);
+      }
+
+      updateData.startDate = newStartDate;
+      updateData.endDate = newEndDate;
+    }
+
+    await trip.update(updateData, { transaction });
+    await transaction.commit();
+    return trip;
+  } catch (error) {
+    await transaction.rollback();
+    throw error;
+  }
 };
 
 exports.deleteTrip = async (userId, tripId) => {
