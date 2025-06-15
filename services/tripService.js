@@ -19,6 +19,7 @@ const {
 const { Op } = require('sequelize');
 const crypto = require('crypto');
 const routeService = require('./routeService');
+const llmService = require('./llmService');
 const { RedisCacheManager } = require('../utils');
 
 const getTripDestinationIds = async (destinations) => {
@@ -71,24 +72,51 @@ const createTripItineraries = async (
   endDate,
   transaction
 ) => {
-  const start = new Date(startDate);
-  const end = new Date(endDate);
-  const totalDays = Math.ceil((end - start) / (1000 * 60 * 60 * 24)) + 1;
-  const spotsPerDay = Math.ceil(spotIds.length / totalDays);
+  try {
+    const spots = await Spot.findAll({
+      where: { spotId: spotIds },
+      include: [
+        {
+          model: SpotCategory,
+          as: 'spotCategories',
+          attributes: ['type'],
+        },
+      ],
+      attributes: ['spotId', 'name', 'address', 'location'],
+    });
 
-  const tripItineraries = spotIds.map((spotId, index) => {
-    const day = Math.floor(index / spotsPerDay) + 1;
-    const order = (index % spotsPerDay) + 1;
+    const itineraryPlan = await llmService.optimizeItinerary(
+      spots,
+      startDate,
+      endDate
+    );
 
-    return {
+    const tripItineraries = itineraryPlan.days.flatMap((dayPlan, dayIndex) =>
+      dayPlan.spots.map((spot, orderIndex) => ({
+        tripId,
+        spotId: spot.spotId,
+        day: dayIndex + 1,
+        order: orderIndex + 1,
+      }))
+    );
+
+    return await TripItinerary.bulkCreate(tripItineraries, { transaction });
+  } catch (error) {
+    // 폴백 로직
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    const totalDays = Math.ceil((end - start) / (1000 * 60 * 60 * 24)) + 1;
+    const spotsPerDay = Math.ceil(spotIds.length / totalDays);
+
+    const tripItineraries = spotIds.map((spotId, index) => ({
       tripId,
       spotId,
-      day,
-      order,
-    };
-  });
+      day: Math.floor(index / spotsPerDay) + 1,
+      order: (index % spotsPerDay) + 1,
+    }));
 
-  return await TripItinerary.bulkCreate(tripItineraries, { transaction });
+    return await TripItinerary.bulkCreate(tripItineraries, { transaction });
+  }
 };
 
 const createTripItineraryTransportation = async (
