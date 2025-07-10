@@ -12,8 +12,11 @@ const VALID_DESTINATIONS = [
   '속초',
   '인천',
   '대구',
-  '울신',
+  '울산',
   '광주',
+  '남원',
+  '포항',
+  '대전',
 ];
 
 const createTripValidationRules = [
