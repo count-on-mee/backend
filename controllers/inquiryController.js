@@ -60,7 +60,7 @@ exports.replyToInquiry = async (req, res) => {
     const inquiry = await inquiryService.replyToInquiry(inquiryId, reply);
 
     const inquiryDto = InquiryDto.from(inquiry);
-    res.status(200).json(inquiryDto);
+    res.status(201).json(inquiryDto);
   } catch (error) {
     res.status(404).json({
       message: error.message || '문의 답변에 실패했습니다.',
