@@ -8,6 +8,8 @@ const createTripValidator = require('./trips/createTripValidator');
 const updateTripValidator = require('./trips/updateTripValidator');
 const createItineraryValidator = require('./trips/createItineraryValidator');
 const moveItinerariesValidator = require('./trips/moveItinerariesValidator');
+const createInquiryValidator = require('./support/createInquiryValidator');
+const replyInquiryValidator = require('./support/replyInquiryValidator');
 
 module.exports = {
   updateUserValidator,
@@ -20,4 +22,6 @@ module.exports = {
   updateTripValidator,
   createItineraryValidator,
   moveItinerariesValidator,
+  createInquiryValidator,
+  replyInquiryValidator,
 };

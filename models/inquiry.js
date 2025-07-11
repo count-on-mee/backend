@@ -57,6 +57,11 @@ module.exports = (sequelize, DataTypes) => {
       targetKey: 'userId',
       as: 'user',
     });
+    Inquiry.belongsTo(models.InquiryCategory, {
+      foreignKey: 'inquiryCategoryId',
+      targetKey: 'inquiryCategoryId',
+      as: 'inquiryCategory',
+    });
   };
 
   return Inquiry;

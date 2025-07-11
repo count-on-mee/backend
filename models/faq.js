@@ -34,5 +34,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
+  Faq.associate = (models) => {
+    Faq.belongsTo(models.FaqCategory, {
+      foreignKey: 'faqCategoryId',
+      targetKey: 'faqCategoryId',
+      as: 'faqCategory',
+    });
+  };
+
   return Faq;
 };

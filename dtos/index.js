@@ -9,6 +9,9 @@ const TripDestinationDto = require('./trips/tripDestinationDto');
 const TripDto = require('./trips/tripDto');
 const TripDetailDto = require('./trips/tripDetailDto');
 const ItineraryTransportationDto = require('./trips/itineraryTransportationDto');
+const NoticeDto = require('./support/noticeDto');
+const FaqDto = require('./support/faqDto');
+const InquiryDto = require('./support/inquiryDto');
 
 const dtos = {
   UserDto,
@@ -22,6 +25,9 @@ const dtos = {
   TripDto,
   TripDetailDto,
   ItineraryTransportationDto,
+  NoticeDto,
+  FaqDto,
+  InquiryDto,
 };
 
 module.exports = dtos;
