@@ -4,6 +4,7 @@ const spotRouter = require('./spotRouter');
 const curationRouter = require('./curationRouter');
 const scrapRouter = require('./scrapRouter');
 const tripRouter = require('./tripRouter');
+const supportRouter = require('./supportRouter');
 
 module.exports = {
   authRouter,
@@ -12,4 +13,5 @@ module.exports = {
   curationRouter,
   scrapRouter,
   tripRouter,
+  supportRouter,
 };
