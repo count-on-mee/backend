@@ -102,6 +102,7 @@ exports.getSpots = async (userId, lat, lng, zoom) => {
         ST_GeomFromText('POINT(${lat} ${lng})', 4326)
       )
     `),
+    limit: 100,
   });
 
   return spots;
