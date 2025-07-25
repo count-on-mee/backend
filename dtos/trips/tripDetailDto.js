@@ -1,10 +1,11 @@
 const TripDto = require('./tripDto');
 const SpotBasicDto = require('../spots/spotBasicDto');
 const ItineraryTransportationDto = require('./itineraryTransportationDto');
+const UserDto = require('../users/userDto');
 
 class TripDetailDto {
   static from(trip, transportation) {
-    const { itineraries } = trip;
+    const { itineraries, participants } = trip;
 
     return {
       ...TripDto.from(trip),
@@ -22,6 +23,7 @@ class TripDetailDto {
           ),
         };
       }),
+      participants: participants ? UserDto.fromMany(participants) : [],
     };
   }
 

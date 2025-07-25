@@ -341,6 +341,12 @@ exports.getTripById = async (userId, tripId) => {
           },
         ],
       },
+      {
+        model: User,
+        as: 'participants',
+        attributes: ['userId', 'name', 'nickname', 'email', 'imgUrl'],
+        through: { attributes: [] },
+      },
     ],
     order: [
       ['itineraries', 'day', 'ASC'],
