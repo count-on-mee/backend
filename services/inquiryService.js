@@ -32,9 +32,42 @@ exports.getInquiries = async (userId) => {
   return inquiries;
 };
 
-exports.getInquiryById = async (inquiryId, userId) => {
+exports.getAllInquiries = async () => {
+  const inquiries = await Inquiry.findAll({
+    attributes: [
+      'inquiryId',
+      'inquiryCategoryId',
+      'userId',
+      'title',
+      'content',
+      'reply',
+      'status',
+      'createdAt',
+      'updatedAt',
+    ],
+    include: [
+      {
+        model: InquiryCategory,
+        as: 'inquiryCategory',
+        attributes: ['inquiryCategoryId', 'type'],
+      },
+      {
+        model: User,
+        as: 'user',
+        attributes: ['userId', 'nickname'],
+      },
+    ],
+    order: [['createdAt', 'DESC']],
+  });
+
+  return inquiries;
+};
+
+exports.getInquiryById = async (inquiryId, userId, isAdmin = false) => {
+  const whereClause = isAdmin ? { inquiryId } : { inquiryId, userId };
+
   const inquiry = await Inquiry.findOne({
-    where: { inquiryId, userId },
+    where: whereClause,
     attributes: [
       'inquiryId',
       'inquiryCategoryId',

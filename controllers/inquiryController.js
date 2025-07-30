@@ -3,9 +3,13 @@ const { InquiryDto } = require('../dtos');
 
 exports.getInquiries = async (req, res) => {
   try {
-    const { userId } = req.user;
+    const { userId, role } = req.user;
 
-    const inquiries = await inquiryService.getInquiries(userId);
+    // admin인 경우 모든 문의 조회, 일반 사용자는 본인 문의만 조회
+    const inquiries =
+      role === 'admin'
+        ? await inquiryService.getAllInquiries()
+        : await inquiryService.getInquiries(userId);
 
     const inquiryDtos = InquiryDto.fromMany(inquiries);
     res.status(200).json(inquiryDtos);
@@ -18,10 +22,15 @@ exports.getInquiries = async (req, res) => {
 
 exports.getInquiryById = async (req, res) => {
   try {
-    const { userId } = req.user;
+    const { userId, role } = req.user;
     const { inquiryId } = req.params;
 
-    const inquiry = await inquiryService.getInquiryById(inquiryId, userId);
+    const isAdmin = role === 'admin';
+    const inquiry = await inquiryService.getInquiryById(
+      inquiryId,
+      userId,
+      isAdmin
+    );
 
     const inquiryDto = InquiryDto.from(inquiry);
     res.status(200).json(inquiryDto);
