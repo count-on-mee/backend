@@ -20,13 +20,14 @@ class UserDto {
       throw new Error('프로필 이미지가 없습니다.');
     }
 
-    const { userId, name, nickname, email, imgUrl } = user;
+    const { userId, name, nickname, email, imgUrl, role } = user;
     return {
       userId,
       name,
       nickname,
       email,
       imgUrl,
+      role,
     };
   }
 
