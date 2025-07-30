@@ -3,7 +3,7 @@ const router = express.Router();
 const noticeController = require('../controllers/noticeController');
 const faqController = require('../controllers/faqController');
 const inquiryController = require('../controllers/inquiryController');
-const { requireAuth } = require('../middlewares');
+const { requireAuth, adminAuth } = require('../middlewares');
 const {
   createInquiryValidator,
   replyInquiryValidator,
@@ -31,7 +31,7 @@ router.post(
 );
 router.post(
   '/inquiries/:inquiryId/reply',
-  requireAuth,
+  adminAuth,
   replyInquiryValidator,
   inquiryController.replyToInquiry
 );

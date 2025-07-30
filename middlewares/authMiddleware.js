@@ -3,7 +3,7 @@ const { JwtUtil } = require('../utils');
 const validateAccessToken = (authHeader) => {
   const token = JwtUtil.extractTokenFromHeader(authHeader);
   const decoded = JwtUtil.verifyToken(token);
-  return { userId: decoded.userId };
+  return { userId: decoded.userId, role: decoded.role };
 };
 
 const validateRefreshToken = (refreshToken) => {
@@ -56,6 +56,27 @@ exports.refreshTokenAuth = (req, res, next) => {
 
     req.user = validateRefreshToken(refreshToken);
     req.refreshToken = refreshToken;
+    next();
+  } catch (error) {
+    res.status(401).json({ message: error.message });
+  }
+};
+
+exports.adminAuth = (req, res, next) => {
+  try {
+    const authHeader = req.headers.authorization;
+
+    // 토큰이 없는 경우: 비로그인 사용자
+    if (!authHeader) {
+      return res.status(401).json({ message: '인증이 필요합니다.' });
+    }
+
+    // 토큰이 있는 경우: 로그인 사용자
+    const user = validateAccessToken(authHeader);
+    if (user.role !== 'admin') {
+      return res.status(403).json({ message: '관리자 권한이 필요합니다.' });
+    }
+    req.user = user;
     next();
   } catch (error) {
     res.status(401).json({ message: error.message });

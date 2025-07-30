@@ -11,6 +11,7 @@ class JwtUtil {
       return jwt.sign(
         {
           userId: user.userId,
+          role: user.role,
           tokenType: 'ACCESS',
         },
         process.env.JWT_ACCESS_SECRET,
@@ -29,6 +30,7 @@ class JwtUtil {
       return jwt.sign(
         {
           userId: user.userId,
+          role: user.role,
           tokenType: 'REFRESH',
         },
         process.env.JWT_REFRESH_SECRET,
