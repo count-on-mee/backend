@@ -3,12 +3,13 @@ const {
   User,
   Spot,
   SpotCategory,
+  SpotCategoryRelation,
   SpotImg,
   SpotScrap,
   SpotReview,
   SpotReviewImg,
 } = require('../models');
-const { literal, Op } = require('sequelize');
+const { literal, Op, fn } = require('sequelize');
 
 const calculateRadius = (zoomLevel) => {
   if (zoomLevel >= 7 && zoomLevel <= 10) {
@@ -55,6 +56,13 @@ const getSpotCategoryIds = async (spotCategories) => {
   }
 
   return spotCategoryIds;
+};
+
+const getSpotCategoryIdsForCreation = async (categories) => {
+  const spotCategories = await SpotCategory.findAll({
+    where: { type: JSON.parse(categories) },
+  });
+  return spotCategories.map((spotCategory) => spotCategory.spotCategoryId);
 };
 
 exports.getSpots = async (userId, lat, lng, zoom) => {
@@ -106,6 +114,62 @@ exports.getSpots = async (userId, lat, lng, zoom) => {
   });
 
   return spots;
+};
+
+exports.createSpot = async (
+  name,
+  address,
+  tel,
+  latitude,
+  longitude,
+  categories,
+  spotImages
+) => {
+  const transaction = await sequelize.transaction();
+  try {
+    // 스팟 생성
+    const spot = await Spot.create(
+      {
+        name,
+        address,
+        tel,
+        location: fn(
+          'ST_GeomFromText',
+          `POINT(${latitude} ${longitude})`,
+          4326
+        ),
+      },
+      { transaction }
+    );
+
+    // 카테고리 생성
+    const spotCategoryIds = await getSpotCategoryIdsForCreation(categories);
+    const spotCategories = spotCategoryIds.map((spotCategoryId) => ({
+      spotId: spot.spotId,
+      spotCategoryId,
+    }));
+    await SpotCategoryRelation.bulkCreate(spotCategories, { transaction });
+
+    // 이미지 저장
+    if (spotImages && spotImages.length > 0) {
+      await Promise.all(
+        spotImages.map((spotImage) =>
+          SpotImg.create(
+            {
+              spotId: spot.spotId,
+              imgUrl: spotImage.location,
+            },
+            { transaction }
+          )
+        )
+      );
+    }
+
+    await transaction.commit();
+  } catch (error) {
+    await transaction.rollback();
+    throw error;
+  }
 };
 
 exports.getSpotById = async (userId, spotId) => {

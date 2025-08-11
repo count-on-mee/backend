@@ -48,6 +48,13 @@ const reviewUpload = multer({
   fileFilter,
 });
 
+// 스팟 이미지 업로더
+const spotUpload = multer({
+  storage: createS3Storage('spots'),
+  limits: { fileSize: 10 * 1024 * 1024 }, // 10MB
+  fileFilter,
+});
+
 const deleteFile = async (fileUrl) => {
   try {
     if (!fileUrl) return;
@@ -70,5 +77,6 @@ const deleteFile = async (fileUrl) => {
 module.exports = {
   profileUpload,
   reviewUpload,
+  spotUpload,
   deleteFile,
 };

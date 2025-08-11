@@ -34,6 +34,8 @@ module.exports = (sequelize, DataTypes) => {
               }
             : null;
         },
+        //TODO: 좌표 값 검증 및 형변환
+        /*
         set(value) {
           this.setDataValue('location', {
             type: 'Point',
@@ -41,6 +43,7 @@ module.exports = (sequelize, DataTypes) => {
             crs: { type: 'name', properties: { name: 'EPSG:4326' } },
           });
         },
+        */
       },
       naverSpotId: {
         type: DataTypes.STRING,

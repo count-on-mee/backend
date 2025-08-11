@@ -94,3 +94,26 @@ exports.searchSpots = async (req, res) => {
     });
   }
 };
+
+exports.createSpot = async (req, res) => {
+  try {
+    const { name, address, tel, latitude, longitude, categories } = req.body;
+    const spotImages = req.files;
+
+    await spotService.createSpot(
+      name,
+      address,
+      tel,
+      latitude,
+      longitude,
+      categories,
+      spotImages
+    );
+
+    res.status(201).json({ message: '스팟이 생성되었습니다.' });
+  } catch (error) {
+    res.status(400).json({
+      message: error.message || '스팟 생성에 실패했습니다.',
+    });
+  }
+};
