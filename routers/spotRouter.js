@@ -1,15 +1,23 @@
 const express = require('express');
 const router = express.Router();
 const spotController = require('../controllers/spotController');
-const { requireAuth, optionalAuth } = require('../middlewares');
-const { reviewUpload } = require('../configs/multer/multerConfig');
+const { requireAuth, optionalAuth, adminAuth } = require('../middlewares');
+const { reviewUpload, spotUpload } = require('../configs/multer/multerConfig');
 const {
   getSpotValidator,
   createSpotReviewValidator,
   searchSpotValidator,
+  createSpotValidator,
 } = require('../validators');
 
 router.get('/', optionalAuth, getSpotValidator, spotController.getSpots);
+router.post(
+  '/',
+  adminAuth,
+  spotUpload.array('spotImgs'),
+  createSpotValidator,
+  spotController.createSpot
+);
 router.get(
   '/search',
   optionalAuth,
