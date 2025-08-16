@@ -23,7 +23,7 @@ exports.getInquiries = async (userId) => {
       {
         model: User,
         as: 'user',
-        attributes: ['userId', 'nickname'],
+        attributes: ['userId', 'nickname', 'name', 'email'],
       },
     ],
     order: [['createdAt', 'DESC']],
@@ -54,7 +54,7 @@ exports.getAllInquiries = async () => {
       {
         model: User,
         as: 'user',
-        attributes: ['userId', 'nickname'],
+        attributes: ['userId', 'nickname', 'name', 'email'],
       },
     ],
     order: [['createdAt', 'DESC']],
@@ -88,7 +88,7 @@ exports.getInquiryById = async (inquiryId, userId, isAdmin = false) => {
       {
         model: User,
         as: 'user',
-        attributes: ['userId', 'nickname'],
+        attributes: ['userId', 'nickname', 'name', 'email'],
       },
     ],
   });

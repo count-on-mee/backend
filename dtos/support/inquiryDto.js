@@ -9,9 +9,11 @@ class InquiryDto {
       createdAt,
       updatedAt,
       inquiryCategory,
+      user,
     } = inquiry;
 
     const { type: inquiryCategoryType } = inquiryCategory || {};
+    const { userId, nickname, name, email } = user || {};
 
     return {
       inquiryId,
@@ -22,6 +24,12 @@ class InquiryDto {
       status,
       createdAt,
       updatedAt,
+      author: {
+        userId,
+        nickname,
+        name,
+        email,
+      },
     };
   }
 
