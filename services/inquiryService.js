@@ -23,7 +23,7 @@ exports.getInquiries = async (userId) => {
       {
         model: User,
         as: 'user',
-        attributes: ['userId', 'nickname'],
+        attributes: ['userId', 'nickname', 'name', 'email'],
       },
     ],
     order: [['createdAt', 'DESC']],
@@ -54,7 +54,7 @@ exports.getAllInquiries = async () => {
       {
         model: User,
         as: 'user',
-        attributes: ['userId', 'nickname'],
+        attributes: ['userId', 'nickname', 'name', 'email'],
       },
     ],
     order: [['createdAt', 'DESC']],
@@ -88,7 +88,7 @@ exports.getInquiryById = async (inquiryId, userId, isAdmin = false) => {
       {
         model: User,
         as: 'user',
-        attributes: ['userId', 'nickname'],
+        attributes: ['userId', 'nickname', 'name', 'email'],
       },
     ],
   });
@@ -136,4 +136,18 @@ exports.getInquiryCategories = async () => {
   });
 
   return categories;
+};
+
+exports.deleteInquiry = async (inquiryId, userId, isAdmin = false) => {
+  const whereClause = isAdmin ? { inquiryId } : { inquiryId, userId };
+
+  const inquiry = await Inquiry.findOne({
+    where: whereClause,
+  });
+
+  if (!inquiry) {
+    throw new Error('문의를 찾을 수 없습니다.');
+  }
+
+  await inquiry.destroy();
 };
