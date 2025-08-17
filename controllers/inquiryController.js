@@ -88,3 +88,19 @@ exports.getInquiryCategories = async (req, res) => {
     });
   }
 };
+
+exports.deleteInquiry = async (req, res) => {
+  try {
+    const { userId, role } = req.user;
+    const { inquiryId } = req.params;
+
+    const isAdmin = role === 'admin';
+    await inquiryService.deleteInquiry(inquiryId, userId, isAdmin);
+
+    res.status(204).json({ message: '문의가 성공적으로 삭제되었습니다.' });
+  } catch (error) {
+    res.status(404).json({
+      message: error.message || '문의 삭제에 실패했습니다.',
+    });
+  }
+};

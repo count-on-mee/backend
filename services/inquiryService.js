@@ -137,3 +137,17 @@ exports.getInquiryCategories = async () => {
 
   return categories;
 };
+
+exports.deleteInquiry = async (inquiryId, userId, isAdmin = false) => {
+  const whereClause = isAdmin ? { inquiryId } : { inquiryId, userId };
+
+  const inquiry = await Inquiry.findOne({
+    where: whereClause,
+  });
+
+  if (!inquiry) {
+    throw new Error('문의를 찾을 수 없습니다.');
+  }
+
+  await inquiry.destroy();
+};

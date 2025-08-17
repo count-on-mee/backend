@@ -35,5 +35,10 @@ router.post(
   replyInquiryValidator,
   inquiryController.replyToInquiry
 );
+router.delete(
+  '/inquiries/:inquiryId',
+  requireAuth,
+  inquiryController.deleteInquiry
+);
 
 module.exports = router;
