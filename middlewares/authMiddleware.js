@@ -8,7 +8,7 @@ const validateAccessToken = (authHeader) => {
 
 const validateRefreshToken = (refreshToken) => {
   const decoded = JwtUtil.verifyToken(refreshToken, true);
-  return { userId: decoded.userId, role: decode.role };
+  return { userId: decoded.userId, role: decoded.role };
 };
 
 exports.requireAuth = (req, res, next) => {
