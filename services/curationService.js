@@ -167,6 +167,82 @@ exports.getCurations = async (userId) => {
   return curations;
 };
 
+exports.getMyCurations = async (userId) => {
+  const curations = await Curation.findAll({
+    attributes: ['curationId', 'name', 'description', 'imgUrl'],
+    where: { userId },
+    include: [
+      {
+        model: User,
+        as: 'user',
+        attributes: ['userId', 'nickname', 'imgUrl'],
+      },
+      {
+        model: CurationCategory,
+        as: 'curationCategories',
+        attributes: ['type'],
+        through: { attributes: [] },
+      },
+      {
+        model: CurationSpot,
+        as: 'curationSpots',
+        attributes: ['spotId', 'order'],
+        include: [
+          {
+            model: Spot,
+            as: 'spot',
+            attributes: ['spotId', 'name', 'address', 'tel', 'location'],
+            include: [
+              {
+                model: SpotCategory,
+                as: 'spotCategories',
+                attributes: ['type'],
+                through: { attributes: [] },
+              },
+              {
+                model: SpotImg,
+                as: 'spotImgs',
+                attributes: ['imgUrl'],
+              },
+              {
+                model: SpotScrap,
+                as: 'spotScraps',
+                attributes: ['userId'],
+                where: { isDeleted: false },
+                required: false,
+              },
+              {
+                model: SpotScrap,
+                as: 'userSpotScrap',
+                attributes: ['userId'],
+                where: { userId, isDeleted: false },
+                required: false,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        model: CurationScrap,
+        as: 'curationScraps',
+        attributes: ['userId'],
+        where: { isDeleted: false },
+        required: false,
+      },
+      {
+        model: CurationScrap,
+        as: 'userCurationScrap',
+        attributes: ['userId'],
+        where: { userId, isDeleted: false },
+        required: false,
+      },
+    ],
+    order: [['curationSpots', 'order', 'ASC']],
+  });
+
+  return curations;
+};
+
 exports.getCurationById = async (userId, curationId) => {
   const curation = await Curation.findByPk(curationId, {
     attributes: ['curationId', 'name', 'description', 'imgUrl'],

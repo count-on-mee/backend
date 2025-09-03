@@ -264,6 +264,27 @@ exports.getSpotReviewsBySpotId = async (spotId) => {
   return spotReviews;
 };
 
+exports.getMySpotReviews = async (userId) => {
+  const spotReviews = await SpotReview.findAll({
+    where: { userId },
+    include: [
+      {
+        model: SpotReviewImg,
+        as: 'spotReviewImgs',
+        attributes: ['imgUrl'],
+      },
+      {
+        model: User,
+        as: 'user',
+        attributes: ['userId', 'nickname', 'imgUrl'],
+      },
+    ],
+    order: [['createdAt', 'DESC']],
+  });
+
+  return spotReviews;
+};
+
 exports.searchSpots = async (userId, spotName, spotCategories) => {
   const spotCategoryIds = await getSpotCategoryIds(spotCategories);
 

@@ -24,6 +24,7 @@ router.get(
   searchSpotValidator,
   spotController.searchSpots
 );
+router.get('/reviews/me', requireAuth, spotController.getMySpotReviews);
 router.get('/:spotId', optionalAuth, spotController.getSpotById);
 router.post(
   '/:spotId/reviews',
