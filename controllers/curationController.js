@@ -1,6 +1,21 @@
 const curationService = require('../services/curationService');
 const { CurationDto } = require('../dtos');
 
+exports.getMyCurations = async (req, res) => {
+  try {
+    const { userId } = req.user;
+
+    const curations = await curationService.getMyCurations(userId);
+
+    const curationDtos = CurationDto.fromMany(curations);
+    res.status(200).json(curationDtos);
+  } catch (error) {
+    res.status(404).json({
+      message: error.message || '내 큐레이션 조회에 실패했습니다.',
+    });
+  }
+};
+
 exports.createCuration = async (req, res) => {
   try {
     const userId = req.user.userId;

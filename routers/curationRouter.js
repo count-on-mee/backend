@@ -13,6 +13,7 @@ router.post(
   createCurationValidator,
   curationController.createCuration
 );
+router.get('/me', requireAuth, curationController.getMyCurations);
 router.get('/', optionalAuth, curationController.getCurations);
 router.get(
   '/search',
