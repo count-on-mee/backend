@@ -7,6 +7,7 @@ class CurationDto {
       name,
       description,
       imgUrl,
+      user,
       curationCategories,
       curationSpots,
       curationScraps,
@@ -18,6 +19,11 @@ class CurationDto {
       name,
       description,
       imgUrl,
+      author: {
+        userId: user.userId,
+        nickname: user.nickname,
+        imgUrl: user.imgUrl,
+      },
       categories: curationCategories?.map((category) => category.type) || [],
       spots: SpotDto.fromMany(
         curationSpots.map((curationSpot) => curationSpot.spot)

@@ -9,6 +9,7 @@ const {
   CurationCategoryRelation,
   CurationSpot,
   CurationScrap,
+  User,
 } = require('../models');
 const { Op } = require('sequelize');
 
@@ -88,6 +89,11 @@ exports.getCurations = async (userId) => {
     attributes: ['curationId', 'name', 'description', 'imgUrl'],
     include: [
       {
+        model: User,
+        as: 'user',
+        attributes: ['userId', 'nickname', 'imgUrl'],
+      },
+      {
         model: CurationCategory,
         as: 'curationCategories',
         attributes: ['type'],
@@ -166,6 +172,11 @@ exports.getCurationById = async (userId, curationId) => {
     attributes: ['curationId', 'name', 'description', 'imgUrl'],
     include: [
       {
+        model: User,
+        as: 'user',
+        attributes: ['userId', 'nickname', 'imgUrl'],
+      },
+      {
         model: CurationCategory,
         as: 'curationCategories',
         attributes: ['type'],
@@ -243,6 +254,11 @@ exports.searchCurations = async (userId, curationName, curationCategories) => {
   const curations = await Curation.findAll({
     attributes: ['curationId', 'name', 'description', 'imgUrl'],
     include: [
+      {
+        model: User,
+        as: 'user',
+        attributes: ['userId', 'nickname', 'imgUrl'],
+      },
       {
         model: CurationCategory,
         as: 'curationCategories',
