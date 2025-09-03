@@ -1,6 +1,21 @@
 const spotService = require('../services/spotService');
 const { SpotDto, SpotReviewDto } = require('../dtos');
 
+exports.getMySpotReviews = async (req, res) => {
+  try {
+    const { userId } = req.user;
+
+    const spotReviews = await spotService.getMySpotReviews(userId);
+
+    const spotReviewDtos = SpotReviewDto.fromMany(spotReviews);
+    res.status(200).json(spotReviewDtos);
+  } catch (error) {
+    res.status(404).json({
+      message: error.message || '내 리뷰 조회에 실패했습니다.',
+    });
+  }
+};
+
 exports.getSpots = async (req, res) => {
   try {
     const userId = req.user?.userId;
