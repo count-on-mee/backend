@@ -46,8 +46,10 @@
     "test:unit": "NODE_ENV=test jest /unit/",
     "test:integration": "NODE_ENV=test jest /integration/",
     "test:e2e": "NODE_ENV=test jest /e2e/",
-    "crawl": "node scripts/naverPlaceCrawler.js",
-    "crawl:seed": "node scripts/createNaverPlaceSeeds.js"
+    "crawl:naver": "node scripts/naverPlaceCrawler.js",
+    "crawl:naver:seed": "node scripts/createNaverPlaceSeeds.js",
+    "crawl:kakao": "node scripts/kakaoPlaceCrawler.js",
+    "crawl:kakao:seed": "node scripts/createKakaoPlaceSeeds.js"
   },
   "jest": {
     "testEnvironment": "node",
