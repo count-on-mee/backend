@@ -6,6 +6,7 @@ const createSpotReviewValidator = require('./spots/createSpotReviewValidator');
 const createSpotValidator = require('./spots/createSpotValidator');
 const createCurationValidator = require('./curations/createCurationValidator');
 const searchCurationValidator = require('./curations/searchCurationValidator');
+const updateCurationValidator = require('./curations/updateCurationValidator');
 const createTripValidator = require('./trips/createTripValidator');
 const updateTripValidator = require('./trips/updateTripValidator');
 const createItineraryValidator = require('./trips/createItineraryValidator');
@@ -26,6 +27,7 @@ module.exports = {
   createSpotValidator,
   createCurationValidator,
   searchCurationValidator,
+  updateCurationValidator,
   createTripValidator,
   updateTripValidator,
   createItineraryValidator,

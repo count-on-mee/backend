@@ -132,3 +132,18 @@ exports.createSpot = async (req, res) => {
     });
   }
 };
+
+exports.deleteSpotReview = async (req, res) => {
+  try {
+    const userId = req.user.userId;
+    const { spotReviewId } = req.params;
+
+    await spotService.deleteSpotReview(userId, spotReviewId);
+
+    res.status(204).json({ message: '리뷰가 삭제되었습니다.' });
+  } catch (error) {
+    res.status(404).json({
+      message: error.message || '리뷰 삭제에 실패했습니다.',
+    });
+  }
+};

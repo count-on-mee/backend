@@ -34,5 +34,10 @@ router.post(
   spotController.createSpotReview
 );
 router.get('/:spotId/reviews', spotController.getSpotReviewsBySpotId);
+router.delete(
+  '/reviews/:spotReviewId',
+  requireAuth,
+  spotController.deleteSpotReview
+);
 
 module.exports = router;
