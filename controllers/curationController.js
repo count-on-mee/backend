@@ -92,3 +92,41 @@ exports.searchCurations = async (req, res) => {
     });
   }
 };
+
+exports.updateCuration = async (req, res) => {
+  try {
+    const userId = req.user.userId;
+    const { curationId } = req.params;
+    const { name, description, categories, spots } = req.body;
+
+    await curationService.updateCuration(
+      userId,
+      curationId,
+      name,
+      description,
+      categories,
+      spots
+    );
+
+    res.status(204).json({ message: '큐레이션이 수정되었습니다.' });
+  } catch (error) {
+    res.status(404).json({
+      message: error.message || '큐레이션 수정에 실패했습니다.',
+    });
+  }
+};
+
+exports.deleteCuration = async (req, res) => {
+  try {
+    const userId = req.user.userId;
+    const { curationId } = req.params;
+
+    await curationService.deleteCuration(userId, curationId);
+
+    res.status(204).json({ message: '큐레이션이 삭제되었습니다.' });
+  } catch (error) {
+    res.status(404).json({
+      message: error.message || '큐레이션 삭제에 실패했습니다.',
+    });
+  }
+};

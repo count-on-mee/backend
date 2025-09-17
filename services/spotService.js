@@ -337,3 +337,29 @@ exports.searchSpots = async (userId, spotName, spotCategories) => {
 
   return spots;
 };
+
+exports.deleteSpotReview = async (userId, spotReviewId) => {
+  const transaction = await sequelize.transaction();
+
+  try {
+    const review = await SpotReview.findOne({
+      where: { spotReviewId, userId },
+    });
+
+    if (!review) {
+      throw new Error('리뷰를 찾을 수 없거나 삭제 권한이 없습니다.');
+    }
+
+    await SpotReviewImg.destroy({
+      where: { spotReviewId },
+      transaction,
+    });
+
+    await review.destroy({ transaction });
+
+    await transaction.commit();
+  } catch (error) {
+    await transaction.rollback();
+    throw error;
+  }
+};

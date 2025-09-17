@@ -5,6 +5,7 @@ const { requireAuth, optionalAuth } = require('../middlewares');
 const {
   createCurationValidator,
   searchCurationValidator,
+  updateCurationValidator,
 } = require('../validators');
 
 router.post(
@@ -22,5 +23,12 @@ router.get(
   curationController.searchCurations
 );
 router.get('/:curationId', optionalAuth, curationController.getCurationById);
+router.patch(
+  '/:curationId',
+  requireAuth,
+  updateCurationValidator,
+  curationController.updateCuration
+);
+router.delete('/:curationId', requireAuth, curationController.deleteCuration);
 
 module.exports = router;
