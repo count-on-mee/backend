@@ -147,3 +147,26 @@ exports.deleteSpotReview = async (req, res) => {
     });
   }
 };
+
+exports.updateSpotReview = async (req, res) => {
+  try {
+    const userId = req.user.userId;
+    const { spotReviewId } = req.params;
+    const { content, deleteImgUrls } = req.body;
+    const reviewImages = req.files;
+
+    await spotService.updateSpotReview(
+      userId,
+      spotReviewId,
+      content,
+      deleteImgUrls,
+      reviewImages
+    );
+
+    res.status(204).json({ message: '리뷰가 수정되었습니다.' });
+  } catch (error) {
+    res.status(400).json({
+      message: error.message || '리뷰 수정에 실패했습니다.',
+    });
+  }
+};

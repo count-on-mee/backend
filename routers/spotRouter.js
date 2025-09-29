@@ -6,6 +6,7 @@ const { reviewUpload, spotUpload } = require('../configs/multer/multerConfig');
 const {
   getSpotValidator,
   createSpotReviewValidator,
+  updateSpotReviewValidator,
   searchSpotValidator,
   createSpotValidator,
 } = require('../validators');
@@ -38,6 +39,14 @@ router.delete(
   '/reviews/:spotReviewId',
   requireAuth,
   spotController.deleteSpotReview
+);
+
+router.patch(
+  '/reviews/:spotReviewId',
+  requireAuth,
+  reviewUpload.array('reviewImgs'),
+  updateSpotReviewValidator,
+  spotController.updateSpotReview
 );
 
 module.exports = router;

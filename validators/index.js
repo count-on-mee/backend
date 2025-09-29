@@ -3,6 +3,7 @@ const getSpotValidator = require('./spots/getSpotValidator');
 const searchSpotValidator = require('./spots/searchSpotValidator');
 const geocodeValidator = require('./maps/geocodeValidator');
 const createSpotReviewValidator = require('./spots/createSpotReviewValidator');
+const updateSpotReviewValidator = require('./spots/updateSpotReviewValidator');
 const createSpotValidator = require('./spots/createSpotValidator');
 const createCurationValidator = require('./curations/createCurationValidator');
 const searchCurationValidator = require('./curations/searchCurationValidator');
@@ -24,6 +25,7 @@ module.exports = {
   searchSpotValidator,
   geocodeValidator,
   createSpotReviewValidator,
+  updateSpotReviewValidator,
   createSpotValidator,
   createCurationValidator,
   searchCurationValidator,
