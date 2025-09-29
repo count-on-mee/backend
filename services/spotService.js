@@ -363,3 +363,62 @@ exports.deleteSpotReview = async (userId, spotReviewId) => {
     throw error;
   }
 };
+
+exports.updateSpotReview = async (
+  userId,
+  spotReviewId,
+  content,
+  deleteImgUrls,
+  reviewImages
+) => {
+  const transaction = await sequelize.transaction();
+  try {
+    const review = await SpotReview.findOne({
+      where: { spotReviewId, userId },
+      include: [
+        {
+          model: SpotReviewImg,
+          as: 'spotReviewImgs',
+          attributes: ['imgUrl'],
+        },
+      ],
+      transaction,
+      lock: transaction.LOCK.UPDATE,
+    });
+
+    if (!review) {
+      throw new Error('리뷰를 찾을 수 없거나 수정 권한이 없습니다.');
+    }
+
+    if (content) {
+      review.content = content;
+      await review.save({ transaction });
+    }
+
+    if (Array.isArray(deleteImgUrls) && deleteImgUrls.length > 0) {
+      await SpotReviewImg.destroy({
+        where: { spotReviewId, imgUrl: deleteImgUrls },
+        transaction,
+      });
+    }
+
+    if (Array.isArray(reviewImages) && reviewImages.length > 0) {
+      await Promise.all(
+        reviewImages.map((reviewImage) =>
+          SpotReviewImg.create(
+            {
+              spotReviewId: review.spotReviewId,
+              imgUrl: reviewImage.location,
+            },
+            { transaction }
+          )
+        )
+      );
+    }
+
+    await transaction.commit();
+  } catch (error) {
+    await transaction.rollback();
+    throw error;
+  }
+};
