@@ -36,3 +36,26 @@ exports.geocodeAddress = async (address) => {
     throw error;
   }
 };
+
+exports.buildNaverDirectionsLink = (origin, destination, waypoints = []) => {
+  const base = 'https://map.naver.com/v5/directions/';
+
+  const formatPoint = (p, suffix) =>
+    `${p.lng},${p.lat},${encodeURIComponent(p.name)},,${suffix}`;
+
+  const originPart = formatPoint(origin, '/');
+  const destinationPart = formatPoint(destination, '/');
+
+  const hasWaypoints = Array.isArray(waypoints) && waypoints.length > 0;
+  const waypointParts = hasWaypoints
+    ? (waypoints || []).map((p, idx, arr) => {
+        const isLast = idx === arr.length - 1;
+        return formatPoint(p, isLast ? '/' : ':');
+      })
+    : [];
+
+  const mode = 'car';
+
+  const waypointSection = hasWaypoints ? waypointParts.join('') : '-/';
+  return base + originPart + destinationPart + waypointSection + mode;
+};
