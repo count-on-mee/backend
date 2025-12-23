@@ -49,7 +49,8 @@
     "crawl:naver": "node scripts/naverPlaceCrawler.js",
     "crawl:naver:seed": "node scripts/createNaverPlaceSeeds.js",
     "crawl:kakao": "node scripts/kakaoPlaceCrawler.js",
-    "crawl:kakao:seed": "node scripts/createKakaoPlaceSeeds.js"
+    "crawl:kakao:seed": "node scripts/createKakaoPlaceSeeds.js",
+    "crawl:kakao:seed:batch": "node scripts/runKakaoSeedJobs.js"
   },
   "jest": {
     "testEnvironment": "node",

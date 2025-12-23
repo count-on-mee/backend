@@ -12,16 +12,6 @@ const path = require('path');
 const KakaoPlaceCrawler = require('./kakaoPlaceCrawler');
 const db = require('../models');
 
-const folderId = process.argv[2];
-const categoryLabel = process.argv[3];
-
-if (!folderId || !categoryLabel) {
-  console.error(
-    '사용법: node scripts/createKakaoPlaceSeeds.js <folderId> <카테고리라벨>'
-  );
-  process.exit(1);
-}
-
 function nowTimestamp() {
   const now = new Date();
   return (
@@ -38,27 +28,27 @@ function escapeJs(str) {
   return String(str).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
 }
 
-async function main() {
+async function generateKakaoSeedFor(folderId, categoryLabel) {
   const crawler = new KakaoPlaceCrawler({ saveToDatabase: false });
-  try {
-    // DB에서 spot_category를 조회하여 카테고리 매핑 구성
-    const categories = await db.SpotCategory.findAll({
-      attributes: ['spotCategoryId', 'type'],
-      raw: true,
-    });
-    crawler.categoryIds = categories.reduce((acc, cur) => {
-      acc[cur.type] = cur.spotCategoryId;
-      return acc;
-    }, {});
 
-    const results = await crawler.collectByFolder(folderId, categoryLabel);
+  // DB에서 spot_category를 조회하여 카테고리 매핑 구성
+  const categories = await db.SpotCategory.findAll({
+    attributes: ['spotCategoryId', 'type'],
+    raw: true,
+  });
+  crawler.categoryIds = categories.reduce((acc, cur) => {
+    acc[cur.type] = cur.spotCategoryId;
+    return acc;
+  }, {});
 
-    const timestamp = nowTimestamp();
-    const safeCategoryForName = String(categoryLabel).replace(/\s+/g, '-');
-    const fileName = `${timestamp}-spot-seeds-kakao-${folderId}-${safeCategoryForName}.js`;
-    const filePath = path.join(__dirname, '..', 'seeders', fileName);
+  const results = await crawler.collectByFolder(folderId, categoryLabel);
 
-    let seed = `'use strict';
+  const timestamp = nowTimestamp();
+  const safeCategoryForName = String(categoryLabel).replace(/\s+/g, '-');
+  const fileName = `${timestamp}-spot-seeds-kakao-${folderId}-${safeCategoryForName}.js`;
+  const filePath = path.join(__dirname, '..', 'seeders', fileName);
+
+  let seed = `'use strict';
 
 /**
  * 카카오 북마크 크롤링으로 생성된 Spot 데이터 시드 파일
@@ -79,16 +69,16 @@ module.exports = {
     const spotData = [
 `;
 
-    results.forEach((spot, idx) => {
-      seed += `      {
+  results.forEach((spot, idx) => {
+    seed += `      {
         name: '${escapeJs(spot.name)}',
         address: '${escapeJs(spot.address || '')}',
         tel: ${spot.tel ? `'${escapeJs(spot.tel)}'` : 'null'},
         location: Sequelize.fn(
           'ST_GeomFromText',
           'POINT(${spot.location ? spot.location.latitude : 0} ${
-        spot.location ? spot.location.longitude : 0
-      })',
+      spot.location ? spot.location.longitude : 0
+    })',
           4326
         ),
         naver_spot_id: '${escapeJs(spot.naverSpotId || '')}',
@@ -96,9 +86,9 @@ module.exports = {
         review_score: ${spot.reviewScore || 'null'},
       }${idx < results.length - 1 ? ',' : ''}
 `;
-    });
+  });
 
-    seed += `    ];
+  seed += `    ];
 
     // 업데이트 또는 삽입
     for (const row of spotData) {
@@ -114,11 +104,10 @@ module.exports = {
     const spotImgData = [];
 `;
 
-    results.forEach((spot) => {
-      if (!spot.imgUrls || spot.imgUrls.length === 0 || !spot.naverSpotId)
-        return;
-      const sid = escapeJs(spot.naverSpotId);
-      seed += `
+  results.forEach((spot) => {
+    if (!spot.imgUrls || spot.imgUrls.length === 0 || !spot.naverSpotId) return;
+    const sid = escapeJs(spot.naverSpotId);
+    seed += `
     const existingImages_${sid} = await queryInterface.sequelize.query(
       'SELECT COUNT(*) as cnt FROM spot_img WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       { replacements: ['${sid}'], type: queryInterface.sequelize.QueryTypes.SELECT }
@@ -126,17 +115,17 @@ module.exports = {
     if (existingImages_${sid}[0].cnt === 0) {
       spotImgData.push(...[
 `;
-      spot.imgUrls.forEach((u, i) => {
-        seed += `        { spot_id: Sequelize.literal(\`(SELECT spot_id FROM spot WHERE naver_spot_id = '${sid}' LIMIT 1)\`), img_url: '${escapeJs(
-          u
-        )}' }${i < spot.imgUrls.length - 1 ? ',' : ''}\n`;
-      });
-      seed += `      ]);
+    spot.imgUrls.forEach((u, i) => {
+      seed += `        { spot_id: Sequelize.literal(\`(SELECT spot_id FROM spot WHERE naver_spot_id = '${sid}' LIMIT 1)\`), img_url: '${escapeJs(
+        u
+      )}' }${i < spot.imgUrls.length - 1 ? ',' : ''}\n`;
+    });
+    seed += `      ]);
     }
 `;
-    });
+  });
 
-    seed += `
+  seed += `
     if (spotImgData.length > 0) {
       await queryInterface.bulkInsert('spot_img', spotImgData, {});
     }
@@ -145,12 +134,12 @@ module.exports = {
     const spotCategoryRelationData = [];
 `;
 
-    const categoryIds = crawler.categoryIds;
-    results.forEach((spot) => {
-      if (!spot.categories || spot.categories.length === 0 || !spot.naverSpotId)
-        return;
-      const sid = escapeJs(spot.naverSpotId);
-      seed += `
+  const categoryIds = crawler.categoryIds;
+  results.forEach((spot) => {
+    if (!spot.categories || spot.categories.length === 0 || !spot.naverSpotId)
+      return;
+    const sid = escapeJs(spot.naverSpotId);
+    seed += `
     const existingCats_${sid} = await queryInterface.sequelize.query(
       'SELECT spot_category_id FROM spot_category_relation WHERE spot_id = (SELECT spot_id FROM spot WHERE naver_spot_id = ? LIMIT 1)',
       { replacements: ['${sid}'], type: queryInterface.sequelize.QueryTypes.SELECT }
@@ -158,11 +147,9 @@ module.exports = {
     const existingSet_${sid} = new Set(existingCats_${sid}.map(r => r.spot_category_id));
 `;
 
-      const uniques = [...new Set(spot.categories)].filter(
-        (c) => categoryIds[c]
-      );
-      uniques.forEach((c) => {
-        seed += `
+    const uniques = [...new Set(spot.categories)].filter((c) => categoryIds[c]);
+    uniques.forEach((c) => {
+      seed += `
     if (!existingSet_${sid}.has(${categoryIds[c]})) {
       spotCategoryRelationData.push({
         spot_id: Sequelize.literal(\`(SELECT spot_id FROM spot WHERE naver_spot_id = '${sid}' LIMIT 1)\`),
@@ -170,10 +157,10 @@ module.exports = {
       });
     }
 `;
-      });
     });
+  });
 
-    seed += `
+  seed += `
     if (spotCategoryRelationData.length > 0) {
       await queryInterface.bulkInsert('spot_category_relation', spotCategoryRelationData, {});
     }
@@ -196,10 +183,26 @@ module.exports = {
   }
 };
 `;
+  fs.writeFileSync(filePath, seed);
+  console.log(`시드 파일이 생성되었습니다: ${filePath}`);
+  console.log(`\n시드 실행: npm run seed:run ${fileName}`);
 
-    fs.writeFileSync(filePath, seed);
-    console.log(`시드 파일이 생성되었습니다: ${filePath}`);
-    console.log(`\n시드 실행: npm run seed:run ${fileName}`);
+  return { filePath, fileName, resultsCount: results.length };
+}
+
+async function main() {
+  const folderId = process.argv[2];
+  const categoryLabel = process.argv[3];
+
+  if (!folderId || !categoryLabel) {
+    console.error(
+      '사용법: node scripts/createKakaoPlaceSeeds.js <folderId> <카테고리라벨>'
+    );
+    process.exit(1);
+  }
+
+  try {
+    await generateKakaoSeedFor(folderId, categoryLabel);
   } catch (e) {
     console.error('시드 생성 실패:', e);
     process.exit(1);
@@ -216,3 +219,7 @@ module.exports = {
 if (require.main === module) {
   main();
 }
+
+module.exports = {
+  generateKakaoSeedFor,
+};
