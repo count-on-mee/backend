@@ -62,7 +62,7 @@ const deleteFile = async (fileUrl) => {
     const key = fileUrl.split('/').slice(3).join('/');
 
     const deleteCommand = new DeleteObjectCommand({
-      Bucket: process.env.AWS_S3_BUCKET,
+      Bucket: process.env.AWS_BUCKET_NAME,
       Key: key,
     });
 

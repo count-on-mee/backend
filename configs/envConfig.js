@@ -75,6 +75,8 @@ const validateRequiredEnvVars = () => {
     'AWS_SECRET_ACCESS_KEY',
     'AWS_REGION',
     'AWS_BUCKET_NAME',
+    'AWS_ACCOUNT_ID',
+    'AWS_PUBLIC_BASE_URL',
 
     // Naver Cloud Platform
     'NCP_MAP_ID',
@@ -84,6 +86,7 @@ const validateRequiredEnvVars = () => {
     // Redis
     'REDIS_HOST',
     'REDIS_PORT',
+    'REDIS_PASSWORD',
 
     // Client
     'CLIENT_URL',
