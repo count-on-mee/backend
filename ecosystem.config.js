@@ -10,7 +10,7 @@ module.exports = {
       },
       env_production: {
         NODE_ENV: 'production',
-        PORT: 3000,
+        PORT: 443,
       },
     },
     // Kakao 북마크 시드 배치 (매일 새벽 3시 실행)
