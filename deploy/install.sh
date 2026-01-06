@@ -28,7 +28,7 @@ sudo systemctl reload nginx
 
 # Let's Encrypt 인증서 발급
 sudo certbot --nginx \
-  -d api.countonme.site \
+  -d api.countonme.me \
   --email insoosos1234@gmail.com \
   --agree-tos \
   --non-interactive \
