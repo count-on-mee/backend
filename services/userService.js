@@ -27,7 +27,13 @@ exports.updateUser = async (userId, nickname, imgUrl) => {
       updateData.nickname = nickname;
     }
     if (imgUrl) {
-      updateData.imgUrl = imgUrl.location;
+      const baseUrl = process.env.AWS_PUBLIC_BASE_URL;
+      const key = imgUrl.key;
+
+      const normalizedBase = baseUrl.replace(/\/$/, '');
+      const normalizedKey = key.startsWith('/') ? key.slice(1) : key;
+
+      updateData.imgUrl = `${normalizedBase}/${normalizedKey}`;
     }
 
     await user.update(updateData);

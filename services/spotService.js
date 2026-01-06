@@ -11,6 +11,16 @@ const {
 } = require('../models');
 const { literal, Op, fn } = require('sequelize');
 
+const buildPublicUrl = (key) => {
+  const baseUrl = process.env.AWS_PUBLIC_BASE_URL;
+  if (!baseUrl || !key) return key;
+
+  const normalizedBase = baseUrl.replace(/\/$/, '');
+  const normalizedKey = key.startsWith('/') ? key.slice(1) : key;
+
+  return `${normalizedBase}/${normalizedKey}`;
+};
+
 const calculateRadius = (zoomLevel) => {
   if (zoomLevel >= 7 && zoomLevel <= 10) {
     return 50000; // 시와 도 수준의 큰 지역
@@ -157,7 +167,7 @@ exports.createSpot = async (
           SpotImg.create(
             {
               spotId: spot.spotId,
-              imgUrl: spotImage.location,
+              imgUrl: buildPublicUrl(spotImage.key),
             },
             { transaction }
           )
@@ -229,7 +239,7 @@ exports.createSpotReview = async (userId, spotId, content, reviewImages) => {
           SpotReviewImg.create(
             {
               spotReviewId: review.spotReviewId,
-              imgUrl: reviewImage.location,
+              imgUrl: buildPublicUrl(reviewImage.key),
             },
             { transaction }
           )
@@ -408,7 +418,7 @@ exports.updateSpotReview = async (
           SpotReviewImg.create(
             {
               spotReviewId: review.spotReviewId,
-              imgUrl: reviewImage.location,
+              imgUrl: buildPublicUrl(reviewImage.key),
             },
             { transaction }
           )
