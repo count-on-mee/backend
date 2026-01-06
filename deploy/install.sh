@@ -18,9 +18,9 @@ sudo npm install -g pm2
 sudo apt-get install -y certbot python3-certbot-nginx
 
 # Nginx 설정
-sudo rm /etc/nginx/sites-enabled/default
+sudo rm -f /etc/nginx/sites-enabled/default
 sudo cp deploy/nginx/count-on-me.conf /etc/nginx/sites-available/count-on-me
-sudo ln -s /etc/nginx/sites-available/count-on-me /etc/nginx/sites-enabled/
+sudo ln -sf /etc/nginx/sites-available/count-on-me /etc/nginx/sites-enabled/
 
 # Nginx 시작
 sudo nginx -t
