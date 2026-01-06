@@ -49,7 +49,7 @@ class JwtUtil {
       httpOnly: true,
       secure: true,
       sameSite: 'none',
-      domain: '.countonme.site',
+      domain: '.countonme.me',
       path: '/',
       maxAge: 14 * 24 * 60 * 60 * 1000, // 14d
     };
