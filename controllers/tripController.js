@@ -208,9 +208,9 @@ exports.getExpenses = async (req, res) => {
     const { userId } = req.user;
     const { tripId } = req.params;
 
-    const expenses = await tripService.getExpenses(userId, tripId);
+    const result = await tripService.getExpenses(userId, tripId);
 
-    res.status(200).json({ expenses });
+    res.status(200).json(result);
   } catch (error) {
     res.status(404).json({
       message: error.message || '여행 경비 조회에 실패했습니다.',

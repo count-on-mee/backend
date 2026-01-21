@@ -178,24 +178,6 @@ const createTripDocument = async (tripId, transaction) => {
     },
     { transaction }
   );
-
-  const expenseTypes = [
-    { type: 'transportation', detail: '수단명' },
-    { type: 'accommodation', detail: '숙소명' },
-    { type: 'meal', detail: '식당명' },
-    { type: 'other', detail: '항목명' },
-  ];
-
-  const defaultTripDocumentExpenses = expenseTypes.map(({ type, detail }) => ({
-    tripDocumentId: tripDocument.tripDocumentId,
-    type,
-    detail,
-    amount: 0,
-  }));
-
-  await TripDocumentExpense.bulkCreate(defaultTripDocumentExpenses, {
-    transaction,
-  });
   return tripDocument;
 };
 
@@ -872,6 +854,61 @@ exports.acceptInvitation = async (userId, invitationCode) => {
   return trip.tripId;
 };
 
+exports.calculateExpenseStatistics = async (tripDocumentId, userId) => {
+  // Redis 캐시에서 expenses 데이터 로드
+  const expenses = await RedisCacheManager.getDocument(tripDocumentId, 'expenses');
+
+  // 메모리에서 통계 계산
+  let sharedTotalBudget = 0;
+  let sharedTotalSpentByBudget = 0;
+  let sharedTotalSpent = 0;
+  let personalTotalBudget = 0;
+  let personalTotalSpent = 0;
+
+  expenses.forEach((expense) => {
+    const { expenseCategory, expenseType, totalAmount, payUserId } = expense;
+
+    // 공동 경비 계산
+    if (expenseType === 'SHARED') {
+      if (expenseCategory === 'BUDGET') {
+        // 공동 경비 모인돈
+        sharedTotalBudget += totalAmount || 0;
+      } else {
+        // 공동 경비 총쓴돈
+        sharedTotalSpent += totalAmount || 0;
+        // 공동 경비 결재액 (payUserId가 null인 경우만)
+        if (payUserId === null) {
+          sharedTotalSpentByBudget += totalAmount || 0;
+        }
+      }
+    }
+
+    // 개인 경비 계산
+    if (expenseType === 'PERSONAL' && payUserId === userId) {
+      if (expenseCategory === 'BUDGET') {
+        // 개인 총예산
+        personalTotalBudget += totalAmount || 0;
+      } else {
+        // 개인 총쓴돈
+        personalTotalSpent += totalAmount || 0;
+      }
+    }
+  });
+
+  return {
+    shared: {
+      totalBudget: sharedTotalBudget,
+      totalSpent: sharedTotalSpent,
+      remainingBudget: sharedTotalBudget - sharedTotalSpentByBudget,
+    },
+    personal: {
+      totalBudget: personalTotalBudget,
+      totalSpent: personalTotalSpent,
+      remainingBudget: personalTotalBudget - personalTotalSpent,
+    },
+  };
+};
+
 exports.getDocuments = async (userId, tripId) => {
   await verifyTrip(tripId);
   await verifyTripParticipant(userId, tripId);
@@ -881,18 +918,27 @@ exports.getDocuments = async (userId, tripId) => {
     attributes: ['tripDocumentId'],
   });
 
-  const [participantCount, expenses, accommodations, tasks] = await Promise.all(
-    [
+  const [participantCount, allExpenses, statistics, accommodations, tasks] =
+    await Promise.all([
       RedisCacheManager.getDocument(tripDocumentId, 'participant_count'),
       RedisCacheManager.getDocument(tripDocumentId, 'expenses'),
+      this.calculateExpenseStatistics(tripDocumentId, userId),
       RedisCacheManager.getDocument(tripDocumentId, 'accommodations'),
       RedisCacheManager.getDocument(tripDocumentId, 'tasks'),
-    ]
-  );
+    ]);
+
+  // PERSONAL 타입인 경우 본인의 payUserId와 일치하는 것만 필터링
+  const expenses = allExpenses.filter((expense) => {
+    if (expense.expenseType === 'PERSONAL') {
+      return expense.payUserId === userId;
+    }
+    return true; // SHARED 타입은 모두 포함
+  });
 
   return {
     document: { tripDocumentId, participantCount },
     expenses,
+    statistics,
     accommodations,
     tasks,
   };
@@ -907,7 +953,23 @@ exports.getExpenses = async (userId, tripId) => {
     attributes: ['tripDocumentId'],
   });
 
-  return await RedisCacheManager.getDocument(tripDocumentId, 'expenses');
+  // Redis 캐시에서 expenses 로드
+  const allExpenses = await RedisCacheManager.getDocument(tripDocumentId, 'expenses');
+  
+  // PERSONAL 타입인 경우 본인의 payUserId와 일치하는 것만 필터링
+  const expenses = allExpenses.filter((expense) => {
+    if (expense.expenseType === 'PERSONAL') {
+      return expense.payUserId === userId;
+    }
+    return true; // SHARED 타입은 모두 포함
+  });
+  
+  const statistics = await this.calculateExpenseStatistics(tripDocumentId, userId);
+
+  return {
+    expenses,
+    statistics,
+  };
 };
 
 exports.getAccommodations = async (userId, tripId) => {
