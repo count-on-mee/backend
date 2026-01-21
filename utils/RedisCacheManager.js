@@ -2,6 +2,7 @@ const {
   sequelize,
   TripDocument,
   TripDocumentExpense,
+  TripDocumentExpenseParticipant,
   TripDocumentAccommodation,
   TripDocumentTask,
 } = require('../models');
@@ -178,7 +179,16 @@ class RedisCacheManager {
             as: type,
             attributes:
               type === 'expenses'
-                ? ['tripDocumentExpenseId', 'type', 'detail', 'amount']
+                ? [
+                    'tripDocumentExpenseId',
+                    'payUserId',
+                    'expenseCategory',
+                    'description',
+                    'totalAmount',
+                    'paymentMethod',
+                    'expenseDate',
+                    'expenseType',
+                  ]
                 : type === 'accommodations'
                 ? [
                     'tripDocumentAccommodationId',
@@ -190,6 +200,16 @@ class RedisCacheManager {
                 : type === 'tasks'
                 ? ['tripDocumentTaskId', 'task', 'isCompleted']
                 : [],
+            include:
+              type === 'expenses'
+                ? [
+                    {
+                      model: TripDocumentExpenseParticipant,
+                      as: 'participants',
+                      attributes: ['participantUserId', 'sharedAmount'],
+                    },
+                  ]
+                : [],
           },
         ],
       });
@@ -198,7 +218,18 @@ class RedisCacheManager {
         throw new Error(`TripDocument not found: ${tripDocumentId}`);
       }
 
-      const data = tripDocument[type].map((item) => item.get({ plain: true }));
+      let data = tripDocument[type].map((item) => item.get({ plain: true }));
+
+      // expenses의 경우 payUserId 키를 항상 포함시키되, 값이 없으면 null로 명시
+      if (type === 'expenses') {
+        data = data.map((expense) => {
+          if (!Object.prototype.hasOwnProperty.call(expense, 'payUserId')) {
+            return { ...expense, payUserId: null };
+          }
+          return expense;
+        });
+      }
+
       return data;
     } catch (error) {
       console.error('Failed to load from database:', error);
@@ -286,15 +317,51 @@ class RedisCacheManager {
         break;
       case 'expenses':
         await TripDocumentExpense.bulkCreate(
-          data.map((expense) => ({
-            ...expense,
-            tripDocumentId,
-          })),
+          data.map((expense) => {
+            const {
+              participants,
+              ...expenseFields
+            } = expense;
+
+            return {
+              ...expenseFields,
+              tripDocumentId,
+            };
+          }),
           {
             transaction,
-            updateOnDuplicate: ['type', 'detail', 'amount'],
+            updateOnDuplicate: [
+              'payUserId',
+              'expenseCategory',
+              'description',
+              'totalAmount',
+              'paymentMethod',
+              'expenseDate',
+              'expenseType',
+            ],
           }
         );
+
+        // participants sync (simple replace strategy per expense)
+        for (const expense of data) {
+          if (!Array.isArray(expense.participants)) continue;
+
+          await TripDocumentExpenseParticipant.destroy({
+            where: { tripDocumentExpenseId: expense.tripDocumentExpenseId },
+            transaction,
+          });
+
+          if (expense.participants.length === 0) continue;
+
+          await TripDocumentExpenseParticipant.bulkCreate(
+            expense.participants.map((p) => ({
+              tripDocumentExpenseId: expense.tripDocumentExpenseId,
+              participantUserId: p.participantUserId,
+              sharedAmount: p.sharedAmount,
+            })),
+            { transaction }
+          );
+        }
         break;
       case 'accommodations':
         await TripDocumentAccommodation.bulkCreate(

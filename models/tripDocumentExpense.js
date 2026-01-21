@@ -18,21 +18,44 @@ module.exports = (sequelize, DataTypes) => {
           key: 'trip_document_id',
         },
       },
-      type: {
+      payUserId: {
+        type: DataTypes.UUID,
+        allowNull: true,
+        references: {
+          model: 'user',
+          key: 'user_id',
+        },
+      },
+      expenseCategory: {
         type: DataTypes.ENUM(
-          'transportation',
-          'accommodation',
-          'meal',
-          'other'
+          'TRANSPORTATION',
+          'ACCOMMODATION',
+          'MEAL',
+          'TOUR',
+          'ACTIVITIES',
+          'SHOPPING',
+          'BUDGET'
         ),
         allowNull: false,
       },
-      detail: {
+      description: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      amount: {
+      totalAmount: {
         type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      paymentMethod: {
+        type: DataTypes.ENUM('CASH', 'CARD'),
+        allowNull: false,
+      },
+      expenseDate: {
+        type: DataTypes.DATEONLY,
+        allowNull: false,
+      },
+      expenseType: {
+        type: DataTypes.ENUM('SHARED', 'PERSONAL'),
         allowNull: false,
       },
     },
@@ -48,6 +71,18 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'tripDocumentId',
       targetKey: 'tripDocumentId',
       as: 'tripDocument',
+    });
+
+    TripDocumentExpense.belongsTo(models.User, {
+      foreignKey: 'payUserId',
+      targetKey: 'userId',
+      as: 'payer',
+    });
+
+    TripDocumentExpense.hasMany(models.TripDocumentExpenseParticipant, {
+      foreignKey: 'tripDocumentExpenseId',
+      sourceKey: 'tripDocumentExpenseId',
+      as: 'participants',
     });
   };
 
