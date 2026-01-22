@@ -45,8 +45,41 @@ async function generateKakaoSeedFor(folderId, categoryLabel) {
 
   const timestamp = nowTimestamp();
   const safeCategoryForName = String(categoryLabel).replace(/\s+/g, '-');
+  // 타임스탬프를 포함한 파일명 사용 (마지막 생성 시점 확인 가능)
   const fileName = `${timestamp}-spot-seeds-kakao-${folderId}-${safeCategoryForName}.js`;
   const filePath = path.join(__dirname, '..', 'seeders', fileName);
+
+  // 같은 folderId/categoryLabel 조합의 오래된 파일들 삭제 (최신 파일만 유지)
+  const seedersDir = path.join(__dirname, '..', 'seeders');
+  if (fs.existsSync(seedersDir)) {
+    const files = fs.readdirSync(seedersDir);
+    const filePattern = new RegExp(
+      `^(\\d+)-spot-seeds-kakao-${folderId}-${safeCategoryForName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\.js$`
+    );
+    
+    // 같은 패턴의 파일들을 찾아서 타임스탬프로 정렬
+    const matchingFiles = files
+      .filter((file) => filePattern.test(file))
+      .map((file) => {
+        const match = file.match(filePattern);
+        return {
+          fileName: file,
+          timestamp: match[1],
+          filePath: path.join(seedersDir, file),
+        };
+      })
+      .sort((a, b) => b.timestamp.localeCompare(a.timestamp)); // 최신순 정렬
+
+    // 최신 파일을 제외한 나머지 파일 삭제
+    matchingFiles.slice(1).forEach((file) => {
+      try {
+        fs.unlinkSync(file.filePath);
+        console.log(`오래된 파일 삭제: ${file.fileName}`);
+      } catch (err) {
+        console.warn(`오래된 파일 삭제 실패: ${file.fileName}`, err.message);
+      }
+    });
+  }
 
   let seed = `'use strict';
 
