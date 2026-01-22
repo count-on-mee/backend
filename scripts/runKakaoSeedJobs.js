@@ -15,15 +15,7 @@ const { execSync } = require('child_process');
 const db = require('../models');
 const { generateKakaoSeedFor } = require('./createKakaoPlaceSeeds');
 
-const JOBS = [
-  { folderId: '20455060', categoryLabel: '문화' },
-  { folderId: '18589915', categoryLabel: '카페' },
-  { folderId: '18589771', categoryLabel: '식당' },
-  { folderId: '18589856', categoryLabel: '식당' },
-  { folderId: '18589831', categoryLabel: '식당' },
-];
-
-async function runJob({ folderId, categoryLabel }) {
+async function runJob({ job, folderId, categoryLabel }) {
   console.log(
     `\n=== Kakao Seed Job 시작: folderId=${folderId}, category=${categoryLabel} ===`
   );
@@ -44,23 +36,42 @@ async function runJob({ folderId, categoryLabel }) {
     cwd: path.join(__dirname, '..'),
   });
 
+  // 마지막 실행 시간 업데이트
+  if (job) {
+    await job.update({ lastRunAt: new Date() });
+  }
+
   console.log(
     `=== Kakao Seed Job 완료: folderId=${folderId}, category=${categoryLabel} ===\n`
   );
 }
 
 async function main() {
-  if (!JOBS.length) {
-    console.log(
-      '실행할 JOB 이 없습니다. `scripts/runKakaoSeedJobs.js`의 JOBS 배열을 먼저 설정하세요.'
-    );
-    return;
-  }
-
   try {
-    for (const job of JOBS) {
+    // 데이터베이스에서 활성화된 작업들을 조회
+    const jobs = await db.KakaoSeedJob.findAll({
+      where: {
+        isActive: true,
+      },
+      order: [['kakaoSeedJobId', 'ASC']],
+    });
+
+    if (!jobs || jobs.length === 0) {
+      console.log(
+        '실행할 JOB이 없습니다. `kakao_seed_job` 테이블에 활성화된 작업을 추가하세요.'
+      );
+      return;
+    }
+
+    console.log(`총 ${jobs.length}개의 작업을 실행합니다.\n`);
+
+    for (const job of jobs) {
       // eslint-disable-next-line no-await-in-loop
-      await runJob(job);
+      await runJob({
+        job,
+        folderId: job.folderId,
+        categoryLabel: job.categoryLabel,
+      });
     }
   } catch (e) {
     console.error('카카오 시드 배치 작업 실패:', e);

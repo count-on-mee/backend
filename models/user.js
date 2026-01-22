@@ -94,6 +94,12 @@ module.exports = (sequelize, DataTypes) => {
       sourceKey: 'userId',
       as: 'inquiries',
     });
+
+    User.hasMany(models.KakaoSeedJob, {
+      foreignKey: 'userId',
+      sourceKey: 'userId',
+      as: 'kakaoSeedJobs',
+    });
   };
 
   return User;
