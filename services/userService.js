@@ -14,7 +14,14 @@ exports.getUserById = async (userId) => {
   }
 };
 
-exports.updateUser = async (userId, nickname, imgUrl) => {
+exports.updateUser = async (
+  userId,
+  nickname,
+  imgUrl,
+  kakaoPayId,
+  bankName,
+  accountNumber,
+) => {
   try {
     const user = await User.findByPk(userId);
 
@@ -23,9 +30,23 @@ exports.updateUser = async (userId, nickname, imgUrl) => {
     }
 
     const updateData = {};
-    if (nickname) {
+
+    if (nickname !== undefined) {
       updateData.nickname = nickname;
     }
+
+    if (kakaoPayId !== undefined) {
+      updateData.kakaoPayId = kakaoPayId;
+    }
+
+    if (bankName !== undefined) {
+      updateData.bankName = bankName;
+    }
+
+    if (accountNumber !== undefined) {
+      updateData.accountNumber = accountNumber;
+    }
+
     if (imgUrl) {
       const baseUrl = process.env.AWS_PUBLIC_BASE_URL;
       const key = imgUrl.key;
