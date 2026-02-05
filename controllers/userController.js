@@ -18,10 +18,17 @@ exports.getUser = async (req, res) => {
 exports.updateUser = async (req, res) => {
   try {
     const { userId } = req.user;
-    const { nickname } = req.body;
+    const { nickname, kakaoPayId, bankName, accountNumber } = req.body;
     const imgUrl = req.file;
 
-    const updatedUser = await userService.updateUser(userId, nickname, imgUrl);
+    const updatedUser = await userService.updateUser(
+      userId,
+      nickname,
+      imgUrl,
+      kakaoPayId,
+      bankName,
+      accountNumber,
+    );
 
     const userDto = UserDto.from(updatedUser);
     res.status(200).json(userDto);

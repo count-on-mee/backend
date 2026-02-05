@@ -37,6 +37,18 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(50),
         allowNull: false,
       },
+      kakaoPayId: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+      },
+      bankName: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+      },
+      accountNumber: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+      },
       role: {
         type: DataTypes.ENUM('user', 'admin'),
         defaultValue: 'user',
@@ -54,7 +66,7 @@ module.exports = (sequelize, DataTypes) => {
           name: 'uk_oauth_provider_oauth_id',
         },
       ],
-    }
+    },
   );
 
   User.associate = (models) => {

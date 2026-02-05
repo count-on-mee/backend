@@ -3,6 +3,7 @@ const NicknameGenerator = require('./NicknameGenerator');
 const ObjectUtil = require('./ObjectUtil');
 const RedisCacheManager = require('./RedisCacheManager');
 const SocketManager = require('./SocketManager');
+const PaymentUrlGenerator = require('./PaymentUrlGenerator');
 
 module.exports = {
   JwtUtil,
@@ -10,4 +11,5 @@ module.exports = {
   ObjectUtil,
   RedisCacheManager,
   SocketManager,
+  PaymentUrlGenerator,
 };

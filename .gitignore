@@ -140,3 +140,5 @@ config/config.json
 
 # Photos
 uploads/
+
+/tmp
