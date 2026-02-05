@@ -20,7 +20,7 @@ const { Op } = require('sequelize');
 const crypto = require('crypto');
 const routeService = require('./routeService');
 const llmService = require('./llmService');
-const { RedisCacheManager } = require('../utils');
+const { RedisCacheManager, PaymentUrlGenerator } = require('../utils');
 
 const getTripDestinationIds = async (destinations) => {
   const tripDestinations = await TripDestination.findAll({
@@ -29,7 +29,7 @@ const getTripDestinationIds = async (destinations) => {
     },
   });
   return tripDestinations.map(
-    (tripDestination) => tripDestination.tripDestinationId
+    (tripDestination) => tripDestination.tripDestinationId,
   );
 };
 
@@ -40,7 +40,7 @@ const createTripBasicInfo = async (title, startDate, endDate, transaction) => {
       startDate,
       endDate,
     },
-    { transaction }
+    { transaction },
   );
 };
 
@@ -61,7 +61,7 @@ const createTripParticipant = async (tripId, userId, transaction) => {
       tripId,
       userId,
     },
-    { transaction }
+    { transaction },
   );
 };
 
@@ -70,7 +70,7 @@ const createTripItineraries = async (
   spotIds,
   startDate,
   endDate,
-  transaction
+  transaction,
 ) => {
   try {
     const spots = await Spot.findAll({
@@ -88,7 +88,7 @@ const createTripItineraries = async (
     const itineraryPlan = await llmService.optimizeItinerary(
       spots,
       startDate,
-      endDate
+      endDate,
     );
 
     const tripItineraries = itineraryPlan.days.flatMap((dayPlan, dayIndex) =>
@@ -97,7 +97,7 @@ const createTripItineraries = async (
         spotId: spot.spotId,
         day: dayIndex + 1,
         order: orderIndex + 1,
-      }))
+      })),
     );
 
     return await TripItinerary.bulkCreate(tripItineraries, { transaction });
@@ -121,7 +121,7 @@ const createTripItineraries = async (
 
 const createTripItineraryTransportation = async (
   tripItineraries,
-  transaction
+  transaction,
 ) => {
   const result = [];
 
@@ -147,7 +147,7 @@ const createTripItineraryTransportation = async (
             durationMinute,
             distanceKilometer,
           },
-          { transaction }
+          { transaction },
         );
 
         result.push(transportation);
@@ -160,7 +160,7 @@ const createTripItineraryTransportation = async (
             durationMinute: 0,
             distanceKilometer: 0,
           },
-          { transaction }
+          { transaction },
         );
 
         result.push(transportation);
@@ -176,7 +176,7 @@ const createTripDocument = async (tripId, transaction) => {
     {
       tripId,
     },
-    { transaction }
+    { transaction },
   );
   return tripDocument;
 };
@@ -192,7 +192,7 @@ exports.createTrip = async (
   destinations,
   startDate,
   endDate,
-  spotIds
+  spotIds,
 ) => {
   const transaction = await sequelize.transaction();
 
@@ -201,7 +201,7 @@ exports.createTrip = async (
       title,
       startDate,
       endDate,
-      transaction
+      transaction,
     );
 
     await createTripDestinations(trip.tripId, destinations, transaction);
@@ -214,7 +214,7 @@ exports.createTrip = async (
         spotIds,
         startDate,
         endDate,
-        transaction
+        transaction,
       );
 
       await createTripItineraryTransportation(tripItineraries, transaction);
@@ -341,12 +341,12 @@ exports.getTripById = async (userId, tripId) => {
       [Op.or]: [
         {
           departureTripItineraryId: trip.itineraries.map(
-            (itinerary) => itinerary.tripItineraryId
+            (itinerary) => itinerary.tripItineraryId,
           ),
         },
         {
           destinationTripItineraryId: trip.itineraries.map(
-            (itinerary) => itinerary.tripItineraryId
+            (itinerary) => itinerary.tripItineraryId,
           ),
         },
       ],
@@ -381,12 +381,12 @@ exports.updateTrip = async (userId, tripId, title, startDate, endDate) => {
       const currentPeriod =
         Math.ceil(
           (new Date(trip.endDate) - new Date(trip.startDate)) /
-            (1000 * 60 * 60 * 24)
+            (1000 * 60 * 60 * 24),
         ) + 1;
       const newPeriod =
         Math.ceil(
           (new Date(newEndDate) - new Date(newStartDate)) /
-            (1000 * 60 * 60 * 24)
+            (1000 * 60 * 60 * 24),
         ) + 1;
 
       // 여행 기간의 길이가 다른 경우에만 일정 재생성
@@ -401,7 +401,7 @@ exports.updateTrip = async (userId, tripId, title, startDate, endDate) => {
         });
 
         const spotIds = existingItineraries.map(
-          (itinerary) => itinerary.spotId
+          (itinerary) => itinerary.spotId,
         );
 
         await TripItinerary.destroy({
@@ -414,7 +414,7 @@ exports.updateTrip = async (userId, tripId, title, startDate, endDate) => {
           spotIds,
           newStartDate,
           newEndDate,
-          transaction
+          transaction,
         );
 
         await createTripItineraryTransportation(tripItineraries, transaction);
@@ -471,7 +471,7 @@ exports.createItinerary = async (userId, tripId, spotId, day, order) => {
         day,
         order,
       },
-      { transaction }
+      { transaction },
     );
 
     const prevItinerary = await TripItinerary.findOne({
@@ -519,7 +519,7 @@ exports.createItinerary = async (userId, tripId, spotId, day, order) => {
           durationMinute,
           distanceKilometer,
         },
-        { transaction }
+        { transaction },
       );
     }
 
@@ -540,7 +540,7 @@ exports.createItinerary = async (userId, tripId, spotId, day, order) => {
           durationMinute,
           distanceKilometer,
         },
-        { transaction }
+        { transaction },
       );
     }
 
@@ -557,7 +557,7 @@ exports.moveItineraries = async (userId, tripId, moves) => {
   await verifyTripParticipant(userId, tripId);
   await verifyItinerary(
     tripId,
-    moves.map((move) => move.itineraryId)
+    moves.map((move) => move.itineraryId),
   );
 
   const transaction = await sequelize.transaction();
@@ -685,7 +685,7 @@ exports.moveItineraries = async (userId, tripId, moves) => {
             durationMinute,
             distanceKilometer,
           },
-          { transaction }
+          { transaction },
         );
       }
 
@@ -706,7 +706,7 @@ exports.moveItineraries = async (userId, tripId, moves) => {
             durationMinute,
             distanceKilometer,
           },
-          { transaction }
+          { transaction },
         );
       }
     }
@@ -777,7 +777,7 @@ exports.deleteItinerary = async (userId, tripId, itineraryId) => {
           durationMinute,
           distanceKilometer,
         },
-        { transaction }
+        { transaction },
       );
     }
 
@@ -854,9 +854,198 @@ exports.acceptInvitation = async (userId, invitationCode) => {
   return trip.tripId;
 };
 
+exports.calculateSharedSettlement = (
+  expenses,
+  participantCount,
+  userPaymentInfoMap,
+  currentUserId,
+) => {
+  const userStatsMap = new Map();
+
+  const ensureUserStats = (userId) => {
+    if (!userId) return null;
+    if (!userStatsMap.has(userId)) {
+      userStatsMap.set(userId, {
+        userId, // 사용자 id
+        addedSharedBudget: 0, // 추가 공동경비
+        paidAmount: 0, // 결제액
+        consumedAmount: 0, // 소비액
+        distributedSharedBudget: 0, // 공동경비 분배액
+        netAmount: 0, // 최종 정산 금액 (양수: 받을 금액, 음수: 보낼 금액)
+        settlements: [], // 정산 상세 내역
+      });
+    }
+    return userStatsMap.get(userId);
+  };
+
+  let sharedTotalBudget = 0; // 공동경비 전체 금액
+  let sharedTotalSpentByBudget = 0; // 공동경비 결제액
+
+  for (const expense of expenses) {
+    if (expense.expenseType !== 'SHARED') continue;
+
+    const {
+      expenseCategory,
+      totalAmount = 0,
+      payUserId,
+      participants = [],
+    } = expense;
+
+    // 공동 경비 전체 금액: SHARED + BUDGET + payUserId === null
+    if (expenseCategory === 'BUDGET' && payUserId === null) {
+      sharedTotalBudget += totalAmount;
+
+      // 추가 공동경비: participants 배열에서 사용자별 분담 금액
+      for (const p of participants || []) {
+        const stats = ensureUserStats(p.participantUserId);
+        if (!stats) continue;
+        stats.addedSharedBudget += p.sharedAmount || 0;
+      }
+      continue;
+    }
+
+    // SHARED + (expenseCategory !== 'BUDGET')
+    // 공동 경비 결제액: payUserId === null 인 경우
+    if (payUserId === null) {
+      sharedTotalSpentByBudget += totalAmount;
+    }
+
+    // 개인 결제액: payUserId === userId
+    if (payUserId) {
+      const stats = ensureUserStats(payUserId);
+      if (stats) {
+        stats.paidAmount += totalAmount;
+      }
+    }
+
+    // 소비액: participants 배열에서 사용자별 분담 금액
+    for (const p of participants || []) {
+      const stats = ensureUserStats(p.participantUserId);
+      if (!stats) continue;
+      stats.consumedAmount += p.sharedAmount || 0;
+    }
+  }
+
+  const sharedRemainingBudget = sharedTotalBudget - sharedTotalSpentByBudget;
+  //TODO: 공동경비 분배액 안나눠 떨어지는 경우 처리
+  const distributedSharedBudget =
+    participantCount && participantCount > 0
+      ? sharedRemainingBudget / participantCount
+      : 0;
+
+  // 사용자별 최종 정산 금액 계산
+  for (const stats of userStatsMap.values()) {
+    stats.distributedSharedBudget = distributedSharedBudget;
+    stats.netAmount =
+      stats.addedSharedBudget +
+      stats.paidAmount -
+      stats.consumedAmount -
+      stats.distributedSharedBudget;
+  }
+
+  // 정산 계산
+  const creditors = [];
+  const debtors = [];
+
+  for (const stats of userStatsMap.values()) {
+    if (stats.netAmount > 0) {
+      creditors.push({ userId: stats.userId, amount: stats.netAmount });
+    } else if (stats.netAmount < 0) {
+      debtors.push({ userId: stats.userId, amount: -stats.netAmount });
+    }
+  }
+
+  // 큰 금액부터 매칭
+  creditors.sort((a, b) => b.amount - a.amount);
+  debtors.sort((a, b) => b.amount - a.amount);
+
+  const settlements = [];
+  let i = 0;
+  let j = 0;
+
+  while (i < debtors.length && j < creditors.length) {
+    const debtor = debtors[i];
+    const creditor = creditors[j];
+    const amount = Math.min(debtor.amount, creditor.amount);
+
+    if (amount <= 0) break;
+
+    settlements.push({
+      fromUserId: debtor.userId,
+      toUserId: creditor.userId,
+      amount,
+    });
+
+    debtor.amount -= amount;
+    creditor.amount -= amount;
+
+    if (debtor.amount <= 1e-6) i += 1;
+    if (creditor.amount <= 1e-6) j += 1;
+  }
+
+  settlements.forEach(({ fromUserId, toUserId, amount }) => {
+    const fromStats = userStatsMap.get(fromUserId);
+    const toStats = userStatsMap.get(toUserId);
+
+    const receiverPaymentInfo =
+      userPaymentInfoMap && userPaymentInfoMap.get(toUserId);
+
+    let kakaoPayUrl = null;
+    let tossUrl = null;
+
+    // 보낼 사람이 현재 요청 유저인 경우에만 송금 URL 포함
+    if (currentUserId && fromUserId === currentUserId && receiverPaymentInfo) {
+      if (receiverPaymentInfo.kakaoPayId) {
+        kakaoPayUrl = PaymentUrlGenerator.generateKakaoPayUrl(
+          receiverPaymentInfo.kakaoPayId,
+          amount,
+        );
+      }
+
+      if (receiverPaymentInfo.bankName && receiverPaymentInfo.accountNumber) {
+        tossUrl = PaymentUrlGenerator.generateTossUrl(
+          amount,
+          receiverPaymentInfo.bankName,
+          receiverPaymentInfo.accountNumber,
+        );
+      }
+    }
+
+    if (fromStats) {
+      fromStats.settlements.push({
+        counterpartUserId: toUserId,
+        direction: 'SEND',
+        amount,
+        kakaoPayUrl,
+        tossUrl,
+      });
+    }
+
+    if (toStats) {
+      toStats.settlements.push({
+        counterpartUserId: fromUserId,
+        direction: 'RECEIVE',
+        amount,
+      });
+    }
+  });
+
+  return {
+    shared: {
+      totalBudget: sharedTotalBudget,
+      totalSpentFromBudget: sharedTotalSpentByBudget,
+      remainingBudget: sharedRemainingBudget,
+    },
+    personal: Array.from(userStatsMap.values()),
+  };
+};
+
 exports.calculateExpenseStatistics = async (tripDocumentId, userId) => {
   // Redis 캐시에서 expenses 데이터 로드
-  const expenses = await RedisCacheManager.getDocument(tripDocumentId, 'expenses');
+  const expenses = await RedisCacheManager.getDocument(
+    tripDocumentId,
+    'expenses',
+  );
 
   // 메모리에서 통계 계산
   let sharedTotalBudget = 0;
@@ -918,27 +1107,19 @@ exports.getDocuments = async (userId, tripId) => {
     attributes: ['tripDocumentId'],
   });
 
-  const [participantCount, allExpenses, statistics, accommodations, tasks] =
+  const [participantCount, expensesResult, accommodations, tasks] =
     await Promise.all([
       RedisCacheManager.getDocument(tripDocumentId, 'participant_count'),
-      RedisCacheManager.getDocument(tripDocumentId, 'expenses'),
-      this.calculateExpenseStatistics(tripDocumentId, userId),
-      RedisCacheManager.getDocument(tripDocumentId, 'accommodations'),
-      RedisCacheManager.getDocument(tripDocumentId, 'tasks'),
+      this.getExpenses(userId, tripId),
+      this.getAccommodations(userId, tripId),
+      this.getTasks(userId, tripId),
     ]);
-
-  // PERSONAL 타입인 경우 본인의 payUserId와 일치하는 것만 필터링
-  const expenses = allExpenses.filter((expense) => {
-    if (expense.expenseType === 'PERSONAL') {
-      return expense.payUserId === userId;
-    }
-    return true; // SHARED 타입은 모두 포함
-  });
 
   return {
     document: { tripDocumentId, participantCount },
-    expenses,
-    statistics,
+    expenses: expensesResult.expenses,
+    statistics: expensesResult.statistics,
+    settlement: expensesResult.settlement,
     accommodations,
     tasks,
   };
@@ -953,9 +1134,24 @@ exports.getExpenses = async (userId, tripId) => {
     attributes: ['tripDocumentId'],
   });
 
-  // Redis 캐시에서 expenses 로드
-  const allExpenses = await RedisCacheManager.getDocument(tripDocumentId, 'expenses');
-  
+  // Redis 캐시에서 expenses 및 참여자 수, 통계 로드
+  const [allExpenses, participantCount, statistics, trip] = await Promise.all([
+    RedisCacheManager.getDocument(tripDocumentId, 'expenses'),
+    RedisCacheManager.getDocument(tripDocumentId, 'participant_count'),
+    this.calculateExpenseStatistics(tripDocumentId, userId),
+    Trip.findOne({
+      where: { tripId },
+      include: [
+        {
+          model: User,
+          as: 'participants',
+          attributes: ['userId', 'kakaoPayId', 'bankName', 'accountNumber'],
+          through: { attributes: [] },
+        },
+      ],
+    }),
+  ]);
+
   // PERSONAL 타입인 경우 본인의 payUserId와 일치하는 것만 필터링
   const expenses = allExpenses.filter((expense) => {
     if (expense.expenseType === 'PERSONAL') {
@@ -963,12 +1159,31 @@ exports.getExpenses = async (userId, tripId) => {
     }
     return true; // SHARED 타입은 모두 포함
   });
-  
-  const statistics = await this.calculateExpenseStatistics(tripDocumentId, userId);
+
+  // 정산용 사용자 결제 정보 맵 구성
+  const userPaymentInfoMap = new Map();
+  if (trip && Array.isArray(trip.participants)) {
+    trip.participants.forEach((participant) => {
+      userPaymentInfoMap.set(participant.userId, {
+        kakaoPayId: participant.kakaoPayId || null,
+        bankName: participant.bankName || null,
+        accountNumber: participant.accountNumber || null,
+      });
+    });
+  }
+
+  // 공동 경비 정산 정보 계산
+  const settlement = this.calculateSharedSettlement(
+    allExpenses,
+    participantCount,
+    userPaymentInfoMap,
+    userId,
+  );
 
   return {
     expenses,
     statistics,
+    settlement,
   };
 };
 
