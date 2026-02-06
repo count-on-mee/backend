@@ -851,6 +851,24 @@ exports.acceptInvitation = async (userId, invitationCode) => {
     userId,
   });
 
+  const tripDocument = await TripDocument.findOne({
+    where: { tripId: trip.tripId },
+    attributes: ['tripDocumentId'],
+  });
+
+  if (tripDocument) {
+    const currentCount = await RedisCacheManager.getDocument(
+      tripDocument.tripDocumentId,
+      'participant_count',
+    );
+    const newCount = currentCount + 1;
+    await RedisCacheManager.updateDocumentWithDirtyFlag(
+      tripDocument.tripDocumentId,
+      'participant_count',
+      newCount,
+    );
+  }
+
   return trip.tripId;
 };
 
