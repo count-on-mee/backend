@@ -897,6 +897,13 @@ exports.calculateSharedSettlement = (
     return userStatsMap.get(userId);
   };
 
+  // 여행 참가자 전체를 먼저 초기화해서, 아직 어떤 지출에도 포함되지 않은 사용자도 누락되지 않도록 처리
+  if (userPaymentInfoMap instanceof Map) {
+    for (const userId of userPaymentInfoMap.keys()) {
+      ensureUserStats(userId);
+    }
+  }
+
   let sharedTotalBudget = 0; // 공동경비 전체 금액
   let sharedTotalSpentByBudget = 0; // 공동경비 결제액
 
