@@ -1072,8 +1072,14 @@ exports.calculateSharedSettlement = (
       totalSpentFromBudget: sharedTotalSpentByBudget,
       remainingBudget: sharedRemainingBudget,
       extraDistribution: {
-        userId: earliestParticipantUserId,
-        amount: remainingForEarliest,
+        userId:
+          remainingForEarliest > 0 && earliestParticipantUserId
+            ? earliestParticipantUserId
+            : null,
+        amount:
+          remainingForEarliest > 0 && earliestParticipantUserId
+            ? remainingForEarliest
+            : 0,
       },
     },
     personal: Array.from(userStatsMap.values()),
