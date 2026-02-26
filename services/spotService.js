@@ -338,9 +338,18 @@ exports.searchSpots = async (userId, spotName, spotCategories) => {
     ],
     ...(spotName && {
       where: {
-        name: {
-          [Op.like]: `%${spotName}%`,
-        },
+        [Op.or]: [
+          {
+            name: {
+              [Op.like]: `%${spotName}%`,
+            },
+          },
+          {
+            address: {
+              [Op.like]: `%${spotName}%`,
+            },
+          },
+        ],
       },
     }),
   });
