@@ -875,6 +875,7 @@ exports.acceptInvitation = async (userId, invitationCode) => {
 exports.calculateSharedSettlement = (
   expenses,
   participantCount,
+  earliestParticipantUserId,
   userPaymentInfoMap,
   currentUserId,
 ) => {
@@ -945,15 +946,32 @@ exports.calculateSharedSettlement = (
   }
 
   const sharedRemainingBudget = sharedTotalBudget - sharedTotalSpentByBudget;
-  //TODO: 공동경비 분배액 안나눠 떨어지는 경우 처리
-  const distributedSharedBudget =
+
+  // 공동경비 분배액: 1인당 기본 분배액 + 가장 먼저 참여한 1인에게 나머지 몰아주기
+  const baseDistributedSharedBudget =
     participantCount && participantCount > 0
-      ? sharedRemainingBudget / participantCount
+      ? Math.floor(sharedRemainingBudget / participantCount)
+      : 0;
+
+  const remainingForEarliest =
+    participantCount && participantCount > 0
+      ? sharedRemainingBudget - baseDistributedSharedBudget * participantCount
       : 0;
 
   // 사용자별 최종 정산 금액 계산
   for (const stats of userStatsMap.values()) {
-    stats.distributedSharedBudget = distributedSharedBudget;
+    let userDistributedSharedBudget = baseDistributedSharedBudget;
+
+    // 가장 먼저 여행에 참여한 사용자에게 나머지 금액을 몰아서 분배
+    if (
+      earliestParticipantUserId &&
+      stats.userId === earliestParticipantUserId &&
+      remainingForEarliest > 0
+    ) {
+      userDistributedSharedBudget += remainingForEarliest;
+    }
+
+    stats.distributedSharedBudget = userDistributedSharedBudget;
     stats.netAmount =
       stats.addedSharedBudget +
       stats.paidAmount -
@@ -1053,6 +1071,10 @@ exports.calculateSharedSettlement = (
       totalBudget: sharedTotalBudget,
       totalSpentFromBudget: sharedTotalSpentByBudget,
       remainingBudget: sharedRemainingBudget,
+      extraDistribution: {
+        userId: earliestParticipantUserId,
+        amount: remainingForEarliest,
+      },
     },
     personal: Array.from(userStatsMap.values()),
   };
@@ -1153,22 +1175,28 @@ exports.getExpenses = async (userId, tripId) => {
   });
 
   // Redis 캐시에서 expenses 및 참여자 수, 통계 로드
-  const [allExpenses, participantCount, statistics, trip] = await Promise.all([
-    RedisCacheManager.getDocument(tripDocumentId, 'expenses'),
-    RedisCacheManager.getDocument(tripDocumentId, 'participant_count'),
-    this.calculateExpenseStatistics(tripDocumentId, userId),
-    Trip.findOne({
-      where: { tripId },
-      include: [
-        {
-          model: User,
-          as: 'participants',
-          attributes: ['userId', 'kakaoPayId', 'bankName', 'accountNumber'],
-          through: { attributes: [] },
-        },
-      ],
-    }),
-  ]);
+  const [allExpenses, participantCount, statistics, trip, earliestTripUser] =
+    await Promise.all([
+      RedisCacheManager.getDocument(tripDocumentId, 'expenses'),
+      RedisCacheManager.getDocument(tripDocumentId, 'participant_count'),
+      this.calculateExpenseStatistics(tripDocumentId, userId),
+      Trip.findOne({
+        where: { tripId },
+        include: [
+          {
+            model: User,
+            as: 'participants',
+            attributes: ['userId', 'kakaoPayId', 'bankName', 'accountNumber'],
+            through: { attributes: [] },
+          },
+        ],
+      }),
+      TripUser.findOne({
+        where: { tripId },
+        attributes: ['userId'],
+        order: [['createdAt', 'ASC']],
+      }),
+    ]);
 
   // PERSONAL 타입인 경우 본인의 payUserId와 일치하는 것만 필터링
   const expenses = allExpenses.filter((expense) => {
@@ -1191,9 +1219,14 @@ exports.getExpenses = async (userId, tripId) => {
   }
 
   // 공동 경비 정산 정보 계산
+  const earliestParticipantUserId = earliestTripUser
+    ? earliestTripUser.userId
+    : null;
+
   const settlement = this.calculateSharedSettlement(
     allExpenses,
     participantCount,
+    earliestParticipantUserId,
     userPaymentInfoMap,
     userId,
   );
