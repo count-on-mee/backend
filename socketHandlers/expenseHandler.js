@@ -1,8 +1,12 @@
-const { TripDocumentExpense, TripDocumentExpenseParticipant } = require('../models');
+const {
+  TripDocumentVersion,
+  TripDocumentExpense,
+  TripDocumentExpenseParticipant,
+} = require('../models');
 const { ObjectUtil, RedisCacheManager, SocketManager } = require('../utils');
 
 const handleExpenseEvents = (socket) => {
-  const { roomId, tripDocumentId } =
+  const { roomId, tripDocumentVersionId } =
     SocketManager.extractTripDocumentInfo(socket);
 
   socket.on('addExpense', async ({ expenseData }) => {
@@ -47,10 +51,19 @@ const handleExpenseEvents = (socket) => {
         }
       }
 
-      const currentData = await RedisCacheManager.getDocument(
-        tripDocumentId,
+      const currentData = await RedisCacheManager.getDocumentVersion(
+        tripDocumentVersionId,
         'expenses'
       );
+
+      const tripDocumentVersion = await TripDocumentVersion.findByPk(
+        tripDocumentVersionId,
+        { attributes: ['tripDocumentId'] }
+      );
+      if (!tripDocumentVersion) {
+        socket.emit('error', { message: 'Trip document version not found' });
+        return;
+      }
 
       const {
         participants,
@@ -59,7 +72,8 @@ const handleExpenseEvents = (socket) => {
       } = expenseData || {};
 
       const createdExpense = await TripDocumentExpense.create({
-        tripDocumentId,
+        tripDocumentId: tripDocumentVersion.tripDocumentId,
+        tripDocumentVersionId,
         payUserId,
         ...expenseFields,
       });
@@ -76,6 +90,7 @@ const handleExpenseEvents = (socket) => {
 
       const newExpense = ObjectUtil.omit(createdExpense.get({ plain: true }), [
         'tripDocumentId',
+        'tripDocumentVersionId',
         'createdAt',
         'updatedAt',
       ]);
@@ -90,8 +105,8 @@ const handleExpenseEvents = (socket) => {
       }
 
       const updatedData = [...currentData, newExpense];
-      await RedisCacheManager.setDocument(
-        tripDocumentId,
+      await RedisCacheManager.setDocumentVersion(
+        tripDocumentVersionId,
         'expenses',
         updatedData
       );
@@ -110,8 +125,8 @@ const handleExpenseEvents = (socket) => {
     'updateExpense',
     async ({ tripDocumentExpenseId, expenseFields }) => {
       try {
-        const currentData = await RedisCacheManager.getDocument(
-          tripDocumentId,
+        const currentData = await RedisCacheManager.getDocumentVersion(
+          tripDocumentVersionId,
           'expenses'
         );
         
@@ -187,8 +202,8 @@ const handleExpenseEvents = (socket) => {
             ? { ...expense, ...expenseFields }
             : expense
         );
-        await RedisCacheManager.updateDocumentWithDirtyFlag(
-          tripDocumentId,
+        await RedisCacheManager.updateDocumentVersionWithDirtyFlag(
+          tripDocumentVersionId,
           'expenses',
           updatedData
         );
@@ -209,8 +224,8 @@ const handleExpenseEvents = (socket) => {
 
   socket.on('deleteExpense', async ({ tripDocumentExpenseId }) => {
     try {
-      const currentData = await RedisCacheManager.getDocument(
-        tripDocumentId,
+      const currentData = await RedisCacheManager.getDocumentVersion(
+        tripDocumentVersionId,
         'expenses'
       );
       
@@ -221,14 +236,14 @@ const handleExpenseEvents = (socket) => {
       const updatedData = currentData.filter(
         (expense) => expense.tripDocumentExpenseId !== tripDocumentExpenseId
       );
-      await RedisCacheManager.updateDocumentWithDirtyFlag(
-        tripDocumentId,
+      await RedisCacheManager.updateDocumentVersionWithDirtyFlag(
+        tripDocumentVersionId,
         'expenses',
         updatedData
       );
 
-      await RedisCacheManager.addDeletedId(
-        tripDocumentId,
+      await RedisCacheManager.addDeletedIdForVersion(
+        tripDocumentVersionId,
         'expenses',
         tripDocumentExpenseId
       );

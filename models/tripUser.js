@@ -26,6 +26,15 @@ module.exports = (sequelize, DataTypes) => {
           key: 'user_id',
         },
       },
+      status: {
+        type: DataTypes.ENUM('ACTIVE', 'LEFT'),
+        allowNull: false,
+        defaultValue: 'ACTIVE',
+      },
+      leftAt: {
+        type: DataTypes.DATE,
+        allowNull: true,
+      },
     },
     {
       tableName: 'trip_user',

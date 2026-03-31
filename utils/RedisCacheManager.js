@@ -1,6 +1,7 @@
 const {
   sequelize,
   TripDocument,
+  TripDocumentVersion,
   TripDocumentExpense,
   TripDocumentExpenseParticipant,
   TripDocumentAccommodation,
@@ -20,12 +21,24 @@ class RedisCacheManager {
     return `document:${tripDocumentId}:${type}`;
   }
 
+  static getDocumentVersionKey(tripDocumentVersionId, type) {
+    return `documentVersion:${tripDocumentVersionId}:${type}`;
+  }
+
   static getDirtyFlagKey(tripDocumentId, type) {
     return `document:${tripDocumentId}:${type}:dirty`;
   }
 
+  static getDocumentVersionDirtyFlagKey(tripDocumentVersionId, type) {
+    return `documentVersion:${tripDocumentVersionId}:${type}:dirty`;
+  }
+
   static getDeletedKey(tripDocumentId, type) {
     return `document:${tripDocumentId}:${type}:deleted`;
+  }
+
+  static getDocumentVersionDeletedKey(tripDocumentVersionId, type) {
+    return `documentVersion:${tripDocumentVersionId}:${type}:deleted`;
   }
 
   static async getDocument(tripDocumentId, type) {
@@ -47,12 +60,44 @@ class RedisCacheManager {
     }
   }
 
+  static async getDocumentVersion(tripDocumentVersionId, type) {
+    try {
+      const key = this.getDocumentVersionKey(tripDocumentVersionId, type);
+      const data = await this.redis.get(key);
+
+      if (data) {
+        await this.redis.expire(key, this.CACHE_TTL);
+        return JSON.parse(data);
+      }
+
+      const dbData = await this.loadFromDatabaseForVersion(
+        tripDocumentVersionId,
+        type
+      );
+      await this.setDocumentVersion(tripDocumentVersionId, type, dbData);
+      return dbData;
+    } catch (error) {
+      console.error('Failed to get document version:', error);
+      throw error;
+    }
+  }
+
   static async setDocument(tripDocumentId, type, data) {
     try {
       const key = this.getDocumentKey(tripDocumentId, type);
       await this.redis.set(key, JSON.stringify(data), 'EX', this.CACHE_TTL);
     } catch (error) {
       console.error('Failed to set document:', error);
+      throw error;
+    }
+  }
+
+  static async setDocumentVersion(tripDocumentVersionId, type, data) {
+    try {
+      const key = this.getDocumentVersionKey(tripDocumentVersionId, type);
+      await this.redis.set(key, JSON.stringify(data), 'EX', this.CACHE_TTL);
+    } catch (error) {
+      console.error('Failed to set document version:', error);
       throw error;
     }
   }
@@ -73,6 +118,29 @@ class RedisCacheManager {
     }
   }
 
+  static async updateDocumentVersionWithDirtyFlag(
+    tripDocumentVersionId,
+    type,
+    data
+  ) {
+    try {
+      const key = this.getDocumentVersionKey(tripDocumentVersionId, type);
+      const dirtyFlagKey = this.getDocumentVersionDirtyFlagKey(
+        tripDocumentVersionId,
+        type
+      );
+      const expiryTime = Date.now() + this.CACHE_TTL * 1000;
+
+      const multi = this.redis.multi();
+      multi.set(key, JSON.stringify(data), 'EX', this.CACHE_TTL);
+      multi.set(dirtyFlagKey, expiryTime.toString());
+      await multi.exec();
+    } catch (error) {
+      console.error('Failed to update document version with dirty flag:', error);
+      throw error;
+    }
+  }
+
   static async addDeletedId(tripDocumentId, type, id) {
     try {
       const deletedKey = this.getDeletedKey(tripDocumentId, type);
@@ -87,6 +155,23 @@ class RedisCacheManager {
     }
   }
 
+  static async addDeletedIdForVersion(tripDocumentVersionId, type, id) {
+    try {
+      const deletedKey = this.getDocumentVersionDeletedKey(
+        tripDocumentVersionId,
+        type
+      );
+      const deletedIds = await this.redis.get(deletedKey);
+      const updatedDeletedIds = deletedIds
+        ? [...JSON.parse(deletedIds), id]
+        : [id];
+      await this.redis.set(deletedKey, JSON.stringify(updatedDeletedIds));
+    } catch (error) {
+      console.error('Failed to add deleted id for version:', error);
+      throw error;
+    }
+  }
+
   static async getDeletedIds(tripDocumentId, type) {
     try {
       const deletedKey = this.getDeletedKey(tripDocumentId, type);
@@ -94,6 +179,20 @@ class RedisCacheManager {
       return deletedIds ? JSON.parse(deletedIds) : [];
     } catch (error) {
       console.error('Failed to get deleted ids:', error);
+      throw error;
+    }
+  }
+
+  static async getDeletedIdsForVersion(tripDocumentVersionId, type) {
+    try {
+      const deletedKey = this.getDocumentVersionDeletedKey(
+        tripDocumentVersionId,
+        type
+      );
+      const deletedIds = await this.redis.get(deletedKey);
+      return deletedIds ? JSON.parse(deletedIds) : [];
+    } catch (error) {
+      console.error('Failed to get deleted ids for version:', error);
       throw error;
     }
   }
@@ -113,12 +212,36 @@ class RedisCacheManager {
     }
   }
 
+  static async clearDirtyStateForVersion(tripDocumentVersionId, type) {
+    try {
+      const flagKey = this.getDocumentVersionDirtyFlagKey(
+        tripDocumentVersionId,
+        type
+      );
+      const deletedKey = this.getDocumentVersionDeletedKey(
+        tripDocumentVersionId,
+        type
+      );
+
+      const multi = this.redis.multi();
+      multi.del(flagKey);
+      multi.del(deletedKey);
+      await multi.exec();
+    } catch (error) {
+      console.error('Failed to clear dirty state for version:', error);
+      throw error;
+    }
+  }
+
   static async startPersistenceWorker(
     interval = this.PERSISTENCE_INTERVAL * 1000
   ) {
     setInterval(async () => {
       try {
-        const dirtyFlags = await this.redis.keys('document:*:dirty');
+        const [dirtyFlags, versionDirtyFlags] = await Promise.all([
+          this.redis.keys('document:*:dirty'),
+          this.redis.keys('documentVersion:*:dirty'),
+        ]);
 
         for (const flagKey of dirtyFlags) {
           const [_, tripDocumentId, type] = flagKey.split(':');
@@ -145,6 +268,40 @@ class RedisCacheManager {
             await this.clearDirtyState(tripDocumentId, type);
           } else {
             await this.clearDirtyState(tripDocumentId, type);
+          }
+        }
+
+        for (const flagKey of versionDirtyFlags) {
+          const [_, tripDocumentVersionId, type] = flagKey.split(':');
+          const dataKey = this.getDocumentVersionKey(tripDocumentVersionId, type);
+
+          const expiryTimeStr = await this.redis.get(flagKey);
+          if (!expiryTimeStr) continue;
+
+          const expiryTime = parseInt(expiryTimeStr);
+          const data = await this.redis.get(dataKey);
+          const deletedIds = await this.getDeletedIdsForVersion(
+            tripDocumentVersionId,
+            type
+          );
+
+          if (data) {
+            await this.persistToDatabaseForVersion(
+              tripDocumentVersionId,
+              type,
+              JSON.parse(data),
+              deletedIds
+            );
+            await this.clearDirtyStateForVersion(tripDocumentVersionId, type);
+          } else if (Date.now() < expiryTime) {
+            const dbData = await this.loadFromDatabaseForVersion(
+              tripDocumentVersionId,
+              type
+            );
+            await this.setDocumentVersion(tripDocumentVersionId, type, dbData);
+            await this.clearDirtyStateForVersion(tripDocumentVersionId, type);
+          } else {
+            await this.clearDirtyStateForVersion(tripDocumentVersionId, type);
           }
         }
       } catch (error) {
@@ -237,6 +394,75 @@ class RedisCacheManager {
     }
   }
 
+  static async loadFromDatabaseForVersion(tripDocumentVersionId, type) {
+    try {
+      if (type === 'participant_count') {
+        const { participantCount } = await TripDocumentVersion.findByPk(
+          tripDocumentVersionId,
+          {
+            attributes: ['participantCount'],
+          }
+        );
+        return participantCount;
+      }
+
+      if (type !== 'expenses') {
+        throw new Error(`Unsupported versioned type: ${type}`);
+      }
+
+      const tripDocumentVersion = await TripDocumentVersion.findByPk(
+        tripDocumentVersionId,
+        {
+          include: [
+            {
+              model: TripDocumentExpense,
+              as: 'expenses',
+              attributes: [
+                'tripDocumentExpenseId',
+                'payUserId',
+                'expenseCategory',
+                'description',
+                'totalAmount',
+                'paymentMethod',
+                'expenseDate',
+                'expenseType',
+              ],
+              include: [
+                {
+                  model: TripDocumentExpenseParticipant,
+                  as: 'participants',
+                  attributes: ['participantUserId', 'sharedAmount'],
+                },
+              ],
+            },
+          ],
+        }
+      );
+
+      if (!tripDocumentVersion) {
+        throw new Error(
+          `TripDocumentVersion not found: ${tripDocumentVersionId}`
+        );
+      }
+
+      let data = tripDocumentVersion.expenses.map((item) =>
+        item.get({ plain: true })
+      );
+
+      data = data.map((expense) => {
+        if (!Object.prototype.hasOwnProperty.call(expense, 'payUserId')) {
+          return { ...expense, payUserId: null };
+        }
+        return expense;
+      });
+
+      return data;
+    } catch (error) {
+      console.error('Failed to load from database for version:', error);
+      throw error;
+    }
+  }
+
   static async persistToDatabase(tripDocumentId, type, data, deletedIds = []) {
     try {
       const tripDocument = await TripDocument.findByPk(tripDocumentId);
@@ -265,6 +491,141 @@ class RedisCacheManager {
     } catch (error) {
       console.error('Failed to persist to database:', error);
       throw error;
+    }
+  }
+
+  static async persistToDatabaseForVersion(
+    tripDocumentVersionId,
+    type,
+    data,
+    deletedIds = []
+  ) {
+    try {
+      const tripDocumentVersion = await TripDocumentVersion.findByPk(
+        tripDocumentVersionId,
+        { attributes: ['tripDocumentVersionId', 'tripDocumentId'] }
+      );
+      if (!tripDocumentVersion) {
+        throw new Error('Trip document version not found');
+      }
+
+      const transaction = await sequelize.transaction();
+
+      try {
+        deletedIds.length > 0 &&
+          (await this.deleteFromDatabaseForVersion(
+            tripDocumentVersionId,
+            type,
+            deletedIds,
+            transaction
+          ));
+
+        await this.updateDatabaseForVersion(
+          tripDocumentVersion,
+          type,
+          data,
+          transaction
+        );
+
+        await transaction.commit();
+      } catch (error) {
+        await transaction.rollback();
+        throw error;
+      }
+    } catch (error) {
+      console.error('Failed to persist to database for version:', error);
+      throw error;
+    }
+  }
+
+  static async deleteFromDatabaseForVersion(
+    tripDocumentVersionId,
+    type,
+    deletedIds,
+    transaction
+  ) {
+    switch (type) {
+      case 'expenses':
+        await TripDocumentExpense.destroy({
+          where: {
+            tripDocumentExpenseId: deletedIds,
+            tripDocumentVersionId,
+          },
+          transaction,
+        });
+        break;
+      default:
+        throw new Error(`Unknown versioned type: ${type}`);
+    }
+  }
+
+  static async updateDatabaseForVersion(
+    tripDocumentVersion,
+    type,
+    data,
+    transaction
+  ) {
+    switch (type) {
+      case 'participant_count':
+        await TripDocumentVersion.update(
+          { participantCount: data },
+          {
+            where: {
+              tripDocumentVersionId: tripDocumentVersion.tripDocumentVersionId,
+            },
+            transaction,
+          }
+        );
+        break;
+      case 'expenses':
+        await TripDocumentExpense.bulkCreate(
+          data.map((expense) => {
+            const { participants, ...expenseFields } = expense;
+
+            return {
+              ...expenseFields,
+              tripDocumentVersionId: tripDocumentVersion.tripDocumentVersionId,
+              tripDocumentId: tripDocumentVersion.tripDocumentId,
+            };
+          }),
+          {
+            transaction,
+            updateOnDuplicate: [
+              'payUserId',
+              'expenseCategory',
+              'description',
+              'totalAmount',
+              'paymentMethod',
+              'expenseDate',
+              'expenseType',
+              'tripDocumentId',
+              'tripDocumentVersionId',
+            ],
+          }
+        );
+
+        for (const expense of data) {
+          if (!Array.isArray(expense.participants)) continue;
+
+          await TripDocumentExpenseParticipant.destroy({
+            where: { tripDocumentExpenseId: expense.tripDocumentExpenseId },
+            transaction,
+          });
+
+          if (expense.participants.length === 0) continue;
+
+          await TripDocumentExpenseParticipant.bulkCreate(
+            expense.participants.map((p) => ({
+              tripDocumentExpenseId: expense.tripDocumentExpenseId,
+              participantUserId: p.participantUserId,
+              sharedAmount: p.sharedAmount,
+            })),
+            { transaction }
+          );
+        }
+        break;
+      default:
+        throw new Error(`Unknown versioned type: ${type}`);
     }
   }
 
@@ -399,6 +760,14 @@ class RedisCacheManager {
 
   static async invalidateTripDocumentCache(tripDocumentId) {
     const pattern = `document:${tripDocumentId}:*`;
+    const keys = await this.redis.keys(pattern);
+    if (keys.length > 0) {
+      await this.redis.del(keys);
+    }
+  }
+
+  static async invalidateTripDocumentVersionCache(tripDocumentVersionId) {
+    const pattern = `documentVersion:${tripDocumentVersionId}:*`;
     const keys = await this.redis.keys(pattern);
     if (keys.length > 0) {
       await this.redis.del(keys);

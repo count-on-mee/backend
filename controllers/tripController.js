@@ -111,6 +111,21 @@ exports.deleteTrip = async (req, res) => {
   }
 };
 
+exports.leaveTrip = async (req, res) => {
+  try {
+    const { userId } = req.user;
+    const { tripId } = req.params;
+
+    const result = await tripService.leaveTrip(userId, tripId);
+
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(400).json({
+      message: error.message || '여행 나가기에 실패했습니다.',
+    });
+  }
+};
+
 exports.createItinerary = async (req, res) => {
   try {
     const { userId } = req.user;
@@ -199,6 +214,65 @@ exports.getDocuments = async (req, res) => {
   } catch (error) {
     res.status(404).json({
       message: error.message || '여행 문서 조회에 실패했습니다.',
+    });
+  }
+};
+
+exports.getDocumentVersion = async (req, res) => {
+  try {
+    const { userId } = req.user;
+    const { tripId, tripDocumentVersionId } = req.params;
+
+    const result = await tripService.getDocumentVersion(
+      userId,
+      tripId,
+      parseInt(tripDocumentVersionId, 10)
+    );
+
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(404).json({
+      message: error.message || '여행 문서 버전 조회에 실패했습니다.',
+    });
+  }
+};
+
+exports.createDocumentVersion = async (req, res) => {
+  try {
+    const { userId } = req.user;
+    const { tripId } = req.params;
+    const { reason, basedOnVersionId } = req.body || {};
+
+    const result = await tripService.createDocumentVersion(userId, tripId, {
+      reason,
+      basedOnVersionId,
+    });
+
+    res.status(201).json(result);
+  } catch (error) {
+    res.status(400).json({
+      message: error.message || '여행 문서 버전 생성에 실패했습니다.',
+    });
+  }
+};
+
+exports.updateDocumentVersionName = async (req, res) => {
+  try {
+    const { userId } = req.user;
+    const { tripId, tripDocumentVersionId } = req.params;
+    const { name } = req.body || {};
+
+    const result = await tripService.updateDocumentVersionName(
+      userId,
+      tripId,
+      parseInt(tripDocumentVersionId, 10),
+      name
+    );
+
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(400).json({
+      message: error.message || '여행 문서 버전 이름 수정에 실패했습니다.',
     });
   }
 };

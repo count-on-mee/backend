@@ -7,6 +7,7 @@ const {
   updateTripValidator,
   createItineraryValidator,
   moveItinerariesValidator,
+  updateTripDocumentVersionNameValidator,
 } = require('../validators');
 
 router.get('/destinations', tripController.getTripDestinations);
@@ -19,6 +20,7 @@ router.patch(
   updateTripValidator,
   tripController.updateTrip
 );
+router.post('/:tripId/leave', requireAuth, tripController.leaveTrip);
 router.delete('/:tripId', requireAuth, tripController.deleteTrip);
 router.post(
   '/:tripId/itineraries',
@@ -48,6 +50,22 @@ router.post(
   tripController.acceptInvitation
 );
 router.get('/:tripId/documents', requireAuth, tripController.getDocuments);
+router.get(
+  '/:tripId/documents/versions/:tripDocumentVersionId',
+  requireAuth,
+  tripController.getDocumentVersion
+);
+router.post(
+  '/:tripId/documents/versions',
+  requireAuth,
+  tripController.createDocumentVersion
+);
+router.patch(
+  '/:tripId/documents/versions/:tripDocumentVersionId',
+  requireAuth,
+  updateTripDocumentVersionNameValidator,
+  tripController.updateDocumentVersionName
+);
 router.get(
   '/:tripId/documents/expenses',
   requireAuth,
