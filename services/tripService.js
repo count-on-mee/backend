@@ -1345,9 +1345,14 @@ exports.getDocuments = async (userId, tripId) => {
     this.getTasks(userId, tripId),
   ]);
 
+  const activeVersion = versions.find(
+    (v) => v.tripDocumentVersionId === tripDocument.activeVersionId
+  );
+
   return {
     document: {
       tripDocumentId: tripDocument.tripDocumentId,
+      participantCount: activeVersion ? activeVersion.participantCount : null,
       activeVersionId: tripDocument.activeVersionId,
       versions: versions.map((v) => ({
         tripDocumentVersionId: v.tripDocumentVersionId,
@@ -1513,6 +1518,7 @@ exports.getDocumentVersion = async (userId, tripId, tripDocumentVersionId) => {
   return {
     document: {
       tripDocumentId: tripDocument.tripDocumentId,
+      participantCount: version.participantCount,
       activeVersionId: tripDocument.activeVersionId,
     },
     version: {
