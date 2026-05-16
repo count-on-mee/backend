@@ -23,7 +23,12 @@ class TripDetailDto {
           ),
         };
       }),
-      participants: participants ? UserDto.fromMany(participants) : [],
+      participants: participants
+        ? participants.map((participant) => ({
+            ...UserDto.from(participant),
+            status: participant.TripUser?.status ?? null,
+          }))
+        : [],
     };
   }
 

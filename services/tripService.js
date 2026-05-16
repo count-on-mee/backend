@@ -452,7 +452,7 @@ exports.getTripById = async (userId, tripId) => {
         model: User,
         as: 'participants',
         attributes: ['userId', 'name', 'nickname', 'email', 'imgUrl'],
-        through: { attributes: [] },
+        through: { attributes: ['status'] },
       },
     ],
     order: [
@@ -963,23 +963,32 @@ exports.acceptInvitation = async (userId, invitationCode) => {
     where: { tripId: invitation.tripId },
   });
 
-  const tripParticipant = await TripUser.findOne({
-    where: { tripId: trip.tripId, userId },
-  });
-
-  if (tripParticipant) {
-    throw new Error('이미 참여한 여행입니다.');
-  }
-
   const transaction = await sequelize.transaction();
   try {
-    await TripUser.create(
-      {
-        tripId: trip.tripId,
-        userId,
-      },
-      { transaction }
-    );
+    const tripParticipant = await TripUser.findOne({
+      where: { tripId: trip.tripId, userId },
+      transaction,
+      lock: transaction.LOCK.UPDATE,
+    });
+
+    if (tripParticipant && tripParticipant.status === 'ACTIVE') {
+      throw new Error('이미 참여한 여행입니다.');
+    }
+
+    if (tripParticipant && tripParticipant.status === 'LEFT') {
+      await TripUser.update(
+        { status: 'ACTIVE', leftAt: null },
+        { where: { tripUserId: tripParticipant.tripUserId }, transaction }
+      );
+    } else {
+      await TripUser.create(
+        {
+          tripId: trip.tripId,
+          userId,
+        },
+        { transaction }
+      );
+    }
 
     const tripDocument = await TripDocument.findOne({
       where: { tripId: trip.tripId },
