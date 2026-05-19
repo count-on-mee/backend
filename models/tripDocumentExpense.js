@@ -10,6 +10,16 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         allowNull: false,
       },
+      tripDocumentVersionId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'trip_document_version',
+          key: 'trip_document_version_id',
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+      },
       tripDocumentId: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -71,6 +81,12 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'tripDocumentId',
       targetKey: 'tripDocumentId',
       as: 'tripDocument',
+    });
+
+    TripDocumentExpense.belongsTo(models.TripDocumentVersion, {
+      foreignKey: 'tripDocumentVersionId',
+      targetKey: 'tripDocumentVersionId',
+      as: 'tripDocumentVersion',
     });
 
     TripDocumentExpense.belongsTo(models.User, {

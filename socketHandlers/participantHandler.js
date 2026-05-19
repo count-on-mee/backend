@@ -1,15 +1,15 @@
 const { RedisCacheManager, SocketManager } = require('../utils');
 
 const handleParticipantEvents = (socket) => {
-  const { roomId, tripDocumentId } =
+  const { roomId, tripDocumentVersionId } =
     SocketManager.extractTripDocumentInfo(socket);
 
   socket.on('updateParticipantCount', async ({ participantFields }) => {
     try {
       const updatedData = participantFields.count;
 
-      await RedisCacheManager.updateDocumentWithDirtyFlag(
-        tripDocumentId,
+      await RedisCacheManager.updateDocumentVersionWithDirtyFlag(
+        tripDocumentVersionId,
         'participant_count',
         updatedData
       );

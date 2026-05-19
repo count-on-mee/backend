@@ -29,16 +29,18 @@ exports.initializeSocket = (server) => {
         throw new Error('Trip ID is required');
       }
 
-      const { tripDocumentId } = await TripDocument.findOne({
+      const tripDocument = await TripDocument.findOne({
         where: { tripId },
-        attributes: ['tripDocumentId'],
+        attributes: ['tripDocumentId', 'activeVersionId'],
       });
-
-      if (!tripDocumentId) {
+      if (!tripDocument?.tripDocumentId) {
         throw new Error('Trip document not found');
       }
+      if (!tripDocument.activeVersionId) {
+        throw new Error('Trip document active version not found');
+      }
 
-      const roomId = `tripDocument:${tripDocumentId}`;
+      const roomId = `tripDocumentVersion:${tripDocument.activeVersionId}`;
       await socket.join(roomId);
 
       handleExpenseEvents(socket);
@@ -52,16 +54,19 @@ exports.initializeSocket = (server) => {
           throw new Error('Trip ID is required');
         }
 
-        const { tripDocumentId } = await TripDocument.findOne({
+        const tripDocument = await TripDocument.findOne({
           where: { tripId },
-          attributes: ['tripDocumentId'],
+          attributes: ['tripDocumentId', 'activeVersionId'],
         });
 
-        if (!tripDocumentId) {
+        if (!tripDocument?.tripDocumentId) {
           throw new Error('Trip document not found');
         }
+        if (!tripDocument.activeVersionId) {
+          throw new Error('Trip document active version not found');
+        }
 
-        const roomId = `tripDocument:${tripDocumentId}`;
+        const roomId = `tripDocumentVersion:${tripDocument.activeVersionId}`;
         socket.leave(roomId);
 
         socket.to(roomId).emit('userDisconnected', {

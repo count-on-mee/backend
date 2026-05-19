@@ -25,6 +25,16 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         defaultValue: 1,
       },
+      activeVersionId: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        references: {
+          model: 'trip_document_version',
+          key: 'trip_document_version_id',
+        },
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE',
+      },
     },
     {
       tableName: 'trip_document',
@@ -44,6 +54,18 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'tripDocumentId',
       sourceKey: 'tripDocumentId',
       as: 'expenses',
+    });
+
+    TripDocument.hasMany(models.TripDocumentVersion, {
+      foreignKey: 'tripDocumentId',
+      sourceKey: 'tripDocumentId',
+      as: 'versions',
+    });
+
+    TripDocument.belongsTo(models.TripDocumentVersion, {
+      foreignKey: 'activeVersionId',
+      targetKey: 'tripDocumentVersionId',
+      as: 'activeVersion',
     });
 
     TripDocument.hasMany(models.TripDocumentAccommodation, {

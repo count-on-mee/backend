@@ -12,6 +12,7 @@ const {
   TripItinerary,
   TripItineraryTransportation,
   TripDocument,
+  TripDocumentVersion,
   TripDocumentExpense,
   TripDocumentAccommodation,
   TripDocumentTask,
@@ -178,6 +179,33 @@ const createTripDocument = async (tripId, transaction) => {
     },
     { transaction },
   );
+
+  // version1 bootstrap
+  const participantUserIds = await TripUser.findAll({
+    where: { tripId },
+    attributes: ['userId'],
+    transaction,
+  }).then((rows) => rows.map((r) => r.userId));
+
+  const tripDocumentVersion = await TripDocumentVersion.create(
+    {
+      tripDocumentId: tripDocument.tripDocumentId,
+      versionNumber: 1,
+      name: 'V1',
+      reason: 'INITIAL',
+      createdByUserId: null,
+      basedOnVersionId: null,
+      participantCount: participantUserIds.length || 1,
+      participantUserIds,
+    },
+    { transaction }
+  );
+
+  await TripDocument.update(
+    { activeVersionId: tripDocumentVersion.tripDocumentVersionId },
+    { where: { tripDocumentId: tripDocument.tripDocumentId }, transaction }
+  );
+
   return tripDocument;
 };
 
@@ -230,6 +258,103 @@ exports.createTrip = async (
   }
 };
 
+exports.leaveTrip = async (userId, tripId) => {
+  await verifyTrip(tripId);
+
+  const transaction = await sequelize.transaction();
+  try {
+    const tripUser = await TripUser.findOne({
+      where: { tripId, userId, status: 'ACTIVE' },
+      transaction,
+      lock: transaction.LOCK.UPDATE,
+    });
+
+    if (!tripUser) {
+      throw new Error('여행 참여자가 아닙니다.');
+    }
+
+    await TripUser.update(
+      { status: 'LEFT', leftAt: new Date() },
+      { where: { tripUserId: tripUser.tripUserId }, transaction }
+    );
+
+    const activeUsers = await TripUser.findAll({
+      where: { tripId, status: 'ACTIVE' },
+      attributes: ['userId'],
+      transaction,
+      lock: transaction.LOCK.SHARE,
+    });
+
+    const participantUserIds = activeUsers.map((u) => u.userId);
+    const participantCount = participantUserIds.length || 1;
+
+    const tripDocument = await TripDocument.findOne({
+      where: { tripId },
+      attributes: ['tripDocumentId', 'activeVersionId'],
+      transaction,
+      lock: transaction.LOCK.UPDATE,
+    });
+
+    if (!tripDocument?.tripDocumentId) {
+      throw new Error('여행 문서를 찾을 수 없습니다.');
+    }
+
+    const maxVersionNumber =
+      (await TripDocumentVersion.max('versionNumber', {
+        where: { tripDocumentId: tripDocument.tripDocumentId },
+        transaction,
+      })) || 0;
+
+    const newVersion = await TripDocumentVersion.create(
+      {
+        tripDocumentId: tripDocument.tripDocumentId,
+        versionNumber: maxVersionNumber + 1,
+        name: `V${maxVersionNumber + 1}`,
+        reason: 'PARTICIPANT_LEFT',
+        createdByUserId: userId,
+        basedOnVersionId: tripDocument.activeVersionId,
+        participantCount,
+        participantUserIds,
+      },
+      { transaction }
+    );
+
+    await TripDocument.update(
+      { activeVersionId: newVersion.tripDocumentVersionId },
+      { where: { tripDocumentId: tripDocument.tripDocumentId }, transaction }
+    );
+
+    await transaction.commit();
+
+    // 새 버전은 비용을 비운 상태로 시작
+    await RedisCacheManager.setDocumentVersion(
+      newVersion.tripDocumentVersionId,
+      'expenses',
+      []
+    );
+
+    return {
+      tripId,
+      leftUserId: userId,
+      document: {
+        tripDocumentId: tripDocument.tripDocumentId,
+        activeVersionId: newVersion.tripDocumentVersionId,
+      },
+      version: {
+        tripDocumentVersionId: newVersion.tripDocumentVersionId,
+        versionNumber: newVersion.versionNumber,
+        reason: newVersion.reason,
+        basedOnVersionId: newVersion.basedOnVersionId,
+        participantCount: newVersion.participantCount,
+        createdAt: newVersion.createdAt,
+      },
+    };
+  } catch (error) {
+    await transaction.rollback();
+    throw error;
+  }
+};
+
 exports.getTrips = async (userId) => {
   const trips = await Trip.findAll({
     include: [
@@ -261,7 +386,7 @@ const verifyTrip = async (tripId) => {
 };
 const verifyTripParticipant = async (userId, tripId) => {
   const tripParticipant = await TripUser.findOne({
-    where: { tripId, userId },
+    where: { tripId, userId, status: 'ACTIVE' },
   });
   if (!tripParticipant) {
     throw new Error('여행 참여자가 아닙니다.');
@@ -327,7 +452,7 @@ exports.getTripById = async (userId, tripId) => {
         model: User,
         as: 'participants',
         attributes: ['userId', 'name', 'nickname', 'email', 'imgUrl'],
-        through: { attributes: [] },
+        through: { attributes: ['status'] },
       },
     ],
     order: [
@@ -838,38 +963,84 @@ exports.acceptInvitation = async (userId, invitationCode) => {
     where: { tripId: invitation.tripId },
   });
 
-  const tripParticipant = await TripUser.findOne({
-    where: { tripId: trip.tripId, userId },
-  });
+  const transaction = await sequelize.transaction();
+  try {
+    const tripParticipant = await TripUser.findOne({
+      where: { tripId: trip.tripId, userId },
+      transaction,
+      lock: transaction.LOCK.UPDATE,
+    });
 
-  if (tripParticipant) {
-    throw new Error('이미 참여한 여행입니다.');
-  }
+    if (tripParticipant && tripParticipant.status === 'ACTIVE') {
+      throw new Error('이미 참여한 여행입니다.');
+    }
 
-  await TripUser.create({
-    tripId: trip.tripId,
-    userId,
-  });
+    if (tripParticipant && tripParticipant.status === 'LEFT') {
+      await TripUser.update(
+        { status: 'ACTIVE', leftAt: null },
+        { where: { tripUserId: tripParticipant.tripUserId }, transaction }
+      );
+    } else {
+      await TripUser.create(
+        {
+          tripId: trip.tripId,
+          userId,
+        },
+        { transaction }
+      );
+    }
 
-  const tripDocument = await TripDocument.findOne({
-    where: { tripId: trip.tripId },
-    attributes: ['tripDocumentId'],
-  });
+    const tripDocument = await TripDocument.findOne({
+      where: { tripId: trip.tripId },
+      attributes: ['tripDocumentId', 'activeVersionId'],
+      transaction,
+      lock: transaction.LOCK.UPDATE,
+    });
 
-  if (tripDocument) {
-    const currentCount = await RedisCacheManager.getDocument(
-      tripDocument.tripDocumentId,
-      'participant_count',
+    // TripDocument가 없으면 참여만 반영하고 종료
+    if (!tripDocument?.tripDocumentId || !tripDocument.activeVersionId) {
+      await transaction.commit();
+      return trip.tripId;
+    }
+
+    // active 참여자 스냅샷을 active version에 반영
+    const activeUsers = await TripUser.findAll({
+      where: { tripId: trip.tripId, status: 'ACTIVE' },
+      attributes: ['userId'],
+      transaction,
+      lock: transaction.LOCK.SHARE,
+    });
+
+    const participantUserIds = activeUsers.map((u) => u.userId);
+    const participantCount = participantUserIds.length || 1;
+
+    await TripDocumentVersion.update(
+      {
+        participantCount,
+        participantUserIds,
+      },
+      {
+        where: {
+          tripDocumentId: tripDocument.tripDocumentId,
+          tripDocumentVersionId: tripDocument.activeVersionId,
+        },
+        transaction,
+      }
     );
-    const newCount = currentCount + 1;
-    await RedisCacheManager.updateDocumentWithDirtyFlag(
-      tripDocument.tripDocumentId,
-      'participant_count',
-      newCount,
-    );
-  }
 
-  return trip.tripId;
+    // Redis에도 동일한 participant_count를 version 기준으로 반영
+    await RedisCacheManager.updateDocumentVersionWithDirtyFlag(
+      tripDocument.activeVersionId,
+      'participant_count',
+      participantCount
+    );
+
+    await transaction.commit();
+    return trip.tripId;
+  } catch (error) {
+    await transaction.rollback();
+    throw error;
+  }
 };
 
 exports.calculateSharedSettlement = (
@@ -1093,11 +1264,13 @@ exports.calculateSharedSettlement = (
   };
 };
 
-exports.calculateExpenseStatistics = async (tripDocumentId, userId) => {
-  // Redis 캐시에서 expenses 데이터 로드
-  const expenses = await RedisCacheManager.getDocument(
-    tripDocumentId,
-    'expenses',
+exports.calculateExpenseStatisticsForVersion = async (
+  tripDocumentVersionId,
+  userId
+) => {
+  const expenses = await RedisCacheManager.getDocumentVersion(
+    tripDocumentVersionId,
+    'expenses'
   );
 
   // 메모리에서 통계 계산
@@ -1155,24 +1328,58 @@ exports.getDocuments = async (userId, tripId) => {
   await verifyTrip(tripId);
   await verifyTripParticipant(userId, tripId);
 
-  const { tripDocumentId } = await TripDocument.findOne({
+  const tripDocument = await TripDocument.findOne({
     where: { tripId },
-    attributes: ['tripDocumentId'],
+    attributes: ['tripDocumentId', 'activeVersionId'],
   });
 
-  const [participantCount, expensesResult, accommodations, tasks] =
-    await Promise.all([
-      RedisCacheManager.getDocument(tripDocumentId, 'participant_count'),
-      this.getExpenses(userId, tripId),
-      this.getAccommodations(userId, tripId),
-      this.getTasks(userId, tripId),
-    ]);
+  const versions = await TripDocumentVersion.findAll({
+    where: { tripDocumentId: tripDocument.tripDocumentId },
+    attributes: [
+      'tripDocumentVersionId',
+      'versionNumber',
+      'name',
+      'reason',
+      'basedOnVersionId',
+      'createdByUserId',
+      'participantCount',
+      'createdAt',
+    ],
+    order: [['versionNumber', 'ASC']],
+  });
+
+  const [activeVersionResult, accommodations, tasks] = await Promise.all([
+    this.getExpensesByVersion(userId, tripId, tripDocument.activeVersionId),
+    this.getAccommodations(userId, tripId),
+    this.getTasks(userId, tripId),
+  ]);
+
+  const activeVersion = versions.find(
+    (v) => v.tripDocumentVersionId === tripDocument.activeVersionId
+  );
 
   return {
-    document: { tripDocumentId, participantCount },
-    expenses: expensesResult.expenses,
-    statistics: expensesResult.statistics,
-    settlement: expensesResult.settlement,
+    document: {
+      tripDocumentId: tripDocument.tripDocumentId,
+      participantCount: activeVersion ? activeVersion.participantCount : null,
+      activeVersionId: tripDocument.activeVersionId,
+      versions: versions.map((v) => ({
+        tripDocumentVersionId: v.tripDocumentVersionId,
+        versionNumber: v.versionNumber,
+        name: v.name,
+        reason: v.reason,
+        basedOnVersionId: v.basedOnVersionId,
+        createdByUserId: v.createdByUserId,
+        participantCount: v.participantCount,
+        createdAt: v.createdAt,
+      })),
+    },
+    activeVersion: {
+      tripDocumentVersionId: tripDocument.activeVersionId,
+      expenses: activeVersionResult.expenses,
+      statistics: activeVersionResult.statistics,
+      settlement: activeVersionResult.settlement,
+    },
     accommodations,
     tasks,
   };
@@ -1182,17 +1389,35 @@ exports.getExpenses = async (userId, tripId) => {
   await verifyTrip(tripId);
   await verifyTripParticipant(userId, tripId);
 
-  const { tripDocumentId } = await TripDocument.findOne({
+  const { activeVersionId } = await TripDocument.findOne({
     where: { tripId },
-    attributes: ['tripDocumentId'],
+    attributes: ['activeVersionId'],
   });
 
+  return await this.getExpensesByVersion(userId, tripId, activeVersionId);
+};
+
+exports.getExpensesByVersion = async (
+  userId,
+  tripId,
+  tripDocumentVersionId
+) => {
+  await verifyTrip(tripId);
+  await verifyTripParticipant(userId, tripId);
+
+  const tripDocumentVersion = await TripDocumentVersion.findByPk(
+    tripDocumentVersionId,
+    { attributes: ['tripDocumentVersionId', 'tripDocumentId', 'participantCount'] }
+  );
+  if (!tripDocumentVersion) {
+    throw new Error('여행 문서 버전을 찾을 수 없습니다.');
+  }
+
   // Redis 캐시에서 expenses 및 참여자 수, 통계 로드
-  const [allExpenses, participantCount, statistics, trip, earliestTripUser] =
+  const [allExpenses, statistics, trip, earliestTripUser] =
     await Promise.all([
-      RedisCacheManager.getDocument(tripDocumentId, 'expenses'),
-      RedisCacheManager.getDocument(tripDocumentId, 'participant_count'),
-      this.calculateExpenseStatistics(tripDocumentId, userId),
+      RedisCacheManager.getDocumentVersion(tripDocumentVersionId, 'expenses'),
+      this.calculateExpenseStatisticsForVersion(tripDocumentVersionId, userId),
       Trip.findOne({
         where: { tripId },
         include: [
@@ -1238,7 +1463,7 @@ exports.getExpenses = async (userId, tripId) => {
 
   const settlement = this.calculateSharedSettlement(
     allExpenses,
-    participantCount,
+    tripDocumentVersion.participantCount,
     earliestParticipantUserId,
     userPaymentInfoMap,
     userId,
@@ -1261,6 +1486,207 @@ exports.getAccommodations = async (userId, tripId) => {
   });
 
   return await RedisCacheManager.getDocument(tripDocumentId, 'accommodations');
+};
+
+exports.getDocumentVersion = async (userId, tripId, tripDocumentVersionId) => {
+  await verifyTrip(tripId);
+  await verifyTripParticipant(userId, tripId);
+
+  const tripDocument = await TripDocument.findOne({
+    where: { tripId },
+    attributes: ['tripDocumentId', 'activeVersionId'],
+  });
+
+  const version = await TripDocumentVersion.findOne({
+    where: {
+      tripDocumentVersionId,
+      tripDocumentId: tripDocument.tripDocumentId,
+    },
+    attributes: [
+      'tripDocumentVersionId',
+      'versionNumber',
+      'name',
+      'reason',
+      'basedOnVersionId',
+      'createdByUserId',
+      'participantCount',
+      'createdAt',
+    ],
+  });
+
+  if (!version) {
+    throw new Error('여행 문서 버전을 찾을 수 없습니다.');
+  }
+
+  const versionResult = await this.getExpensesByVersion(
+    userId,
+    tripId,
+    tripDocumentVersionId
+  );
+
+  return {
+    document: {
+      tripDocumentId: tripDocument.tripDocumentId,
+      participantCount: version.participantCount,
+      activeVersionId: tripDocument.activeVersionId,
+    },
+    version: {
+      tripDocumentVersionId: version.tripDocumentVersionId,
+      versionNumber: version.versionNumber,
+      name: version.name,
+      reason: version.reason,
+      basedOnVersionId: version.basedOnVersionId,
+      createdByUserId: version.createdByUserId,
+      participantCount: version.participantCount,
+      createdAt: version.createdAt,
+      expenses: versionResult.expenses,
+      statistics: versionResult.statistics,
+      settlement: versionResult.settlement,
+    },
+  };
+};
+
+exports.updateDocumentVersionName = async (
+  userId,
+  tripId,
+  tripDocumentVersionId,
+  name
+) => {
+  await verifyTrip(tripId);
+  await verifyTripParticipant(userId, tripId);
+
+  const tripDocument = await TripDocument.findOne({
+    where: { tripId },
+    attributes: ['tripDocumentId'],
+  });
+
+  if (!tripDocument?.tripDocumentId) {
+    throw new Error('여행 문서를 찾을 수 없습니다.');
+  }
+
+  const [updatedCount] = await TripDocumentVersion.update(
+    { name },
+    {
+      where: {
+        tripDocumentVersionId,
+        tripDocumentId: tripDocument.tripDocumentId,
+      },
+    }
+  );
+
+  if (!updatedCount) {
+    throw new Error('여행 문서 버전을 찾을 수 없습니다.');
+  }
+
+  return {
+    tripDocumentVersionId,
+    name,
+  };
+};
+
+exports.createDocumentVersion = async (userId, tripId, input) => {
+  await verifyTrip(tripId);
+  await verifyTripParticipant(userId, tripId);
+
+  const reason = input?.reason;
+  if (!reason) {
+    throw new Error('reason은 필수입니다.');
+  }
+  if (!['INITIAL', 'INTERIM_SETTLEMENT', 'PARTICIPANT_LEFT'].includes(reason)) {
+    throw new Error('유효하지 않은 reason입니다.');
+  }
+
+  const transaction = await sequelize.transaction();
+
+  try {
+    const tripDocument = await TripDocument.findOne({
+      where: { tripId },
+      attributes: ['tripDocumentId', 'activeVersionId'],
+      transaction,
+      lock: transaction.LOCK.UPDATE,
+    });
+
+    const basedOnVersionId =
+      input?.basedOnVersionId !== undefined && input?.basedOnVersionId !== null
+        ? parseInt(input.basedOnVersionId, 10)
+        : tripDocument.activeVersionId;
+
+    const basedOnVersion = await TripDocumentVersion.findOne({
+      where: {
+        tripDocumentVersionId: basedOnVersionId,
+        tripDocumentId: tripDocument.tripDocumentId,
+      },
+      attributes: [
+        'tripDocumentVersionId',
+        'participantCount',
+        'participantUserIds',
+      ],
+      transaction,
+      lock: transaction.LOCK.UPDATE,
+    });
+
+    if (!basedOnVersion) {
+      throw new Error('기준 버전을 찾을 수 없습니다.');
+    }
+
+    const maxVersionNumber =
+      (await TripDocumentVersion.max('versionNumber', {
+        where: { tripDocumentId: tripDocument.tripDocumentId },
+        transaction,
+      })) || 0;
+
+    const newVersion = await TripDocumentVersion.create(
+      {
+        tripDocumentId: tripDocument.tripDocumentId,
+        versionNumber: maxVersionNumber + 1,
+        name: `V${maxVersionNumber + 1}`,
+        reason,
+        createdByUserId: userId,
+        basedOnVersionId: basedOnVersion.tripDocumentVersionId,
+        participantCount: basedOnVersion.participantCount,
+        participantUserIds: basedOnVersion.participantUserIds,
+      },
+      { transaction }
+    );
+
+    // 새 버전은 기본적으로 "새 기간"으로 시작(비용은 비움)
+    // - 중간정산/이탈 시점에 과거 버전을 보존하고, 새 버전은 이어서 기록하는 용도
+    // - 필요하면 추후 옵션으로 'cloneExpenses=true' 형태로 확장 가능
+    const clonedExpenses = [];
+
+    await TripDocument.update(
+      { activeVersionId: newVersion.tripDocumentVersionId },
+      { where: { tripDocumentId: tripDocument.tripDocumentId }, transaction }
+    );
+
+    // Redis warm-up
+    await RedisCacheManager.setDocumentVersion(
+      newVersion.tripDocumentVersionId,
+      'expenses',
+      clonedExpenses
+    );
+
+    await transaction.commit();
+
+    return {
+      document: {
+        tripDocumentId: tripDocument.tripDocumentId,
+        activeVersionId: newVersion.tripDocumentVersionId,
+      },
+      version: {
+        tripDocumentVersionId: newVersion.tripDocumentVersionId,
+        versionNumber: newVersion.versionNumber,
+        reason: newVersion.reason,
+        basedOnVersionId: newVersion.basedOnVersionId,
+        createdByUserId: newVersion.createdByUserId,
+        participantCount: newVersion.participantCount,
+        createdAt: newVersion.createdAt,
+      },
+    };
+  } catch (error) {
+    await transaction.rollback();
+    throw error;
+  }
 };
 
 exports.getTasks = async (userId, tripId) => {
